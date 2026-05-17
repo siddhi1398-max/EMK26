@@ -1,4 +1,3 @@
-
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -156,8 +155,7 @@ footer strong{color:#ff9e95}
 <nav>
   <div class="nav-inner">
     <div class="logo" onclick="showPage('home')">
-      <img src="images/logo.png" alt="EM Karnataka Logo" id="site-logo" style="height:36px;width:auto;display:none" onerror="this.style.display='none'" onload="this.style.display='block';document.querySelector('.logo-cross').style.display='none'" />
-      <div class="logo-cross" id="logo-cross-fallback"></div>
+      <div class="logo-cross"></div>
       <div class="logo-text">
         <span class="logo-main">EM Karnataka 2026</span>
         <span class="logo-sub">Emergency Medicine State Conference</span>
@@ -170,6 +168,7 @@ footer strong{color:#ff9e95}
       <button onclick="showPage('abstracts')" id="nav-abstracts">Abstracts</button>
       <button onclick="showPage('stay')" id="nav-stay">Stay</button>
       <button onclick="showPage('updates')" id="nav-updates">Updates</button>
+      <button onclick="showPage('venue')" id="nav-venue">Venue</button>
       <button onclick="showPage('contact')" id="nav-contact">Contact</button>
       <button class="nav-cta" onclick="showPage('register')"><i class="ti ti-pencil" style="font-size:13px"></i> Register</button>
     </div>
@@ -179,16 +178,19 @@ footer strong{color:#ff9e95}
 <!-- HOME -->
 <div id="page-home" class="page active">
   <div class="hero">
-    <div class="hero-bg" id="hero-bg" style="background-image:url('images/hero-1.jpg');background-size:cover;background-position:center"></div>
+    <div class="hero-bg" id="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80');background-size:cover;background-position:center"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge"><i class="ti ti-heart-rate-monitor" style="font-size:13px"></i> Karnataka State Conference · Emergency Medicine</div>
       <h1>EM Karnataka <em>2026</em></h1>
       <p class="hero-sub">Climate Change &amp; Emergency Medicine — Preparing for the Health Crises of Tomorrow</p>
       <div class="hero-meta">
-  <div class="hero-meta-item"><i class="ti ti-map-pin"></i> Father Muller Medical College, Kankanady, Mangaluru</div>
-  <div class="hero-meta-item"><i class="ti ti-calendar"></i> November 2026</div>
-</div>
+      <div class="hero-meta-item"><i class="ti ti-building-hospital"></i> Father Muller Medical College</div>
+      <div class="hero-meta-item"><i class="ti ti-map-pin"></i> Kankanady, Mangaluru</div>
+        <div class="hero-meta-item"><i class="ti ti-calendar"></i> November 2026</div>
+        <div class="hero-meta-item"><i class="ti ti-map-pin"></i> Bengaluru, Karnataka</div>
+        <div class="hero-meta-item"><i class="ti ti-users"></i> 4 Days · Workshops + Conference</div>
+      </div>
       <div class="hero-btns">
         <button class="btn btn-red" onclick="showPage('register')"><i class="ti ti-pencil"></i> Register Now</button>
         <button class="btn btn-outline-white" onclick="showPage('schedule')"><i class="ti ti-layout-list"></i> Schedule</button>
@@ -221,7 +223,7 @@ footer strong{color:#ff9e95}
     <div class="stat-item"><span class="stat-num">5</span><span class="stat-lbl">Workshops</span></div>
     <div class="stat-item"><span class="stat-num">20+</span><span class="stat-lbl">Expert Faculty</span></div>
     <div class="stat-item"><span class="stat-num">CME</span><span class="stat-lbl">Accredited</span></div>
-    <div class="stat-item"><span class="stat-num" style="font-size:16px;line-height:1.2">Father Muller<br>Medical College</span><span class="stat-lbl">Kankanady, Mangaluru</span></div>
+    <div class="stat-item"><span class="stat-num" style="font-size:15px;line-height:1.3">Father Muller<br>Medical College</span><span class="stat-lbl">Kankanady, Mangaluru</span></div>
   </div>
 
   <div class="section">
@@ -229,7 +231,7 @@ footer strong{color:#ff9e95}
     <p class="section-sub">Four days built around clinical learning, hands-on skills, and meaningful connections</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
       <div class="img-card">
-        <img class="img-card-img" src="images/workshops.jpg" alt="Workshops" onerror="this.style.background='#C0392B'" />
+        <img class="img-card-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=75" alt="Workshops" onerror="this.style.background='#C0392B'" />
         <div style="padding:14px 16px">
           <span class="img-card-tag">Days 1–2</span>
           <div style="font-size:14px;font-weight:700;margin-bottom:4px">Hands-on Workshops</div>
@@ -237,7 +239,7 @@ footer strong{color:#ff9e95}
         </div>
       </div>
       <div class="img-card">
-        <img class="img-card-img" src="images/conference.jpg" alt="Conference" onerror="this.style.background='#1A252F'" />
+        <img class="img-card-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=75" alt="Conference" onerror="this.style.background='#1A252F'" />
         <div style="padding:14px 16px">
           <span class="img-card-tag">Days 3–4</span>
           <div style="font-size:14px;font-weight:700;margin-bottom:4px">Keynotes &amp; Sessions</div>
@@ -245,7 +247,7 @@ footer strong{color:#ff9e95}
         </div>
       </div>
       <div class="img-card">
-        <img class="img-card-img" src="images/research.jpg" alt="Research" onerror="this.style.background='#922B21'" />
+        <img class="img-card-img" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=75" alt="Research" onerror="this.style.background='#922B21'" />
         <div style="padding:14px 16px">
           <span class="img-card-tag">Research</span>
           <div style="font-size:14px;font-weight:700;margin-bottom:4px">Abstract Presentations</div>
@@ -253,7 +255,7 @@ footer strong{color:#ff9e95}
         </div>
       </div>
       <div class="img-card">
-        <img class="img-card-img" src="images/networking.jpg" alt="Networking" onerror="this.style.background='#2C3E50'" />
+        <img class="img-card-img" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=75" alt="Networking" onerror="this.style.background='#2C3E50'" />
         <div style="padding:14px 16px">
           <span class="img-card-tag">Networking</span>
           <div style="font-size:14px;font-weight:700;margin-bottom:4px">Connect &amp; Collaborate</div>
@@ -276,7 +278,7 @@ footer strong{color:#ff9e95}
         </div>
       </div>
       <div style="position:relative;min-height:220px;overflow:hidden">
-        <img src="images/climate-em.jpg" alt="Climate emergency" style="width:100%;height:100%;object-fit:cover;display:block" />
+        <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&q=75" alt="Climate emergency" style="width:100%;height:100%;object-fit:cover;display:block" />
         <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,transparent 35%)"></div>
       </div>
     </div>
@@ -285,16 +287,16 @@ footer strong{color:#ff9e95}
       <h2 class="section-title">Faculty <span style="font-size:15px;font-weight:400;color:var(--muted)">— Announcements coming soon</span></h2>
       <p class="section-sub">Leading voices in emergency medicine and climate health from across India</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:28px">
-        <div class="speaker-card"><img src="images/speaker-1.jpg" alt="Keynote Speaker" style="width:100%;height:110px;object-fit:cover;display:block" onerror="this.style.cssText='width:100%;height:110px;background:linear-gradient(135deg,#1A252F,#2C3E50);display:flex;align-items:center;justify-content:center'" /><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Speaker Name</div><div style="font-size:11px;color:var(--muted)">Keynote Faculty</div></div></div>
-        <div class="speaker-card"><img src="images/speaker-2.jpg" alt="Workshop Lead" style="width:100%;height:110px;object-fit:cover;display:block" onerror="this.style.cssText='width:100%;height:110px;background:linear-gradient(135deg,#922B21,#C0392B);display:block'" /><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Faculty Name</div><div style="font-size:11px;color:var(--muted)">Workshop Lead</div></div></div>
-        <div class="speaker-card"><img src="images/speaker-3.jpg" alt="Panelist" style="width:100%;height:110px;object-fit:cover;display:block" onerror="this.style.cssText='width:100%;height:110px;background:linear-gradient(135deg,#7D6608,#D4A017);display:block'" /><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Panelist Name</div><div style="font-size:11px;color:var(--muted)">Panel Discussant</div></div></div>
-        <div class="speaker-card"><img src="images/speaker-4.jpg" alt="Workshop Faculty" style="width:100%;height:110px;object-fit:cover;display:block" onerror="this.style.cssText='width:100%;height:110px;background:linear-gradient(135deg,#1a3a5c,#2471A3);display:block'" /><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Faculty Name</div><div style="font-size:11px;color:var(--muted)">Workshop Faculty</div></div></div>
+        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,var(--navy),var(--navy-mid));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(255,255,255,0.25)">SK</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Speaker TBA</div><div style="font-size:11px;color:var(--muted)">Keynote Faculty</div></div></div>
+        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,var(--red-dark),var(--red));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(255,255,255,0.25)">FK</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Faculty TBA</div><div style="font-size:11px;color:var(--muted)">Workshop Lead</div></div></div>
+        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,#7D6608,var(--amber));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(255,255,255,0.25)">PL</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Panelist TBA</div><div style="font-size:11px;color:var(--muted)">Panel Discussant</div></div></div>
+        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,#1a3a5c,#2471A3);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(255,255,255,0.25)">WL</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Faculty TBA</div><div style="font-size:11px;color:var(--muted)">Workshop Faculty</div></div></div>
       </div>
       <p style="font-size:13px;color:var(--muted);text-align:center"><i class="ti ti-bell" style="font-size:14px;vertical-align:-2px;color:var(--red)"></i> <a href="#" onclick="showPage('updates');return false" style="color:var(--red);text-decoration:none;font-weight:600">Subscribe to updates</a> for faculty announcements</p>
     </div>
 
     <div style="margin-top:48px;background:var(--navy);border-radius:var(--radius);padding:40px;text-align:center;position:relative;overflow:hidden">
-      <img src="images/abstract-bg.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.08" />
+      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=60" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.08" />
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)"></div>
       <div style="position:relative;z-index:1">
         <h2 style="font-size:24px;font-weight:800;color:#fff;margin-bottom:8px">Abstract Submission Open</h2>
@@ -614,7 +616,126 @@ footer strong{color:#ff9e95}
       </div>
     </div>
   </div>
-  <footer><strong>EM Karnataka 2026 · Father Muller Medical College, Kankanady, Mangaluru</strong> · Follow on WhatsApp &amp; Email</footer>
+  <footer><strong>EM Karnataka 2026</strong> · Follow on WhatsApp &amp; Email</footer>
+</div>
+
+
+<!-- VENUE -->
+<div id="page-venue" class="page">
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-content">
+      <div class="page-header-accent"></div>
+      <h2>Venue</h2>
+      <p>Father Muller Medical College, Kankanady, Mangaluru</p>
+    </div>
+  </div>
+  <div class="section" style="padding-top:36px">
+
+    <!-- College info card -->
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:36px;border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border)">
+      <div style="position:relative;min-height:260px;overflow:hidden;background:var(--navy-light)">
+        <img src="images/venue.jpg" alt="Father Muller Medical College" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.parentElement.style.background='linear-gradient(135deg,#1A252F,#2C3E50)';this.style.display='none'" />
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,0.6));color:#fff;font-size:12px">Add venue photo → images/venue.jpg</div>
+      </div>
+      <div style="padding:28px 24px;background:var(--white)">
+        <span style="display:inline-block;background:var(--red-light);color:var(--red);font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">Conference Venue</span>
+        <h3 style="font-size:20px;font-weight:800;color:var(--navy);margin-bottom:6px">Father Muller Medical College</h3>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:18px;line-height:1.6">Kankanady, Mangaluru<br>Karnataka, India</p>
+        <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <i class="ti ti-map-pin" style="color:var(--red);font-size:15px"></i>
+            </div>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:var(--text)">Address</div>
+              <div style="font-size:12px;color:var(--muted)">Father Muller Rd, Kankanady, Mangaluru, Karnataka 575002</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <i class="ti ti-plane" style="color:var(--red);font-size:15px"></i>
+            </div>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Airport</div>
+              <div style="font-size:12px;color:var(--muted)">Mangaluru International Airport — ~15 km away</div>
+            </div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
+              <i class="ti ti-train" style="color:var(--red);font-size:15px"></i>
+            </div>
+            <div>
+              <div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Railway Station</div>
+              <div style="font-size:12px;color:var(--muted)">Mangaluru Central — ~5 km away</div>
+            </div>
+          </div>
+        </div>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-red" style="text-decoration:none;font-size:13px;padding:9px 18px">
+            <i class="ti ti-map-pin"></i> Get Directions
+          </a>
+          <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-navy" style="text-decoration:none;font-size:13px;padding:9px 18px">
+            <i class="ti ti-brand-google-maps"></i> Open in Maps
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Embedded Google Map -->
+    <div style="border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border);margin-bottom:36px">
+      <div style="background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:8px">
+        <i class="ti ti-map" style="color:#ff9e95;font-size:16px"></i>
+        <span style="font-size:13px;font-weight:700;color:#fff">Location Map</span>
+        <span style="font-size:11px;color:rgba(255,255,255,0.5);margin-left:4px">Father Muller Medical College, Kankanady, Mangaluru</span>
+      </div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d74.8473!3d12.8785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c17d48a0b%3A0x8f3d3e8c1a2b4c5d!2sFather+Muller+Medical+College!5e0!3m2!1sen!2sin!4v1"
+        width="100%"
+        height="400"
+        style="border:0;display:block"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
+    </div>
+
+    <!-- How to reach -->
+    <h2 class="section-title">How to Reach</h2>
+    <p class="section-sub">Mangaluru is well connected by air, rail, and road</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:36px">
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem">
+        <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px">
+          <i class="ti ti-plane" style="font-size:18px;color:var(--red)"></i>
+        </div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px">By Air</div>
+        <div style="font-size:12px;color:var(--muted)">Fly into <strong>Mangaluru International Airport (IXE)</strong>. Cabs to venue ~30 min, ₹400–600.</div>
+      </div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem">
+        <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px">
+          <i class="ti ti-train" style="font-size:18px;color:var(--red)"></i>
+        </div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px">By Train</div>
+        <div style="font-size:12px;color:var(--muted)">Alight at <strong>Mangaluru Central</strong> or <strong>Mangaluru Junction</strong>. Auto/cab to venue ~15 min.</div>
+      </div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem">
+        <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px">
+          <i class="ti ti-bus" style="font-size:18px;color:var(--red)"></i>
+        </div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px">By Bus</div>
+        <div style="font-size:12px;color:var(--muted)">KSRTC buses to <strong>Mangaluru KSRTC Stand</strong>. Kankanady is a major local bus stop nearby.</div>
+      </div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem">
+        <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px">
+          <i class="ti ti-car" style="font-size:18px;color:var(--red)"></i>
+        </div>
+        <div style="font-size:13px;font-weight:700;margin-bottom:4px">By Road</div>
+        <div style="font-size:12px;color:var(--muted)">Via NH-66 (Mumbai–Kochi highway). Ample parking available at the college campus.</div>
+      </div>
+    </div>
+
+  </div>
+  <footer><strong>EM Karnataka 2026</strong> · Father Muller Medical College, Kankanady, Mangaluru</footer>
 </div>
 
 <!-- CONTACT -->
@@ -652,7 +773,7 @@ footer strong{color:#ff9e95}
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
 <script>
-const heroImgs=['images/hero-1.jpg','images/hero-2.jpg','images/hero-3.jpg'];
+const heroImgs=['https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80','https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1400&q=80','https://images.unsplash.com/photo-1580281657702-257584239a55?w=1400&q=80'];
 let hIdx=0;
 function switchHero(i){hIdx=i;document.getElementById('hero-bg').style.backgroundImage=`url('${heroImgs[i]}')`;document.querySelectorAll('.hi-dot').forEach((d,j)=>d.classList.toggle('active',i===j));}
 setInterval(()=>switchHero((hIdx+1)%heroImgs.length),5000);
