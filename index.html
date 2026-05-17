@@ -684,7 +684,7 @@ footer strong{color:#ff9e95}
     </div>
     <div style="margin-bottom:28px"><p style="font-size:12px;font-weight:700;margin-bottom:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px">Preferred topics</p><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="topic-pill">Climate-related emergencies</span><span class="topic-pill">Heatstroke management</span><span class="topic-pill">Flood disaster response</span><span class="topic-pill">Vector-borne disease outbreaks</span><span class="topic-pill">Air quality &amp; respiratory EM</span><span class="topic-pill">Toxicology</span><span class="topic-pill">Paediatric environmental emergencies</span><span class="topic-pill">General emergency medicine</span><span class="topic-pill">Trauma &amp; critical care</span><span class="topic-pill">Emergency nursing</span></div></div>
     <div class="form-card">
-      <h3 style="font-size:16px;font-weight:700;margin-bottom:20 px">Submit Your Abstract</h3>
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px">Submit Your Abstract</h3>
       <div class="form-grid">
         <div class="fg"><label>Presenting author *</label><input type="text" placeholder="Dr. Peter Safar" /></div>
         <div class="fg"><label>Email *</label><input type="email" placeholder="dr.safar@hospital.edu.in" /></div>
@@ -706,14 +706,9 @@ footer strong{color:#ff9e95}
       <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:12px">
         <p style="font-size:12px;color:var(--muted)">Blind peer review · Acknowledgement within 1 hour</p>
         <button class="btn btn-red" onclick="doAbs()"><i class="ti ti-send"></i> Submit Abstract</button>
-      <div id="abs-ok" class="success-msg hidden">
-  <i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i>
-  <div>
-    <strong>Abstract submitted successfully!</strong><br/>
-    <span style="font-size:12px;font-weight:400">A confirmation has been sent to your email. Results communicated by <strong>30 September 2026</strong>. Reference your email address for follow-up queries.</span>
-  </div>
-</div>
-</div>
+      </div>
+      <div id="abs-ok" class="success-msg hidden"><i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i><div><strong>Abstract submitted!</strong> Results communicated by 30 September 2026.</div></div>
+    </div>
   </div>
   <footer><strong>EM Karnataka 2026</strong> · abstracts@emkarnataka2026.in</footer>
 </div>
@@ -930,66 +925,11 @@ function doReg(){
   el.classList.remove('hidden');
   el.scrollIntoView({behavior:'smooth',block:'center'});
 }
-async function doAbs() {
-  if (!document.getElementById('decl').checked) {
-    alert('Please accept the declaration.');
-    return;
-  }
-
- const btn = document.querySelector('#page-abstracts button[onclick="doAbs()"]');
-  btn.disabled = true;
-  btn.innerHTML = '<i class="ti ti-loader"></i> Submitting...';
-
-  const formData = {
-    access_key: "77c37408-6ac5-4143-8009-14c92d634ae3",
-    subject: "New Abstract Submission — EM Karnataka 2026",
-    from_name: "EM Karnataka 2026 Abstract Portal",
-    replyto: document.querySelector('#page-abstracts input[type="email"]').value,
-
-    // Auto-reply to submitting author
-    botcheck: "",
-
-    "Presenting Author": document.querySelector('#page-abstracts input[placeholder="Dr. Peter Safar"]').value,
-    "Email": document.querySelector('#page-abstracts input[type="email"]').value,
-    "Institution": document.querySelector('#page-abstracts input[placeholder="Father Muller Medical College, Mangaluru"]').value,
-    "Co-Authors": document.querySelector('#page-abstracts input[placeholder="Dr. A, Dr. B"]').value,
-    "Abstract Title": document.querySelector('#page-abstracts input[placeholder="Title of your abstract"]').value,
-    "Topic": document.querySelector('#page-abstracts select:nth-of-type(1)').value,
-    "Presentation Type": document.querySelector('#page-abstracts select:nth-of-type(2)').value,
-    "Study Type": document.querySelector('#page-abstracts select:nth-of-type(3)').value,
-    "Abstract Text": document.getElementById('abs-txt').value,
-  };
-
-  // Check required fields
-  if (!formData["Presenting Author"] || !formData["Email"] || !formData["Abstract Title"] || !formData["Abstract Text"]) {
-    alert('Please fill all required fields.');
-    btn.disabled = false;
-    btn.innerHTML = '<i class="ti ti-send"></i> Submit Abstract';
-    return;
-  }
-
-  try {
-    const response = await fetch("https://api.web3forms.com/submit", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(formData)
-    });
-
-    const result = await response.json();
-
-    if (result.success) {
-      const el = document.getElementById('abs-ok');
-      el.classList.remove('hidden');
-      el.scrollIntoView({ behavior: 'smooth', block: 'center' });
-      btn.innerHTML = '<i class="ti ti-circle-check"></i> Submitted!';
-    } else {
-      throw new Error(result.message);
-    }
-  } catch (err) {
-    alert('Submission failed: ' + err.message + '. Please email abstracts@emkarnataka2026.in directly.');
-    btn.disabled = false;
-    btn.innerHTML = '<i class="ti ti-send"></i> Submit Abstract';
-  }
+function doAbs(){
+  if(!document.getElementById('decl').checked){alert('Please accept the declaration.');return;}
+  const el=document.getElementById('abs-ok');
+  el.classList.remove('hidden');
+  el.scrollIntoView({behavior:'smooth',block:'center'});
 }
 function doSub(){document.getElementById('sub-ok').classList.remove('hidden');}
 function doContact(){document.getElementById('ctc-ok').classList.remove('hidden');}
