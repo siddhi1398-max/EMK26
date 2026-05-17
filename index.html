@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>EM Karnataka 2026 — Emergency Medicine State Conference</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -10,8 +17,12 @@
 }
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden}
 
+/* ── NAV ── */
 nav{background:var(--navy);border-bottom:none;position:sticky;top:0;z-index:100}
-.nav-inner{max-width:1100px;margin:auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:58px}
+.nav-inner{
+  max-width:1100px;margin:auto;padding:10px 1.5rem;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
+}
 .logo{font-size:17px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:10px}
 .logo-cross{width:28px;height:28px;background:var(--red);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
 .logo-cross::before{content:'';position:absolute;width:14px;height:3px;background:#fff;border-radius:1px}
@@ -19,15 +30,25 @@ nav{background:var(--navy);border-bottom:none;position:sticky;top:0;z-index:100}
 .logo-text{display:flex;flex-direction:column}
 .logo-main{font-size:15px;font-weight:700;color:#fff;line-height:1.1}
 .logo-sub{font-size:10px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.3px;line-height:1.2}
-.nav-links{display:flex;gap:2px;align-items:center}
-.nav-links button{background:none;border:none;cursor:pointer;font-size:13px;color:rgba(255,255,255,0.65);padding:6px 11px;border-radius:var(--radius-sm);font-family:inherit;transition:all 0.15s}
+
+/* Centered, larger nav links */
+.nav-links{display:flex;gap:4px;align-items:center;justify-content:center;flex-wrap:wrap}
+.nav-links button{
+  background:none;border:none;cursor:pointer;
+  font-size:15px;          /* ↑ was 13px */
+  color:rgba(255,255,255,0.75);
+  padding:8px 15px;        /* ↑ was 6px 11px */
+  border-radius:var(--radius-sm);font-family:inherit;transition:all 0.15s;
+  font-weight:500;
+}
 .nav-links button:hover{background:rgba(255,255,255,0.08);color:#fff}
 .nav-links button.active{background:rgba(192,57,43,0.25);color:#ff9e95}
-.nav-cta{background:var(--red)!important;color:#fff!important;font-weight:600!important}
+.nav-cta{background:var(--red)!important;color:#fff!important;font-weight:700!important}
 .nav-cta:hover{background:var(--red-dark)!important;color:#fff!important}
 
 .page{display:none}.page.active{display:block}
 
+/* ── HERO ── */
 .hero{position:relative;min-height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:80px 24px 60px}
 .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity 1s}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,15,20,0.92) 0%,rgba(26,37,47,0.85) 50%,rgba(144,30,20,0.7) 100%)}
@@ -53,6 +74,7 @@ nav{background:var(--navy);border-bottom:none;position:sticky;top:0;z-index:100}
 .btn-amber:hover{background:#b8890e;transform:translateY(-1px)}
 @keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
+/* ── COUNTDOWN ── */
 .countdown-bar{background:var(--navy-mid);padding:11px 1.5rem;text-align:center;border-bottom:2px solid var(--red)}
 .countdown-inner{max-width:560px;margin:auto;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
 .countdown-label{font-size:11px;color:rgba(255,255,255,0.7);font-weight:700;text-transform:uppercase;letter-spacing:0.8px}
@@ -61,12 +83,76 @@ nav{background:var(--navy);border-bottom:none;position:sticky;top:0;z-index:100}
 .countdown-num{font-size:22px;font-weight:800;color:#ff9e95;display:block;line-height:1.1}
 .countdown-lbl{font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.8px}
 
+/* ── STAT BANNER ── */
 .stat-banner{background:var(--red);padding:28px 24px;display:flex;gap:0;justify-content:center;flex-wrap:wrap}
 .stat-item{text-align:center;padding:0 32px;border-right:1px solid rgba(255,255,255,0.2);color:#fff}
 .stat-item:last-child{border-right:none}
 .stat-num{font-size:34px;font-weight:800;display:block;color:#fff}
 .stat-lbl{font-size:11px;opacity:0.75;text-transform:uppercase;letter-spacing:0.6px}
 
+/* ── ACADEMIC PARTNERS ── */
+.partners-section{background:#f0f2f5;padding:48px 24px;text-align:center}
+.partners-section h2{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.partners-section .sub{font-size:13px;color:var(--muted);margin-bottom:28px}
+.carousel-wrap{position:relative;max-width:960px;margin:0 auto}
+.carousel-track{
+  display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;
+  scrollbar-width:none;padding:8px 4px;
+  justify-content:center;flex-wrap:wrap;
+}
+.carousel-track::-webkit-scrollbar{display:none}
+.logo-card{
+  background:#fff;border-radius:12px;padding:18px 22px;
+  min-width:140px;max-width:160px;
+  display:flex;align-items:center;justify-content:center;
+  border:1px solid rgba(0,0,0,0.08);
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  flex-shrink:0;
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.logo-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,0.1)}
+.logo-card img{max-height:80px;max-width:120px;object-fit:contain;display:block}
+/* fallback placeholder when no image */
+.logo-placeholder{
+  width:110px;height:70px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--muted);
+  background:var(--navy-light);text-align:center;padding:8px;line-height:1.3;
+}
+.carousel-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:#fff;border:1px solid rgba(0,0,0,0.15);border-radius:50%;
+  width:38px;height:38px;cursor:pointer;font-size:20px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12);z-index:2;
+  color:var(--navy);transition:background 0.15s;
+}
+.carousel-btn:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.carousel-btn.prev{left:-22px}
+.carousel-btn.next{right:-22px}
+
+/* ── SPONSORS ── */
+.sponsors-section{background:#fff;padding:48px 24px;text-align:center;border-top:1px solid var(--border)}
+.sponsors-section h2{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.sponsors-section .sub{font-size:13px;color:var(--muted);margin-bottom:28px}
+.sponsors-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto}
+.sponsor-card{
+  background:#fff;border-radius:14px;padding:24px 32px;
+  border:1.5px solid rgba(0,0,0,0.08);
+  min-width:180px;max-width:220px;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  transition:transform 0.2s,box-shadow 0.2s;
+}
+.sponsor-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(192,57,43,0.12);border-color:var(--red-mid)}
+.sponsor-card img{max-height:90px;max-width:160px;object-fit:contain}
+.sponsor-card .sponsor-name{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;text-align:center}
+.sponsor-tier-badge{font-size:9px;font-weight:700;padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:0.5px}
+.tier-gold{background:#FEF9E7;color:#9B7A0E;border:1px solid rgba(212,160,23,0.3)}
+.tier-silver{background:var(--navy-light);color:var(--navy);border:1px solid rgba(44,62,80,0.2)}
+.tier-bronze{background:#FFF0E6;color:#8B4000;border:1px solid rgba(139,64,0,0.2)}
+
+/* ── SECTION ── */
 .section{max-width:1100px;margin:0 auto;padding:60px 1.5rem}
 .section-title{font-size:28px;font-weight:800;color:var(--navy);margin-bottom:6px}
 .section-sub{color:var(--muted);font-size:14px;margin-bottom:36px}
@@ -147,13 +233,18 @@ footer strong{color:#ff9e95}
   .stat-banner{flex-direction:column;gap:16px}
   .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:14px}
   .stat-item:last-child{border-bottom:none}
+  .carousel-btn{display:none}
 }
 </style>
 
 <h2 class="sr-only">EM Karnataka 2026 — Emergency Medicine State Conference</h2>
 
+<!-- ══════════════════════════════════════════════════════════
+     NAV  (centred, larger buttons)
+══════════════════════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
+    <!-- logo row -->
     <div class="logo" onclick="showPage('home')">
       <div class="logo-cross"></div>
       <div class="logo-text">
@@ -161,6 +252,7 @@ footer strong{color:#ff9e95}
         <span class="logo-sub">Emergency Medicine State Conference</span>
       </div>
     </div>
+    <!-- centred link row -->
     <div class="nav-links">
       <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
       <button onclick="showPage('schedule')" id="nav-schedule">Schedule</button>
@@ -170,13 +262,17 @@ footer strong{color:#ff9e95}
       <button onclick="showPage('updates')" id="nav-updates">Updates</button>
       <button onclick="showPage('venue')" id="nav-venue">Venue</button>
       <button onclick="showPage('contact')" id="nav-contact">Contact</button>
-      <button class="nav-cta" onclick="showPage('register')"><i class="ti ti-pencil" style="font-size:13px"></i> Register</button>
+      <button class="nav-cta" onclick="showPage('register')"><i class="ti ti-pencil" style="font-size:13px"></i> Register Now</button>
     </div>
   </div>
 </nav>
 
-<!-- HOME -->
+<!-- ══════════════════════════════════════════════════════════
+     HOME PAGE
+══════════════════════════════════════════════════════════ -->
 <div id="page-home" class="page active">
+
+  <!-- Hero -->
   <div class="hero">
     <div class="hero-bg" id="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80');background-size:cover;background-position:center"></div>
     <div class="hero-overlay"></div>
@@ -185,8 +281,8 @@ footer strong{color:#ff9e95}
       <h1>EM Karnataka <em>2026</em></h1>
       <p class="hero-sub">Climate Change &amp; Emergency Medicine — Preparing for the Health Crises of Tomorrow</p>
       <div class="hero-meta">
-      <div class="hero-meta-item"><i class="ti ti-building-hospital"></i> Father Muller Medical College</div>
-      <div class="hero-meta-item"><i class="ti ti-map-pin"></i> Kankanady, Mangaluru</div>
+        <div class="hero-meta-item"><i class="ti ti-building-hospital"></i> Father Muller Medical College</div>
+        <div class="hero-meta-item"><i class="ti ti-map-pin"></i> Kankanady, Mangaluru</div>
         <div class="hero-meta-item"><i class="ti ti-calendar"></i> November 2026</div>
         <div class="hero-meta-item"><i class="ti ti-users"></i> 4 Days · Workshops + Conference</div>
       </div>
@@ -203,6 +299,7 @@ footer strong{color:#ff9e95}
     </div>
   </div>
 
+  <!-- Countdown -->
   <div class="countdown-bar">
     <div class="countdown-inner">
       <span class="countdown-label"><i class="ti ti-clock" style="font-size:13px;vertical-align:-2px;color:#ff9e95"></i> Early Bird Closes</span>
@@ -216,15 +313,94 @@ footer strong{color:#ff9e95}
     </div>
   </div>
 
+  <!-- Stat banner -->
   <div class="stat-banner">
     <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">Conference Days</span></div>
     <div class="stat-item"><span class="stat-num">500+</span><span class="stat-lbl">Expected Delegates</span></div>
-    <div class="stat-item"><span class="stat-num">5</span><span class="stat-lbl">Workshops</span></div>
+    <div class="stat-item"><span class="stat-num">7</span><span class="stat-lbl">Workshops</span></div>
     <div class="stat-item"><span class="stat-num">20+</span><span class="stat-lbl">Expert Faculty</span></div>
     <div class="stat-item"><span class="stat-num">CME</span><span class="stat-lbl">Accredited</span></div>
     <div class="stat-item"><span class="stat-num" style="font-size:15px;line-height:1.3">Father Muller<br>Medical College</span><span class="stat-lbl">Kankanady, Mangaluru</span></div>
   </div>
 
+  <!-- ══ ACADEMIC PARTNERS ══ -->
+  <div class="partners-section">
+    <h2>Academic Partners</h2>
+    <p class="sub">Proudly supported by leading medical bodies across India</p>
+    <div class="carousel-wrap">
+      <button class="carousel-btn prev" onclick="scrollCarousel('partners-track',-1)" aria-label="Previous">&#8249;</button>
+      <div class="carousel-track" id="partners-track">
+
+        <!-- ─ Replace src with your actual logo image paths or URLs ─ -->
+        <div class="logo-card">
+          <img src="logos/partner-nnatology-forum.png" alt="National Neonatology Forum"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>National Neonatology Forum</div>'" />
+        </div>
+        <div class="logo-card">
+          <img src="logos/partner-nnf-telangana.png" alt="NNF State Chapter Telangana"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>NNF State Chapter Telangana</div>'" />
+        </div>
+        <div class="logo-card">
+          <img src="logos/partner-pats.png" alt="Pediatric Academy of Telangana (PATS)"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>PATS · IAP</div>'" />
+        </div>
+        <div class="logo-card">
+          <img src="logos/partner-ima-manikonda.png" alt="IMA Manikonda"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>IMA Manikonda</div>'" />
+        </div>
+        <div class="logo-card">
+          <img src="logos/partner-iap-pem.png" alt="IAP Pediatric Emergency Medicine"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>IAP Pediatric Emergency Medicine</div>'" />
+        </div>
+        <div class="logo-card">
+          <img src="logos/partner-acee.png" alt="Academic College of Emergency Experts in India"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>ACEE India</div>'" />
+        </div>
+        <!-- Add more logo-card blocks here as needed -->
+      </div>
+      <button class="carousel-btn next" onclick="scrollCarousel('partners-track',1)" aria-label="Next">&#8250;</button>
+    </div>
+  </div>
+
+  <!-- ══ SPONSORS ══ -->
+  <div class="sponsors-section">
+    <h2>Sponsors</h2>
+    <p class="sub">Thank you to our generous conference sponsors</p>
+    <div class="sponsors-grid">
+
+      <!-- Gold sponsors -->
+      <div class="sponsor-card">
+        <span class="sponsor-tier-badge tier-gold">Gold Sponsor</span>
+        <img src="logos/sponsor-resplice.png" alt="Resplice Autism Research Institute"
+             onerror="this.outerHTML='<div class=\'logo-placeholder\'>Resplice Autism Research Institute</div>'" />
+        <span class="sponsor-name">Resplice</span>
+      </div>
+
+      <!-- Silver sponsors -->
+      <div class="sponsor-card">
+        <span class="sponsor-tier-badge tier-silver">Silver Sponsor</span>
+        <img src="logos/sponsor-doc-tutorials.png" alt="Doc Tutorials"
+             onerror="this.outerHTML='<div class=\'logo-placeholder\'>DOC Tutorials</div>'" />
+        <span class="sponsor-name">Doc Tutorials</span>
+      </div>
+
+      <div class="sponsor-card">
+        <span class="sponsor-tier-badge tier-silver">Silver Sponsor</span>
+        <img src="logos/sponsor-neuronurture.png" alt="NeuroNurture"
+             onerror="this.outerHTML='<div class=\'logo-placeholder\'>NeuroNurture</div>'" />
+        <span class="sponsor-name">NeuroNurture</span>
+      </div>
+
+      <!-- Add more sponsor-card blocks here -->
+    </div>
+
+    <p style="margin-top:28px;font-size:13px;color:var(--muted)">
+      Interested in sponsoring?
+      <a href="mailto:sponsors@emkarnataka2026.in" style="color:var(--red);font-weight:600;text-decoration:none">sponsors@emkarnataka2026.in</a>
+    </p>
+  </div>
+
+  <!-- What to Expect -->
   <div class="section">
     <h2 class="section-title">What to Expect</h2>
     <p class="section-sub">Four days built around clinical learning, hands-on skills, and meaningful connections</p>
@@ -263,6 +439,7 @@ footer strong{color:#ff9e95}
       </div>
     </div>
 
+    <!-- Theme block -->
     <div style="margin-top:48px;border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0;border:0.5px solid var(--border)">
       <div style="padding:36px 32px;background:var(--navy);color:#fff">
         <span style="display:inline-block;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.5px">Conference Theme 2026</span>
@@ -282,6 +459,7 @@ footer strong{color:#ff9e95}
       </div>
     </div>
 
+    <!-- Faculty placeholder -->
     <div style="margin-top:48px">
       <h2 class="section-title">Faculty <span style="font-size:15px;font-weight:400;color:var(--muted)">— Announcements coming soon</span></h2>
       <p class="section-sub">Leading voices in emergency medicine and climate health from across India</p>
@@ -294,6 +472,7 @@ footer strong{color:#ff9e95}
       <p style="font-size:13px;color:var(--muted);text-align:center"><i class="ti ti-bell" style="font-size:14px;vertical-align:-2px;color:var(--red)"></i> <a href="#" onclick="showPage('updates');return false" style="color:var(--red);text-decoration:none;font-weight:600">Subscribe to updates</a> for faculty announcements</p>
     </div>
 
+    <!-- Abstract CTA -->
     <div style="margin-top:48px;background:var(--navy);border-radius:var(--radius);padding:40px;text-align:center;position:relative;overflow:hidden">
       <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=60" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.08" />
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)"></div>
@@ -304,10 +483,13 @@ footer strong{color:#ff9e95}
       </div>
     </div>
   </div>
+
   <footer><strong>EM Karnataka 2026</strong> · Emergency Medicine State Conference, Karnataka · November 2026<br/><span style="font-size:11px;margin-top:6px;display:block;opacity:0.5">Organised under the auspices of the Emergency Medicine Association of Karnataka</span></footer>
 </div>
 
-<!-- SCHEDULE -->
+<!-- ══════════════════════════════════════════════════════════
+     SCHEDULE PAGE
+══════════════════════════════════════════════════════════ -->
 <div id="page-schedule" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -322,8 +504,6 @@ footer strong{color:#ff9e95}
       <button class="tab-btn" onclick="showDay('4',this)"><i class="ti ti-trophy" style="font-size:13px;vertical-align:-2px"></i> Day 4 · 15 Nov</button>
     </div>
     <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem">
-
-      <!-- DAY 1 -->
       <div class="sched-day active" id="sd1">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--red-border)">
           <div style="background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Thursday, 12 November 2026</div>
@@ -338,8 +518,6 @@ footer strong{color:#ff9e95}
         <div class="sched-item"><div class="sched-time">13:30–17:00</div><div><span class="stag stag-ws">Afternoon Session</span><div style="font-size:14px;font-weight:600">Workshop continuation &amp; hands-on practice</div><div style="font-size:12px;color:var(--muted)">All 4 workshops continue in afternoon slots</div></div></div>
         <div class="sched-item"><div class="sched-time">19:00+</div><div><span class="stag stag-br">Social</span><div style="font-size:14px;font-weight:600">Welcome dinner &amp; networking</div></div></div>
       </div>
-
-      <!-- DAY 2 -->
       <div class="sched-day" id="sd2">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--red-border)">
           <div style="background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Friday, 13 November 2026</div>
@@ -350,11 +528,9 @@ footer strong{color:#ff9e95}
         <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Virtual Anatomy</div><div style="font-size:12px;color:var(--muted)">Technology-assisted learning · Faculty TBA</div></div></div>
         <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Maternal Resuscitation Program</div><div style="font-size:12px;color:var(--muted)">Simulation-based · Faculty TBA</div></div></div>
         <div class="sched-item"><div class="sched-time">12:30–13:30</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch</div></div></div>
-        <div class="sched-item"><div class="sched-time">13:30–17:00</div><div><span class="stag stag-ws">Afternoon Session</span><div style="font-size:14px;font-weight:600">Workshop continuation &amp; hands-on practice</div><div style="font-size:12px;color:var(--muted)">All 3 workshops continue in afternoon slots</div></div></div>
+        <div class="sched-item"><div class="sched-time">13:30–17:00</div><div><span class="stag stag-ws">Afternoon Session</span><div style="font-size:14px;font-weight:600">Workshop continuation &amp; hands-on practice</div></div></div>
         <div class="sched-item"><div class="sched-time">17:15–18:00</div><div><span class="stag stag-se">Feedback</span><div style="font-size:14px;font-weight:600">Workshop feedback &amp; wrap-up</div></div></div>
       </div>
-
-      <!-- DAY 3 -->
       <div class="sched-day" id="sd3">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--red-border)">
           <div style="background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Saturday, 14 November 2026</div>
@@ -364,34 +540,33 @@ footer strong{color:#ff9e95}
         <div class="sched-item"><div class="sched-time">09:00–10:00</div><div><span class="stag stag-kn">Inauguration</span><div style="font-size:14px;font-weight:600">Inaugural Ceremony</div><div style="font-size:12px;color:var(--muted)">Lighting of the lamp · Welcome address · Chief guest address</div></div></div>
         <div class="sched-item"><div class="sched-time">10:00–11:00</div><div><span class="stag stag-kn">Keynote</span><div style="font-size:14px;font-weight:600">Keynote Address</div><div style="font-size:12px;color:var(--muted)">Speaker TBA</div></div></div>
         <div class="sched-item"><div class="sched-time">11:00–11:30</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Tea &amp; exhibition</div></div></div>
-        <div class="sched-item"><div class="sched-time">11:30–13:00</div><div><span class="stag stag-se">Papers</span><div style="font-size:14px;font-weight:600">Free Paper Presentations — Session 1</div><div style="font-size:12px;color:var(--muted)">Oral abstract presentations</div></div></div>
+        <div class="sched-item"><div class="sched-time">11:30–13:00</div><div><span class="stag stag-se">Papers</span><div style="font-size:14px;font-weight:600">Free Paper Presentations — Session 1</div></div></div>
         <div class="sched-item"><div class="sched-time">13:00–14:00</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch &amp; poster viewing</div></div></div>
-        <div class="sched-item"><div class="sched-time">14:00–16:00</div><div><span class="stag stag-se">Papers</span><div style="font-size:14px;font-weight:600">Free Paper Presentations — Session 2</div><div style="font-size:12px;color:var(--muted)">Oral &amp; poster abstract presentations</div></div></div>
-        <div class="sched-item"><div class="sched-time">16:00–17:30</div><div><span class="stag stag-kn">Keynote</span><div style="font-size:14px;font-weight:600">Keynote Address — Evening Session</div><div style="font-size:12px;color:var(--muted)">Speaker TBA</div></div></div>
-        <div class="sched-item"><div class="sched-time">19:00+</div><div><span class="stag stag-br">Social</span><div style="font-size:14px;font-weight:600">🥂 Conference Banquet</div><div style="font-size:12px;color:var(--muted)">Gala dinner &amp; networking evening</div></div></div>
+        <div class="sched-item"><div class="sched-time">14:00–16:00</div><div><span class="stag stag-se">Papers</span><div style="font-size:14px;font-weight:600">Free Paper Presentations — Session 2</div></div></div>
+        <div class="sched-item"><div class="sched-time">16:00–17:30</div><div><span class="stag stag-kn">Keynote</span><div style="font-size:14px;font-weight:600">Keynote Address — Evening Session</div></div></div>
+        <div class="sched-item"><div class="sched-time">19:00+</div><div><span class="stag stag-br">Social</span><div style="font-size:14px;font-weight:600">🥂 Conference Banquet</div></div></div>
       </div>
-
-      <!-- DAY 4 -->
       <div class="sched-day" id="sd4">
         <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--red-border)">
           <div style="background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Sunday, 15 November 2026</div>
           <div style="font-size:12px;color:var(--muted)">Conference Day 2 — CPC · Quiz · Awards · Closing</div>
         </div>
         <div class="sched-item"><div class="sched-time">08:30–09:00</div><div><span class="stag stag-br">Morning</span><div style="font-size:14px;font-weight:600">Morning tea &amp; registration</div></div></div>
-        <div class="sched-item"><div class="sched-time">09:00–11:00</div><div><span class="stag stag-se">CPC</span><div style="font-size:14px;font-weight:600">Clinico-Pathological Conference (CPC)</div><div style="font-size:12px;color:var(--muted)">Case presentations &amp; panel discussion</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–11:00</div><div><span class="stag stag-se">CPC</span><div style="font-size:14px;font-weight:600">Clinico-Pathological Conference (CPC)</div></div></div>
         <div class="sched-item"><div class="sched-time">11:00–11:30</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Tea break</div></div></div>
-        <div class="sched-item"><div class="sched-time">11:30–13:00</div><div><span class="stag stag-ws">Quiz</span><div style="font-size:14px;font-weight:600">Emergency Medicine Quiz</div><div style="font-size:12px;color:var(--muted)">Inter-team competition · Open to all delegates</div></div></div>
+        <div class="sched-item"><div class="sched-time">11:30–13:00</div><div><span class="stag stag-ws">Quiz</span><div style="font-size:14px;font-weight:600">Emergency Medicine Quiz</div></div></div>
         <div class="sched-item"><div class="sched-time">13:00–14:00</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch</div></div></div>
         <div class="sched-item"><div class="sched-time">14:00–15:30</div><div><span class="stag stag-kn">Awards</span><div style="font-size:14px;font-weight:600">Awards &amp; Prize Distribution</div><div style="font-size:12px;color:var(--muted)">Best paper · Best poster · Best quiz team · Young investigator award</div></div></div>
-        <div class="sched-item"><div class="sched-time">15:30–16:30</div><div><span class="stag stag-kn">Valedictory</span><div style="font-size:14px;font-weight:600">Closing Ceremony &amp; Valedictory</div><div style="font-size:12px;color:var(--muted)">Vote of thanks · Formal closing of EM Karnataka 2026</div></div></div>
+        <div class="sched-item"><div class="sched-time">15:30–16:30</div><div><span class="stag stag-kn">Valedictory</span><div style="font-size:14px;font-weight:600">Closing Ceremony &amp; Valedictory</div></div></div>
       </div>
-
     </div>
   </div>
   <footer><strong>EM Karnataka 2026</strong> · Tentative schedule — subject to revision</footer>
 </div>
 
-<!-- REGISTER -->
+<!-- ══════════════════════════════════════════════════════════
+     REGISTER PAGE
+══════════════════════════════════════════════════════════ -->
 <div id="page-register" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -455,16 +630,18 @@ footer strong{color:#ff9e95}
             <option value="PG Student">PG Student — ₹2,500</option>
           </select>
         </div>
-        <div class="fg full"><label>Institution / Hospital *</label><input type="text" placeholder="Victoria Hospital, Bengaluru" /></div>
-        <div class="fg full"><label>NMC Registration Number</label><input type="text" placeholder="KAR-XXXXX" /></div>
+        <div class="fg full"><label>Institution / Hospital *</label><input type="text" placeholder="Father Muller Medical College, Mangaluru" /></div>
+        <div class="fg full"><label>Registration Number</label><input type="text" placeholder="KMC-XXXXX" /></div>
         <div class="fg full"><label>Workshop Preference</label>
           <select>
             <option>Choose later / No preference</option>
-            <option>Airway Management in Extreme Climate Events</option>
             <option>Point-of-Care Ultrasound (POCUS)</option>
-            <option>Heatstroke &amp; Hyperthermia Protocols</option>
-            <option>Mass Casualty &amp; Disaster Triage</option>
-            <option>Vector-borne Disease Emergencies</option>
+            <option>Mechanical Ventilator</option>
+            <option>Disaster Management</option>
+            <option>NALS — Neonatal Advanced Life Support</option>
+            <option>Peripheral Nerve Block</option>
+            <option>Virtual Anatomy</option>
+            <option>Maternal Resuscitation Program</option>
           </select>
         </div>
         <div class="fg full"><label>Dietary Preference</label>
@@ -485,7 +662,9 @@ footer strong{color:#ff9e95}
   <footer><strong>EM Karnataka 2026</strong> · registrations@emkarnataka2026.in</footer>
 </div>
 
-<!-- ABSTRACTS -->
+<!-- ══════════════════════════════════════════════════════════
+     ABSTRACTS PAGE
+══════════════════════════════════════════════════════════ -->
 <div id="page-abstracts" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -503,9 +682,9 @@ footer strong{color:#ff9e95}
     <div class="form-card">
       <h3 style="font-size:16px;font-weight:700;margin-bottom:20px">Submit Your Abstract</h3>
       <div class="form-grid">
-        <div class="fg"><label>Presenting author *</label><input type="text" placeholder="Dr. Ravi Kumar" /></div>
-        <div class="fg"><label>Email *</label><input type="email" placeholder="dr.ravi@hospital.in" /></div>
-        <div class="fg full"><label>Institution *</label><input type="text" placeholder="St. John's Medical College, Bengaluru" /></div>
+        <div class="fg"><label>Presenting author *</label><input type="text" placeholder="Dr. Peter Safar" /></div>
+        <div class="fg"><label>Email *</label><input type="email" placeholder="dr.safar@hospital.edu.in" /></div>
+        <div class="fg full"><label>Institution *</label><input type="text" placeholder="Father Muller Medical College, Mangaluru" /></div>
         <div class="fg full"><label>Co-authors</label><input type="text" placeholder="Dr. A, Dr. B" /></div>
         <div class="fg full"><label>Abstract title *</label><input type="text" placeholder="Title of your abstract" /></div>
         <div class="fg"><label>Topic *</label><select><option value="">Select topic</option><option>Climate-related emergencies</option><option>Heatstroke management</option><option>Vector-borne disease outbreaks</option><option>Air quality &amp; respiratory EM</option><option>Toxicology</option><option>General emergency medicine</option><option>Trauma &amp; critical care</option></select></div>
@@ -530,7 +709,9 @@ footer strong{color:#ff9e95}
   <footer><strong>EM Karnataka 2026</strong> · abstracts@emkarnataka2026.in</footer>
 </div>
 
-<!-- STAY -->
+<!-- ══════════════════════════════════════════════════════════
+     STAY PAGE
+══════════════════════════════════════════════════════════ -->
 <div id="page-stay" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -585,8 +766,8 @@ footer strong{color:#ff9e95}
     <div style="margin-top:24px;background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem">
       <h3 style="font-size:15px;font-weight:700;margin-bottom:14px"><i class="ti ti-navigation" style="color:var(--red);vertical-align:-2px;margin-right:6px"></i>Getting there</h3>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;font-size:13px;color:var(--muted)">
-        <div style="display:flex;gap:10px"><i class="ti ti-plane" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">By air</strong>Kempegowda International Airport, connected via metro &amp; cab</div></div>
-        <div style="display:flex;gap:10px"><i class="ti ti-train" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">By train</strong>KSR Bengaluru &amp; Yeshwanthpur. Cabs readily available</div></div>
+        <div style="display:flex;gap:10px"><i class="ti ti-plane" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">By air</strong>Mangaluru International Airport, ~15 km away</div></div>
+        <div style="display:flex;gap:10px"><i class="ti ti-train" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">By train</strong>Mangaluru Central — ~5 km. Cabs readily available</div></div>
         <div style="display:flex;gap:10px"><i class="ti ti-bus" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">Venue shuttle</strong>Partner hotel shuttle on all conference days</div></div>
       </div>
     </div>
@@ -594,7 +775,9 @@ footer strong{color:#ff9e95}
   <footer><strong>EM Karnataka 2026</strong> · accommodation@emkarnataka2026.in</footer>
 </div>
 
-<!-- UPDATES -->
+<!-- ══════════════════════════════════════════════════════════
+     UPDATES PAGE
+══════════════════════════════════════════════════════════ -->
 <div id="page-updates" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -647,8 +830,9 @@ footer strong{color:#ff9e95}
   <footer><strong>EM Karnataka 2026</strong> · Follow on WhatsApp &amp; Email</footer>
 </div>
 
-
-<!-- VENUE -->
+<!-- ══════════════════════════════════════════════════════════
+     VENUE PAGE
+══════════════════════════════════════════════════════════ -->
 <div id="page-venue" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -659,8 +843,6 @@ footer strong{color:#ff9e95}
     </div>
   </div>
   <div class="section" style="padding-top:36px">
-
-    <!-- College info card -->
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:36px;border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border)">
       <div style="position:relative;min-height:260px;overflow:hidden;background:var(--navy-light)">
         <img src="images/venue.jpg" alt="Father Muller Medical College" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.parentElement.style.background='linear-gradient(135deg,#1A252F,#2C3E50)';this.style.display='none'" />
@@ -672,101 +854,47 @@ footer strong{color:#ff9e95}
         <p style="font-size:14px;color:var(--muted);margin-bottom:18px;line-height:1.6">Kankanady, Mangaluru<br>Karnataka, India</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
           <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <i class="ti ti-map-pin" style="color:var(--red);font-size:15px"></i>
-            </div>
-            <div>
-              <div style="font-size:12px;font-weight:700;color:var(--text)">Address</div>
-              <div style="font-size:12px;color:var(--muted)">Father Muller Rd, Kankanady, Mangaluru, Karnataka 575002</div>
-            </div>
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-map-pin" style="color:var(--red);font-size:15px"></i></div>
+            <div><div style="font-size:12px;font-weight:700;color:var(--text)">Address</div><div style="font-size:12px;color:var(--muted)">Father Muller Rd, Kankanady, Mangaluru, Karnataka 575002</div></div>
           </div>
           <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <i class="ti ti-plane" style="color:var(--red);font-size:15px"></i>
-            </div>
-            <div>
-              <div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Airport</div>
-              <div style="font-size:12px;color:var(--muted)">Mangaluru International Airport — ~15 km away</div>
-            </div>
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-plane" style="color:var(--red);font-size:15px"></i></div>
+            <div><div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Airport</div><div style="font-size:12px;color:var(--muted)">Mangaluru International Airport — ~15 km away</div></div>
           </div>
           <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <i class="ti ti-train" style="color:var(--red);font-size:15px"></i>
-            </div>
-            <div>
-              <div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Railway Station</div>
-              <div style="font-size:12px;color:var(--muted)">Mangaluru Central — ~5 km away</div>
-            </div>
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-train" style="color:var(--red);font-size:15px"></i></div>
+            <div><div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Railway Station</div><div style="font-size:12px;color:var(--muted)">Mangaluru Central — ~5 km away</div></div>
           </div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
-          <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-red" style="text-decoration:none;font-size:13px;padding:9px 18px">
-            <i class="ti ti-map-pin"></i> Get Directions
-          </a>
-          <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-navy" style="text-decoration:none;font-size:13px;padding:9px 18px">
-            <i class="ti ti-brand-google-maps"></i> Open in Maps
-          </a>
+          <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-red" style="text-decoration:none;font-size:13px;padding:9px 18px"><i class="ti ti-map-pin"></i> Get Directions</a>
+          <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-navy" style="text-decoration:none;font-size:13px;padding:9px 18px"><i class="ti ti-brand-google-maps"></i> Open in Maps</a>
         </div>
       </div>
     </div>
-
-    <!-- Embedded Google Map -->
     <div style="border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border);margin-bottom:36px">
       <div style="background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:8px">
         <i class="ti ti-map" style="color:#ff9e95;font-size:16px"></i>
         <span style="font-size:13px;font-weight:700;color:#fff">Location Map</span>
         <span style="font-size:11px;color:rgba(255,255,255,0.5);margin-left:4px">Father Muller Medical College, Kankanady, Mangaluru</span>
       </div>
-      <iframe
-        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d74.8473!3d12.8785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c17d48a0b%3A0x8f3d3e8c1a2b4c5d!2sFather+Muller+Medical+College!5e0!3m2!1sen!2sin!4v1"
-        width="100%"
-        height="400"
-        style="border:0;display:block"
-        allowfullscreen=""
-        loading="lazy"
-        referrerpolicy="no-referrer-when-downgrade">
-      </iframe>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d74.8473!3d12.8785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c17d48a0b%3A0x8f3d3e8c1a2b4c5d!2sFather+Muller+Medical+College!5e0!3m2!1sen!2sin!4v1" width="100%" height="400" style="border:0;display:block" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
-
-    <!-- How to reach -->
     <h2 class="section-title">How to Reach</h2>
     <p class="section-sub">Mangaluru is well connected by air, rail, and road</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:36px">
-      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem">
-        <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px">
-          <i class="ti ti-plane" style="font-size:18px;color:var(--red)"></i>
-        </div>
-        <div style="font-size:13px;font-weight:700;margin-bottom:4px">By Air</div>
-        <div style="font-size:12px;color:var(--muted)">Fly into <strong>Mangaluru International Airport (IXE)</strong>. Cabs to venue ~30 min, ₹400–600.</div>
-      </div>
-      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem">
-        <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px">
-          <i class="ti ti-train" style="font-size:18px;color:var(--red)"></i>
-        </div>
-        <div style="font-size:13px;font-weight:700;margin-bottom:4px">By Train</div>
-        <div style="font-size:12px;color:var(--muted)">Alight at <strong>Mangaluru Central</strong> or <strong>Mangaluru Junction</strong>. Auto/cab to venue ~15 min.</div>
-      </div>
-      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem">
-        <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px">
-          <i class="ti ti-bus" style="font-size:18px;color:var(--red)"></i>
-        </div>
-        <div style="font-size:13px;font-weight:700;margin-bottom:4px">By Bus</div>
-        <div style="font-size:12px;color:var(--muted)">KSRTC buses to <strong>Mangaluru KSRTC Stand</strong>. Kankanady is a major local bus stop nearby.</div>
-      </div>
-      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem">
-        <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px">
-          <i class="ti ti-car" style="font-size:18px;color:var(--red)"></i>
-        </div>
-        <div style="font-size:13px;font-weight:700;margin-bottom:4px">By Road</div>
-        <div style="font-size:12px;color:var(--muted)">Via NH-66 (Mumbai–Kochi highway). Ample parking available at the college campus.</div>
-      </div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><i class="ti ti-plane" style="font-size:18px;color:var(--red)"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px">By Air</div><div style="font-size:12px;color:var(--muted)">Fly into <strong>Mangaluru International Airport (IXE)</strong>. Cabs to venue ~30 min, ₹400–600.</div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><i class="ti ti-train" style="font-size:18px;color:var(--red)"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px">By Train</div><div style="font-size:12px;color:var(--muted)">Alight at <strong>Mangaluru Central</strong> or <strong>Mangaluru Junction</strong>. Auto/cab to venue ~15 min.</div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><i class="ti ti-bus" style="font-size:18px;color:var(--red)"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px">By Bus</div><div style="font-size:12px;color:var(--muted)">KSRTC buses to <strong>Mangaluru KSRTC Stand</strong>. Kankanady is a major local bus stop nearby.</div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><i class="ti ti-car" style="font-size:18px;color:var(--red)"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px">By Road</div><div style="font-size:12px;color:var(--muted)">Via NH-66 (Mumbai–Kochi highway). Ample parking available at the college campus.</div></div>
     </div>
-
   </div>
   <footer><strong>EM Karnataka 2026</strong> · Father Muller Medical College, Kankanady, Mangaluru</footer>
 </div>
 
-<!-- CONTACT -->
+<!-- ══════════════════════════════════════════════════════════
+     CONTACT PAGE
+══════════════════════════════════════════════════════════ -->
 <div id="page-contact" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -799,13 +927,25 @@ footer strong{color:#ff9e95}
   <footer><strong>EM Karnataka 2026</strong> · Emergency Medicine State Conference · November 2026</footer>
 </div>
 
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
+<!-- ══════════════════════════════════════════════════════════
+     JAVASCRIPT
+══════════════════════════════════════════════════════════ -->
 <script>
-const heroImgs=['https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80','https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1400&q=80','https://images.unsplash.com/photo-1580281657702-257584239a55?w=1400&q=80'];
+/* Hero slideshow */
+const heroImgs=[
+  'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80',
+  'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1400&q=80',
+  'https://images.unsplash.com/photo-1580281657702-257584239a55?w=1400&q=80'
+];
 let hIdx=0;
-function switchHero(i){hIdx=i;document.getElementById('hero-bg').style.backgroundImage=`url('${heroImgs[i]}')`;document.querySelectorAll('.hi-dot').forEach((d,j)=>d.classList.toggle('active',i===j));}
+function switchHero(i){
+  hIdx=i;
+  document.getElementById('hero-bg').style.backgroundImage=`url('${heroImgs[i]}')`;
+  document.querySelectorAll('.hi-dot').forEach((d,j)=>d.classList.toggle('active',i===j));
+}
 setInterval(()=>switchHero((hIdx+1)%heroImgs.length),5000);
 
+/* Page navigation */
 function showPage(p){
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.nav-links button').forEach(x=>x.classList.remove('active'));
@@ -814,18 +954,24 @@ function showPage(p){
   if(nb)nb.classList.add('active');
   window.scrollTo(0,0);
 }
+
+/* Schedule tabs */
 function showDay(d,btn){
   document.querySelectorAll('.sched-day').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
   document.getElementById('sd'+d).classList.add('active');
   btn.classList.add('active');
 }
+
+/* Registration tier selection */
 function selectTier(t,card){
   document.querySelectorAll('.tier').forEach(c=>c.classList.remove('selected'));
   card.classList.add('selected');
   const s=document.getElementById('rt');
   for(let i=0;i<s.options.length;i++)if(s.options[i].value===t){s.selectedIndex=i;break;}
 }
+
+/* Abstract word count */
 function countW(el){
   const w=el.value.trim()===''?0:el.value.trim().split(/\s+/).length;
   const pct=Math.min(100,Math.round(w/300*100));
@@ -834,10 +980,41 @@ function countW(el){
   f.style.width=pct+'%';
   f.style.background=w>300?'#C0392B':w>250?'#D4A017':'var(--red-mid)';
 }
-function doReg(){const f=document.getElementById('rf').value,e=document.getElementById('re').value,t=document.getElementById('rt').value;if(!f||!e||!t){alert('Please fill all required fields.');return;}const el=document.getElementById('reg-ok');el.classList.remove('hidden');el.scrollIntoView({behavior:'smooth',block:'center'});}
-function doAbs(){if(!document.getElementById('decl').checked){alert('Please accept the declaration.');return;}const el=document.getElementById('abs-ok');el.classList.remove('hidden');el.scrollIntoView({behavior:'smooth',block:'center'});}
+
+/* Partners carousel scroll */
+function scrollCarousel(trackId,dir){
+  const t=document.getElementById(trackId);
+  t.scrollBy({left:dir*220,behavior:'smooth'});
+}
+
+/* Form submissions */
+function doReg(){
+  const f=document.getElementById('rf').value,
+        e=document.getElementById('re').value,
+        t=document.getElementById('rt').value;
+  if(!f||!e||!t){alert('Please fill all required fields.');return;}
+  const el=document.getElementById('reg-ok');
+  el.classList.remove('hidden');
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+}
+function doAbs(){
+  if(!document.getElementById('decl').checked){alert('Please accept the declaration.');return;}
+  const el=document.getElementById('abs-ok');
+  el.classList.remove('hidden');
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+}
 function doSub(){document.getElementById('sub-ok').classList.remove('hidden');}
 function doContact(){document.getElementById('ctc-ok').classList.remove('hidden');}
-function tick(){const diff=new Date('2026-08-31T23:59:59')-new Date();if(diff<=0)return;document.getElementById('cd-d').textContent=Math.floor(diff/86400000);document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
+
+/* Countdown timer */
+function tick(){
+  const diff=new Date('2026-08-31T23:59:59')-new Date();
+  if(diff<=0)return;
+  document.getElementById('cd-d').textContent=Math.floor(diff/86400000);
+  document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');
+  document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');
+  document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');
+}
 tick();setInterval(tick,1000);
 </script>
+</html>
