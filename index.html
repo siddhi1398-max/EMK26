@@ -1,0 +1,694 @@
+
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --red:#C0392B;--red-dark:#922B21;--red-mid:#E74C3C;--red-light:#FDEDEC;
+  --red-border:rgba(192,57,43,0.2);
+  --navy:#1A252F;--navy-mid:#2C3E50;--navy-light:#EAF0F6;
+  --amber:#D4A017;--amber-light:#FEF9E7;
+  --text:#1a1a1a;--muted:#5a5a5a;--border:rgba(0,0,0,0.1);
+  --bg:#f8f7f7;--white:#fff;--radius:14px;--radius-sm:8px;
+}
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden}
+
+nav{background:var(--navy);border-bottom:none;position:sticky;top:0;z-index:100}
+.nav-inner{max-width:1100px;margin:auto;padding:0 1.5rem;display:flex;align-items:center;justify-content:space-between;height:58px}
+.logo{font-size:17px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:10px}
+.logo-cross{width:28px;height:28px;background:var(--red);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.logo-cross::before{content:'';position:absolute;width:14px;height:3px;background:#fff;border-radius:1px}
+.logo-cross::after{content:'';position:absolute;width:3px;height:14px;background:#fff;border-radius:1px}
+.logo-text{display:flex;flex-direction:column}
+.logo-main{font-size:15px;font-weight:700;color:#fff;line-height:1.1}
+.logo-sub{font-size:10px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.3px;line-height:1.2}
+.nav-links{display:flex;gap:2px;align-items:center}
+.nav-links button{background:none;border:none;cursor:pointer;font-size:13px;color:rgba(255,255,255,0.65);padding:6px 11px;border-radius:var(--radius-sm);font-family:inherit;transition:all 0.15s}
+.nav-links button:hover{background:rgba(255,255,255,0.08);color:#fff}
+.nav-links button.active{background:rgba(192,57,43,0.25);color:#ff9e95}
+.nav-cta{background:var(--red)!important;color:#fff!important;font-weight:600!important}
+.nav-cta:hover{background:var(--red-dark)!important;color:#fff!important}
+
+.page{display:none}.page.active{display:block}
+
+.hero{position:relative;min-height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:80px 24px 60px}
+.hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity 1s}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,15,20,0.92) 0%,rgba(26,37,47,0.85) 50%,rgba(144,30,20,0.7) 100%)}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(192,57,43,0.3);border:1px solid rgba(231,76,60,0.5);border-radius:100px;padding:5px 16px;font-size:12px;color:#ff9e95;letter-spacing:1px;text-transform:uppercase;margin-bottom:22px;animation:fadeUp 0.6s ease both}
+.hero h1{font-size:clamp(34px,5.5vw,58px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:14px;animation:fadeUp 0.7s ease 0.1s both}
+.hero h1 em{font-style:italic;color:#ff9e95}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.82);max-width:520px;margin:0 auto 32px;font-weight:300;animation:fadeUp 0.7s ease 0.2s both}
+.hero-meta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:34px;animation:fadeUp 0.7s ease 0.3s both}
+.hero-meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.88);background:rgba(255,255,255,0.08);padding:5px 12px;border-radius:100px;border:0.5px solid rgba(255,255,255,0.12)}
+.hero-meta-item i{color:#ff9e95;font-size:15px}
+.hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.7s ease 0.4s both}
+.btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all 0.18s}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-dark);transform:translateY(-1px)}
+.btn-white{background:#fff;color:var(--red)}
+.btn-white:hover{background:#fef0ef;transform:translateY(-1px)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:#111820;transform:translateY(-1px)}
+.btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.4)}
+.btn-outline-white:hover{background:rgba(255,255,255,0.1);transform:translateY(-1px)}
+.btn-amber{background:var(--amber);color:#fff}
+.btn-amber:hover{background:#b8890e;transform:translateY(-1px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+
+.countdown-bar{background:var(--navy-mid);padding:11px 1.5rem;text-align:center;border-bottom:2px solid var(--red)}
+.countdown-inner{max-width:560px;margin:auto;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
+.countdown-label{font-size:11px;color:rgba(255,255,255,0.7);font-weight:700;text-transform:uppercase;letter-spacing:0.8px}
+.countdown-units{display:flex;gap:10px}
+.countdown-unit{text-align:center;background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.15);border-radius:8px;padding:4px 10px;min-width:46px}
+.countdown-num{font-size:22px;font-weight:800;color:#ff9e95;display:block;line-height:1.1}
+.countdown-lbl{font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.8px}
+
+.stat-banner{background:var(--red);padding:28px 24px;display:flex;gap:0;justify-content:center;flex-wrap:wrap}
+.stat-item{text-align:center;padding:0 32px;border-right:1px solid rgba(255,255,255,0.2);color:#fff}
+.stat-item:last-child{border-right:none}
+.stat-num{font-size:34px;font-weight:800;display:block;color:#fff}
+.stat-lbl{font-size:11px;opacity:0.75;text-transform:uppercase;letter-spacing:0.6px}
+
+.section{max-width:1100px;margin:0 auto;padding:60px 1.5rem}
+.section-title{font-size:28px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.section-sub{color:var(--muted);font-size:14px;margin-bottom:36px}
+
+.img-card{border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border);background:var(--white);transition:transform 0.2s,box-shadow 0.2s}
+.img-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(192,57,43,0.1)}
+.img-card-img{width:100%;height:160px;object-fit:cover;display:block}
+.img-card-tag{display:inline-block;background:var(--red-light);color:var(--red);font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+
+.page-header{padding:40px 1.5rem;color:#fff;position:relative;overflow:hidden}
+.page-header-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,var(--red-dark) 100%)}
+.page-header-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.1}
+.page-header-content{position:relative;z-index:1;max-width:1100px;margin:auto}
+.page-header h2{font-size:30px;font-weight:800;margin-bottom:6px}
+.page-header p{opacity:0.75;font-size:14px}
+.page-header-accent{display:inline-block;width:40px;height:3px;background:var(--red);border-radius:2px;margin-bottom:14px}
+
+.tab-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
+.tab-btn{padding:8px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--white);font-size:13px;cursor:pointer;font-family:inherit;color:var(--muted);font-weight:500;transition:all 0.15s}
+.tab-btn.active{background:var(--red);color:#fff;border-color:var(--red)}
+.sched-day{display:none}.sched-day.active{display:block}
+.sched-item{display:flex;gap:14px;padding:13px 0;border-bottom:0.5px solid var(--border);align-items:flex-start}
+.sched-item:last-child{border-bottom:none}
+.sched-time{font-size:11px;color:var(--red);font-weight:700;min-width:82px;padding-top:3px}
+.stag{display:inline-block;padding:2px 9px;border-radius:100px;font-size:10px;font-weight:700;margin-bottom:4px;letter-spacing:0.3px}
+.stag-ws{background:#FEF9E7;color:#9B7A0E}
+.stag-kn{background:var(--navy-light);color:var(--navy)}
+.stag-se{background:var(--red-light);color:var(--red)}
+.stag-br{background:#F1EFE8;color:#5F5E5A}
+
+.tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:36px}
+.tier{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.5rem;position:relative;transition:all 0.2s;cursor:pointer}
+.tier:hover{border-color:var(--red-mid);transform:translateY(-2px);box-shadow:0 6px 20px rgba(192,57,43,0.1)}
+.tier.selected{border:2px solid var(--red);background:#fffafa}
+.tier-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:10px;padding:3px 12px;border-radius:100px;font-weight:700;white-space:nowrap}
+.tier-name{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;font-weight:600}
+.tier-price{font-size:32px;font-weight:800;color:var(--text);margin-bottom:2px}
+.tier-price span{font-size:14px;font-weight:400;color:var(--muted)}
+.tier-note{font-size:11px;color:var(--muted);margin-bottom:14px}
+.tier-features{list-style:none;margin-bottom:18px}
+.tier-features li{font-size:12px;padding:3px 0;display:flex;align-items:flex-start;gap:6px}
+.tier-features li i{color:var(--red-mid);font-size:14px;margin-top:1px;flex-shrink:0}
+
+.form-card{background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:2rem;max-width:720px}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:1/-1}
+label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px}
+input,select,textarea{padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;color:var(--text);background:var(--white);width:100%;transition:border 0.15s;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(192,57,43,0.08)}
+textarea{resize:vertical;min-height:90px}
+
+.topic-pill{display:inline-flex;align-items:center;gap:5px;background:var(--red-light);color:var(--red);font-size:12px;padding:4px 12px;border-radius:100px;cursor:pointer;transition:all 0.15s;border:1px solid transparent;font-weight:500}
+.topic-pill:hover,.topic-pill.sel{background:var(--red);color:#fff}
+
+.success-msg{background:#FDEDEC;border:1px solid var(--red-mid);border-radius:var(--radius-sm);padding:13px 16px;font-size:14px;color:var(--red);display:flex;align-items:center;gap:10px;margin-top:16px;font-weight:500}
+.hidden{display:none}
+
+.speaker-card{background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;text-align:center;transition:transform 0.2s}
+.speaker-card:hover{transform:translateY(-3px)}
+
+.update-item{display:flex;gap:14px;padding:16px 0;border-bottom:0.5px solid var(--border);align-items:flex-start}
+.update-item:last-child{border-bottom:none}
+.update-dot{width:10px;height:10px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:4px}
+.update-line{width:1.5px;background:var(--border);flex:1;margin-top:4px;min-height:20px}
+
+.word-count-bar{height:3px;border-radius:2px;background:var(--red-light);margin-top:4px;transition:all 0.3s;overflow:hidden}
+.word-count-fill{height:100%;background:var(--red-mid);border-radius:2px;transition:width 0.3s}
+
+.hi-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;padding:0;transition:all 0.2s}
+.hi-dot.active{background:#ff9e95;width:18px;border-radius:3px}
+
+footer{background:var(--navy);color:rgba(255,255,255,0.6);text-align:center;padding:36px 1.5rem;font-size:13px}
+footer strong{color:#ff9e95}
+
+@media(max-width:600px){
+  .form-grid{grid-template-columns:1fr}
+  .stat-banner{flex-direction:column;gap:16px}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:14px}
+  .stat-item:last-child{border-bottom:none}
+}
+</style>
+
+<h2 class="sr-only">EM Karnataka 2026 — Emergency Medicine State Conference</h2>
+
+<nav>
+  <div class="nav-inner">
+    <div class="logo" onclick="showPage('home')">
+      <img src="images/logo.png" alt="EM Karnataka Logo" id="site-logo" style="height:36px;width:auto;display:none" onerror="this.style.display='none'" onload="this.style.display='block';document.querySelector('.logo-cross').style.display='none'" />
+      <div class="logo-cross" id="logo-cross-fallback"></div>
+      <div class="logo-text">
+        <span class="logo-main">EM Karnataka 2026</span>
+        <span class="logo-sub">Emergency Medicine State Conference</span>
+      </div>
+    </div>
+    <div class="nav-links">
+      <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
+      <button onclick="showPage('schedule')" id="nav-schedule">Schedule</button>
+      <button onclick="showPage('register')" id="nav-register">Register</button>
+      <button onclick="showPage('abstracts')" id="nav-abstracts">Abstracts</button>
+      <button onclick="showPage('stay')" id="nav-stay">Stay</button>
+      <button onclick="showPage('updates')" id="nav-updates">Updates</button>
+      <button onclick="showPage('contact')" id="nav-contact">Contact</button>
+      <button class="nav-cta" onclick="showPage('register')"><i class="ti ti-pencil" style="font-size:13px"></i> Register</button>
+    </div>
+  </div>
+</nav>
+
+<!-- HOME -->
+<div id="page-home" class="page active">
+  <div class="hero">
+    <div class="hero-bg" id="hero-bg" style="background-image:url('images/hero-1.jpg');background-size:cover;background-position:center"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge"><i class="ti ti-heart-rate-monitor" style="font-size:13px"></i> Karnataka State Conference · Emergency Medicine</div>
+      <h1>EM Karnataka <em>2026</em></h1>
+      <p class="hero-sub">Climate Change &amp; Emergency Medicine — Preparing for the Health Crises of Tomorrow</p>
+      <div class="hero-meta">
+        <div class="hero-meta-item"><i class="ti ti-calendar"></i> November 2026</div>
+        <div class="hero-meta-item"><i class="ti ti-map-pin"></i> Bengaluru, Karnataka</div>
+        <div class="hero-meta-item"><i class="ti ti-users"></i> 4 Days · Workshops + Conference</div>
+      </div>
+      <div class="hero-btns">
+        <button class="btn btn-red" onclick="showPage('register')"><i class="ti ti-pencil"></i> Register Now</button>
+        <button class="btn btn-outline-white" onclick="showPage('schedule')"><i class="ti ti-layout-list"></i> Schedule</button>
+        <button class="btn btn-outline-white" onclick="showPage('abstracts')"><i class="ti ti-file-text"></i> Submit Abstract</button>
+      </div>
+    </div>
+    <div style="position:relative;z-index:2;display:flex;gap:6px;justify-content:center;margin-top:20px">
+      <button class="hi-dot active" onclick="switchHero(0)"></button>
+      <button class="hi-dot" onclick="switchHero(1)"></button>
+      <button class="hi-dot" onclick="switchHero(2)"></button>
+    </div>
+  </div>
+
+  <div class="countdown-bar">
+    <div class="countdown-inner">
+      <span class="countdown-label"><i class="ti ti-clock" style="font-size:13px;vertical-align:-2px;color:#ff9e95"></i> Early Bird Closes</span>
+      <div class="countdown-units">
+        <div class="countdown-unit"><span class="countdown-num" id="cd-d">--</span><span class="countdown-lbl">Days</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-h">--</span><span class="countdown-lbl">Hrs</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-m">--</span><span class="countdown-lbl">Min</span></div>
+        <div class="countdown-unit"><span class="countdown-num" id="cd-s">--</span><span class="countdown-lbl">Sec</span></div>
+      </div>
+      <button class="btn btn-red" style="padding:6px 16px;font-size:12px" onclick="showPage('register')">Grab Early Bird</button>
+    </div>
+  </div>
+
+  <div class="stat-banner">
+    <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">Conference Days</span></div>
+    <div class="stat-item"><span class="stat-num">500+</span><span class="stat-lbl">Expected Delegates</span></div>
+    <div class="stat-item"><span class="stat-num">5</span><span class="stat-lbl">Workshops</span></div>
+    <div class="stat-item"><span class="stat-num">20+</span><span class="stat-lbl">Expert Faculty</span></div>
+    <div class="stat-item"><span class="stat-num">CME</span><span class="stat-lbl">Accredited</span></div>
+  </div>
+
+  <div class="section">
+    <h2 class="section-title">What to Expect</h2>
+    <p class="section-sub">Four days built around clinical learning, hands-on skills, and meaningful connections</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+      <div class="img-card">
+        <img class="img-card-img" src="images/workshops.jpg" alt="Workshops" onerror="this.style.background='#C0392B'" />
+        <div style="padding:14px 16px">
+          <span class="img-card-tag">Days 1–2</span>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Hands-on Workshops</div>
+          <div style="font-size:12px;color:var(--muted)">Simulation &amp; skills stations. Limited seats per workshop for maximum hands-on time.</div>
+        </div>
+      </div>
+      <div class="img-card">
+        <img class="img-card-img" src="images/conference.jpg" alt="Conference" onerror="this.style.background='#1A252F'" />
+        <div style="padding:14px 16px">
+          <span class="img-card-tag">Days 3–4</span>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Keynotes &amp; Sessions</div>
+          <div style="font-size:12px;color:var(--muted)">Plenary lectures, panel debates, and abstract presentations on climate &amp; EM.</div>
+        </div>
+      </div>
+      <div class="img-card">
+        <img class="img-card-img" src="images/research.jpg" alt="Research" onerror="this.style.background='#922B21'" />
+        <div style="padding:14px 16px">
+          <span class="img-card-tag">Research</span>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Abstract Presentations</div>
+          <div style="font-size:12px;color:var(--muted)">Oral &amp; poster slots. Awards for best abstract, best poster, young investigator.</div>
+        </div>
+      </div>
+      <div class="img-card">
+        <img class="img-card-img" src="images/networking.jpg" alt="Networking" onerror="this.style.background='#2C3E50'" />
+        <div style="padding:14px 16px">
+          <span class="img-card-tag">Networking</span>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Connect &amp; Collaborate</div>
+          <div style="font-size:12px;color:var(--muted)">Welcome dinner, conference gala, and structured networking with peers across Karnataka.</div>
+        </div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px;border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0;border:0.5px solid var(--border)">
+      <div style="padding:36px 32px;background:var(--navy);color:#fff">
+        <span style="display:inline-block;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.5px">Conference Theme 2026</span>
+        <h2 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:12px;line-height:1.2">Climate Change &amp;<br/>Emergency Medicine</h2>
+        <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.7">Rising temperatures, extreme weather events, shifting disease vectors — the climate crisis is reshaping the landscape of emergency care in India. This conference explores how EM physicians lead the response.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span class="topic-pill" style="background:rgba(192,57,43,0.3);color:#ff9e95;border-color:rgba(192,57,43,0.4)"><i class="ti ti-flame" style="font-size:12px"></i> Heatstroke</span>
+          <span class="topic-pill" style="background:rgba(192,57,43,0.3);color:#ff9e95;border-color:rgba(192,57,43,0.4)"><i class="ti ti-bug" style="font-size:12px"></i> Vector-borne</span>
+          <span class="topic-pill" style="background:rgba(192,57,43,0.3);color:#ff9e95;border-color:rgba(192,57,43,0.4)"><i class="ti ti-cloud-storm" style="font-size:12px"></i> Disaster EM</span>
+          <span class="topic-pill" style="background:rgba(192,57,43,0.3);color:#ff9e95;border-color:rgba(192,57,43,0.4)"><i class="ti ti-lungs" style="font-size:12px"></i> Air Quality</span>
+          <span class="topic-pill" style="background:rgba(192,57,43,0.3);color:#ff9e95;border-color:rgba(192,57,43,0.4)"><i class="ti ti-droplet" style="font-size:12px"></i> Floods</span>
+        </div>
+      </div>
+      <div style="position:relative;min-height:220px;overflow:hidden">
+        <img src="images/climate-em.jpg" alt="Climate emergency" style="width:100%;height:100%;object-fit:cover;display:block" />
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,transparent 35%)"></div>
+      </div>
+    </div>
+
+    <div style="margin-top:48px">
+      <h2 class="section-title">Faculty <span style="font-size:15px;font-weight:400;color:var(--muted)">— Announcements coming soon</span></h2>
+      <p class="section-sub">Leading voices in emergency medicine and climate health from across India</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:28px">
+        <div class="speaker-card"><img src="images/speaker-1.jpg" alt="Keynote Speaker" style="width:100%;height:110px;object-fit:cover;display:block" onerror="this.style.cssText='width:100%;height:110px;background:linear-gradient(135deg,#1A252F,#2C3E50);display:flex;align-items:center;justify-content:center'" /><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Speaker Name</div><div style="font-size:11px;color:var(--muted)">Keynote Faculty</div></div></div>
+        <div class="speaker-card"><img src="images/speaker-2.jpg" alt="Workshop Lead" style="width:100%;height:110px;object-fit:cover;display:block" onerror="this.style.cssText='width:100%;height:110px;background:linear-gradient(135deg,#922B21,#C0392B);display:block'" /><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Faculty Name</div><div style="font-size:11px;color:var(--muted)">Workshop Lead</div></div></div>
+        <div class="speaker-card"><img src="images/speaker-3.jpg" alt="Panelist" style="width:100%;height:110px;object-fit:cover;display:block" onerror="this.style.cssText='width:100%;height:110px;background:linear-gradient(135deg,#7D6608,#D4A017);display:block'" /><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Panelist Name</div><div style="font-size:11px;color:var(--muted)">Panel Discussant</div></div></div>
+        <div class="speaker-card"><img src="images/speaker-4.jpg" alt="Workshop Faculty" style="width:100%;height:110px;object-fit:cover;display:block" onerror="this.style.cssText='width:100%;height:110px;background:linear-gradient(135deg,#1a3a5c,#2471A3);display:block'" /><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Faculty Name</div><div style="font-size:11px;color:var(--muted)">Workshop Faculty</div></div></div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);text-align:center"><i class="ti ti-bell" style="font-size:14px;vertical-align:-2px;color:var(--red)"></i> <a href="#" onclick="showPage('updates');return false" style="color:var(--red);text-decoration:none;font-weight:600">Subscribe to updates</a> for faculty announcements</p>
+    </div>
+
+    <div style="margin-top:48px;background:var(--navy);border-radius:var(--radius);padding:40px;text-align:center;position:relative;overflow:hidden">
+      <img src="images/abstract-bg.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.08" />
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)"></div>
+      <div style="position:relative;z-index:1">
+        <h2 style="font-size:24px;font-weight:800;color:#fff;margin-bottom:8px">Abstract Submission Open</h2>
+        <p style="font-size:14px;color:rgba(255,255,255,0.75);margin-bottom:24px;max-width:420px;margin-left:auto;margin-right:auto">Submit original research by <strong style="color:#ff9e95">31 August 2026</strong>. Oral and poster slots available. Awards for top submissions.</p>
+        <button class="btn btn-red" onclick="showPage('abstracts')"><i class="ti ti-file-text"></i> Submit Abstract</button>
+      </div>
+    </div>
+  </div>
+  <footer><strong>EM Karnataka 2026</strong> · Emergency Medicine State Conference, Karnataka · November 2026<br/><span style="font-size:11px;margin-top:6px;display:block;opacity:0.5">Organised under the auspices of the Emergency Medicine Association of Karnataka</span></footer>
+</div>
+
+<!-- SCHEDULE -->
+<div id="page-schedule" class="page">
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <img class="page-header-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=50" alt="" />
+    <div class="page-header-content"><div class="page-header-accent"></div><h2>Programme Schedule</h2><p>Tentative — final schedule confirmed October 2026</p></div>
+  </div>
+  <div class="section" style="padding-top:36px">
+    <div class="tab-row">
+      <button class="tab-btn active" onclick="showDay('1',this)"><i class="ti ti-tool" style="font-size:13px;vertical-align:-2px"></i> Day 1 · Workshop</button>
+      <button class="tab-btn" onclick="showDay('2',this)"><i class="ti ti-tool" style="font-size:13px;vertical-align:-2px"></i> Day 2 · Workshop</button>
+      <button class="tab-btn" onclick="showDay('3',this)"><i class="ti ti-presentation" style="font-size:13px;vertical-align:-2px"></i> Day 3 · Conference</button>
+      <button class="tab-btn" onclick="showDay('4',this)"><i class="ti ti-presentation" style="font-size:13px;vertical-align:-2px"></i> Day 4 · Conference</button>
+    </div>
+    <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem">
+      <div class="sched-day active" id="sd1">
+        <div class="sched-item"><div class="sched-time">08:00–08:45</div><div><span class="stag stag-br">Registration</span><div style="font-size:14px;font-weight:600">Delegate registration &amp; welcome tea</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Airway management in extreme climate events</div><div style="font-size:12px;color:var(--muted)">Station-based · Limited to 20 participants</div></div></div>
+        <div class="sched-item"><div class="sched-time">12:30–13:30</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch</div></div></div>
+        <div class="sched-item"><div class="sched-time">13:30–17:00</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Point-of-care ultrasound (POCUS) — fundamentals</div><div style="font-size:12px;color:var(--muted)">Hands-on with machines · Faculty TBA</div></div></div>
+        <div class="sched-item"><div class="sched-time">17:15–18:30</div><div><span class="stag stag-se">Session</span><div style="font-size:14px;font-weight:600">Satellite symposium / industry session</div></div></div>
+        <div class="sched-item"><div class="sched-time">19:00+</div><div><span class="stag stag-br">Social</span><div style="font-size:14px;font-weight:600">Welcome dinner &amp; networking</div></div></div>
+      </div>
+      <div class="sched-day" id="sd2">
+        <div class="sched-item"><div class="sched-time">08:30–09:00</div><div><span class="stag stag-br">Breakfast</span><div style="font-size:14px;font-weight:600">Morning tea</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Heatstroke &amp; hyperthermia: recognition &amp; cooling protocols</div><div style="font-size:12px;color:var(--muted)">Simulation-based</div></div></div>
+        <div class="sched-item"><div class="sched-time">12:30–13:30</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch</div></div></div>
+        <div class="sched-item"><div class="sched-time">13:30–17:00</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Mass casualty &amp; disaster triage in climate events</div><div style="font-size:12px;color:var(--muted)">Table-top + practical exercise</div></div></div>
+        <div class="sched-item"><div class="sched-time">17:15–18:00</div><div><span class="stag stag-se">Session</span><div style="font-size:14px;font-weight:600">Workshop awards &amp; feedback</div></div></div>
+      </div>
+      <div class="sched-day" id="sd3">
+        <div class="sched-item"><div class="sched-time">08:30–09:00</div><div><span class="stag stag-br">Registration</span><div style="font-size:14px;font-weight:600">Conference day delegate registration</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–09:30</div><div><span class="stag stag-kn">Inauguration</span><div style="font-size:14px;font-weight:600">Inaugural ceremony &amp; lighting of the lamp</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:30–10:30</div><div><span class="stag stag-kn">Keynote</span><div style="font-size:14px;font-weight:600">Climate change &amp; the emergency department: a crisis at our doorstep</div><div style="font-size:12px;color:var(--muted)">Keynote speaker TBA</div></div></div>
+        <div class="sched-item"><div class="sched-time">10:30–11:00</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Tea &amp; exhibition</div></div></div>
+        <div class="sched-item"><div class="sched-time">11:00–13:00</div><div><span class="stag stag-se">Session</span><div style="font-size:14px;font-weight:600">Oral abstract presentations — free papers</div></div></div>
+        <div class="sched-item"><div class="sched-time">13:00–14:00</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch &amp; poster viewing</div></div></div>
+        <div class="sched-item"><div class="sched-time">14:00–16:00</div><div><span class="stag stag-se">Panel</span><div style="font-size:14px;font-weight:600">Disaster preparedness — Karnataka's readiness</div></div></div>
+        <div class="sched-item"><div class="sched-time">16:00–17:30</div><div><span class="stag stag-se">Session</span><div style="font-size:14px;font-weight:600">State-of-the-art lectures — toxicology in a warming world</div></div></div>
+        <div class="sched-item"><div class="sched-time">19:00+</div><div><span class="stag stag-br">Social</span><div style="font-size:14px;font-weight:600">Conference gala dinner</div></div></div>
+      </div>
+      <div class="sched-day" id="sd4">
+        <div class="sched-item"><div class="sched-time">09:00–10:30</div><div><span class="stag stag-kn">Keynote</span><div style="font-size:14px;font-weight:600">Vector-borne disease emergence &amp; EM response</div></div></div>
+        <div class="sched-item"><div class="sched-time">10:30–11:00</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Tea &amp; exhibition</div></div></div>
+        <div class="sched-item"><div class="sched-time">11:00–12:30</div><div><span class="stag stag-se">Session</span><div style="font-size:14px;font-weight:600">Poster presentations &amp; judging</div></div></div>
+        <div class="sched-item"><div class="sched-time">12:30–13:30</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch</div></div></div>
+        <div class="sched-item"><div class="sched-time">13:30–15:30</div><div><span class="stag stag-se">Session</span><div style="font-size:14px;font-weight:600">Air quality &amp; respiratory emergencies — panel &amp; lectures</div></div></div>
+        <div class="sched-item"><div class="sched-time">15:30–16:30</div><div><span class="stag stag-kn">Awards</span><div style="font-size:14px;font-weight:600">Awards ceremony — best abstract, best poster, young investigator</div></div></div>
+        <div class="sched-item"><div class="sched-time">16:30–17:00</div><div><span class="stag stag-kn">Valedictory</span><div style="font-size:14px;font-weight:600">Closing ceremony &amp; vote of thanks</div></div></div>
+      </div>
+    </div>
+  </div>
+  <footer><strong>EM Karnataka 2026</strong> · Tentative schedule — subject to revision</footer>
+</div>
+
+<!-- REGISTER -->
+<div id="page-register" class="page">
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-content"><div class="page-header-accent"></div><h2>Registration</h2><p>Includes conference kit, meals, and CME certificate. Secure payment via Razorpay.</p></div>
+  </div>
+  <div class="section" style="padding-top:36px">
+    <div class="tier-grid">
+      <div class="tier" onclick="selectTier('PG Student',this)">
+        <div class="tier-name">PG Student</div>
+        <div class="tier-price">₹2,500 <span>early bird</span></div>
+        <div class="tier-note">₹3,500 after 31 Aug · ID required</div>
+        <ul class="tier-features">
+          <li><i class="ti ti-check"></i> All conference sessions</li>
+          <li><i class="ti ti-check"></i> 1 Workshop access</li>
+          <li><i class="ti ti-check"></i> Conference kit &amp; meals</li>
+          <li><i class="ti ti-check"></i> CME certificate</li>
+        </ul>
+        <button class="btn btn-red" style="width:100%;justify-content:center">Select</button>
+      </div>
+      <div class="tier selected" onclick="selectTier('Delegate',this)">
+        <div class="tier-name">Delegate</div>
+        <div class="tier-price">₹4,500 <span>early bird</span></div>
+        <div class="tier-note">₹5,500 after 31 Aug 2026</div>
+        <ul class="tier-features">
+          <li><i class="ti ti-check"></i> All conference sessions</li>
+          <li><i class="ti ti-check"></i> 1 Workshop access</li>
+          <li><i class="ti ti-check"></i> Conference kit &amp; meals</li>
+          <li><i class="ti ti-check"></i> CME certificate</li>
+          <li><i class="ti ti-check"></i> Conference dinner</li>
+        </ul>
+        <button class="btn btn-red" style="width:100%;justify-content:center">Select</button>
+      </div>
+      <div class="tier" onclick="selectTier('Faculty',this)">
+        <div class="tier-badge">Most inclusive</div>
+        <div class="tier-name">Faculty / Consultant</div>
+        <div class="tier-price">₹5,500 <span>early bird</span></div>
+        <div class="tier-note">₹6,500 after 31 Aug 2026</div>
+        <ul class="tier-features">
+          <li><i class="ti ti-check"></i> All conference sessions</li>
+          <li><i class="ti ti-check"></i> All workshops access</li>
+          <li><i class="ti ti-check"></i> Kit, all meals &amp; gala dinner</li>
+          <li><i class="ti ti-check"></i> Faculty CME certificate</li>
+          <li><i class="ti ti-check"></i> Networking lounge access</li>
+        </ul>
+        <button class="btn btn-red" style="width:100%;justify-content:center">Select</button>
+      </div>
+    </div>
+    <div class="form-card">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px">Your Details</h3>
+      <div class="form-grid">
+        <div class="fg"><label>First Name *</label><input id="rf" type="text" placeholder="Dr. Ananya" /></div>
+        <div class="fg"><label>Last Name *</label><input id="rl" type="text" placeholder="Sharma" /></div>
+        <div class="fg"><label>Email *</label><input id="re" type="email" placeholder="dr.ananya@hospital.in" /></div>
+        <div class="fg"><label>Mobile *</label><input type="tel" placeholder="+91 98765 43210" /></div>
+        <div class="fg"><label>Designation *</label><input type="text" placeholder="Emergency Medicine Consultant" /></div>
+        <div class="fg"><label>Registration Type *</label>
+          <select id="rt">
+            <option value="">Select type</option>
+            <option value="Delegate">Delegate — ₹4,500</option>
+            <option value="Faculty">Faculty / Consultant — ₹5,500</option>
+            <option value="PG Student">PG Student — ₹2,500</option>
+          </select>
+        </div>
+        <div class="fg full"><label>Institution / Hospital *</label><input type="text" placeholder="Victoria Hospital, Bengaluru" /></div>
+        <div class="fg full"><label>NMC Registration Number</label><input type="text" placeholder="KAR-XXXXX" /></div>
+        <div class="fg full"><label>Workshop Preference</label>
+          <select>
+            <option>Choose later / No preference</option>
+            <option>Airway Management in Extreme Climate Events</option>
+            <option>Point-of-Care Ultrasound (POCUS)</option>
+            <option>Heatstroke &amp; Hyperthermia Protocols</option>
+            <option>Mass Casualty &amp; Disaster Triage</option>
+            <option>Vector-borne Disease Emergencies</option>
+          </select>
+        </div>
+        <div class="fg full"><label>Dietary Preference</label>
+          <select><option>Vegetarian</option><option>Non-vegetarian</option><option>Vegan</option><option>Jain</option></select>
+        </div>
+      </div>
+      <div style="margin-top:20px;background:var(--red-light);border-radius:var(--radius-sm);padding:14px;border-left:3px solid var(--red)">
+        <p style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:4px"><i class="ti ti-credit-card" style="vertical-align:-2px"></i> Payment via Razorpay</p>
+        <p style="font-size:12px;color:var(--muted)">UPI (GPay, PhonePe, Paytm), Net Banking, Debit &amp; Credit Cards. Instant confirmation email after payment.</p>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:12px">
+        <p style="font-size:12px;color:var(--muted)"><i class="ti ti-lock" style="font-size:13px;vertical-align:-1px"></i> PCI DSS compliant · Instant confirmation</p>
+        <button class="btn btn-red" onclick="doReg()"><i class="ti ti-arrow-right"></i> Proceed to Pay</button>
+      </div>
+      <div id="reg-ok" class="success-msg hidden"><i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i><div><strong>Registration received!</strong> Confirmation with your registration ID sent. Our team will follow up within 24 hours.</div></div>
+    </div>
+  </div>
+  <footer><strong>EM Karnataka 2026</strong> · registrations@emkarnataka2026.in</footer>
+</div>
+
+<!-- ABSTRACTS -->
+<div id="page-abstracts" class="page">
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <img class="page-header-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=50" alt="" />
+    <div class="page-header-content"><div class="page-header-accent"></div><h2>Abstract Submission</h2><p>Blind peer review · Deadline 31 August 2026 · Results by 30 September 2026</p></div>
+  </div>
+  <div class="section" style="padding-top:36px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:32px">
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center"><i class="ti ti-calendar-event" style="font-size:26px;color:var(--red);display:block;margin-bottom:6px"></i><p style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Submission deadline</p><p style="font-size:14px;font-weight:700">31 Aug 2026</p></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center"><i class="ti ti-mail-opened" style="font-size:26px;color:var(--red);display:block;margin-bottom:6px"></i><p style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Results by</p><p style="font-size:14px;font-weight:700">30 Sep 2026</p></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center"><i class="ti ti-file-text" style="font-size:26px;color:var(--red);display:block;margin-bottom:6px"></i><p style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Word limit</p><p style="font-size:14px;font-weight:700">300 words</p></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center"><i class="ti ti-trophy" style="font-size:26px;color:var(--amber);display:block;margin-bottom:6px"></i><p style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Awards</p><p style="font-size:14px;font-weight:700">Best abstract · Poster</p></div>
+    </div>
+    <div style="margin-bottom:28px"><p style="font-size:12px;font-weight:700;margin-bottom:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px">Preferred topics</p><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="topic-pill">Climate-related emergencies</span><span class="topic-pill">Heatstroke management</span><span class="topic-pill">Flood disaster response</span><span class="topic-pill">Vector-borne disease outbreaks</span><span class="topic-pill">Air quality &amp; respiratory EM</span><span class="topic-pill">Toxicology</span><span class="topic-pill">Paediatric environmental emergencies</span><span class="topic-pill">General emergency medicine</span><span class="topic-pill">Trauma &amp; critical care</span><span class="topic-pill">Emergency nursing</span></div></div>
+    <div class="form-card">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px">Submit Your Abstract</h3>
+      <div class="form-grid">
+        <div class="fg"><label>Presenting author *</label><input type="text" placeholder="Dr. Ravi Kumar" /></div>
+        <div class="fg"><label>Email *</label><input type="email" placeholder="dr.ravi@hospital.in" /></div>
+        <div class="fg full"><label>Institution *</label><input type="text" placeholder="St. John's Medical College, Bengaluru" /></div>
+        <div class="fg full"><label>Co-authors</label><input type="text" placeholder="Dr. A, Dr. B" /></div>
+        <div class="fg full"><label>Abstract title *</label><input type="text" placeholder="Title of your abstract" /></div>
+        <div class="fg"><label>Topic *</label><select><option value="">Select topic</option><option>Climate-related emergencies</option><option>Heatstroke management</option><option>Vector-borne disease outbreaks</option><option>Air quality &amp; respiratory EM</option><option>Toxicology</option><option>General emergency medicine</option><option>Trauma &amp; critical care</option></select></div>
+        <div class="fg"><label>Presentation type *</label><select><option>Oral presentation</option><option>Poster presentation</option><option>Either (committee decides)</option></select></div>
+        <div class="fg"><label>Study type *</label><select><option>Original research</option><option>Case report / series</option><option>Review article</option><option>Quality improvement</option></select></div>
+        <div class="fg full"><label>Abstract (max 300 words) *</label>
+          <textarea id="abs-txt" placeholder="Background · Methods · Results · Conclusion" style="min-height:130px" oninput="countW(this)"></textarea>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+            <span style="font-size:11px;color:var(--muted)" id="wc-label">0 / 300 words</span>
+            <div style="flex:1;margin-left:12px;max-width:180px"><div class="word-count-bar"><div class="word-count-fill" id="wc-fill" style="width:0%"></div></div></div>
+          </div>
+        </div>
+        <div class="fg full"><div style="display:flex;align-items:flex-start;gap:8px"><input type="checkbox" id="decl" style="width:auto;margin-top:3px" /><label for="decl" style="text-transform:none;letter-spacing:0;font-size:12px;color:var(--muted);font-weight:400">I confirm this is original unpublished work. The presenting author is registered (or will register) for the conference.</label></div></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:12px">
+        <p style="font-size:12px;color:var(--muted)">Blind peer review · Acknowledgement within 1 hour</p>
+        <button class="btn btn-red" onclick="doAbs()"><i class="ti ti-send"></i> Submit Abstract</button>
+      </div>
+      <div id="abs-ok" class="success-msg hidden"><i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i><div><strong>Abstract submitted!</strong> Results communicated by 30 September 2026.</div></div>
+    </div>
+  </div>
+  <footer><strong>EM Karnataka 2026</strong> · abstracts@emkarnataka2026.in</footer>
+</div>
+
+<!-- STAY -->
+<div id="page-stay" class="page">
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-content"><div class="page-header-accent"></div><h2>Accommodation</h2><p>Negotiated conference rates · Use booking code <strong>EMKA2026</strong></p></div>
+  </div>
+  <div class="section" style="padding-top:36px">
+    <div style="background:var(--amber-light);border:0.5px solid rgba(212,160,23,0.3);border-radius:var(--radius-sm);padding:13px 16px;margin-bottom:28px;font-size:13px;color:#7D6608;display:flex;gap:10px;align-items:flex-start">
+      <i class="ti ti-info-circle" style="font-size:17px;flex-shrink:0;margin-top:1px"></i>
+      <span>Use booking code <strong>EMKA2026</strong> to avail the conference rate. Block valid until 15 October 2026 or until sold out.</span>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden">
+        <div style="position:relative">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=75" alt="5-star hotel" style="width:100%;height:200px;object-fit:cover;display:block" />
+          <div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.55);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★★</div>
+          <div style="position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;padding:3px 10px;border-radius:100px;font-weight:700">Partner Hotel</div>
+          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;color:#fff">
+            <div style="font-size:16px;font-weight:700">Conference partner hotel (5★)</div>
+            <div style="font-size:12px;opacity:0.85"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> Adjacent to venue (TBA)</div>
+          </div>
+        </div>
+        <div style="padding:1.25rem">
+          <div style="font-size:26px;font-weight:800;color:var(--navy);margin-bottom:4px">₹5,500 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ night incl. breakfast</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px">
+            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Shuttle to venue</span>
+            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Pool &amp; spa</span>
+            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">High-speed WiFi</span>
+          </div>
+          <button class="btn btn-navy" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button>
+        </div>
+      </div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden">
+        <div style="position:relative">
+          <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=75" alt="4-star hotel" style="width:100%;height:200px;object-fit:cover;display:block" />
+          <div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.55);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★</div>
+          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;color:#fff">
+            <div style="font-size:16px;font-weight:700">Budget partner hotel (4★)</div>
+            <div style="font-size:12px;opacity:0.85"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> 10 min from venue (TBA)</div>
+          </div>
+        </div>
+        <div style="padding:1.25rem">
+          <div style="font-size:26px;font-weight:800;color:var(--navy);margin-bottom:4px">₹3,200 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ night incl. breakfast</span></div>
+          <div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px">
+            <span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">WiFi</span>
+            <span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Gym</span>
+            <span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Shuttle available</span>
+          </div>
+          <button class="btn btn-navy" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:24px;background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:14px"><i class="ti ti-navigation" style="color:var(--red);vertical-align:-2px;margin-right:6px"></i>Getting there</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;font-size:13px;color:var(--muted)">
+        <div style="display:flex;gap:10px"><i class="ti ti-plane" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">By air</strong>Kempegowda International Airport, connected via metro &amp; cab</div></div>
+        <div style="display:flex;gap:10px"><i class="ti ti-train" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">By train</strong>KSR Bengaluru &amp; Yeshwanthpur. Cabs readily available</div></div>
+        <div style="display:flex;gap:10px"><i class="ti ti-bus" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">Venue shuttle</strong>Partner hotel shuttle on all conference days</div></div>
+      </div>
+    </div>
+  </div>
+  <footer><strong>EM Karnataka 2026</strong> · accommodation@emkarnataka2026.in</footer>
+</div>
+
+<!-- UPDATES -->
+<div id="page-updates" class="page">
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-content"><div class="page-header-accent"></div><h2>Conference Updates</h2><p>Announcements, deadlines, and programme news</p></div>
+  </div>
+  <div class="section" style="padding-top:36px">
+    <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:28px">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px"><i class="ti ti-bell" style="color:var(--red);vertical-align:-2px;margin-right:6px"></i>Subscribe for updates</h3>
+      <div style="display:flex;gap:10px;flex-wrap:wrap">
+        <input type="email" placeholder="your@email.com" style="flex:1;min-width:200px" />
+        <button class="btn btn-red" onclick="doSub()"><i class="ti ti-bell"></i> Subscribe</button>
+      </div>
+      <div id="sub-ok" class="success-msg hidden" style="margin-top:10px"><i class="ti ti-circle-check" style="font-size:18px;flex-shrink:0"></i>You're subscribed — we'll notify you of all major updates.</div>
+    </div>
+    <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem">
+      <div class="update-item">
+        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div>
+        <div style="padding-bottom:16px;flex:1">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:12px;color:var(--muted)">May 2026</span><span style="background:var(--red);color:#fff;font-size:10px;padding:1px 7px;border-radius:100px;font-weight:700">NEW</span></div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Website launched</div>
+          <div style="font-size:13px;color:var(--muted)">The official EM Karnataka 2026 website is live. Registration and abstract submission are now open.</div>
+        </div>
+      </div>
+      <div class="update-item">
+        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div>
+        <div style="padding-bottom:16px;flex:1">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:4px">May 2026</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Abstract submission portal open</div>
+          <div style="font-size:13px;color:var(--muted)">Submit original research for oral or poster presentation. Deadline: 31 August 2026.</div>
+        </div>
+      </div>
+      <div class="update-item">
+        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div>
+        <div style="padding-bottom:16px;flex:1">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:4px">May 2026</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Early bird registration rates live</div>
+          <div style="font-size:13px;color:var(--muted)">PG students ₹2,500 · Delegates ₹4,500 · Faculty ₹5,500 — valid until 31 August 2026.</div>
+        </div>
+      </div>
+      <div class="update-item">
+        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot" style="background:#ccc"></div></div>
+        <div style="flex:1">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Coming soon</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;color:var(--muted)">Faculty &amp; speaker announcements</div>
+          <div style="font-size:13px;color:var(--muted)">National and international faculty confirmations coming shortly.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <footer><strong>EM Karnataka 2026</strong> · Follow on WhatsApp &amp; Email</footer>
+</div>
+
+<!-- CONTACT -->
+<div id="page-contact" class="page">
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-content"><div class="page-header-accent"></div><h2>Contact Us</h2><p>Reach the right team for your query</p></div>
+  </div>
+  <div class="section" style="padding-top:36px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:36px">
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-pencil" style="font-size:18px;color:var(--red)"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">Registrations</p><p style="font-size:12px;color:var(--muted)">registrations@emkarnataka2026.in</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-file-text" style="font-size:18px;color:var(--red)"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">Abstracts</p><p style="font-size:12px;color:var(--muted)">abstracts@emkarnataka2026.in</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-building" style="font-size:18px;color:var(--red)"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">Accommodation</p><p style="font-size:12px;color:var(--muted)">accommodation@emkarnataka2026.in</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--amber-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-briefcase" style="font-size:18px;color:var(--amber)"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">Sponsorships</p><p style="font-size:12px;color:var(--muted)">sponsors@emkarnataka2026.in</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-phone" style="font-size:18px;color:var(--red)"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">Secretariat</p><p style="font-size:12px;color:var(--muted)">+91 XXXXX XXXXX · Mon–Sat, 10am–5pm</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:#E8F5E9;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-brand-whatsapp" style="font-size:18px;color:#2e7d32"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">WhatsApp helpdesk</p><p style="font-size:12px;color:var(--muted)">+91 XXXXX XXXXX</p></div></div>
+    </div>
+    <div class="form-card" style="max-width:620px">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px">Send a Message</h3>
+      <div class="form-grid">
+        <div class="fg"><label>Name *</label><input type="text" placeholder="Your name" /></div>
+        <div class="fg"><label>Email *</label><input type="email" placeholder="your@email.com" /></div>
+        <div class="fg full"><label>Subject</label><select><option>Registration query</option><option>Abstract submission</option><option>Accommodation</option><option>Sponsorship / exhibition</option><option>Other</option></select></div>
+        <div class="fg full"><label>Message *</label><textarea placeholder="Your message..."></textarea></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:12px">
+        <p style="font-size:12px;color:var(--muted)">We respond within 1–2 working days</p>
+        <button class="btn btn-red" onclick="doContact()"><i class="ti ti-send"></i> Send Message</button>
+      </div>
+      <div id="ctc-ok" class="success-msg hidden"><i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i>Message sent! We'll respond within 1–2 working days.</div>
+    </div>
+  </div>
+  <footer><strong>EM Karnataka 2026</strong> · Emergency Medicine State Conference · November 2026</footer>
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
+<script>
+const heroImgs=['images/hero-1.jpg','images/hero-2.jpg','images/hero-3.jpg'];
+let hIdx=0;
+function switchHero(i){hIdx=i;document.getElementById('hero-bg').style.backgroundImage=`url('${heroImgs[i]}')`;document.querySelectorAll('.hi-dot').forEach((d,j)=>d.classList.toggle('active',i===j));}
+setInterval(()=>switchHero((hIdx+1)%heroImgs.length),5000);
+
+function showPage(p){
+  document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.nav-links button').forEach(x=>x.classList.remove('active'));
+  document.getElementById('page-'+p).classList.add('active');
+  const nb=document.getElementById('nav-'+p);
+  if(nb)nb.classList.add('active');
+  window.scrollTo(0,0);
+}
+function showDay(d,btn){
+  document.querySelectorAll('.sched-day').forEach(x=>x.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
+  document.getElementById('sd'+d).classList.add('active');
+  btn.classList.add('active');
+}
+function selectTier(t,card){
+  document.querySelectorAll('.tier').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  const s=document.getElementById('rt');
+  for(let i=0;i<s.options.length;i++)if(s.options[i].value===t){s.selectedIndex=i;break;}
+}
+function countW(el){
+  const w=el.value.trim()===''?0:el.value.trim().split(/\s+/).length;
+  const pct=Math.min(100,Math.round(w/300*100));
+  document.getElementById('wc-label').textContent=w+' / 300 words';
+  const f=document.getElementById('wc-fill');
+  f.style.width=pct+'%';
+  f.style.background=w>300?'#C0392B':w>250?'#D4A017':'var(--red-mid)';
+}
+function doReg(){const f=document.getElementById('rf').value,e=document.getElementById('re').value,t=document.getElementById('rt').value;if(!f||!e||!t){alert('Please fill all required fields.');return;}const el=document.getElementById('reg-ok');el.classList.remove('hidden');el.scrollIntoView({behavior:'smooth',block:'center'});}
+function doAbs(){if(!document.getElementById('decl').checked){alert('Please accept the declaration.');return;}const el=document.getElementById('abs-ok');el.classList.remove('hidden');el.scrollIntoView({behavior:'smooth',block:'center'});}
+function doSub(){document.getElementById('sub-ok').classList.remove('hidden');}
+function doContact(){document.getElementById('ctc-ok').classList.remove('hidden');}
+function tick(){const diff=new Date('2026-08-31T23:59:59')-new Date();if(diff<=0)return;document.getElementById('cd-d').textContent=Math.floor(diff/86400000);document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
+tick();setInterval(tick,1000);
+</script>
