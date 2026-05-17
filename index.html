@@ -18,40 +18,50 @@
 body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden}
 
 /* ── NAV ── */
-nav{background:var(--navy);border-bottom:none;position:sticky;top:0;z-index:100}
-.nav-inner {
-  max-width: 1100px; margin: auto; padding: 10px 1.5rem;
-  display: grid;
-  grid-template-columns: auto 1fr;  /* logo | links */
-  align-items: center;
-  gap: 16px;
+nav{background:var(--navy);position:sticky;top:0;z-index:100;border-bottom:2px solid rgba(192,57,43,0.4)}
+.nav-inner{
+  max-width:1200px;margin:auto;padding:0 1.5rem;
+  display:grid;
+  grid-template-columns:auto 1fr auto;
+  align-items:center;
+  gap:12px;
+  height:56px;
 }
-.logo{font-size:17px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:10px}
-.logo-cross{width:28px;height:28px;background:var(--red);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.logo{font-size:17px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:10px;flex-shrink:0}
+.logo-cross{width:30px;height:30px;background:var(--red);border-radius:6px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
 .logo-cross::before{content:'';position:absolute;width:14px;height:3px;background:#fff;border-radius:1px}
 .logo-cross::after{content:'';position:absolute;width:3px;height:14px;background:#fff;border-radius:1px}
+.logo-img{height:32px;width:auto;object-fit:contain;display:block}
 .logo-text{display:flex;flex-direction:column}
 .logo-main{font-size:15px;font-weight:700;color:#fff;line-height:1.1}
 .logo-sub{font-size:10px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.3px;line-height:1.2}
 
-/* Centered, larger nav links */
-.nav-links {
-  display: flex; gap: 4px; align-items: center;
-  justify-content: center;  /* centred in remaining space */
-  flex-wrap: wrap;
+.nav-links{
+  display:flex;gap:2px;align-items:center;
+  justify-content:center;
+  flex-wrap:nowrap;
+  overflow:hidden;
 }
 .nav-links button{
   background:none;border:none;cursor:pointer;
-  font-size:15px;          /* ↑ was 13px */
+  font-size:13.5px;
   color:rgba(255,255,255,0.75);
-  padding:8px 15px;        /* ↑ was 6px 11px */
+  padding:7px 12px;
   border-radius:var(--radius-sm);font-family:inherit;transition:all 0.15s;
-  font-weight:500;
+  font-weight:500;white-space:nowrap;
 }
 .nav-links button:hover{background:rgba(255,255,255,0.08);color:#fff}
 .nav-links button.active{background:rgba(192,57,43,0.25);color:#ff9e95}
-.nav-cta{background:var(--red)!important;color:#fff!important;font-weight:700!important}
-.nav-cta:hover{background:var(--red-dark)!important;color:#fff!important}
+
+.nav-cta-btn{
+  background:var(--red);color:#fff;border:none;cursor:pointer;
+  font-size:13.5px;font-weight:700;font-family:inherit;
+  padding:9px 18px;border-radius:var(--radius-sm);
+  display:flex;align-items:center;gap:7px;
+  white-space:nowrap;flex-shrink:0;
+  transition:all 0.18s;
+}
+.nav-cta-btn:hover{background:var(--red-dark);transform:translateY(-1px)}
 
 .page{display:none}.page.active{display:block}
 
@@ -102,38 +112,13 @@ nav{background:var(--navy);border-bottom:none;position:sticky;top:0;z-index:100}
 .partners-section h2{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px}
 .partners-section .sub{font-size:13px;color:var(--muted);margin-bottom:28px}
 .carousel-wrap{position:relative;max-width:960px;margin:0 auto}
-.carousel-track{
-  display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;
-  scrollbar-width:none;padding:8px 4px;
-  justify-content:center;flex-wrap:wrap;
-}
+.carousel-track{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;padding:8px 4px;justify-content:center;flex-wrap:wrap}
 .carousel-track::-webkit-scrollbar{display:none}
-.logo-card{
-  background:#fff;border-radius:12px;padding:18px 22px;
-  min-width:140px;max-width:160px;
-  display:flex;align-items:center;justify-content:center;
-  border:1px solid rgba(0,0,0,0.08);
-  box-shadow:0 2px 8px rgba(0,0,0,0.06);
-  flex-shrink:0;
-  transition:transform 0.2s,box-shadow 0.2s;
-}
+.logo-card{background:#fff;border-radius:12px;padding:18px 22px;min-width:140px;max-width:160px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(0,0,0,0.08);box-shadow:0 2px 8px rgba(0,0,0,0.06);flex-shrink:0;transition:transform 0.2s,box-shadow 0.2s}
 .logo-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,0.1)}
 .logo-card img{max-height:80px;max-width:120px;object-fit:contain;display:block}
-/* fallback placeholder when no image */
-.logo-placeholder{
-  width:110px;height:70px;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  font-size:11px;font-weight:700;color:var(--muted);
-  background:var(--navy-light);text-align:center;padding:8px;line-height:1.3;
-}
-.carousel-btn{
-  position:absolute;top:50%;transform:translateY(-50%);
-  background:#fff;border:1px solid rgba(0,0,0,0.15);border-radius:50%;
-  width:38px;height:38px;cursor:pointer;font-size:20px;
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:0 2px 8px rgba(0,0,0,0.12);z-index:2;
-  color:var(--navy);transition:background 0.15s;
-}
+.logo-placeholder{width:110px;height:70px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--muted);background:var(--navy-light);text-align:center;padding:8px;line-height:1.3}
+.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:#fff;border:1px solid rgba(0,0,0,0.15);border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.12);z-index:2;color:var(--navy);transition:background 0.15s}
 .carousel-btn:hover{background:var(--red);color:#fff;border-color:var(--red)}
 .carousel-btn.prev{left:-22px}
 .carousel-btn.next{right:-22px}
@@ -143,14 +128,7 @@ nav{background:var(--navy);border-bottom:none;position:sticky;top:0;z-index:100}
 .sponsors-section h2{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px}
 .sponsors-section .sub{font-size:13px;color:var(--muted);margin-bottom:28px}
 .sponsors-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto}
-.sponsor-card{
-  background:#fff;border-radius:14px;padding:24px 32px;
-  border:1.5px solid rgba(0,0,0,0.08);
-  min-width:180px;max-width:220px;
-  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-  box-shadow:0 2px 10px rgba(0,0,0,0.06);
-  transition:transform 0.2s,box-shadow 0.2s;
-}
+.sponsor-card{background:#fff;border-radius:14px;padding:24px 32px;border:1.5px solid rgba(0,0,0,0.08);min-width:180px;max-width:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;box-shadow:0 2px 10px rgba(0,0,0,0.06);transition:transform 0.2s,box-shadow 0.2s}
 .sponsor-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(192,57,43,0.12);border-color:var(--red-mid)}
 .sponsor-card img{max-height:90px;max-width:160px;object-fit:contain}
 .sponsor-card .sponsor-name{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;text-align:center}
@@ -235,7 +213,9 @@ textarea{resize:vertical;min-height:90px}
 footer{background:var(--navy);color:rgba(255,255,255,0.6);text-align:center;padding:36px 1.5rem;font-size:13px}
 footer strong{color:#ff9e95}
 
-@media(max-width:600px){
+@media(max-width:768px){
+  .nav-inner{grid-template-columns:1fr auto;height:auto;padding:8px 1rem;gap:8px}
+  .nav-links{display:none}
   .form-grid{grid-template-columns:1fr}
   .stat-banner{flex-direction:column;gap:16px}
   .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:14px}
@@ -243,21 +223,28 @@ footer strong{color:#ff9e95}
   .carousel-btn{display:none}
 }
 </style>
+</head>
+<body>
 
 <!-- ══════════════════════════════════════════════════════════
-     NAV  (centred, larger buttons)
+     NAV — 3-column grid: logo | links | register
 ══════════════════════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
-    <!-- logo row -->
+
+    <!-- Column 1: Logo -->
     <div class="logo" onclick="showPage('home')">
       <div class="logo-cross"></div>
+      <!-- Replace src with your actual logo file, e.g. logos/emka-logo.png -->
+      <img class="logo-img" src="logos/emka-logo.png" alt="EM Karnataka logo"
+           onerror="this.style.display='none'" />
       <div class="logo-text">
         <span class="logo-main">EM Karnataka 2026</span>
         <span class="logo-sub">Emergency Medicine State Conference</span>
       </div>
     </div>
-    <!-- centred link row -->
+
+    <!-- Column 2: Nav links (centered) -->
     <div class="nav-links">
       <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
       <button onclick="showPage('schedule')" id="nav-schedule">Schedule</button>
@@ -267,8 +254,13 @@ footer strong{color:#ff9e95}
       <button onclick="showPage('updates')" id="nav-updates">Updates</button>
       <button onclick="showPage('venue')" id="nav-venue">Venue</button>
       <button onclick="showPage('contact')" id="nav-contact">Contact</button>
-      <button class="nav-cta" onclick="showPage('register')"><i class="ti ti-pencil" style="font-size:13px"></i> Register Now</button>
     </div>
+
+    <!-- Column 3: Register CTA (right-aligned) -->
+    <button class="nav-cta-btn" onclick="showPage('register')">
+      <i class="ti ti-user-plus" style="font-size:14px"></i> Register Now
+    </button>
+
   </div>
 </nav>
 
@@ -292,7 +284,7 @@ footer strong{color:#ff9e95}
         <div class="hero-meta-item"><i class="ti ti-users"></i> 4 Days · Workshops + Conference</div>
       </div>
       <div class="hero-btns">
-        <button class="btn btn-red" onclick="showPage('register')"><i class="ti ti-pencil"></i> Register Now</button>
+        <button class="btn btn-red" onclick="showPage('register')"><i class="ti ti-user-plus"></i> Register Now</button>
         <button class="btn btn-outline-white" onclick="showPage('schedule')"><i class="ti ti-layout-list"></i> Schedule</button>
         <button class="btn btn-outline-white" onclick="showPage('abstracts')"><i class="ti ti-file-text"></i> Submit Abstract</button>
       </div>
@@ -328,6 +320,48 @@ footer strong{color:#ff9e95}
     <div class="stat-item"><span class="stat-num" style="font-size:15px;line-height:1.3">Father Muller<br>Medical College</span><span class="stat-lbl">Kankanady, Mangaluru</span></div>
   </div>
 
+  <!-- Academic Partners -->
+  <div class="partners-section">
+    <h2>Academic Partners</h2>
+    <p class="sub">Proudly supported by leading medical bodies across India</p>
+    <div class="carousel-wrap">
+      <button class="carousel-btn prev" onclick="scrollCarousel('partners-track',-1)" aria-label="Previous">&#8249;</button>
+      <div class="carousel-track" id="partners-track">
+        <div class="logo-card"><img src="logos/partner-nnatology-forum.png" alt="National Neonatology Forum" onerror="this.outerHTML='<div class=\'logo-placeholder\'>National Neonatology Forum</div>'" /></div>
+        <div class="logo-card"><img src="logos/partner-nnf-telangana.png" alt="NNF State Chapter Telangana" onerror="this.outerHTML='<div class=\'logo-placeholder\'>NNF State Chapter Telangana</div>'" /></div>
+        <div class="logo-card"><img src="logos/partner-pats.png" alt="Pediatric Academy of Telangana (PATS)" onerror="this.outerHTML='<div class=\'logo-placeholder\'>PATS · IAP</div>'" /></div>
+        <div class="logo-card"><img src="logos/partner-ima-manikonda.png" alt="IMA Manikonda" onerror="this.outerHTML='<div class=\'logo-placeholder\'>IMA Manikonda</div>'" /></div>
+        <div class="logo-card"><img src="logos/partner-iap-pem.png" alt="IAP Pediatric Emergency Medicine" onerror="this.outerHTML='<div class=\'logo-placeholder\'>IAP Pediatric Emergency Medicine</div>'" /></div>
+        <div class="logo-card"><img src="logos/partner-acee.png" alt="Academic College of Emergency Experts in India" onerror="this.outerHTML='<div class=\'logo-placeholder\'>ACEE India</div>'" /></div>
+      </div>
+      <button class="carousel-btn next" onclick="scrollCarousel('partners-track',1)" aria-label="Next">&#8250;</button>
+    </div>
+  </div>
+
+  <!-- Sponsors -->
+  <div class="sponsors-section">
+    <h2>Sponsors</h2>
+    <p class="sub">Thank you to our generous conference sponsors</p>
+    <div class="sponsors-grid">
+      <div class="sponsor-card">
+        <span class="sponsor-tier-badge tier-gold">Gold Sponsor</span>
+        <img src="logos/sponsor-resplice.png" alt="Resplice" onerror="this.outerHTML='<div class=\'logo-placeholder\'>Resplice Autism Research Institute</div>'" />
+        <span class="sponsor-name">Resplice</span>
+      </div>
+      <div class="sponsor-card">
+        <span class="sponsor-tier-badge tier-silver">Silver Sponsor</span>
+        <img src="logos/sponsor-doc-tutorials.png" alt="Doc Tutorials" onerror="this.outerHTML='<div class=\'logo-placeholder\'>DOC Tutorials</div>'" />
+        <span class="sponsor-name">Doc Tutorials</span>
+      </div>
+      <div class="sponsor-card">
+        <span class="sponsor-tier-badge tier-silver">Silver Sponsor</span>
+        <img src="logos/sponsor-neuronurture.png" alt="NeuroNurture" onerror="this.outerHTML='<div class=\'logo-placeholder\'>NeuroNurture</div>'" />
+        <span class="sponsor-name">NeuroNurture</span>
+      </div>
+    </div>
+    <p style="margin-top:28px;font-size:13px;color:var(--muted)">Interested in sponsoring? <a href="mailto:sponsors@emkarnataka2026.in" style="color:var(--red);font-weight:600;text-decoration:none">sponsors@emkarnataka2026.in</a></p>
+  </div>
+
   <!-- What to Expect -->
   <div class="section">
     <h2 class="section-title">What to Expect</h2>
@@ -335,35 +369,19 @@ footer strong{color:#ff9e95}
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
       <div class="img-card">
         <img class="img-card-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=75" alt="Workshops" onerror="this.style.background='#C0392B'" />
-        <div style="padding:14px 16px">
-          <span class="img-card-tag">Days 1–2</span>
-          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Hands-on Workshops</div>
-          <div style="font-size:12px;color:var(--muted)">Simulation &amp; skills stations. Limited seats per workshop for maximum hands-on time.</div>
-        </div>
+        <div style="padding:14px 16px"><span class="img-card-tag">Days 1–2</span><div style="font-size:14px;font-weight:700;margin-bottom:4px">Hands-on Workshops</div><div style="font-size:12px;color:var(--muted)">Simulation &amp; skills stations. Limited seats per workshop for maximum hands-on time.</div></div>
       </div>
       <div class="img-card">
         <img class="img-card-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=75" alt="Conference" onerror="this.style.background='#1A252F'" />
-        <div style="padding:14px 16px">
-          <span class="img-card-tag">Days 3–4</span>
-          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Keynotes &amp; Sessions</div>
-          <div style="font-size:12px;color:var(--muted)">Plenary lectures, panel debates, and abstract presentations on climate &amp; EM.</div>
-        </div>
+        <div style="padding:14px 16px"><span class="img-card-tag">Days 3–4</span><div style="font-size:14px;font-weight:700;margin-bottom:4px">Keynotes &amp; Sessions</div><div style="font-size:12px;color:var(--muted)">Plenary lectures, panel debates, and abstract presentations on climate &amp; EM.</div></div>
       </div>
       <div class="img-card">
         <img class="img-card-img" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=75" alt="Research" onerror="this.style.background='#922B21'" />
-        <div style="padding:14px 16px">
-          <span class="img-card-tag">Research</span>
-          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Abstract Presentations</div>
-          <div style="font-size:12px;color:var(--muted)">Oral &amp; poster slots. Awards for best abstract, best poster, young investigator.</div>
-        </div>
+        <div style="padding:14px 16px"><span class="img-card-tag">Research</span><div style="font-size:14px;font-weight:700;margin-bottom:4px">Abstract Presentations</div><div style="font-size:12px;color:var(--muted)">Oral &amp; poster slots. Awards for best abstract, best poster, young investigator.</div></div>
       </div>
       <div class="img-card">
         <img class="img-card-img" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=75" alt="Networking" onerror="this.style.background='#2C3E50'" />
-        <div style="padding:14px 16px">
-          <span class="img-card-tag">Networking</span>
-          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Connect &amp; Collaborate</div>
-          <div style="font-size:12px;color:var(--muted)">Welcome dinner, conference gala, and structured networking with peers across Karnataka.</div>
-        </div>
+        <div style="padding:14px 16px"><span class="img-card-tag">Networking</span><div style="font-size:14px;font-weight:700;margin-bottom:4px">Connect &amp; Collaborate</div><div style="font-size:12px;color:var(--muted)">Welcome dinner, conference gala, and structured networking with peers across Karnataka.</div></div>
       </div>
     </div>
 
@@ -414,82 +432,6 @@ footer strong{color:#ff9e95}
 
   <footer><strong>EM Karnataka 2026</strong> · Emergency Medicine State Conference, Karnataka · November 2026<br/><span style="font-size:11px;margin-top:6px;display:block;opacity:0.5">Organised under the auspices of the Emergency Medicine Association of Karnataka</span></footer>
 </div>
-  <!-- ══ ACADEMIC PARTNERS ══ -->
-  <div class="partners-section">
-    <h2>Academic Partners</h2>
-    <p class="sub">Proudly supported by leading medical bodies across India</p>
-    <div class="carousel-wrap">
-      <button class="carousel-btn prev" onclick="scrollCarousel('partners-track',-1)" aria-label="Previous">&#8249;</button>
-      <div class="carousel-track" id="partners-track">
-
-        <!-- ─ Replace src with your actual logo image paths or URLs ─ -->
-        <div class="logo-card">
-          <img src="logos/partner-nnatology-forum.png" alt="National Neonatology Forum"
-               onerror="this.outerHTML='<div class=\'logo-placeholder\'>National Neonatology Forum</div>'" />
-        </div>
-        <div class="logo-card">
-          <img src="logos/partner-nnf-telangana.png" alt="NNF State Chapter Telangana"
-               onerror="this.outerHTML='<div class=\'logo-placeholder\'>NNF State Chapter Telangana</div>'" />
-        </div>
-        <div class="logo-card">
-          <img src="logos/partner-pats.png" alt="Pediatric Academy of Telangana (PATS)"
-               onerror="this.outerHTML='<div class=\'logo-placeholder\'>PATS · IAP</div>'" />
-        </div>
-        <div class="logo-card">
-          <img src="logos/partner-ima-manikonda.png" alt="IMA Manikonda"
-               onerror="this.outerHTML='<div class=\'logo-placeholder\'>IMA Manikonda</div>'" />
-        </div>
-        <div class="logo-card">
-          <img src="logos/partner-iap-pem.png" alt="IAP Pediatric Emergency Medicine"
-               onerror="this.outerHTML='<div class=\'logo-placeholder\'>IAP Pediatric Emergency Medicine</div>'" />
-        </div>
-        <div class="logo-card">
-          <img src="logos/partner-acee.png" alt="Academic College of Emergency Experts in India"
-               onerror="this.outerHTML='<div class=\'logo-placeholder\'>ACEE India</div>'" />
-        </div>
-        <!-- Add more logo-card blocks here as needed -->
-      </div>
-      <button class="carousel-btn next" onclick="scrollCarousel('partners-track',1)" aria-label="Next">&#8250;</button>
-    </div>
-  </div>
-
-  <!-- ══ SPONSORS ══ -->
-  <div class="sponsors-section">
-    <h2>Sponsors</h2>
-    <p class="sub">Thank you to our generous conference sponsors</p>
-    <div class="sponsors-grid">
-
-      <!-- Gold sponsors -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier-badge tier-gold">Gold Sponsor</span>
-        <img src="logos/sponsor-resplice.png" alt="Resplice Autism Research Institute"
-             onerror="this.outerHTML='<div class=\'logo-placeholder\'>Resplice Autism Research Institute</div>'" />
-        <span class="sponsor-name">Resplice</span>
-      </div>
-
-      <!-- Silver sponsors -->
-      <div class="sponsor-card">
-        <span class="sponsor-tier-badge tier-silver">Silver Sponsor</span>
-        <img src="logos/sponsor-doc-tutorials.png" alt="Doc Tutorials"
-             onerror="this.outerHTML='<div class=\'logo-placeholder\'>DOC Tutorials</div>'" />
-        <span class="sponsor-name">Doc Tutorials</span>
-      </div>
-
-      <div class="sponsor-card">
-        <span class="sponsor-tier-badge tier-silver">Silver Sponsor</span>
-        <img src="logos/sponsor-neuronurture.png" alt="NeuroNurture"
-             onerror="this.outerHTML='<div class=\'logo-placeholder\'>NeuroNurture</div>'" />
-        <span class="sponsor-name">NeuroNurture</span>
-      </div>
-
-      <!-- Add more sponsor-card blocks here -->
-    </div>
-
-    <p style="margin-top:28px;font-size:13px;color:var(--muted)">
-      Interested in sponsoring?
-      <a href="mailto:sponsors@emkarnataka2026.in" style="color:var(--red);font-weight:600;text-decoration:none">sponsors@emkarnataka2026.in</a>
-    </p>
-  </div>
 
 <!-- ══════════════════════════════════════════════════════════
      SCHEDULE PAGE
@@ -567,181 +509,68 @@ footer strong{color:#ff9e95}
   </div>
   <footer><strong>EM Karnataka 2026</strong> · Tentative schedule — subject to revision</footer>
 </div>
-<!-- WORKSHOPS PAGE -->
+
+<!-- ══════════════════════════════════════════════════════════
+     WORKSHOPS PAGE
+══════════════════════════════════════════════════════════ -->
 <div id="page-workshops" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
-    <div class="page-header-content">
-      <div class="page-header-accent"></div>
-      <h2>Workshops</h2>
-      <p>Hands-on clinical skills · Days 1 & 2 · 12–13 November 2026</p>
-    </div>
+    <div class="page-header-content"><div class="page-header-accent"></div><h2>Workshops</h2><p>Hands-on clinical skills · Days 1 &amp; 2 · 12–13 November 2026</p></div>
   </div>
   <div class="section" style="padding-top:36px">
-
-    <!-- Info bar -->
     <div style="background:var(--amber-light);border:0.5px solid rgba(212,160,23,0.3);border-radius:var(--radius-sm);padding:13px 16px;margin-bottom:28px;font-size:13px;color:#7D6608;display:flex;gap:10px;align-items:flex-start">
       <i class="ti ti-info-circle" style="font-size:17px;flex-shrink:0;margin-top:1px"></i>
-      <span>Workshops run on <strong>Days 1 & 2 (12–13 Nov)</strong>. Each delegate may select <strong>1 workshop</strong>; Faculty/Consultant registration includes access to all. Seats are limited — preference noted at registration.</span>
+      <span>Workshops run on <strong>Days 1 &amp; 2 (12–13 Nov)</strong>. Each delegate may select <strong>1 workshop</strong>; Faculty/Consultant registration includes access to all. Seats are limited — preference noted at registration.</span>
     </div>
 
-    <!-- Day 1 workshops -->
     <h2 class="section-title">Day 1 Workshops <span style="font-size:15px;font-weight:400;color:var(--muted)">— Thursday, 12 November</span></h2>
     <p class="section-sub">4 simultaneous workshops running 09:00 – 17:00</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:48px">
-
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(192,57,43,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:20px;color:#fff">
-          <div style="width:40px;height:40px;background:rgba(192,57,43,0.3);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-wave-sine" style="font-size:20px;color:#ff9e95"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Point-of-Care Ultrasound</div>
-          <div style="font-size:11px;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px">POCUS</div>
-        </div>
-        <div style="padding:16px">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Hands-on</span>
-            <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 1</span>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Practical POCUS skills for emergency physicians — cardiac, lung, FAST, and vascular access applications.</p>
-          <div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px">
-            <span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span>
-            <span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span>
-          </div>
-        </div>
+        <div style="background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:20px;color:#fff"><div style="width:40px;height:40px;background:rgba(192,57,43,0.3);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-wave-sine" style="font-size:20px;color:#ff9e95"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Point-of-Care Ultrasound</div><div style="font-size:11px;opacity:0.6;text-transform:uppercase;letter-spacing:0.5px">POCUS</div></div>
+        <div style="padding:16px"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Hands-on</span><span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 1</span></div><p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Practical POCUS skills for emergency physicians — cardiac, lung, FAST, and vascular access applications.</p><div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px"><span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span><span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span></div></div>
       </div>
-
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(192,57,43,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="background:linear-gradient(135deg,#7D6608,var(--amber));padding:20px;color:#fff">
-          <div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-lungs" style="font-size:20px;color:#fff"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Mechanical Ventilator</div>
-          <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Ventilation Workshop</div>
-        </div>
-        <div style="padding:16px">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Hands-on</span>
-            <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 1</span>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Ventilator setup, modes, troubleshooting, and weaning strategies for critically ill emergency patients.</p>
-          <div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px">
-            <span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span>
-            <span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span>
-          </div>
-        </div>
+        <div style="background:linear-gradient(135deg,#7D6608,var(--amber));padding:20px;color:#fff"><div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-lungs" style="font-size:20px;color:#fff"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Mechanical Ventilator</div><div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Ventilation Workshop</div></div>
+        <div style="padding:16px"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Hands-on</span><span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 1</span></div><p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Ventilator setup, modes, troubleshooting, and weaning strategies for critically ill emergency patients.</p><div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px"><span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span><span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span></div></div>
       </div>
-
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(192,57,43,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="background:linear-gradient(135deg,#922B21,var(--red));padding:20px;color:#fff">
-          <div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-cloud-storm" style="font-size:20px;color:#fff"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Disaster Management</div>
-          <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Table-top + Practical</div>
-        </div>
-        <div style="padding:16px">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Simulation</span>
-            <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 1</span>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Mass casualty triage, ICS structure, and climate-related disaster scenarios including flood and heatwave events.</p>
-          <div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px">
-            <span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span>
-            <span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span>
-          </div>
-        </div>
+        <div style="background:linear-gradient(135deg,#922B21,var(--red));padding:20px;color:#fff"><div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-cloud-storm" style="font-size:20px;color:#fff"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Disaster Management</div><div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Table-top + Practical</div></div>
+        <div style="padding:16px"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Simulation</span><span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 1</span></div><p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Mass casualty triage, ICS structure, and climate-related disaster scenarios including flood and heatwave events.</p><div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px"><span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span><span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span></div></div>
       </div>
-
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(192,57,43,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="background:linear-gradient(135deg,#1a3a5c,#2471A3);padding:20px;color:#fff">
-          <div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-baby-carriage" style="font-size:20px;color:#fff"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">NALS</div>
-          <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Neonatal Advanced Life Support</div>
-        </div>
-        <div style="padding:16px">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Simulation</span>
-            <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 1</span>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Simulation-based neonatal resuscitation training covering airway, breathing, circulation, and special scenarios.</p>
-          <div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px">
-            <span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span>
-            <span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span>
-          </div>
-        </div>
+        <div style="background:linear-gradient(135deg,#1a3a5c,#2471A3);padding:20px;color:#fff"><div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-baby-carriage" style="font-size:20px;color:#fff"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">NALS</div><div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Neonatal Advanced Life Support</div></div>
+        <div style="padding:16px"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Simulation</span><span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 1</span></div><p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Simulation-based neonatal resuscitation training covering airway, breathing, circulation, and special scenarios.</p><div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px"><span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span><span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span></div></div>
       </div>
-
     </div>
 
-    <!-- Day 2 workshops -->
     <h2 class="section-title">Day 2 Workshops <span style="font-size:15px;font-weight:400;color:var(--muted)">— Friday, 13 November</span></h2>
     <p class="section-sub">3 simultaneous workshops running 09:00 – 17:00</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:36px">
-
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(192,57,43,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="background:linear-gradient(135deg,#2C6E49,#40916C);padding:20px;color:#fff">
-          <div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-needle" style="font-size:20px;color:#fff"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Peripheral Nerve Block</div>
-          <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Regional Anaesthesia in EM</div>
-        </div>
-        <div style="padding:16px">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Hands-on</span>
-            <span style="background:#E8F5E9;color:#2C6E49;font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 2</span>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">POCUS-guided nerve blocks for pain management in the emergency department — femoral, fascia iliaca, and more.</p>
-          <div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px">
-            <span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span>
-            <span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span>
-          </div>
-        </div>
+        <div style="background:linear-gradient(135deg,#2C6E49,#40916C);padding:20px;color:#fff"><div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-needle" style="font-size:20px;color:#fff"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Peripheral Nerve Block</div><div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Regional Anaesthesia in EM</div></div>
+        <div style="padding:16px"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Hands-on</span><span style="background:#E8F5E9;color:#2C6E49;font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 2</span></div><p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">POCUS-guided nerve blocks for pain management in the emergency department — femoral, fascia iliaca, and more.</p><div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px"><span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span><span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span></div></div>
       </div>
-
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(192,57,43,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="background:linear-gradient(135deg,#4A235A,#7D3C98);padding:20px;color:#fff">
-          <div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-3d-cube-sphere" style="font-size:20px;color:#fff"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Virtual Anatomy</div>
-          <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Technology-Assisted Learning</div>
-        </div>
-        <div style="padding:16px">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-            <span style="background:#F3E5F5;color:#4A235A;font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Interactive</span>
-            <span style="background:#E8F5E9;color:#2C6E49;font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 2</span>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Immersive 3D anatomy exploration using cutting-edge visualisation tools relevant to emergency procedures.</p>
-          <div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px">
-            <span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span>
-            <span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span>
-          </div>
-        </div>
+        <div style="background:linear-gradient(135deg,#4A235A,#7D3C98);padding:20px;color:#fff"><div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-3d-cube-sphere" style="font-size:20px;color:#fff"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Virtual Anatomy</div><div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Technology-Assisted Learning</div></div>
+        <div style="padding:16px"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span style="background:#F3E5F5;color:#4A235A;font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Interactive</span><span style="background:#E8F5E9;color:#2C6E49;font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 2</span></div><p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">Immersive 3D anatomy exploration using cutting-edge visualisation tools relevant to emergency procedures.</p><div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px"><span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span><span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span></div></div>
       </div>
-
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 24px rgba(192,57,43,0.1)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-        <div style="background:linear-gradient(135deg,#78281F,#C0392B);padding:20px;color:#fff">
-          <div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-heart-rate-monitor" style="font-size:20px;color:#fff"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Maternal Resuscitation</div>
-          <div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Maternal Resuscitation Program</div>
-        </div>
-        <div style="padding:16px">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px">
-            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Simulation</span>
-            <span style="background:#E8F5E9;color:#2C6E49;font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 2</span>
-          </div>
-          <p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">High-fidelity simulation covering obstetric emergencies, perimortem caesarean, and team-based resuscitation.</p>
-          <div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px">
-            <span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span>
-            <span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span>
-          </div>
-        </div>
+        <div style="background:linear-gradient(135deg,#78281F,#C0392B);padding:20px;color:#fff"><div style="width:40px;height:40px;background:rgba(0,0,0,0.2);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px"><i class="ti ti-heart-rate-monitor" style="font-size:20px;color:#fff"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Maternal Resuscitation</div><div style="font-size:11px;opacity:0.7;text-transform:uppercase;letter-spacing:0.5px">Maternal Resuscitation Program</div></div>
+        <div style="padding:16px"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span style="background:var(--red-light);color:var(--red);font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Simulation</span><span style="background:#E8F5E9;color:#2C6E49;font-size:11px;padding:2px 9px;border-radius:100px;font-weight:600">Day 2</span></div><p style="font-size:12px;color:var(--muted);margin-bottom:12px;line-height:1.6">High-fidelity simulation covering obstetric emergencies, perimortem caesarean, and team-based resuscitation.</p><div style="font-size:11px;color:var(--muted);display:flex;flex-direction:column;gap:4px"><span><i class="ti ti-clock" style="vertical-align:-2px;color:var(--red)"></i> 09:00 – 17:00</span><span><i class="ti ti-user" style="vertical-align:-2px;color:var(--red)"></i> Faculty TBA</span></div></div>
       </div>
-
     </div>
 
-    <!-- Register CTA -->
     <div style="background:var(--navy);border-radius:var(--radius);padding:32px;text-align:center">
       <h3 style="font-size:20px;font-weight:800;color:#fff;margin-bottom:8px">Secure Your Workshop Seat</h3>
       <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:20px">Workshop seats are limited. Select your preference during registration.</p>
-      <button class="btn btn-red" onclick="showPage('register')"><i class="ti ti-pencil"></i> Register Now</button>
+      <button class="btn btn-red" onclick="showPage('register')"><i class="ti ti-user-plus"></i> Register Now</button>
     </div>
-
   </div>
   <footer><strong>EM Karnataka 2026</strong> · Workshops · 12–13 November 2026 · Father Muller Medical College, Mangaluru</footer>
 </div>
+
 <!-- ══════════════════════════════════════════════════════════
      REGISTER PAGE
 ══════════════════════════════════════════════════════════ -->
@@ -902,43 +731,12 @@ footer strong{color:#ff9e95}
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden">
-        <div style="position:relative">
-          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=75" alt="5-star hotel" style="width:100%;height:200px;object-fit:cover;display:block" />
-          <div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.55);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★★</div>
-          <div style="position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;padding:3px 10px;border-radius:100px;font-weight:700">Partner Hotel</div>
-          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;color:#fff">
-            <div style="font-size:16px;font-weight:700">Conference partner hotel (5★)</div>
-            <div style="font-size:12px;opacity:0.85"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> Adjacent to venue (TBA)</div>
-          </div>
-        </div>
-        <div style="padding:1.25rem">
-          <div style="font-size:26px;font-weight:800;color:var(--navy);margin-bottom:4px">₹5,500 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ night incl. breakfast</span></div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px">
-            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Shuttle to venue</span>
-            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Pool &amp; spa</span>
-            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">High-speed WiFi</span>
-          </div>
-          <button class="btn btn-navy" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button>
-        </div>
+        <div style="position:relative"><img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=75" alt="5-star hotel" style="width:100%;height:200px;object-fit:cover;display:block" /><div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.55);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★★</div><div style="position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;padding:3px 10px;border-radius:100px;font-weight:700">Partner Hotel</div><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;color:#fff"><div style="font-size:16px;font-weight:700">Conference partner hotel (5★)</div><div style="font-size:12px;opacity:0.85"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> Adjacent to venue (TBA)</div></div></div>
+        <div style="padding:1.25rem"><div style="font-size:26px;font-weight:800;color:var(--navy);margin-bottom:4px">₹5,500 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ night incl. breakfast</span></div><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px"><span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Shuttle to venue</span><span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Pool &amp; spa</span><span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">High-speed WiFi</span></div><button class="btn btn-navy" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button></div>
       </div>
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden">
-        <div style="position:relative">
-          <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=75" alt="4-star hotel" style="width:100%;height:200px;object-fit:cover;display:block" />
-          <div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.55);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★</div>
-          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;color:#fff">
-            <div style="font-size:16px;font-weight:700">Budget partner hotel (4★)</div>
-            <div style="font-size:12px;opacity:0.85"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> 10 min from venue (TBA)</div>
-          </div>
-        </div>
-        <div style="padding:1.25rem">
-          <div style="font-size:26px;font-weight:800;color:var(--navy);margin-bottom:4px">₹3,200 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ night incl. breakfast</span></div>
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px">
-            <span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">WiFi</span>
-            <span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Gym</span>
-            <span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Shuttle available</span>
-          </div>
-          <button class="btn btn-navy" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button>
-        </div>
+        <div style="position:relative"><img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=75" alt="4-star hotel" style="width:100%;height:200px;object-fit:cover;display:block" /><div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.55);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★</div><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;color:#fff"><div style="font-size:16px;font-weight:700">Budget partner hotel (4★)</div><div style="font-size:12px;opacity:0.85"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> 10 min from venue (TBA)</div></div></div>
+        <div style="padding:1.25rem"><div style="font-size:26px;font-weight:800;color:var(--navy);margin-bottom:4px">₹3,200 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ night incl. breakfast</span></div><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px"><span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">WiFi</span><span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Gym</span><span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Shuttle available</span></div><button class="btn btn-navy" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button></div>
       </div>
     </div>
     <div style="margin-top:24px;background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem">
@@ -971,38 +769,10 @@ footer strong{color:#ff9e95}
       <div id="sub-ok" class="success-msg hidden" style="margin-top:10px"><i class="ti ti-circle-check" style="font-size:18px;flex-shrink:0"></i>You're subscribed — we'll notify you of all major updates.</div>
     </div>
     <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem">
-      <div class="update-item">
-        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div>
-        <div style="padding-bottom:16px;flex:1">
-          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:12px;color:var(--muted)">May 2026</span><span style="background:var(--red);color:#fff;font-size:10px;padding:1px 7px;border-radius:100px;font-weight:700">NEW</span></div>
-          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Website launched</div>
-          <div style="font-size:13px;color:var(--muted)">The official EM Karnataka 2026 website is live. Registration and abstract submission are now open.</div>
-        </div>
-      </div>
-      <div class="update-item">
-        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div>
-        <div style="padding-bottom:16px;flex:1">
-          <div style="font-size:12px;color:var(--muted);margin-bottom:4px">May 2026</div>
-          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Abstract submission portal open</div>
-          <div style="font-size:13px;color:var(--muted)">Submit original research for oral or poster presentation. Deadline: 31 August 2026.</div>
-        </div>
-      </div>
-      <div class="update-item">
-        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div>
-        <div style="padding-bottom:16px;flex:1">
-          <div style="font-size:12px;color:var(--muted);margin-bottom:4px">May 2026</div>
-          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Early bird registration rates live</div>
-          <div style="font-size:13px;color:var(--muted)">PG students ₹2,500 · Delegates ₹4,500 · Faculty ₹5,500 — valid until 31 August 2026.</div>
-        </div>
-      </div>
-      <div class="update-item">
-        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot" style="background:#ccc"></div></div>
-        <div style="flex:1">
-          <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Coming soon</div>
-          <div style="font-size:14px;font-weight:700;margin-bottom:4px;color:var(--muted)">Faculty &amp; speaker announcements</div>
-          <div style="font-size:13px;color:var(--muted)">National and international faculty confirmations coming shortly.</div>
-        </div>
-      </div>
+      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div><div style="padding-bottom:16px;flex:1"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:12px;color:var(--muted)">May 2026</span><span style="background:var(--red);color:#fff;font-size:10px;padding:1px 7px;border-radius:100px;font-weight:700">NEW</span></div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Website launched</div><div style="font-size:13px;color:var(--muted)">The official EM Karnataka 2026 website is live. Registration and abstract submission are now open.</div></div></div>
+      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div><div style="padding-bottom:16px;flex:1"><div style="font-size:12px;color:var(--muted);margin-bottom:4px">May 2026</div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Abstract submission portal open</div><div style="font-size:13px;color:var(--muted)">Submit original research for oral or poster presentation. Deadline: 31 August 2026.</div></div></div>
+      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div><div style="padding-bottom:16px;flex:1"><div style="font-size:12px;color:var(--muted);margin-bottom:4px">May 2026</div><div style="font-size:14px;font-weight:700;margin-bottom:4px">Early bird registration rates live</div><div style="font-size:13px;color:var(--muted)">PG students ₹2,500 · Delegates ₹4,500 · Faculty ₹5,500 — valid until 31 August 2026.</div></div></div>
+      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot" style="background:#ccc"></div></div><div style="flex:1"><div style="font-size:12px;color:var(--muted);margin-bottom:4px">Coming soon</div><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:var(--muted)">Faculty &amp; speaker announcements</div><div style="font-size:13px;color:var(--muted)">National and international faculty confirmations coming shortly.</div></div></div>
     </div>
   </div>
   <footer><strong>EM Karnataka 2026</strong> · Follow on WhatsApp &amp; Email</footer>
@@ -1014,11 +784,7 @@ footer strong{color:#ff9e95}
 <div id="page-venue" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
-    <div class="page-header-content">
-      <div class="page-header-accent"></div>
-      <h2>Venue</h2>
-      <p>Father Muller Medical College, Kankanady, Mangaluru</p>
-    </div>
+    <div class="page-header-content"><div class="page-header-accent"></div><h2>Venue</h2><p>Father Muller Medical College, Kankanady, Mangaluru</p></div>
   </div>
   <div class="section" style="padding-top:36px">
     <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:36px;border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border)">
@@ -1031,18 +797,9 @@ footer strong{color:#ff9e95}
         <h3 style="font-size:20px;font-weight:800;color:var(--navy);margin-bottom:6px">Father Muller Medical College</h3>
         <p style="font-size:14px;color:var(--muted);margin-bottom:18px;line-height:1.6">Kankanady, Mangaluru<br>Karnataka, India</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
-          <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-map-pin" style="color:var(--red);font-size:15px"></i></div>
-            <div><div style="font-size:12px;font-weight:700;color:var(--text)">Address</div><div style="font-size:12px;color:var(--muted)">Father Muller Rd, Kankanady, Mangaluru, Karnataka 575002</div></div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-plane" style="color:var(--red);font-size:15px"></i></div>
-            <div><div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Airport</div><div style="font-size:12px;color:var(--muted)">Mangaluru International Airport — ~15 km away</div></div>
-          </div>
-          <div style="display:flex;gap:10px;align-items:flex-start">
-            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-train" style="color:var(--red);font-size:15px"></i></div>
-            <div><div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Railway Station</div><div style="font-size:12px;color:var(--muted)">Mangaluru Central — ~5 km away</div></div>
-          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-map-pin" style="color:var(--red);font-size:15px"></i></div><div><div style="font-size:12px;font-weight:700;color:var(--text)">Address</div><div style="font-size:12px;color:var(--muted)">Father Muller Rd, Kankanady, Mangaluru, Karnataka 575002</div></div></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-plane" style="color:var(--red);font-size:15px"></i></div><div><div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Airport</div><div style="font-size:12px;color:var(--muted)">Mangaluru International Airport — ~15 km away</div></div></div>
+          <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-train" style="color:var(--red);font-size:15px"></i></div><div><div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Railway Station</div><div style="font-size:12px;color:var(--muted)">Mangaluru Central — ~5 km away</div></div></div>
         </div>
         <div style="display:flex;gap:10px;flex-wrap:wrap">
           <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-red" style="text-decoration:none;font-size:13px;padding:9px 18px"><i class="ti ti-map-pin"></i> Get Directions</a>
@@ -1051,11 +808,7 @@ footer strong{color:#ff9e95}
       </div>
     </div>
     <div style="border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border);margin-bottom:36px">
-      <div style="background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:8px">
-        <i class="ti ti-map" style="color:#ff9e95;font-size:16px"></i>
-        <span style="font-size:13px;font-weight:700;color:#fff">Location Map</span>
-        <span style="font-size:11px;color:rgba(255,255,255,0.5);margin-left:4px">Father Muller Medical College, Kankanady, Mangaluru</span>
-      </div>
+      <div style="background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:8px"><i class="ti ti-map" style="color:#ff9e95;font-size:16px"></i><span style="font-size:13px;font-weight:700;color:#fff">Location Map</span><span style="font-size:11px;color:rgba(255,255,255,0.5);margin-left:4px">Father Muller Medical College, Kankanady, Mangaluru</span></div>
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d74.8473!3d12.8785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c17d48a0b%3A0x8f3d3e8c1a2b4c5d!2sFather+Muller+Medical+College!5e0!3m2!1sen!2sin!4v1" width="100%" height="400" style="border:0;display:block" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <h2 class="section-title">How to Reach</h2>
@@ -1195,4 +948,5 @@ function tick(){
 }
 tick();setInterval(tick,1000);
 </script>
+</body>
 </html>
