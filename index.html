@@ -16,7 +16,6 @@
   --text:#1a1a1a;--muted:#5a5a5a;--border:rgba(0,0,0,0.1);
   --bg:#f4fffe;--white:#fff;--radius:14px;--radius-sm:8px;
 }
-}
 body{font-family:'Jakarta Sans',system-ui,sans-serif;background:var(--bg);color:var(--body);font-size:15px;line-height:1.65;overflow-x:hidden}
 h1,h2,h3,.section-title,.hero h1{font-family:'Playfair Display',serif;}
   
@@ -73,9 +72,9 @@ nav{background:var(--navy);position:sticky;top:0;z-index:100;border-bottom:2px s
 .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity 1s}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,15,20,0.92) 0%,rgba(26,37,47,0.85) 50%,rgba(144,30,20,0.7) 100%)}
 .hero-content{position:relative;z-index:2;max-width:700px}
-.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(192,57,43,0.3);border:1px solid rgba(231,76,60,0.5);border-radius:100px;padding:5px 16px;font-size:12px;color:#ff9e95;letter-spacing:1px;text-transform:uppercase;margin-bottom:22px;animation:fadeUp 0.6s ease both}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(192,57,43,0.3);border:1px solid rgba(231,76,60,0.5);border-radius:100px;padding:5px 16px;font-size:12px;color:var(--amber);letter-spacing:1px;text-transform:uppercase;margin-bottom:22px;animation:fadeUp 0.6s ease both}
 .hero h1{font-size:clamp(34px,5.5vw,58px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:14px;animation:fadeUp 0.7s ease 0.1s both}
-.hero h1 em{font-style:italic;color:#ff9e95}
+.hero h1 em{font-style:italic;color:var(--amber);}
 .hero-sub{font-size:16px;color:rgba(255,255,255,0.82);max-width:520px;margin:0 auto 32px;font-weight:300;animation:fadeUp 0.7s ease 0.2s both}
 .hero-meta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:34px;animation:fadeUp 0.7s ease 0.3s both}
 .hero-meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.88);background:rgba(255,255,255,0.08);padding:5px 12px;border-radius:100px;border:0.5px solid rgba(255,255,255,0.12)}
