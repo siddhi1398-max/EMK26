@@ -6,7 +6,7 @@
 <title>EM Karnataka 2026 — 6th Annual State Conference</title>
 <link rel="icon" type="image/jpeg" href="logos/emk.jpg" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
@@ -16,9 +16,12 @@
   --amber:#D4A017;--amber-light:#FEF9E7;
   --text:#1a1a1a;--muted:#5a5a5a;--border:rgba(0,0,0,0.1);
   --bg:#fdf8f9;--white:#fff;--radius:14px;--radius-sm:8px;
+    --heading:#2D1F2E;      /* dark wine-purple for all headings */
+  --body:#1a1a1a;         /* near-black for body text */
 }
-body{font-family:'Outfit',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden}
-
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--body);font-size:15px;line-height:1.65;overflow-x:hidden}
+h1,h2,h3,.section-title,.hero h1{font-family:'Playfair Display',serif;}
+  
 /* ── NAV ── */
 nav{background:var(--navy);position:sticky;top:0;z-index:100;border-bottom:2px solid rgba(192,57,43,0.4)}
 .nav-inner{
@@ -175,7 +178,7 @@ nav{background:var(--navy);position:sticky;top:0;z-index:100;border-bottom:2px s
 .tier:hover{border-color:var(--red-mid);transform:translateY(-2px);box-shadow:0 6px 20px rgba(192,57,43,0.1)}
 .tier.selected{border:2px solid var(--red);background:#fffafa}
 .tier-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:10px;padding:3px 12px;border-radius:100px;font-weight:700;white-space:nowrap}
-.tier-name{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;font-weight:600}
+.tier-name{font-size:11px;color:var(--heading) !important;text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;font-weight:600}
 .tier-price{font-size:32px;font-weight:800;color:var(--text);margin-bottom:2px}
 .tier-price span{font-size:14px;font-weight:400;color:var(--muted)}
 .tier-note{font-size:11px;color:var(--muted);margin-bottom:14px}
