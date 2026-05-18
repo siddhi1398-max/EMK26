@@ -59,7 +59,7 @@ body{
 ══════════════════════════════════════════ */
 nav{
   background:var(--midnight-2);
-  position:sticky;
+  position:relative;
   top:0;
   z-index:100;
   border-bottom:1px solid var(--gold-border);
@@ -599,7 +599,11 @@ footer strong{color:var(--gold)}
    RESPONSIVE
 ══════════════════════════════════════════ */
 @media(max-width:768px){
-  .nav-inner{grid-template-columns:1fr auto;height:auto;padding:10px 1rem;gap:8px}
+  nav{position:relative;}                          /* ADD */
+  .page{display:none}                              /* ADD */
+  .page.active{display:block !important;           /* ADD */
+    min-height:calc(100vh - 80px);}                /* ADD */
+.nav-inner{grid-template-columns:1fr auto;height:auto;padding:10px 1rem;gap:8px}
   .nav-links{display:none}
   .form-grid{grid-template-columns:1fr}
   .stat-banner{flex-direction:column;gap:0}
