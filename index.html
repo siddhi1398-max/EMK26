@@ -6,20 +6,42 @@
 <title>EM Karnataka 2026 — 6th Annual State Conference</title>
 <link rel="icon" type="image/jpeg" href="logos/emk.jpg" />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet"> 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
   <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --red:#D4A017;--red-dark:#B8890E;--red-mid:#E6B820;--red-light:#FEF9E7;
-  --red-border:rgba(212,160,23,0.2);
-  --navy:#0A0A0A;--navy-mid:#1A1A2E;--navy-light:#16213E;
-  --amber:#D4A017;--amber-light:#FEF9E7;
-  --text:#1a1a1a;--muted:#5a5a5a;--border:rgba(0,0,0,0.1);
-  --bg:#f5f5f0;--white:#fff;--radius:14px;--radius-sm:8px;
+  --gold:#0D9488;
+  --gold-dark:#0F766E;
+  --gold-mid:#14B8A6;
+  --gold-light:#F0FDFA;
+  --gold-border:rgba(13,148,136,0.25);
+  --gold-glow:rgba(13,148,136,0.12);
+
+  --midnight:#0F1117;
+  --midnight-2:#141820;
+  --midnight-3:#1A2030;
+  --midnight-4:#212840;
+  --midnight-5:#2A3250;
+
+  --text:#E2E8F0;
+  --text-muted:#7A8FA6;
+  --text-dim:rgba(226,232,240,0.55);
+  --border:rgba(13,148,136,0.15);
+  --border-subtle:rgba(255,255,255,0.06);
+
+  --bg:var(--midnight);
+  --white:#fff;
+  --radius:14px;
+  --radius-sm:8px;
+
+  --accent:var(--gold);
+  --accent-dark:var(--gold-dark);
+  --accent-light:var(--gold-light);
+  --accent-border:var(--gold-border);
 }
 
 body{
-  font-family:'Outfit',system-ui,sans-serif;
+  font-family:'Inter',system-ui,sans-serif;
   background:var(--midnight);
   color:var(--text);
   font-size:15px;
@@ -74,9 +96,7 @@ nav{
   display:flex;align-items:center;gap:7px;
   white-space:nowrap;flex-shrink:0;transition:all 0.18s;
 }
-.nav-links button.active{background:rgba(212,160,23,0.2);color:var(--amber);}
-.nav-cta-btn{background:var(--amber);color:#0A0A0A;}
-.nav-cta-btn:hover{background:var(--red-dark);color:#0A0A0A;}
+.nav-cta-btn:hover{background:var(--gold-mid);transform:translateY(-1px);box-shadow:0 4px 16px rgba(212,160,23,0.3)}
 
 /* ── PAGES ── */
 .page{display:none}.page.active{display:block}
@@ -112,8 +132,7 @@ nav{
   margin-bottom:22px;animation:fadeUp 0.6s ease both;font-weight:600;
 }
 .hero h1{font-size:clamp(36px,5.5vw,62px);font-weight:900;color:#fff;line-height:1.05;margin-bottom:14px;animation:fadeUp 0.7s ease 0.1s both}
-.hero h1 em{font-style:italic;color:var(--amber);}
-.hero-badge{color:var(--amber);}
+.hero h1 em{font-style:italic;color:var(--gold);text-shadow:0 0 40px rgba(212,160,23,0.4)}
 .hero-sub{font-size:16px;color:var(--text-dim);max-width:520px;margin:0 auto 32px;font-weight:300;animation:fadeUp 0.7s ease 0.2s both}
 .hero-meta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:34px;animation:fadeUp 0.7s ease 0.3s both}
 .hero-meta-item{
@@ -192,8 +211,8 @@ nav{
 }
 .page-header-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.06}
 .page-header-content{position:relative;z-index:1;max-width:1100px;margin:auto}
-.page-header h2{color:var(--amber);}
-.page-header-accent{background:var(--amber);}
+.page-header-accent{display:inline-block;width:40px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:14px}
+.page-header h2{font-size:32px;font-weight:800;color:var(--gold);margin-bottom:6px}
 .page-header p{opacity:0.6;font-size:14px;color:var(--text)}
 
 /* CARDS */
@@ -587,28 +606,13 @@ footer strong{color:var(--gold)}
 .nav-inner{grid-template-columns:1fr auto;height:auto;padding:10px 1rem;gap:8px}
   .nav-links{display:none}
   .form-grid{grid-template-columns:1fr}
-  /* Replace the existing .stat-banner and .stat-item mobile rules */
-.stat-banner {
-  background: #1A2030;
-  border-top: 1px solid var(--gold-border);
-  border-bottom: 1px solid var(--gold-border);
-  display: flex;
-  align-items: stretch;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-  scrollbar-width: none;
-}
-.stat-banner::-webkit-scrollbar { display: none; }
-
-.stat-item {
-  text-align: center;
-  padding: 14px 20px;
-  border-right: 1px solid var(--border);
-  color: var(--text);
-  flex-shrink: 0;        /* ← prevents squishing */
-  white-space: nowrap;   /* ← keeps text on one line */
-}
-.stat-item:last-child { border-right: none; }
+  .stat-banner{flex-direction:column;gap:0}
+  .stat-item{
+    border-right:none;
+    border-bottom:1px solid var(--border);
+    padding:14px 0;
+  }
+  .stat-item:last-child{border-bottom:none}
   .carousel-btn{display:none}
   .comp-grid{grid-template-columns:1fr !important}
   .rule-panel-grid{grid-template-columns:1fr !important}
