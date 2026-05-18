@@ -223,6 +223,31 @@ footer strong{color:#ff9e95}
   .stat-item:last-child{border-bottom:none}
   .carousel-btn{display:none}
 }
+</style> 
+<style id="abstracts-extra-css">
+
+/* ── MOBILE BOTTOM NAV ── */
+#bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--navy);border-top:2px solid var(--red);padding:6px 0 env(safe-area-inset-bottom,8px);box-shadow:0 -4px 20px rgba(0,0,0,0.3)}
+.bn-inner{display:flex;justify-content:space-around;align-items:stretch;max-width:600px;margin:0 auto}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;padding:6px 4px;background:none;border:none;cursor:pointer;font-family:inherit;color:rgba(255,255,255,0.45);font-size:9px;font-weight:600;letter-spacing:0.3px;text-transform:uppercase;transition:color 0.15s;-webkit-tap-highlight-color:transparent;position:relative}
+.bn-item i{font-size:20px;line-height:1;transition:color 0.15s,transform 0.15s}
+.bn-item.active{color:#ff9e95}
+.bn-item.active i{color:#ff9e95;transform:translateY(-1px)}
+.bn-item.active::before{content:'';position:absolute;top:2px;left:50%;transform:translateX(-50%);width:18px;height:2px;background:var(--red);border-radius:1px}
+#bn-more-menu{display:none;position:fixed;bottom:70px;left:0;right:0;z-index:199;background:var(--navy-mid);border-top:0.5px solid rgba(255,255,255,0.1);box-shadow:0 -8px 32px rgba(0,0,0,0.4);padding:12px 0;border-radius:20px 20px 0 0;animation:slideUpMenu 0.2s ease}
+#bn-more-menu.open{display:block}
+@keyframes slideUpMenu{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.bn-more-item{display:flex;align-items:center;gap:14px;padding:13px 24px;color:rgba(255,255,255,0.8);font-size:14px;font-weight:500;cursor:pointer;border:none;background:none;width:100%;font-family:inherit;transition:background 0.12s;-webkit-tap-highlight-color:transparent}
+.bn-more-item i{font-size:20px;color:#ff9e95;width:24px;flex-shrink:0}
+.bn-more-item:hover,.bn-more-item:active{background:rgba(255,255,255,0.06)}
+.bn-more-item.active-page{color:#ff9e95;background:rgba(192,57,43,0.15)}
+#bn-backdrop{display:none;position:fixed;inset:0;z-index:198;background:rgba(0,0,0,0.5)}
+#bn-backdrop.open{display:block}
+@media(max-width:768px){
+  #bottom-nav{display:block}
+  body{padding-bottom:70px}
+  .rule-panel-grid{grid-template-columns:1fr !important}
+}
 </style>
 </head>
 <body>
@@ -665,14 +690,12 @@ footer strong{color:#ff9e95}
   <footer><strong>EM Karnataka 2026</strong> · registrations@emkarnataka2026.in</footer>
 </div>
 
-<!-- ══════════════════════════════════════════════════════════
-     ABSTRACTS PAGE
+══════════════════════════════════════════════════════════
+     PART A — ABSTRACTS PAGE HTML
+     Replace your entire <div id="page-competitions" class="page">
+     ...closing </div> with this block
 ══════════════════════════════════════════════════════════ -->
-<!-- ══════════════════════════════════════════════════════════
-     ABSTRACTS PAGE  —  Replace the entire existing block below:
-     <div id="page-abstracts" class="page"> ... </div>
-     with this block.
-══════════════════════════════════════════════════════════ -->
+
 <div id="page-competitions" class="page">
 
   <div class="page-header">
@@ -681,14 +704,14 @@ footer strong{color:#ff9e95}
     <div class="page-header-content">
       <div class="page-header-accent"></div>
       <h2>Abstract Submission</h2>
-      <p>Paper &nbsp;·&nbsp; Poster &nbsp;·&nbsp; CPC Competition &nbsp;&nbsp;|&nbsp;&nbsp; Submission deadline: <strong>31 August 2026</strong></p>
+      <p>Free Paper &nbsp;·&nbsp; Poster &nbsp;·&nbsp; CPC &nbsp;·&nbsp; Quiz &nbsp;&nbsp;|&nbsp;&nbsp; Deadline: <strong>31 August 2026</strong></p>
     </div>
   </div>
 
   <div class="section" style="padding-top:40px">
 
     <!-- ── DEADLINE STRIP ── -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:14px;margin-bottom:40px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:40px">
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center">
         <i class="ti ti-calendar-event" style="font-size:26px;color:var(--red);display:block;margin-bottom:8px"></i>
         <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Submission Deadline</div>
@@ -712,7 +735,7 @@ footer strong{color:#ff9e95}
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center">
         <i class="ti ti-trophy" style="font-size:26px;color:var(--amber);display:block;margin-bottom:8px"></i>
         <div style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px">Award Categories</div>
-        <div style="font-size:14px;font-weight:700">3 Competitions</div>
+        <div style="font-size:14px;font-weight:700">4 Competitions</div>
       </div>
     </div>
 
@@ -740,44 +763,44 @@ footer strong{color:#ff9e95}
       </div>
     </div>
 
-    <!-- ── COMPETITION CARDS ── -->
+    <!-- ══ COMPETITION CARDS ══ -->
     <h2 style="font-size:22px;font-weight:800;color:var(--navy);margin-bottom:6px">Competitions</h2>
-    <p style="font-size:14px;color:var(--muted);margin-bottom:24px">Three distinct tracks — choose the one that best fits your work</p>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:24px">Four distinct tracks — choose the one that best fits your work</p>
 
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-bottom:48px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:48px">
 
-      <!--  PAPER -->
+      <!-- FREE PAPER -->
       <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
         <div style="background:linear-gradient(135deg,var(--navy),var(--navy-mid));padding:22px 24px;color:#fff">
           <div style="width:44px;height:44px;background:rgba(255,255,255,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
             <i class="ti ti-microphone" style="font-size:22px;color:#fff"></i>
           </div>
-          <div style="font-size:18px;font-weight:800;margin-bottom:4px">Paper Presentation</div>
+          <div style="font-size:18px;font-weight:800;margin-bottom:4px">Free Paper Presentation</div>
           <div style="font-size:12px;opacity:0.7;text-transform:uppercase;letter-spacing:0.6px">Oral &nbsp;·&nbsp; Days 3 &amp; 4 &nbsp;·&nbsp; Main Auditorium</div>
         </div>
         <div style="padding:22px 24px">
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">Present your original research or case series to a panel of national judges and 500+ delegates. Selected papers receive an 8-minute presentation slot followed by a 2-minute Q&amp;A. This is the flagship academic competition of the conference.</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">Present your original research to a panel of national judges and 500+ delegates. Selected papers receive an 8-minute slot followed by a 2-minute Q&amp;A. This is the flagship academic competition of the conference.</p>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--red)">
               <i class="ti ti-file-type-doc" style="font-size:13px;color:var(--red);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Submit:</strong> Abstract (300 words) + Full manuscript as <strong>.doc / .docx</strong> — structured as Introduction, Methods, Results, Conclusion</span>
+              <span><strong>Submit:</strong> Abstract (300 words) + Full manuscript as <strong>.doc / .docx</strong> — Introduction · Methods · Results · Conclusion</span>
             </div>
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--navy)">
               <i class="ti ti-clock" style="font-size:13px;color:var(--navy);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Presentation:</strong> 8 min talk + 2 min Q&amp;A. Bring your slides on the day (PPT or PDF accepted)</span>
+              <span><strong>Presentation:</strong> 8 min talk + 2 min Q&amp;A. Bring your slides on the day (PPT or PDF)</span>
             </div>
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--navy)">
               <i class="ti ti-users" style="font-size:13px;color:var(--navy);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Eligibility:</strong> All registered delegates, faculty, and PG students. Presenting author must be registered</span>
+              <span><strong>Eligibility:</strong> All registered delegates, faculty &amp; PG students. Presenting author must be registered</span>
             </div>
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--amber)">
               <i class="ti ti-copy" style="font-size:13px;color:var(--amber);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Originality:</strong> Work must be unpublished and not simultaneously submitted elsewhere. Max 5 co-authors</span>
+              <span><strong>Originality:</strong> Unpublished, not submitted elsewhere. Max 5 co-authors</span>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:8px;background:var(--amber-light);border-radius:var(--radius-sm);padding:10px 12px;font-size:12px;color:#7D6608;font-weight:600">
             <i class="ti ti-trophy" style="font-size:16px;color:var(--amber)"></i>
-            Best Paper Award &nbsp;·&nbsp; Runner-up &nbsp;·&nbsp; Young Investigator Award
+            Best Paper &nbsp;·&nbsp; Runner-up &nbsp;·&nbsp; Young Investigator Award
           </div>
         </div>
       </div>
@@ -792,23 +815,23 @@ footer strong{color:#ff9e95}
           <div style="font-size:12px;opacity:0.7;text-transform:uppercase;letter-spacing:0.6px">Display &nbsp;·&nbsp; Day 3 Afternoon &nbsp;·&nbsp; Poster Hall</div>
         </div>
         <div style="padding:22px 24px">
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">Display your research, case reports, or quality improvement projects as a printed poster. Judges visit each poster during the dedicated viewing session. Presenters give a 3-minute summary and answer questions from judges and delegates.</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">Display your research, case reports, or quality improvement projects as a printed A0 poster. Judges visit each poster during the dedicated viewing session. Presenters give a 3-minute summary and answer questions.</p>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--red)">
               <i class="ti ti-file-type-pdf" style="font-size:13px;color:var(--red);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Submit:</strong> Abstract (300 words) + Poster as <strong>.ppt / .pptx</strong> — <strong>1 slide only</strong>, in A0 portrait size (33.1 × 46.8 in)</span>
+              <span><strong>Submit:</strong> Abstract (300 words) + Poster as <strong>.ppt / .pptx</strong> — <strong>1 slide only</strong>, A0 portrait (33.1 × 46.8 in)</span>
             </div>
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--red)">
               <i class="ti ti-arrows-maximize" style="font-size:13px;color:var(--red);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Print size:</strong> A0 portrait (84 × 119 cm). Printing is the author's responsibility. Mounting boards provided on-site</span>
+              <span><strong>Print size:</strong> A0 portrait (84 × 119 cm). Printing is author's responsibility. Mounting boards on-site</span>
             </div>
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--navy)">
               <i class="ti ti-clock" style="font-size:13px;color:var(--navy);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Presentation:</strong> 3-min summary to judges during viewing session (Day 3, 13:00–14:00)</span>
+              <span><strong>Judging session:</strong> 3-min summary to judges, Day 3 13:00–14:00</span>
             </div>
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--amber)">
               <i class="ti ti-layout-columns" style="font-size:13px;color:var(--amber);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Content:</strong> Title, authors, background, methods, results, conclusions, and your institution logo</span>
+              <span><strong>Content:</strong> Title · Authors · Background · Methods · Results · Conclusions · Institution logo</span>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:8px;background:var(--amber-light);border-radius:var(--radius-sm);padding:10px 12px;font-size:12px;color:#7D6608;font-weight:600">
@@ -825,38 +848,267 @@ footer strong{color:#ff9e95}
             <i class="ti ti-stethoscope" style="font-size:22px;color:#fff"></i>
           </div>
           <div style="font-size:18px;font-weight:800;margin-bottom:4px">CPC Competition</div>
-          <div style="font-size:12px;opacity:0.7;text-transform:uppercase;letter-spacing:0.6px">Clinical Problem Solving &nbsp;·&nbsp; Day 4 &nbsp;·&nbsp; Morning Session</div>
+          <div style="font-size:12px;opacity:0.7;text-transform:uppercase;letter-spacing:0.6px">Clinical Problem Solving &nbsp;·&nbsp; Day 4 &nbsp;·&nbsp; Morning</div>
         </div>
         <div style="padding:22px 24px">
-          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">The Clinico-Pathological Case (CPC) competition tests diagnostic reasoning and clinical acumen. Teams present a challenging real-world case — history, investigations, differential diagnoses — and defend their final diagnosis before a panel of expert judges.</p>
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">The Clinico-Pathological Case competition tests diagnostic reasoning and clinical acumen. Teams present a real-world EM case — history, investigations, differentials — and defend their final diagnosis before expert judges.</p>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--amber)">
               <i class="ti ti-file-type-pdf" style="font-size:13px;color:var(--amber);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Submit:</strong> Case summary (300 words) + Presentation as <strong>.ppt / .pptx</strong> — slides must follow: Case History → Investigations → Differentials → Final Diagnosis → Learning Points</span>
+              <span><strong>Submit:</strong> Case summary (300 words) + Slides as <strong>.ppt / .pptx</strong> — Case History → Investigations → Differentials → Diagnosis → Learning Points</span>
             </div>
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--amber)">
               <i class="ti ti-users" style="font-size:13px;color:var(--amber);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Team:</strong> 2–3 members per team. All members must be registered delegates or PG students</span>
+              <span><strong>Team:</strong> 2–3 members, all registered delegates or PG students</span>
             </div>
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--navy)">
               <i class="ti ti-clock" style="font-size:13px;color:var(--navy);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Presentation:</strong> 10 min presentation + 5 min cross-examination by judges</span>
+              <span><strong>Presentation:</strong> 10 min + 5 min cross-examination by judges</span>
             </div>
             <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--red)">
               <i class="ti ti-eye-off" style="font-size:13px;color:var(--red);flex-shrink:0;margin-top:1px"></i>
-              <span><strong>Anonymisation:</strong> Patient details must be fully de-identified. Do not reveal the final diagnosis in the submitted file</span>
+              <span><strong>Anonymise:</strong> All patient details de-identified. Do not reveal final diagnosis in submitted file</span>
             </div>
           </div>
           <div style="display:flex;align-items:center;gap:8px;background:var(--amber-light);border-radius:var(--radius-sm);padding:10px 12px;font-size:12px;color:#7D6608;font-weight:600">
             <i class="ti ti-trophy" style="font-size:16px;color:var(--amber)"></i>
-            Best CPC Team Award &nbsp;·&nbsp; Runner-up CPC Award
+            Best CPC Team &nbsp;·&nbsp; Runner-up CPC Award
           </div>
         </div>
       </div>
 
-    </div><!-- end competition grid -->
+      <!-- QUIZ -->
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s" onmouseover="this.style.transform='translateY(-3px)';this.style.boxShadow='0 8px 28px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+        <div style="background:linear-gradient(135deg,#1a3a5c,#2471A3);padding:22px 24px;color:#fff">
+          <div style="width:44px;height:44px;background:rgba(255,255,255,0.15);border-radius:10px;display:flex;align-items:center;justify-content:center;margin-bottom:14px">
+            <i class="ti ti-bulb" style="font-size:22px;color:#fff"></i>
+          </div>
+          <div style="font-size:18px;font-weight:800;margin-bottom:4px">EM Quiz</div>
+          <div style="font-size:12px;opacity:0.7;text-transform:uppercase;letter-spacing:0.6px">Teams of 2 &nbsp;·&nbsp; Prelims + Finals &nbsp;·&nbsp; Day 4 Morning</div>
+        </div>
+        <div style="padding:22px 24px">
+          <p style="font-size:13px;color:var(--muted);line-height:1.7;margin-bottom:18px">A high-energy emergency medicine quiz testing clinical knowledge, ECG &amp; imaging interpretation, and rapid-fire recall. Prelims are written MCQs; top 6 teams compete in a live multi-round final with the audience watching.</p>
+          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:20px">
+            <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid #2471A3">
+              <i class="ti ti-users" style="font-size:13px;color:#2471A3;flex-shrink:0;margin-top:1px"></i>
+              <span><strong>Team:</strong> Exactly 2 members. Both must be registered delegates or PG students</span>
+            </div>
+            <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid #2471A3">
+              <i class="ti ti-pencil" style="font-size:13px;color:#2471A3;flex-shrink:0;margin-top:1px"></i>
+              <span><strong>Prelims:</strong> 30 MCQs in 30 minutes. Top 6 teams advance to live finals</span>
+            </div>
+            <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid #2471A3">
+              <i class="ti ti-layout-list" style="font-size:13px;color:#2471A3;flex-shrink:0;margin-top:1px"></i>
+              <span><strong>Finals:</strong> 6 rounds — Direct · Visual (ECG/X-ray) · Rapid Fire · Lifeline · Audio-Visual · Sudden Death</span>
+            </div>
+            <div style="font-size:12px;color:var(--text);display:flex;align-items:flex-start;gap:8px;padding:8px 10px;background:var(--bg);border-radius:var(--radius-sm);border-left:3px solid var(--amber)">
+              <i class="ti ti-info-circle" style="font-size:13px;color:var(--amber);flex-shrink:0;margin-top:1px"></i>
+              <span><strong>Registration:</strong> No abstract submission needed — register as a quiz team during conference registration</span>
+            </div>
+          </div>
+          <div style="display:flex;align-items:center;gap:8px;background:var(--amber-light);border-radius:var(--radius-sm);padding:10px 12px;font-size:12px;color:#7D6608;font-weight:600">
+            <i class="ti ti-trophy" style="font-size:16px;color:var(--amber)"></i>
+            Best Quiz Team &nbsp;·&nbsp; Runner-up Quiz Team
+          </div>
+        </div>
+      </div>
 
-    <!-- ── FILE FORMAT INSTRUCTIONS ── -->
+    </div><!-- end competition cards grid -->
+
+
+    <!-- ══ COMPETITION RULES — COLLAPSIBLE ══ -->
+    <h2 style="font-size:22px;font-weight:800;color:var(--navy);margin-bottom:6px">Competition Rules &amp; Judging Criteria</h2>
+    <p style="font-size:14px;color:var(--muted);margin-bottom:20px">Tap any competition to expand its full rules and scoring breakdown</p>
+
+    <!-- FREE PAPER RULES -->
+    <div style="border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px">
+      <button onclick="toggleRule('rule-paper',this)" style="width:100%;background:var(--white);border:none;cursor:pointer;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;font-family:inherit;transition:background 0.15s" onmouseover="this.style.background='#fdf5f5'" onmouseout="this.style.background='var(--white)'">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--navy),var(--navy-mid));display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-microphone" style="font-size:18px;color:#fff"></i></div>
+          <div style="text-align:left">
+            <div style="font-size:15px;font-weight:700;color:var(--navy)">Free Paper Presentation Rules</div>
+            <div style="font-size:12px;color:var(--muted)">Oral · 8 min + 2 min Q&amp;A · Days 3 &amp; 4</div>
+          </div>
+        </div>
+        <i class="ti ti-chevron-down rule-icon" style="font-size:18px;color:var(--muted);transition:transform 0.25s;flex-shrink:0"></i>
+      </button>
+      <div id="rule-paper" style="display:none;border-top:0.5px solid var(--border)">
+        <div class="rule-panel-grid" style="padding:24px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red);margin-bottom:12px">General Rules</div>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">01.</span>Original research only — case reports, observational studies, audits, and clinical trials accepted.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">02.</span>Work must not have been published or presented at any prior national or international conference.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">03.</span>Presenting author must be a registered delegate at EM Karnataka 2026.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">04.</span>Maximum 5 co-authors. All names must appear exactly as they should on the certificate.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">05.</span>Presentation language is English. Local language labels on images permitted where clinically relevant.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">06.</span>Strict time limit: 8 min talk, 2 min Q&amp;A. Warning bell at 7 min. Presentation cut off at 8 min.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">07.</span>Slides submitted to AV desk at least 1 hour before session. Format: PPT or PDF only.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">08.</span>Any plagiarism detected will result in immediate disqualification.</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red);margin-bottom:12px">Judging Criteria (Total: 100 pts)</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Scientific Content &amp; Originality</span><span style="font-size:13px;font-weight:800;color:var(--red)">30 pts</span></div><div style="font-size:11px;color:var(--muted)">Relevance, novelty, hypothesis clarity, ethical soundness</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Methodology &amp; Study Design</span><span style="font-size:13px;font-weight:800;color:var(--red)">25 pts</span></div><div style="font-size:11px;color:var(--muted)">Appropriate design, sample size, statistical analysis, limitations</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Results &amp; Data Presentation</span><span style="font-size:13px;font-weight:800;color:var(--red)">20 pts</span></div><div style="font-size:11px;color:var(--muted)">Clarity of results, use of tables/figures, data integrity</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Presentation &amp; Delivery</span><span style="font-size:13px;font-weight:800;color:var(--red)">15 pts</span></div><div style="font-size:11px;color:var(--muted)">Slide quality, time adherence, clarity, confidence</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Response to Q&amp;A</span><span style="font-size:13px;font-weight:800;color:var(--red)">10 pts</span></div><div style="font-size:11px;color:var(--muted)">Accuracy, depth of knowledge, composure under questioning</div></div>
+            </div>
+            <div style="background:var(--amber-light);border-radius:var(--radius-sm);padding:10px 12px;font-size:12px;color:#7D6608"><i class="ti ti-trophy" style="vertical-align:-2px;color:var(--amber)"></i> &nbsp;<strong>Awards:</strong> Best Paper · Runner-up · Young Investigator (≤30 yrs or PG student)</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- POSTER RULES -->
+    <div style="border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px">
+      <button onclick="toggleRule('rule-poster',this)" style="width:100%;background:var(--white);border:none;cursor:pointer;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;font-family:inherit;transition:background 0.15s" onmouseover="this.style.background='#fdf5f5'" onmouseout="this.style.background='var(--white)'">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:linear-gradient(135deg,var(--red-dark),var(--red));display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-layout-board" style="font-size:18px;color:#fff"></i></div>
+          <div style="text-align:left">
+            <div style="font-size:15px;font-weight:700;color:var(--navy)">Poster Presentation Rules</div>
+            <div style="font-size:12px;color:var(--muted)">Display · 3 min summary · Day 3 Afternoon</div>
+          </div>
+        </div>
+        <i class="ti ti-chevron-down rule-icon" style="font-size:18px;color:var(--muted);transition:transform 0.25s;flex-shrink:0"></i>
+      </button>
+      <div id="rule-poster" style="display:none;border-top:0.5px solid var(--border)">
+        <div class="rule-panel-grid" style="padding:24px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red);margin-bottom:12px">General Rules</div>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">01.</span>Accepted work: original research, case reports, case series, audits, and quality improvement projects.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">02.</span>Print in A0 portrait (84 × 119 cm). Printing is the author's responsibility. Mounting boards &amp; pins provided.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">03.</span>Poster must be mounted by 09:00 on Day 3 and remain displayed until end of Day 4.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">04.</span>Presenting author must be present at poster during judging session (Day 3, 13:00–14:00).</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">05.</span>Judges visit each poster. Presenter gives a 3-min summary — no formal timer, judges control the session.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">06.</span>Poster number assigned after acceptance — must be displayed prominently.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">07.</span>Posters may not be removed before the Day 4 closing ceremony.</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red);margin-bottom:12px">Judging Criteria (Total: 100 pts)</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Scientific Content &amp; Relevance</span><span style="font-size:13px;font-weight:800;color:var(--red)">25 pts</span></div><div style="font-size:11px;color:var(--muted)">Originality, clinical significance, soundness of conclusions</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Visual Design &amp; Layout</span><span style="font-size:13px;font-weight:800;color:var(--red)">20 pts</span></div><div style="font-size:11px;color:var(--muted)">Readability, logical flow, figures/graphs, font size</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Methodology &amp; Results</span><span style="font-size:13px;font-weight:800;color:var(--red)">25 pts</span></div><div style="font-size:11px;color:var(--muted)">Study design, data accuracy, statistical validity</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Oral Summary to Judges</span><span style="font-size:13px;font-weight:800;color:var(--red)">20 pts</span></div><div style="font-size:11px;color:var(--muted)">Clarity, confidence, highlighting key findings concisely</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Response to Questions</span><span style="font-size:13px;font-weight:800;color:var(--red)">10 pts</span></div><div style="font-size:11px;color:var(--muted)">Depth of knowledge, accuracy, handling critical questions</div></div>
+            </div>
+            <div style="background:var(--amber-light);border-radius:var(--radius-sm);padding:10px 12px;font-size:12px;color:#7D6608"><i class="ti ti-trophy" style="vertical-align:-2px;color:var(--amber)"></i> &nbsp;<strong>Awards:</strong> Best Poster · Runner-up Poster</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CPC RULES -->
+    <div style="border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px">
+      <button onclick="toggleRule('rule-cpc',this)" style="width:100%;background:var(--white);border:none;cursor:pointer;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;font-family:inherit;transition:background 0.15s" onmouseover="this.style.background='#fdf5f5'" onmouseout="this.style.background='var(--white)'">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:linear-gradient(135deg,#7D6608,var(--amber));display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-stethoscope" style="font-size:18px;color:#fff"></i></div>
+          <div style="text-align:left">
+            <div style="font-size:15px;font-weight:700;color:var(--navy)">CPC Competition Rules</div>
+            <div style="font-size:12px;color:var(--muted)">Teams of 2–3 · 10 min + 5 min cross-exam · Day 4</div>
+          </div>
+        </div>
+        <i class="ti ti-chevron-down rule-icon" style="font-size:18px;color:var(--muted);transition:transform 0.25s;flex-shrink:0"></i>
+      </button>
+      <div id="rule-cpc" style="display:none;border-top:0.5px solid var(--border)">
+        <div class="rule-panel-grid" style="padding:24px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red);margin-bottom:12px">General Rules</div>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">01.</span>Teams of 2–3 members. All must be registered delegates or PG students.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">02.</span>Cases must be real clinical EM cases. Closed cases (known diagnosis) are accepted — emphasis is on the diagnostic journey.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">03.</span>All patient details must be fully anonymised — no name, DOB, MRN, or identifiable images.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">04.</span>Final diagnosis must NOT appear in the submitted file. It is revealed verbally during the live presentation.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">05.</span>Time: 10 min presentation + 5 min cross-examination. Warning bell at 9 min.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">06.</span>All team members expected to participate. Judges may direct questions to any member.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">07.</span>Slides submitted to AV desk by 08:30 on Day 4. Format: PPT or PPTX only.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">08.</span>Only shortlisted teams present. All submissions undergo blind review for shortlisting.</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red);margin-bottom:12px">Judging Criteria (Total: 100 pts)</div>
+            <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Case Complexity &amp; Selection</span><span style="font-size:13px;font-weight:800;color:var(--red)">15 pts</span></div><div style="font-size:11px;color:var(--muted)">Rarity, educational value, EM relevance</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Clinical Reasoning &amp; Differentials</span><span style="font-size:13px;font-weight:800;color:var(--red)">30 pts</span></div><div style="font-size:11px;color:var(--muted)">Systematic approach, breadth &amp; prioritisation of differentials</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Interpretation of Investigations</span><span style="font-size:13px;font-weight:800;color:var(--red)">20 pts</span></div><div style="font-size:11px;color:var(--muted)">ECG, imaging, labs — accurate reading &amp; test selection</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Presentation &amp; Team Coordination</span><span style="font-size:13px;font-weight:800;color:var(--red)">20 pts</span></div><div style="font-size:11px;color:var(--muted)">Slide quality, time adherence, teamwork, clarity</div></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:10px 12px"><div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:3px"><span style="font-size:13px;font-weight:600">Response to Cross-examination</span><span style="font-size:13px;font-weight:800;color:var(--red)">15 pts</span></div><div style="font-size:11px;color:var(--muted)">Accuracy under pressure, depth, handling curveball questions</div></div>
+            </div>
+            <div style="background:var(--amber-light);border-radius:var(--radius-sm);padding:10px 12px;font-size:12px;color:#7D6608"><i class="ti ti-trophy" style="vertical-align:-2px;color:var(--amber)"></i> &nbsp;<strong>Awards:</strong> Best CPC Team · Runner-up CPC</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUIZ RULES -->
+    <div style="border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px">
+      <button onclick="toggleRule('rule-quiz',this)" style="width:100%;background:var(--white);border:none;cursor:pointer;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;font-family:inherit;transition:background 0.15s" onmouseover="this.style.background='#fdf5f5'" onmouseout="this.style.background='var(--white)'">
+        <div style="display:flex;align-items:center;gap:14px">
+          <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:linear-gradient(135deg,#1a3a5c,#2471A3);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-bulb" style="font-size:18px;color:#fff"></i></div>
+          <div style="text-align:left">
+            <div style="font-size:15px;font-weight:700;color:var(--navy)">EM Quiz Rules</div>
+            <div style="font-size:12px;color:var(--muted)">Teams of 2 · Prelims + 6-Round Finals · Day 4</div>
+          </div>
+        </div>
+        <i class="ti ti-chevron-down rule-icon" style="font-size:18px;color:var(--muted);transition:transform 0.25s;flex-shrink:0"></i>
+      </button>
+      <div id="rule-quiz" style="display:none;border-top:0.5px solid var(--border)">
+        <div class="rule-panel-grid" style="padding:24px 22px;display:grid;grid-template-columns:1fr 1fr;gap:24px">
+          <div>
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red);margin-bottom:12px">Format &amp; General Rules</div>
+            <ul style="list-style:none;display:flex;flex-direction:column;gap:8px">
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">01.</span>Teams of exactly 2. Both must be registered delegates or PG students.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">02.</span><strong>Prelims:</strong> Written MCQ paper — 30 questions in 30 minutes. Top 6 teams qualify for live finals.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">03.</span><strong>Finals:</strong> 6 rounds — Direct, Visual, Rapid Fire, Lifeline, Audio-Visual, and Sudden Death.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">04.</span>Direct questions: 10 pts. Passed questions open to other teams for 5 pts. No negative marking on passed questions.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">05.</span>Rapid fire: 60 seconds per team, 5 pts per correct answer, no penalty for wrong answers.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">06.</span>Each team gets one 30-second lifeline consult per finals. Must be used before answering.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">07.</span>Quiz master's decision is final. No electronic devices during the quiz.</li>
+              <li style="font-size:13px;color:var(--text);display:flex;gap:8px;line-height:1.55"><span style="color:var(--red);font-weight:700;flex-shrink:0">08.</span>No abstract submission needed — register as quiz team during conference registration.</li>
+            </ul>
+          </div>
+          <div>
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red);margin-bottom:10px">Topics Covered</div>
+            <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:20px">
+              <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:500">Emergency Pharmacology</span>
+              <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:500">Trauma &amp; Resuscitation</span>
+              <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:500">ECG Interpretation</span>
+              <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:500">Radiology in EM</span>
+              <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:500">Toxicology</span>
+              <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:500">Paediatric EM</span>
+              <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:500">Obstetric Emergencies</span>
+              <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:500">Clinical Procedures</span>
+              <span style="background:var(--navy-light);color:var(--navy);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:500">EM Eponyms &amp; Syndromes</span>
+              <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Climate Change &amp; EM (Theme)</span>
+            </div>
+            <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--red);margin-bottom:10px">Finals Round Structure</div>
+            <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:8px 12px;display:flex;justify-content:space-between"><span style="font-size:12px;font-weight:600">Round 1 — Direct Questions</span><span style="font-size:11px;color:var(--muted)">10 pts each</span></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:8px 12px;display:flex;justify-content:space-between"><span style="font-size:12px;font-weight:600">Round 2 — Visual (ECG / X-ray / Image)</span><span style="font-size:11px;color:var(--muted)">10 pts each</span></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:8px 12px;display:flex;justify-content:space-between"><span style="font-size:12px;font-weight:600">Round 3 — Rapid Fire (60 sec/team)</span><span style="font-size:11px;color:var(--muted)">5 pts each</span></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:8px 12px;display:flex;justify-content:space-between"><span style="font-size:12px;font-weight:600">Round 4 — Lifeline Round</span><span style="font-size:11px;color:var(--muted)">10 pts each</span></div>
+              <div style="background:var(--bg);border-radius:var(--radius-sm);padding:8px 12px;display:flex;justify-content:space-between"><span style="font-size:12px;font-weight:600">Round 5 — Audio-Visual</span><span style="font-size:11px;color:var(--muted)">10 pts each</span></div>
+              <div style="background:var(--red-light);border-radius:var(--radius-sm);padding:8px 12px;display:flex;justify-content:space-between"><span style="font-size:12px;font-weight:600;color:var(--red)">Round 6 — Sudden Death (if tied)</span><span style="font-size:11px;color:var(--red)">Winner takes all</span></div>
+            </div>
+            <div style="background:var(--amber-light);border-radius:var(--radius-sm);padding:10px 12px;font-size:12px;color:#7D6608"><i class="ti ti-trophy" style="vertical-align:-2px;color:var(--amber)"></i> &nbsp;<strong>Awards:</strong> Best Quiz Team · Runner-up Quiz Team</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Disclaimer -->
+    <div style="background:var(--navy-light);border-radius:var(--radius-sm);padding:13px 18px;font-size:12px;color:var(--navy-mid);display:flex;gap:10px;align-items:flex-start;margin-bottom:48px">
+      <i class="ti ti-info-circle" style="font-size:16px;flex-shrink:0;margin-top:1px;color:var(--navy)"></i>
+      <span>All competitions are open only to <strong>registered delegates</strong>. The organising committee reserves the right to adjust time slots, merge categories, or modify scoring criteria. Any changes will be communicated by email prior to the conference.</span>
+    </div>
+
+
+    <!-- ══ FILE FORMAT INSTRUCTIONS ══ -->
     <div style="background:var(--navy);border-radius:var(--radius);padding:32px;margin-bottom:36px;position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)"></div>
       <div style="font-size:18px;font-weight:800;color:#fff;margin-bottom:4px;display:flex;align-items:center;gap:10px">
@@ -864,120 +1116,89 @@ footer strong{color:#ff9e95}
         Submission File Format Instructions
       </div>
       <p style="font-size:13px;color:rgba(255,255,255,0.55);margin-bottom:28px">Read carefully before uploading — incorrect formats will be returned for revision</p>
-
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
 
-        <!-- DOC — Paper -->
+        <!-- DOC -->
         <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:20px">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-            <div style="width:36px;height:36px;border-radius:8px;background:rgba(44,62,80,0.6);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <i class="ti ti-file-type-doc" style="font-size:20px;color:#9FD1FF"></i>
-            </div>
-            <div>
-              <div style="font-size:14px;font-weight:700;color:#fff">Paper Manuscript</div>
-              <div style="font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.5px">Oral presentation submissions</div>
-            </div>
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(44,62,80,0.6);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-file-type-doc" style="font-size:20px;color:#9FD1FF"></i></div>
+            <div><div style="font-size:14px;font-weight:700;color:#fff">Free Paper Manuscript</div><div style="font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.5px">Oral presentation submissions</div></div>
           </div>
-          <span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;background:rgba(44,62,80,0.5);color:#9FD1FF;margin-bottom:14px">.doc &nbsp;/&nbsp; .docx — Microsoft Word</span>
+          <span style="display:inline-flex;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;background:rgba(44,62,80,0.5);color:#9FD1FF;margin-bottom:14px">.doc / .docx — Microsoft Word</span>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Font: Times New Roman, 12pt, 1.5 line spacing</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Margins: 1 inch on all sides</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Sections: Title · Abstract · Introduction · Methods · Results · Discussion · Conclusion · References</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>References: Vancouver style</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Tables &amp; figures embedded, numbered sequentially</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-x" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(231,76,60,0.7)"></i>No author names or institution in body (blind review)</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-x" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(231,76,60,0.7)"></i>Max file size: 5 MB</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Times New Roman 12pt, 1.5 line spacing, 1-inch margins</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Sections: Title · Abstract · Introduction · Methods · Results · Discussion · Conclusion · References</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>References: Vancouver style. Tables &amp; figures embedded &amp; numbered</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-x" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(231,76,60,0.7)"></i>No author names/institution in body (blind review). Max 5 MB</li>
           </ul>
         </div>
 
-        <!-- PPT — Poster -->
+        <!-- PPT Poster -->
         <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:20px">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-            <div style="width:36px;height:36px;border-radius:8px;background:rgba(192,57,43,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <i class="ti ti-layout-board" style="font-size:20px;color:#ffb3ae"></i>
-            </div>
-            <div>
-              <div style="font-size:14px;font-weight:700;color:#fff">Poster File</div>
-              <div style="font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.5px">Poster competition submissions</div>
-            </div>
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(192,57,43,0.4);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-layout-board" style="font-size:20px;color:#ffb3ae"></i></div>
+            <div><div style="font-size:14px;font-weight:700;color:#fff">Poster File</div><div style="font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.5px">Poster competition submissions</div></div>
           </div>
-          <span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;background:rgba(192,57,43,0.3);color:#ffb3ae;margin-bottom:14px">.ppt &nbsp;/&nbsp; .pptx — PowerPoint</span>
+          <span style="display:inline-flex;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;background:rgba(192,57,43,0.3);color:#ffb3ae;margin-bottom:14px">.ppt / .pptx — PowerPoint</span>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>1 slide only — set to A0 Portrait: 33.1" W × 46.8" H</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>In PowerPoint: Design → Slide Size → Custom Size → enter dimensions</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Min font: 24pt body text, 40pt+ for title</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Sections: Title · Authors · Background · Methods · Results · Conclusions</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Include institution name &amp; logo at top of poster</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Images: high-res only (≥150 DPI at A0 print size)</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-x" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(231,76,60,0.7)"></i>Max file size: 20 MB. No embedded videos</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>1 slide only — A0 Portrait: Design → Slide Size → Custom → 33.1" W × 46.8" H</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Min font: 24pt body, 40pt+ title. High-res images only (≥150 DPI at A0)</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Include: Title · Authors · Background · Methods · Results · Conclusions · Institution logo</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-x" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(231,76,60,0.7)"></i>Max 20 MB. No embedded videos</li>
           </ul>
         </div>
 
-        <!-- PPT — CPC -->
+        <!-- PPT CPC -->
         <div style="background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.1);border-radius:var(--radius-sm);padding:20px">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-            <div style="width:36px;height:36px;border-radius:8px;background:rgba(125,102,8,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-              <i class="ti ti-stethoscope" style="font-size:20px;color:#FFE08A"></i>
-            </div>
-            <div>
-              <div style="font-size:14px;font-weight:700;color:#fff">CPC Presentation</div>
-              <div style="font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.5px">CPC competition submissions</div>
-            </div>
+            <div style="width:36px;height:36px;border-radius:8px;background:rgba(125,102,8,0.5);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-stethoscope" style="font-size:20px;color:#FFE08A"></i></div>
+            <div><div style="font-size:14px;font-weight:700;color:#fff">CPC Presentation</div><div style="font-size:10px;color:rgba(255,255,255,0.45);text-transform:uppercase;letter-spacing:0.5px">CPC competition submissions</div></div>
           </div>
-          <span style="display:inline-flex;align-items:center;gap:4px;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;background:rgba(125,102,8,0.4);color:#FFE08A;margin-bottom:14px">.ppt &nbsp;/&nbsp; .pptx — PowerPoint</span>
+          <span style="display:inline-flex;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;background:rgba(125,102,8,0.4);color:#FFE08A;margin-bottom:14px">.ppt / .pptx — PowerPoint</span>
           <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Standard widescreen (16:9), max 20 slides incl. title</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Mandatory order: Case History → Investigations → Differentials → Final Diagnosis → Learning Points</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Patient fully anonymised — no name, DOB, MRN, or identifiable images</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Investigation images (ECG, X-ray, CT) allowed if anonymised</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-x" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(231,76,60,0.7)"></i>Do NOT include final diagnosis in submitted file — reveal at presentation only</li>
-            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;align-items:flex-start;gap:6px;line-height:1.5"><i class="ti ti-x" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(231,76,60,0.7)"></i>Max file size: 30 MB</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Widescreen 16:9, max 20 slides including title</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Mandatory order: Case History → Investigations → Differentials → Diagnosis → Learning Points</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-check" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(255,255,255,0.4)"></i>Patient fully anonymised. ECG/X-ray/CT allowed if de-identified</li>
+            <li style="font-size:11px;color:rgba(255,255,255,0.7);display:flex;gap:6px;line-height:1.5"><i class="ti ti-x" style="font-size:12px;flex-shrink:0;margin-top:1px;color:rgba(231,76,60,0.7)"></i>Do NOT include final diagnosis in file. Max 30 MB</li>
           </ul>
         </div>
+
       </div>
-
-    <!-- ── NAMING CONVENTION ── -->
-<div style="margin-bottom:12px">
-  <h2 style="font-size:20px;font-weight:800;color:var(--navy);margin-bottom:4px">Submit Your Abstract</h2>
-  <p style="font-size:13px;color:var(--muted);margin-bottom:16px">Fill the form below. Upload your manuscript (.docx) or presentation (.pptx) file within the form.</p>
-
-  <div style="background:var(--navy);border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:20px;border-left:4px solid var(--red)">
-    <div style="font-size:13px;font-weight:700;color:#ff9e95;margin-bottom:10px;display:flex;align-items:center;gap:8px">
-      <i class="ti ti-tag" style="font-size:15px"></i> File Naming Convention — Name your file exactly as shown below before uploading
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px">
 
-      <div style="background:rgba(255,255,255,0.07);border-radius:var(--radius-sm);padding:12px 14px">
-        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:rgba(255,255,255,0.45);margin-bottom:6px">Paper</div>
-        <code style="font-size:13px;font-weight:700;color:#9FD1FF;letter-spacing:0.3px">EMKA2026_PAPER_Lastname_Institute.docx</code>
-        <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px">e.g. EMKA2026_PAPER_Sharma_FMMC.docx</div>
-      </div>
 
-      <div style="background:rgba(255,255,255,0.07);border-radius:var(--radius-sm);padding:12px 14px">
-        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:rgba(255,255,255,0.45);margin-bottom:6px">Poster</div>
-        <code style="font-size:13px;font-weight:700;color:#ffb3ae;letter-spacing:0.3px">EMKA2026_POSTER_Lastname_Institute.pptx</code>
-        <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px">e.g. EMKA2026_POSTER_Ravi_KMC.pptx</div>
+    <!-- ══ FILE NAMING CONVENTION ══ -->
+    <div style="background:var(--navy);border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:36px;border-left:4px solid var(--red)">
+      <div style="font-size:13px;font-weight:700;color:#ff9e95;margin-bottom:12px;display:flex;align-items:center;gap:8px">
+        <i class="ti ti-tag" style="font-size:15px"></i> File Naming Convention — Name your file exactly as shown before uploading
       </div>
-
-      <div style="background:rgba(255,255,255,0.07);border-radius:var(--radius-sm);padding:12px 14px">
-        <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:rgba(255,255,255,0.45);margin-bottom:6px">CPC</div>
-        <code style="font-size:13px;font-weight:700;color:#FFE08A;letter-spacing:0.3px">EMKA2026_CPC_Lastname_Institute.pptx</code>
-        <div style="font-size:11px;color:rgba(255,255,255,0.5);margin-top:6px">e.g. EMKA2026_CPC_Nair_SJMC.pptx</div>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px">
+        <div style="background:rgba(255,255,255,0.07);border-radius:var(--radius-sm);padding:12px 14px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:rgba(255,255,255,0.45);margin-bottom:6px">Free Paper</div>
+          <code style="font-size:12px;font-weight:700;color:#9FD1FF;letter-spacing:0.3px;display:block;margin-bottom:4px">EMKA2026_PAPER_Lastname_Institute.docx</code>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45)">e.g. EMKA2026_PAPER_Sharma_FMMC.docx</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border-radius:var(--radius-sm);padding:12px 14px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:rgba(255,255,255,0.45);margin-bottom:6px">Poster</div>
+          <code style="font-size:12px;font-weight:700;color:#ffb3ae;letter-spacing:0.3px;display:block;margin-bottom:4px">EMKA2026_POSTER_Lastname_Institute.pptx</code>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45)">e.g. EMKA2026_POSTER_Ravi_KMC.pptx</div>
+        </div>
+        <div style="background:rgba(255,255,255,0.07);border-radius:var(--radius-sm);padding:12px 14px">
+          <div style="font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:rgba(255,255,255,0.45);margin-bottom:6px">CPC</div>
+          <code style="font-size:12px;font-weight:700;color:#FFE08A;letter-spacing:0.3px;display:block;margin-bottom:4px">EMKA2026_CPC_Lastname_Institute.pptx</code>
+          <div style="font-size:11px;color:rgba(255,255,255,0.45)">e.g. EMKA2026_CPC_Nair_SJMC.pptx</div>
+        </div>
       </div>
- </div><!-- end format section -->
-    
+      <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,0.4);display:flex;gap:16px;flex-wrap:wrap">
+        <span><i class="ti ti-point" style="font-size:11px;vertical-align:-1px"></i> Underscores only, no spaces</span>
+        <span><i class="ti ti-point" style="font-size:11px;vertical-align:-1px"></i> Presenting author's last name</span>
+        <span><i class="ti ti-point" style="font-size:11px;vertical-align:-1px"></i> Institute abbreviation (FMMC, KMC, SJMC…)</span>
+        <span><i class="ti ti-point" style="font-size:11px;vertical-align:-1px"></i> All caps throughout</span>
+      </div>
     </div>
-    <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,0.45);display:flex;gap:16px;flex-wrap:wrap">
-      <span><i class="ti ti-point" style="font-size:11px;vertical-align:-1px"></i> Use underscores, no spaces</span>
-      <span><i class="ti ti-point" style="font-size:11px;vertical-align:-1px"></i> Presenting author's last name only</span>
-      <span><i class="ti ti-point" style="font-size:11px;vertical-align:-1px"></i> Institute = your college/hospital abbreviation</span>
-      <span><i class="ti ti-point" style="font-size:11px;vertical-align:-1px"></i> All caps throughout</span>
-    </div>
-  </div>
-</div>
-   
 
-    <!-- ── IMPORTANT NOTES ── -->
+
+    <!-- ══ IMPORTANT NOTES ══ -->
     <div style="background:var(--amber-light);border:0.5px solid rgba(212,160,23,0.3);border-radius:var(--radius-sm);padding:16px 20px;margin-bottom:36px;display:flex;gap:12px;align-items:flex-start">
       <i class="ti ti-alert-triangle" style="font-size:20px;color:var(--amber);flex-shrink:0;margin-top:2px"></i>
       <div style="font-size:13px;color:#5D4E0A;line-height:1.8">
@@ -991,10 +1212,11 @@ footer strong{color:#ff9e95}
       </div>
     </div>
 
-    <!-- ── GOOGLE FORM EMBED ── -->
+
+    <!-- ══ GOOGLE FORM ══ -->
     <div style="margin-bottom:12px">
       <h2 style="font-size:20px;font-weight:800;color:var(--navy);margin-bottom:4px">Submit Your Abstract</h2>
-      <p style="font-size:13px;color:var(--muted)">Fill the form below. Upload your manuscript (.docx) or presentation (.pptx) file within the form.</p>
+      <p style="font-size:13px;color:var(--muted)">Fill the form below and upload your manuscript (.docx) or presentation (.pptx) file within the form.</p>
     </div>
     <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden">
       <div style="background:var(--navy);padding:12px 20px;display:flex;align-items:center;gap:10px;border-bottom:2px solid var(--red)">
@@ -1002,13 +1224,8 @@ footer strong{color:#ff9e95}
         <span style="font-size:13px;font-weight:700;color:#fff">Abstract Submission Form</span>
         <span style="font-size:11px;color:rgba(255,255,255,0.4);margin-left:4px">Powered by Google Forms · Responses saved securely</span>
       </div>
-      <iframe
-        src="https://docs.google.com/forms/d/e/1FAIpQLSfIttBidRRURWCX9KwtiWMUJ5pdIw0MOqjTLvgbo8ocYpOFhA/viewform?embedded=true"
-        width="100%" height="1400"
-        frameborder="0" marginheight="0" marginwidth="0"
-        style="display:block;border:none">
-        Loading…
-      </iframe>
+      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfIttBidRRURWCX9KwtiWMUJ5pdIw0MOqjTLvgbo8ocYpOFhA/viewform?embedded=true"
+        width="100%" height="1400" frameborder="0" marginheight="0" marginwidth="0" style="display:block;border:none">Loading…</iframe>
     </div>
 
   </div><!-- end .section -->
@@ -1016,6 +1233,7 @@ footer strong{color:#ff9e95}
   <footer><strong>EM Karnataka 2026</strong> · abstracts@emkarnataka2026.in &nbsp;·&nbsp; 6th Annual State Conference · Father Muller Medical College, Mangaluru</footer>
 </div>
 <!-- ══ END ABSTRACTS PAGE ══ -->
+
 <!-- ══════════════════════════════════════════════════════════
      STAY PAGE
 ══════════════════════════════════════════════════════════ -->
@@ -1246,5 +1464,85 @@ function tick(){
 }
 tick();setInterval(tick,1000);
 </script>
+
+  <script>
+
+/* ── Collapsible competition rules ── */
+function toggleRule(id, btn) {
+  const panel = document.getElementById(id);
+  const icon  = btn.querySelector('.rule-icon');
+  const isOpen = panel.style.display === 'block';
+  panel.style.display = isOpen ? 'none' : 'block';
+  icon.style.transform = isOpen ? 'rotate(0deg)' : 'rotate(180deg)';
+}
+
+/* ── Mobile bottom nav ── */
+const BN_DIRECT = ['home','schedule','register','competitions'];
+const BN_MORE   = ['workshops','stay','updates','venue','contact'];
+
+function bnGo(page) {
+  closeMoreMenu();
+  showPage(page);
+  updateBottomNav(page);
+}
+
+function updateBottomNav(page) {
+  document.querySelectorAll('.bn-item').forEach(el => el.classList.remove('active'));
+  document.querySelectorAll('.bn-more-item').forEach(el => el.classList.remove('active-page'));
+  if (BN_DIRECT.includes(page)) {
+    const el = document.getElementById('bn-' + page);
+    if (el) el.classList.add('active');
+  } else {
+    const moreBtn = document.getElementById('bn-more-btn');
+    if (moreBtn) moreBtn.classList.add('active');
+    const moreItem = document.getElementById('bn-more-' + page);
+    if (moreItem) moreItem.classList.add('active-page');
+  }
+}
+
+function toggleMoreMenu() {
+  const menu     = document.getElementById('bn-more-menu');
+  const backdrop = document.getElementById('bn-backdrop');
+  const isOpen   = menu.classList.contains('open');
+  if (isOpen) { closeMoreMenu(); }
+  else {
+    menu.classList.add('open');
+    backdrop.classList.add('open');
+    document.getElementById('bn-more-btn').classList.add('active');
+  }
+}
+
+function closeMoreMenu() {
+  document.getElementById('bn-more-menu').classList.remove('open');
+  document.getElementById('bn-backdrop').classList.remove('open');
+}
+
+/* Keep bottom nav in sync with desktop nav clicks */
+const _origShowPage = showPage;
+showPage = function(p) { _origShowPage(p); updateBottomNav(p); };
+
+</script>
+  <div id="bn-backdrop" onclick="closeMoreMenu()"></div>
+
+<div id="bn-more-menu">
+  <div style="width:40px;height:4px;background:rgba(255,255,255,0.2);border-radius:2px;margin:0 auto 12px"></div>
+  <button class="bn-more-item" id="bn-more-workshops" onclick="bnGo('workshops')"><i class="ti ti-tool"></i> Workshops</button>
+  <button class="bn-more-item" id="bn-more-stay"      onclick="bnGo('stay')">     <i class="ti ti-bed"></i>  Stay</button>
+  <button class="bn-more-item" id="bn-more-updates"   onclick="bnGo('updates')">  <i class="ti ti-bell"></i> Updates</button>
+  <button class="bn-more-item" id="bn-more-venue"     onclick="bnGo('venue')">    <i class="ti ti-map-pin"></i> Venue</button>
+  <button class="bn-more-item" id="bn-more-contact"   onclick="bnGo('contact')">  <i class="ti ti-headset"></i> Contact</button>
+</div>
+
+<nav id="bottom-nav">
+  <div class="bn-inner">
+    <button class="bn-item active" id="bn-home"      onclick="bnGo('home')">     <i class="ti ti-home"></i>      Home</button>
+    <button class="bn-item"        id="bn-schedule"  onclick="bnGo('schedule')"> <i class="ti ti-layout-list"></i>Schedule</button>
+    <button class="bn-item"        id="bn-register"  onclick="bnGo('register')"  style="color:#ff9e95"><i class="ti ti-user-plus" style="font-size:22px;color:var(--red)"></i>Register</button>
+    <button class="bn-item"        id="bn-competitions" onclick="bnGo('competitions')"><i class="ti ti-file-text"></i>  Competitions</button>
+    <button class="bn-item"        id="bn-more-btn"  onclick="toggleMoreMenu()"> <i class="ti ti-dots"></i>       More</button>
+  </div>
+</nav>
+
+
 </body>
 </html>
