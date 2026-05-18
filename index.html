@@ -606,13 +606,28 @@ footer strong{color:var(--gold)}
 .nav-inner{grid-template-columns:1fr auto;height:auto;padding:10px 1rem;gap:8px}
   .nav-links{display:none}
   .form-grid{grid-template-columns:1fr}
-  .stat-banner{flex-direction:column;gap:0}
-  .stat-item{
-    border-right:none;
-    border-bottom:1px solid var(--border);
-    padding:14px 0;
-  }
-  .stat-item:last-child{border-bottom:none}
+  /* Replace the existing .stat-banner and .stat-item mobile rules */
+.stat-banner {
+  background: #1A2030;
+  border-top: 1px solid var(--gold-border);
+  border-bottom: 1px solid var(--gold-border);
+  display: flex;
+  align-items: stretch;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.stat-banner::-webkit-scrollbar { display: none; }
+
+.stat-item {
+  text-align: center;
+  padding: 14px 20px;
+  border-right: 1px solid var(--border);
+  color: var(--text);
+  flex-shrink: 0;        /* ← prevents squishing */
+  white-space: nowrap;   /* ← keeps text on one line */
+}
+.stat-item:last-child { border-right: none; }
   .carousel-btn{display:none}
   .comp-grid{grid-template-columns:1fr !important}
   .rule-panel-grid{grid-template-columns:1fr !important}
