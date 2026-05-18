@@ -3,684 +3,281 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>EM Karnataka 2026 — 6th Annual State Conference</title>
-<link rel="icon" type="image/jpeg" href="logos/emk.jpg" />
+<title>EM Karnataka 2026 — Emergency Medicine State Conference</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@2.47.0/tabler-icons.min.css" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <style>
+<style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 :root{
-  --gold:#0D9488;
-  --gold-dark:#0F766E;
-  --gold-mid:#14B8A6;
-  --gold-light:#F0FDFA;
-  --gold-border:rgba(13,148,136,0.25);
-  --gold-glow:rgba(13,148,136,0.12);
-
-  --midnight:#0F1117;
-  --midnight-2:#141820;
-  --midnight-3:#1A2030;
-  --midnight-4:#212840;
-  --midnight-5:#2A3250;
-
-  --text:#E2E8F0;
-  --text-muted:#7A8FA6;
-  --text-dim:rgba(226,232,240,0.55);
-  --border:rgba(13,148,136,0.15);
-  --border-subtle:rgba(255,255,255,0.06);
-
-  --bg:var(--midnight);
-  --white:#fff;
-  --radius:14px;
-  --radius-sm:8px;
-
-  --accent:var(--gold);
-  --accent-dark:var(--gold-dark);
-  --accent-light:var(--gold-light);
-  --accent-border:var(--gold-border);
+  --red:#C0392B;--red-dark:#922B21;--red-mid:#E74C3C;--red-light:#FDEDEC;
+  --red-border:rgba(192,57,43,0.2);
+  --navy:#1A252F;--navy-mid:#2C3E50;--navy-light:#EAF0F6;
+  --amber:#D4A017;--amber-light:#FEF9E7;
+  --text:#1a1a1a;--muted:#5a5a5a;--border:rgba(0,0,0,0.1);
+  --bg:#f8f7f7;--white:#fff;--radius:14px;--radius-sm:8px;
 }
+body{font-family:'Segoe UI',system-ui,sans-serif;background:var(--bg);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden}
 
-body{
-  font-family:'Inter',system-ui,sans-serif;
-  background:var(--midnight);
-  color:var(--text);
-  font-size:15px;
-  line-height:1.65;
-  overflow-x:hidden;
-}
-
-/* ── SCROLLBAR ── */
-::-webkit-scrollbar{width:5px}
-::-webkit-scrollbar-track{background:var(--midnight-2)}
-::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:3px}
-
-/* ══════════════════════════════════════════
-   NAV
-══════════════════════════════════════════ */
-nav{
-  background:var(--midnight-2);
-  position:relative;
-  top:0;
-  z-index:100;
-  border-bottom:1px solid var(--gold-border);
-  backdrop-filter:blur(12px);
-}
+/* ── NAV ── */
+nav{background:var(--navy);border-bottom:none;position:sticky;top:0;z-index:100}
 .nav-inner{
-  max-width:1200px;margin:auto;padding:0 1.5rem;
-  display:grid;
-  grid-template-columns:auto 1fr auto;
-  align-items:center;
-  gap:12px;
-  height:58px;
+  max-width:1100px;margin:auto;padding:10px 1.5rem;
+  display:flex;flex-direction:column;align-items:center;gap:8px;
 }
-.logo{font-size:17px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-img{height:36px;width:36px;object-fit:cover;border-radius:6px;flex-shrink:0;border:1px solid var(--gold-border)}
+.logo{font-size:17px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:10px}
+.logo-cross{width:28px;height:28px;background:var(--red);border-radius:5px;display:flex;align-items:center;justify-content:center;flex-shrink:0;position:relative}
+.logo-cross::before{content:'';position:absolute;width:14px;height:3px;background:#fff;border-radius:1px}
+.logo-cross::after{content:'';position:absolute;width:3px;height:14px;background:#fff;border-radius:1px}
 .logo-text{display:flex;flex-direction:column}
-.logo-main{font-size:14px;font-weight:700;var(--gold);line-height:1.1}
-.logo-sub{font-size:10px;font-weight:400;color:var(--text-muted);letter-spacing:0.3px;line-height:1.2}
+.logo-main{font-size:15px;font-weight:700;color:#fff;line-height:1.1}
+.logo-sub{font-size:10px;font-weight:400;color:rgba(255,255,255,0.5);letter-spacing:0.3px;line-height:1.2}
 
-.nav-links{display:flex;gap:2px;align-items:center;justify-content:center;flex-wrap:nowrap;overflow:hidden}
+/* Centered, larger nav links */
+.nav-links{display:flex;gap:4px;align-items:center;justify-content:center;flex-wrap:wrap}
 .nav-links button{
   background:none;border:none;cursor:pointer;
-  font-size:13px;color:var(--text-dim);
-  padding:7px 11px;border-radius:var(--radius-sm);
-  font-family:inherit;transition:all 0.15s;font-weight:500;white-space:nowrap;
+  font-size:15px;          /* ↑ was 13px */
+  color:rgba(255,255,255,0.75);
+  padding:8px 15px;        /* ↑ was 6px 11px */
+  border-radius:var(--radius-sm);font-family:inherit;transition:all 0.15s;
+  font-weight:500;
 }
-.nav-links button:hover{color:var(--gold);background:var(--gold-glow)}
-.nav-links button.active{background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-border)}
+.nav-links button:hover{background:rgba(255,255,255,0.08);color:#fff}
+.nav-links button.active{background:rgba(192,57,43,0.25);color:#ff9e95}
+.nav-cta{background:var(--red)!important;color:#fff!important;font-weight:700!important}
+.nav-cta:hover{background:var(--red-dark)!important;color:#fff!important}
 
-.nav-cta-btn{
-  background:var(--gold);color:var(--midnight);border:none;cursor:pointer;
-  font-size:13px;font-weight:700;font-family:inherit;
-  padding:9px 18px;border-radius:var(--radius-sm);
-  display:flex;align-items:center;gap:7px;
-  white-space:nowrap;flex-shrink:0;transition:all 0.18s;
-}
-.nav-cta-btn:hover{background:var(--gold-mid);transform:translateY(-1px);box-shadow:0 4px 16px rgba(212,160,23,0.3)}
-
-/* ── PAGES ── */
 .page{display:none}.page.active{display:block}
 
-/* ══════════════════════════════════════════
-   HERO
-══════════════════════════════════════════ */
-.hero{
-  position:relative;min-height:520px;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-  flex-direction:column;text-align:center;padding:90px 24px 70px;
-}
+/* ── HERO ── */
+.hero{position:relative;min-height:500px;overflow:hidden;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;padding:80px 24px 60px}
 .hero-bg{position:absolute;inset:0;background-size:cover;background-position:center;transition:opacity 1s}
-.hero-overlay{
-  position:absolute;inset:0;
- background:linear-gradient(160deg,rgba(8,9,13,0.94) 0%,rgba(14,16,24,0.88) 50%,rgba(5,20,22,0.75) 100%);
-}
-/* gold grid overlay */
-.hero-overlay::after{
-  content:'';position:absolute;inset:0;
-  background-image:
-    linear-gradient(rgba(212,160,23,0.04) 1px,transparent 1px),
-    linear-gradient(90deg,rgba(212,160,23,0.04) 1px,transparent 1px);
-  background-size:60px 60px;
-}
-.hero-content{position:relative;z-index:2;max-width:720px}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:6px;
-  background:rgba(13,148,136,0.12);
-  border:1px solid rgba(13,148,136,0.35);
-  border-radius:100px;padding:5px 16px;font-size:11px;
-  color:var(--gold);letter-spacing:1.2px;text-transform:uppercase;
-  margin-bottom:22px;animation:fadeUp 0.6s ease both;font-weight:600;
-}
-.hero h1{font-size:clamp(36px,5.5vw,62px);font-weight:900;color:#fff;line-height:1.05;margin-bottom:14px;animation:fadeUp 0.7s ease 0.1s both}
-.hero h1 em{font-style:italic;color:var(--gold);text-shadow:0 0 40px rgba(212,160,23,0.4)}
-.hero-sub{font-size:16px;color:var(--text-dim);max-width:520px;margin:0 auto 32px;font-weight:300;animation:fadeUp 0.7s ease 0.2s both}
-.hero-meta{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:34px;animation:fadeUp 0.7s ease 0.3s both}
-.hero-meta-item{
-  display:flex;align-items:center;gap:6px;font-size:13px;
-  color:rgba(240,238,216,0.85);
-  background:rgba(255,255,255,0.05);
-  padding:5px 13px;border-radius:100px;
-  border:0.5px solid rgba(212,160,23,0.2);
-}
-.hero-meta-item i{color:var(--gold);font-size:15px}
+.hero-overlay{position:absolute;inset:0;background:linear-gradient(160deg,rgba(10,15,20,0.92) 0%,rgba(26,37,47,0.85) 50%,rgba(144,30,20,0.7) 100%)}
+.hero-content{position:relative;z-index:2;max-width:700px}
+.hero-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(192,57,43,0.3);border:1px solid rgba(231,76,60,0.5);border-radius:100px;padding:5px 16px;font-size:12px;color:#ff9e95;letter-spacing:1px;text-transform:uppercase;margin-bottom:22px;animation:fadeUp 0.6s ease both}
+.hero h1{font-size:clamp(34px,5.5vw,58px);font-weight:800;color:#fff;line-height:1.1;margin-bottom:14px;animation:fadeUp 0.7s ease 0.1s both}
+.hero h1 em{font-style:italic;color:#ff9e95}
+.hero-sub{font-size:16px;color:rgba(255,255,255,0.82);max-width:520px;margin:0 auto 32px;font-weight:300;animation:fadeUp 0.7s ease 0.2s both}
+.hero-meta{display:flex;gap:16px;justify-content:center;flex-wrap:wrap;margin-bottom:34px;animation:fadeUp 0.7s ease 0.3s both}
+.hero-meta-item{display:flex;align-items:center;gap:6px;font-size:13px;color:rgba(255,255,255,0.88);background:rgba(255,255,255,0.08);padding:5px 12px;border-radius:100px;border:0.5px solid rgba(255,255,255,0.12)}
+.hero-meta-item i{color:#ff9e95;font-size:15px}
 .hero-btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;animation:fadeUp 0.7s ease 0.4s both}
-@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
-
-/* BUTTONS */
 .btn{display:inline-flex;align-items:center;gap:7px;padding:11px 22px;border-radius:var(--radius-sm);font-size:14px;font-weight:600;cursor:pointer;border:none;font-family:inherit;transition:all 0.18s}
-.btn-gold{background:var(--gold);color:var(--midnight)}
-.btn-gold:hover{background:var(--gold-mid);transform:translateY(-1px);box-shadow:0 4px 20px rgba(212,160,23,0.35)}
-.btn-outline{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.25)}
-.btn-outline:hover{background:rgba(255,255,255,0.07);transform:translateY(-1px)}
-.btn-outline-gold{background:transparent;color:var(--gold);border:1.5px solid var(--gold-border)}
-.btn-outline-gold:hover{background:var(--gold-glow);transform:translateY(-1px)}
-.btn-dark{background:var(--midnight-4);color:#fff;border:1px solid var(--border-subtle)}
-.btn-dark:hover{background:var(--midnight-5);transform:translateY(-1px)}
+.btn-red{background:var(--red);color:#fff}
+.btn-red:hover{background:var(--red-dark);transform:translateY(-1px)}
+.btn-white{background:#fff;color:var(--red)}
+.btn-white:hover{background:#fef0ef;transform:translateY(-1px)}
+.btn-navy{background:var(--navy);color:#fff}
+.btn-navy:hover{background:#111820;transform:translateY(-1px)}
+.btn-outline-white{background:transparent;color:#fff;border:1.5px solid rgba(255,255,255,0.4)}
+.btn-outline-white:hover{background:rgba(255,255,255,0.1);transform:translateY(-1px)}
+.btn-amber{background:var(--amber);color:#fff}
+.btn-amber:hover{background:#b8890e;transform:translateY(-1px)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
 
-/* HERO DOT NAV */
-.hi-dot{width:6px;height:6px;border-radius:50%;background:rgba(13,148,136,0.3);border:none;cursor:pointer;padding:0;transition:all 0.2s}
-.hi-dot.active{background:var(--gold);width:18px;border-radius:3px}
-
-/* ══════════════════════════════════════════
-   COUNTDOWN BAR
-══════════════════════════════════════════ */
-.countdown-bar{
-  background:var(--midnight-3);
-  padding:11px 1.5rem;text-align:center;
-  border-bottom:1px solid var(--gold-border);
-}
+/* ── COUNTDOWN ── */
+.countdown-bar{background:var(--navy-mid);padding:11px 1.5rem;text-align:center;border-bottom:2px solid var(--red)}
 .countdown-inner{max-width:560px;margin:auto;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
-.countdown-label{font-size:11px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.8px}
+.countdown-label{font-size:11px;color:rgba(255,255,255,0.7);font-weight:700;text-transform:uppercase;letter-spacing:0.8px}
 .countdown-units{display:flex;gap:10px}
-.countdown-unit{
-  text-align:center;
-  background:rgba(212,160,23,0.08);
-  border:1px solid var(--gold-border);
-  border-radius:8px;padding:4px 10px;min-width:46px;
-}
-.countdown-num{font-size:22px;font-weight:800;color:var(--gold);display:block;line-height:1.1}
-.countdown-lbl{font-size:9px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px}
+.countdown-unit{text-align:center;background:rgba(255,255,255,0.08);border:0.5px solid rgba(255,255,255,0.15);border-radius:8px;padding:4px 10px;min-width:46px}
+.countdown-num{font-size:22px;font-weight:800;color:#ff9e95;display:block;line-height:1.1}
+.countdown-lbl{font-size:9px;color:rgba(255,255,255,0.5);text-transform:uppercase;letter-spacing:0.8px}
 
-/* ══════════════════════════════════════════
-   STAT BANNER
-══════════════════════════════════════════ */
-.stat-banner{
-  background:#1A2030;
-  border-top:1px solid var(--gold-border);
-  border-bottom:1px solid var(--gold-border);
-}
-.stat-item{text-align:center;padding:0 28px;border-right:1px solid var(--border);color:var(--text)}
+/* ── STAT BANNER ── */
+.stat-banner{background:var(--red);padding:28px 24px;display:flex;gap:0;justify-content:center;flex-wrap:wrap}
+.stat-item{text-align:center;padding:0 32px;border-right:1px solid rgba(255,255,255,0.2);color:#fff}
 .stat-item:last-child{border-right:none}
-.stat-num{font-size:32px;font-weight:800;display:block;color:var(--gold)}
-.stat-lbl{font-size:11px;opacity:0.65;text-transform:uppercase;letter-spacing:0.6px;font-weight:600;color:var(--text)}
-    
-/* ══════════════════════════════════════════
-   SECTIONS
-══════════════════════════════════════════ */
-.section{max-width:1100px;margin:0 auto;padding:60px 1.5rem}
-.section-title{font-size:28px;font-weight:800;color:#fff;margin-bottom:6px}
-.section-sub{color:var(--text-muted);font-size:14px;margin-bottom:36px}
+.stat-num{font-size:34px;font-weight:800;display:block;color:#fff}
+.stat-lbl{font-size:11px;opacity:0.75;text-transform:uppercase;letter-spacing:0.6px}
 
-/* PAGE HEADER */
-.page-header{padding:48px 1.5rem;color:#fff;position:relative;overflow:hidden}
-.page-header-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--midnight) 0%,var(--midnight-3) 60%,rgba(5,20,22,0.9) 100%)}
-.page-header-bg::after{
-  content:'';position:absolute;inset:0;
-  background-image:linear-gradient(rgba(212,160,23,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(212,160,23,0.04) 1px,transparent 1px);
-  background-size:50px 50px;
-}
-.page-header-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.06}
-.page-header-content{position:relative;z-index:1;max-width:1100px;margin:auto}
-.page-header-accent{display:inline-block;width:40px;height:3px;background:var(--gold);border-radius:2px;margin-bottom:14px}
-.page-header h2{font-size:32px;font-weight:800;color:var(--gold);margin-bottom:6px}
-.page-header p{opacity:0.6;font-size:14px;color:var(--text)}
-
-/* CARDS */
-.img-card{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:var(--midnight-3);transition:transform 0.2s,box-shadow 0.2s}
-.img-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(212,160,23,0.12)}
-.img-card-img{width:100%;height:160px;object-fit:cover;display:block}
-.img-card-tag{
-  display:inline-block;background:var(--gold-glow);color:var(--gold);
-  font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;
-  margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;
-  border:1px solid var(--gold-border);
-}
-
-/* PARTNER / SPONSOR */
-.partners-section{background:var(--midnight-2);padding:48px 24px;text-align:center;border-top:1px solid var(--border)}
-.partners-section h2{font-size:24px;font-weight:800;color:#fff;margin-bottom:8px}
-.partners-section .sub{font-size:13px;color:var(--text-muted);margin-bottom:28px}
+/* ── ACADEMIC PARTNERS ── */
+.partners-section{background:#f0f2f5;padding:48px 24px;text-align:center}
+.partners-section h2{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.partners-section .sub{font-size:13px;color:var(--muted);margin-bottom:28px}
 .carousel-wrap{position:relative;max-width:960px;margin:0 auto}
-.carousel-track{display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;scrollbar-width:none;padding:8px 4px;justify-content:center;flex-wrap:wrap}
+.carousel-track{
+  display:flex;gap:16px;overflow-x:auto;scroll-behavior:smooth;
+  scrollbar-width:none;padding:8px 4px;
+  justify-content:center;flex-wrap:wrap;
+}
 .carousel-track::-webkit-scrollbar{display:none}
 .logo-card{
-  background:var(--midnight-3);border-radius:12px;padding:18px 22px;
+  background:#fff;border-radius:12px;padding:18px 22px;
   min-width:140px;max-width:160px;
   display:flex;align-items:center;justify-content:center;
-  border:1px solid var(--border);
-  box-shadow:0 2px 8px rgba(0,0,0,0.3);flex-shrink:0;
-  transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;
+  border:1px solid rgba(0,0,0,0.08);
+  box-shadow:0 2px 8px rgba(0,0,0,0.06);
+  flex-shrink:0;
+  transition:transform 0.2s,box-shadow 0.2s;
 }
-.logo-card:hover{transform:translateY(-3px);box-shadow:0 6px 20px rgba(212,160,23,0.15);border-color:var(--gold-border)}
+.logo-card:hover{transform:translateY(-3px);box-shadow:0 6px 18px rgba(0,0,0,0.1)}
 .logo-card img{max-height:80px;max-width:120px;object-fit:contain;display:block}
-.logo-placeholder{width:110px;height:70px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:var(--text-muted);background:var(--midnight-4);text-align:center;padding:8px;line-height:1.3}
-.carousel-btn{position:absolute;top:50%;transform:translateY(-50%);background:var(--midnight-3);border:1px solid var(--border);border-radius:50%;width:38px;height:38px;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,0.3);z-index:2;color:var(--text);transition:all 0.15s}
-.carousel-btn:hover{background:var(--gold);color:var(--midnight);border-color:var(--gold)}
-.carousel-btn.prev{left:-22px}.carousel-btn.next{right:-22px}
+/* fallback placeholder when no image */
+.logo-placeholder{
+  width:110px;height:70px;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:11px;font-weight:700;color:var(--muted);
+  background:var(--navy-light);text-align:center;padding:8px;line-height:1.3;
+}
+.carousel-btn{
+  position:absolute;top:50%;transform:translateY(-50%);
+  background:#fff;border:1px solid rgba(0,0,0,0.15);border-radius:50%;
+  width:38px;height:38px;cursor:pointer;font-size:20px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 2px 8px rgba(0,0,0,0.12);z-index:2;
+  color:var(--navy);transition:background 0.15s;
+}
+.carousel-btn:hover{background:var(--red);color:#fff;border-color:var(--red)}
+.carousel-btn.prev{left:-22px}
+.carousel-btn.next{right:-22px}
 
-.sponsors-section{background:var(--midnight-3);padding:48px 24px;text-align:center;border-top:1px solid var(--border)}
-.sponsors-section h2{font-size:24px;font-weight:800;color:#fff;margin-bottom:8px}
-.sponsors-section .sub{font-size:13px;color:var(--text-muted);margin-bottom:28px}
+/* ── SPONSORS ── */
+.sponsors-section{background:#fff;padding:48px 24px;text-align:center;border-top:1px solid var(--border)}
+.sponsors-section h2{font-size:24px;font-weight:800;color:var(--navy);margin-bottom:8px}
+.sponsors-section .sub{font-size:13px;color:var(--muted);margin-bottom:28px}
 .sponsors-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto}
 .sponsor-card{
-  background:var(--midnight-4);border-radius:14px;padding:24px 32px;
-  border:1px solid var(--border);
+  background:#fff;border-radius:14px;padding:24px 32px;
+  border:1.5px solid rgba(0,0,0,0.08);
   min-width:180px;max-width:220px;
   display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;
-  box-shadow:0 2px 12px rgba(0,0,0,0.3);
-  transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  transition:transform 0.2s,box-shadow 0.2s;
 }
-.sponsor-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(212,160,23,0.15);border-color:var(--gold-mid)}
+.sponsor-card:hover{transform:translateY(-4px);box-shadow:0 8px 24px rgba(192,57,43,0.12);border-color:var(--red-mid)}
 .sponsor-card img{max-height:90px;max-width:160px;object-fit:contain}
-.sponsor-card .sponsor-name{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;text-align:center}
+.sponsor-card .sponsor-name{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px;text-align:center}
 .sponsor-tier-badge{font-size:9px;font-weight:700;padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:0.5px}
-.tier-gold{background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-border)}
-.tier-silver{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.1)}
-.tier-bronze{background:rgba(180,100,30,0.15);color:#CD7F32;border:1px solid rgba(205,127,50,0.2)}
+.tier-gold{background:#FEF9E7;color:#9B7A0E;border:1px solid rgba(212,160,23,0.3)}
+.tier-silver{background:var(--navy-light);color:var(--navy);border:1px solid rgba(44,62,80,0.2)}
+.tier-bronze{background:#FFF0E6;color:#8B4000;border:1px solid rgba(139,64,0,0.2)}
 
-/* ══════════════════════════════════════════
-   SCHEDULE
-══════════════════════════════════════════ */
+/* ── SECTION ── */
+.section{max-width:1100px;margin:0 auto;padding:60px 1.5rem}
+.section-title{font-size:28px;font-weight:800;color:var(--navy);margin-bottom:6px}
+.section-sub{color:var(--muted);font-size:14px;margin-bottom:36px}
+
+.img-card{border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border);background:var(--white);transition:transform 0.2s,box-shadow 0.2s}
+.img-card:hover{transform:translateY(-3px);box-shadow:0 8px 24px rgba(192,57,43,0.1)}
+.img-card-img{width:100%;height:160px;object-fit:cover;display:block}
+.img-card-tag{display:inline-block;background:var(--red-light);color:var(--red);font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px}
+
+.page-header{padding:40px 1.5rem;color:#fff;position:relative;overflow:hidden}
+.page-header-bg{position:absolute;inset:0;background:linear-gradient(135deg,var(--navy) 0%,var(--navy-mid) 60%,var(--red-dark) 100%)}
+.page-header-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.1}
+.page-header-content{position:relative;z-index:1;max-width:1100px;margin:auto}
+.page-header h2{font-size:30px;font-weight:800;margin-bottom:6px}
+.page-header p{opacity:0.75;font-size:14px}
+.page-header-accent{display:inline-block;width:40px;height:3px;background:var(--red);border-radius:2px;margin-bottom:14px}
+
 .tab-row{display:flex;gap:8px;margin-bottom:20px;flex-wrap:wrap}
-.tab-btn{
-  padding:8px 16px;border-radius:var(--radius-sm);
-  border:1px solid var(--border);
-  background:var(--midnight-3);
-  font-size:13px;cursor:pointer;font-family:inherit;
-  color:var(--text-muted);font-weight:500;transition:all 0.15s;
-}
-.tab-btn:hover{border-color:var(--gold-border);color:var(--gold)}
-.tab-btn.active{background:var(--gold);color:var(--midnight);border-color:var(--gold);font-weight:700}
+.tab-btn{padding:8px 16px;border-radius:var(--radius-sm);border:1.5px solid var(--border);background:var(--white);font-size:13px;cursor:pointer;font-family:inherit;color:var(--muted);font-weight:500;transition:all 0.15s}
+.tab-btn.active{background:var(--red);color:#fff;border-color:var(--red)}
 .sched-day{display:none}.sched-day.active{display:block}
-.sched-box{background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem}
-.sched-item{display:flex;gap:14px;padding:13px 0;border-bottom:0.5px solid var(--border-subtle);align-items:flex-start}
+.sched-item{display:flex;gap:14px;padding:13px 0;border-bottom:0.5px solid var(--border);align-items:flex-start}
 .sched-item:last-child{border-bottom:none}
-.sched-time{font-size:11px;color:var(--gold);font-weight:700;min-width:82px;padding-top:3px}
+.sched-time{font-size:11px;color:var(--red);font-weight:700;min-width:82px;padding-top:3px}
 .stag{display:inline-block;padding:2px 9px;border-radius:100px;font-size:10px;font-weight:700;margin-bottom:4px;letter-spacing:0.3px}
-.stag-ws{background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-border)}
-.stag-kn{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.8);border:1px solid var(--border-subtle)}
-.stag-se{background:rgba(212,160,23,0.08);color:var(--gold-mid)}
-.stag-br{background:rgba(255,255,255,0.04);color:var(--text-muted)}
-.sched-item-title{font-size:14px;font-weight:600;color:var(--text)}
-.sched-item-sub{font-size:12px;color:var(--text-muted)}
+.stag-ws{background:#FEF9E7;color:#9B7A0E}
+.stag-kn{background:var(--navy-light);color:var(--navy)}
+.stag-se{background:var(--red-light);color:var(--red)}
+.stag-br{background:#F1EFE8;color:#5F5E5A}
 
-/* ══════════════════════════════════════════
-   REGISTRATION TIERS
-══════════════════════════════════════════ */
 .tier-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:36px}
-.tier{
-  background:var(--midnight-3);border:1px solid var(--border);
-  border-radius:var(--radius);padding:1.5rem;
-  position:relative;transition:all 0.2s;cursor:pointer;
-}
-.tier:hover{border-color:var(--gold-mid);transform:translateY(-2px);box-shadow:0 6px 24px rgba(212,160,23,0.12)}
-.tier.selected{border:2px solid var(--gold);background:rgba(212,160,23,0.06)}
-.tier-badge{
-  position:absolute;top:-10px;left:50%;transform:translateX(-50%);
-  background:var(--gold);color:var(--midnight);
-  font-size:10px;padding:3px 12px;border-radius:100px;font-weight:700;white-space:nowrap;
-}
-.tier-name{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;font-weight:600}
-.tier-price{font-size:32px;font-weight:800;color:#fff;margin-bottom:2px}
-.tier-price span{font-size:14px;font-weight:400;color:var(--text-muted)}
-.tier-note{font-size:11px;color:var(--text-muted);margin-bottom:14px}
+.tier{background:var(--white);border:1.5px solid var(--border);border-radius:var(--radius);padding:1.5rem;position:relative;transition:all 0.2s;cursor:pointer}
+.tier:hover{border-color:var(--red-mid);transform:translateY(-2px);box-shadow:0 6px 20px rgba(192,57,43,0.1)}
+.tier.selected{border:2px solid var(--red);background:#fffafa}
+.tier-badge{position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:var(--red);color:#fff;font-size:10px;padding:3px 12px;border-radius:100px;font-weight:700;white-space:nowrap}
+.tier-name{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:4px;font-weight:600}
+.tier-price{font-size:32px;font-weight:800;color:var(--text);margin-bottom:2px}
+.tier-price span{font-size:14px;font-weight:400;color:var(--muted)}
+.tier-note{font-size:11px;color:var(--muted);margin-bottom:14px}
 .tier-features{list-style:none;margin-bottom:18px}
-.tier-features li{font-size:12px;padding:3px 0;display:flex;align-items:flex-start;gap:6px;color:var(--text)}
-.tier-features li i{color:var(--gold);font-size:14px;margin-top:1px;flex-shrink:0}
+.tier-features li{font-size:12px;padding:3px 0;display:flex;align-items:flex-start;gap:6px}
+.tier-features li i{color:var(--red-mid);font-size:14px;margin-top:1px;flex-shrink:0}
 
-/* FORM */
-.form-card{background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:2rem;max-width:720px}
+.form-card{background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:2rem;max-width:720px}
 .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px}
 .fg{display:flex;flex-direction:column;gap:5px}
 .fg.full{grid-column:1/-1}
-label{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px}
-input,select,textarea{
-  padding:9px 12px;
-  border:1px solid var(--border);
-  border-radius:var(--radius-sm);
-  font-size:14px;font-family:inherit;
-  color:var(--text);
-  background:var(--midnight-4);
-  width:100%;transition:border 0.15s;outline:none;
-}
-input:focus,select:focus,textarea:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,160,23,0.1)}
-input::placeholder,textarea::placeholder{color:var(--text-muted)}
-select option{background:var(--midnight-4)}
+label{font-size:11px;font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:0.6px}
+input,select,textarea{padding:9px 12px;border:1.5px solid var(--border);border-radius:var(--radius-sm);font-size:14px;font-family:inherit;color:var(--text);background:var(--white);width:100%;transition:border 0.15s;outline:none}
+input:focus,select:focus,textarea:focus{border-color:var(--red);box-shadow:0 0 0 3px rgba(192,57,43,0.08)}
 textarea{resize:vertical;min-height:90px}
 
-.success-msg{
-  background:rgba(212,160,23,0.1);border:1px solid var(--gold-border);
-  border-radius:var(--radius-sm);padding:13px 16px;font-size:14px;
-  color:var(--gold);display:flex;align-items:center;gap:10px;margin-top:16px;font-weight:500;
-}
+.topic-pill{display:inline-flex;align-items:center;gap:5px;background:var(--red-light);color:var(--red);font-size:12px;padding:4px 12px;border-radius:100px;cursor:pointer;transition:all 0.15s;border:1px solid transparent;font-weight:500}
+.topic-pill:hover,.topic-pill.sel{background:var(--red);color:#fff}
+
+.success-msg{background:#FDEDEC;border:1px solid var(--red-mid);border-radius:var(--radius-sm);padding:13px 16px;font-size:14px;color:var(--red);display:flex;align-items:center;gap:10px;margin-top:16px;font-weight:500}
 .hidden{display:none}
 
-/* ══════════════════════════════════════════
-   SPEAKER CARDS
-══════════════════════════════════════════ */
-.speaker-card{
-  background:var(--midnight-3);border:1px solid var(--border);
-  border-radius:var(--radius);overflow:hidden;text-align:center;
-  transition:transform 0.2s,border-color 0.2s;
-}
-.speaker-card:hover{transform:translateY(-3px);border-color:var(--gold-border)}
+.speaker-card{background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden;text-align:center;transition:transform 0.2s}
+.speaker-card:hover{transform:translateY(-3px)}
 
-/* ══════════════════════════════════════════
-   COMPETITION CARDS — DROPDOWN
-══════════════════════════════════════════ */
-.comp-card{
-  background:var(--midnight-3);
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  overflow:hidden;
-  transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;
-}
-.comp-card:hover{transform:translateY(-3px);box-shadow:0 8px 32px rgba(212,160,23,0.1);border-color:var(--gold-border)}
-.comp-card-header{padding:22px 24px;color:#fff;cursor:pointer;display:flex;align-items:flex-start;justify-content:space-between;gap:12px;user-select:none}
-.comp-card-header-left{display:flex;flex-direction:column;gap:14px}
-.comp-card-icon{width:44px;height:44px;background:rgba(255,255,255,0.1);border-radius:10px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.comp-card-toggle{
-  width:32px;height:32px;flex-shrink:0;
-  background:rgba(255,255,255,0.1);border-radius:50%;
-  display:flex;align-items:center;justify-content:center;
-  transition:transform 0.3s,background 0.2s;margin-top:2px;
-}
-.comp-card.open .comp-card-toggle{transform:rotate(180deg);background:rgba(212,160,23,0.2)}
-.comp-card-toggle i{font-size:16px;color:rgba(255,255,255,0.8)}
-.comp-card-body{
-  display:none;
-  padding:22px 24px;
-  border-top:1px solid rgba(255,255,255,0.08);
-  background:var(--midnight-4);
-}
-.comp-card.open .comp-card-body{display:block;animation:slideDown 0.25s ease}
-@keyframes slideDown{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:translateY(0)}}
-
-/* INFO ROWS inside comp body */
-.comp-info-row{
-  font-size:12px;color:var(--text);
-  display:flex;align-items:flex-start;gap:8px;
-  padding:9px 11px;background:rgba(255,255,255,0.04);
-  border-radius:var(--radius-sm);line-height:1.6;
-}
-.comp-info-row i{font-size:13px;flex-shrink:0;margin-top:1px}
-.award-badge{
-  display:flex;align-items:center;gap:8px;
-  background:var(--gold-glow);border-radius:var(--radius-sm);
-  padding:10px 12px;font-size:12px;color:var(--gold);font-weight:600;
-  border:1px solid var(--gold-border);margin-top:12px;
-}
-.comp-tag{display:inline-flex;padding:2px 10px;border-radius:100px;font-size:11px;font-weight:600;border:1px solid}
-.comp-tag-gold{background:var(--gold-glow);color:var(--gold);border-color:var(--gold-border)}
-.comp-tag-dim{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border-color:rgba(255,255,255,0.1)}
-
-/* ══════════════════════════════════════════
-   RULES COLLAPSIBLE
-══════════════════════════════════════════ */
-.rule-block{border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:12px;background:var(--midnight-3)}
-.rule-btn{
-  width:100%;background:var(--midnight-3);border:none;cursor:pointer;
-  padding:18px 22px;display:flex;align-items:center;justify-content:space-between;
-  font-family:inherit;transition:background 0.15s;
-}
-.rule-btn:hover{background:var(--midnight-4)}
-.rule-icon{font-size:18px;color:var(--text-muted);transition:transform 0.25s;flex-shrink:0}
-.rule-panel{display:none;border-top:1px solid var(--border);padding:24px 22px;display:none}
-.rule-panel.open{display:block;animation:slideDown 0.25s ease}
-.rule-panel-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
-.rule-num{color:var(--gold);font-weight:700;flex-shrink:0}
-.score-row{background:rgba(255,255,255,0.04);border-radius:var(--radius-sm);padding:10px 12px;margin-bottom:8px}
-.score-row-top{display:flex;justify-content:space-between;align-items:center;margin-bottom:3px}
-.score-pts{font-size:13px;font-weight:800;color:var(--gold)}
-
-/* ══════════════════════════════════════════
-   UPDATES
-══════════════════════════════════════════ */
-.update-item{display:flex;gap:14px;padding:16px 0;border-bottom:0.5px solid var(--border-subtle);align-items:flex-start}
+.update-item{display:flex;gap:14px;padding:16px 0;border-bottom:0.5px solid var(--border);align-items:flex-start}
 .update-item:last-child{border-bottom:none}
-.update-dot{width:10px;height:10px;border-radius:50%;background:var(--gold);flex-shrink:0;margin-top:4px}
+.update-dot{width:10px;height:10px;border-radius:50%;background:var(--red);flex-shrink:0;margin-top:4px}
 .update-line{width:1.5px;background:var(--border);flex:1;margin-top:4px;min-height:20px}
 
-/* ══════════════════════════════════════════
-   TOPIC PILLS
-══════════════════════════════════════════ */
-.topic-pill{
-  display:inline-flex;align-items:center;gap:5px;
-  background:rgba(212,160,23,0.1);color:var(--gold);
-  font-size:12px;padding:4px 12px;border-radius:100px;
-  cursor:pointer;transition:all 0.15s;border:1px solid var(--gold-border);font-weight:500;
-}
-.topic-pill:hover,.topic-pill.sel{background:var(--gold);color:var(--midnight)}
+.word-count-bar{height:3px;border-radius:2px;background:var(--red-light);margin-top:4px;transition:all 0.3s;overflow:hidden}
+.word-count-fill{height:100%;background:var(--red-mid);border-radius:2px;transition:width 0.3s}
 
-/* ══════════════════════════════════════════
-   INFO / ALERT BOXES
-══════════════════════════════════════════ */
-.info-box{
-  background:var(--gold-glow);border:1px solid var(--gold-border);
-  border-radius:var(--radius-sm);padding:13px 16px;
-  font-size:13px;color:var(--gold);display:flex;gap:10px;align-items:flex-start;
-}
-.info-box i{font-size:17px;flex-shrink:0;margin-top:1px}
-.info-box strong{color:var(--gold-mid)}
+.hi-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,0.3);border:none;cursor:pointer;padding:0;transition:all 0.2s}
+.hi-dot.active{background:#ff9e95;width:18px;border-radius:3px}
 
-.dark-box{background:var(--midnight-4);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:13px 16px}
+footer{background:var(--navy);color:rgba(255,255,255,0.6);text-align:center;padding:36px 1.5rem;font-size:13px}
+footer strong{color:#ff9e95}
 
-/* ══════════════════════════════════════════
-   DEADLINE STRIP (competitions)
-══════════════════════════════════════════ */
-.deadline-card{
-  background:var(--midnight-3);border:1px solid var(--border);
-  border-radius:var(--radius);padding:1.25rem;text-align:center;
-}
-.deadline-card i{font-size:26px;color:var(--gold);display:block;margin-bottom:8px}
-.deadline-card .dl-label{font-size:11px;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
-.deadline-card .dl-val{font-size:14px;font-weight:700;color:#fff}
-
-/* STEP BAR */
-.step-bar{display:flex;gap:0;margin-bottom:40px;overflow:hidden;border-radius:var(--radius);border:1px solid var(--border)}
-.step{flex:1;padding:14px 10px;text-align:center;border-right:1px solid var(--border)}
-.step:last-child{border-right:none}
-.step-num{width:28px;height:28px;border-radius:50%;font-size:12px;font-weight:700;display:flex;align-items:center;justify-content:center;margin:0 auto 6px}
-.step.done{background:var(--gold-glow)}
-.step.done .step-num{background:var(--gold);color:var(--midnight)}
-.step.done .step-lbl{font-size:11px;font-weight:600;color:var(--gold)}
-.step.pending{background:var(--midnight-3)}
-.step.pending .step-num{background:rgba(255,255,255,0.06);color:var(--text-muted)}
-.step.pending .step-lbl{font-size:11px;font-weight:600;color:var(--text-muted)}
-
-/* ══════════════════════════════════════════
-   FILE FORMAT BOX
-══════════════════════════════════════════ */
-.file-fmt-card{background:rgba(255,255,255,0.05);border:1px solid var(--border-subtle);border-radius:var(--radius-sm);padding:20px}
-.file-fmt-icon-wrap{width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.file-fmt-tag{display:inline-flex;padding:3px 10px;border-radius:100px;font-size:11px;font-weight:700;margin-bottom:14px}
-.file-fmt-li{font-size:11px;color:rgba(255,255,255,0.65);display:flex;gap:6px;line-height:1.5}
-.file-fmt-li-no i{color:rgba(255,80,60,0.7)}
-.file-fmt-li-yes i{color:rgba(255,255,255,0.35)}
-
-.file-naming-box{background:var(--midnight-3);border-radius:var(--radius-sm);padding:18px 20px;margin-bottom:36px;border-left:3px solid var(--gold)}
-.fname-row{background:rgba(255,255,255,0.06);border-radius:var(--radius-sm);padding:12px 14px}
-.fname-label{font-size:10px;text-transform:uppercase;letter-spacing:0.6px;color:rgba(255,255,255,0.4);margin-bottom:6px}
-.fname-code{font-size:12px;font-weight:700;letter-spacing:0.3px;display:block;margin-bottom:4px;font-family:monospace}
-.fname-eg{font-size:11px;color:rgba(255,255,255,0.4)}
-
-/* ══════════════════════════════════════════
-   STAY / ACCOMMODATION
-══════════════════════════════════════════ */
-.hotel-card{background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
-.hotel-card:hover .hotel-img{transform:scale(1.03)}
-.hotel-img{width:100%;height:200px;object-fit:cover;display:block;transition:transform 0.4s}
-.hotel-img-wrap{overflow:hidden;position:relative}
-
-/* ══════════════════════════════════════════
-   REACH CARDS
-══════════════════════════════════════════ */
-.reach-card{background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem}
-.reach-icon{width:38px;height:38px;border-radius:var(--radius-sm);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;margin-bottom:10px;border:1px solid var(--gold-border)}
-.reach-icon i{font-size:18px;color:var(--gold)}
-
-/* ══════════════════════════════════════════
-   CONTACT CARDS
-══════════════════════════════════════════ */
-.contact-card{background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start}
-.contact-icon{width:38px;height:38px;border-radius:var(--radius-sm);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--gold-border)}
-.contact-icon i{font-size:18px;color:var(--gold)}
-
-/* ══════════════════════════════════════════
-   FOOTER
-══════════════════════════════════════════ */
-footer{
-  background:var(--midnight-2);
-  color:var(--text-muted);text-align:center;
-  padding:36px 1.5rem;font-size:13px;
-  border-top:1px solid var(--border);
-}
-footer strong{color:var(--gold)}
-
-/* ══════════════════════════════════════════
-   WORKSHOP CARDS
-══════════════════════════════════════════ */
-.ws-card{background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s}
-.ws-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(212,160,23,0.1);border-color:var(--gold-border)}
-.ws-card-header{padding:20px;color:#fff}
-.ws-card-body{padding:16px}
-.ws-badge{display:inline-flex;padding:2px 9px;border-radius:100px;font-size:11px;font-weight:600;gap:4px}
-.ws-badge-gold{background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-border)}
-.ws-badge-dim{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid var(--border-subtle)}
-.ws-meta{font-size:11px;color:var(--text-muted);display:flex;flex-direction:column;gap:4px}
-.ws-meta span i{vertical-align:-2px;color:var(--gold)}
-
-/* ══════════════════════════════════════════
-   MOBILE BOTTOM NAV — FIXED OVERLAP
-══════════════════════════════════════════ */
-#bottom-nav{
-  display:none;
-  position:fixed;bottom:0;left:0;right:0;z-index:200;
-  background:var(--midnight-2);
-  border-top:1px solid var(--gold-border);
-  padding:8px 0 env(safe-area-inset-bottom,10px);
-  box-shadow:0 -4px 20px rgba(0,0,0,0.6);
-}
-.bn-inner{
-  display:flex;justify-content:space-around;align-items:stretch;
-  max-width:600px;margin:0 auto;
-}
-.bn-item{
-  flex:1;display:flex;flex-direction:column;align-items:center;
-  justify-content:center;gap:3px;padding:6px 4px;
-  background:none;border:none;cursor:pointer;font-family:inherit;
-  color:rgba(226,232,240,0.35);font-size:9px;font-weight:600;
-  letter-spacing:0.3px;text-transform:uppercase;transition:color 0.15s;
-  -webkit-tap-highlight-color:transparent;position:relative;
-}
-.bn-item i{font-size:20px;line-height:1;transition:color 0.15s,transform 0.15s}
-.bn-item.active{color:var(--gold)}
-.bn-item.active i{color:var(--gold);transform:translateY(-1px)}
-.bn-item.active::before{
-  content:'';position:absolute;top:0;left:50%;
-  transform:translateX(-50%);width:24px;height:2px;
-  background:var(--gold);border-radius:0 0 2px 2px;
-}
-#bn-more-menu{
-  display:none;
-  position:fixed;bottom:0;left:0;right:0;z-index:199;
-  background:var(--midnight-3);
-  border-top:1px solid var(--gold-border);
-  box-shadow:0 -8px 32px rgba(0,0,0,0.7);
-  padding:16px 0 calc(env(safe-area-inset-bottom,10px) + 65px);
-  border-radius:20px 20px 0 0;
-}
-#bn-more-menu.open{display:block;animation:slideUpMenu 0.22s ease}
-@keyframes slideUpMenu{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
-.bn-more-item{
-  display:flex;align-items:center;gap:14px;padding:14px 28px;
-  color:rgba(226,232,240,0.75);font-size:15px;font-weight:500;
-  cursor:pointer;border:none;background:none;width:100%;
-  font-family:inherit;transition:background 0.12s;
-  -webkit-tap-highlight-color:transparent;
-}
-.bn-more-item i{font-size:20px;color:var(--gold);width:24px;flex-shrink:0}
-.bn-more-item:hover,.bn-more-item:active{background:rgba(13,148,136,0.08)}
-.bn-more-item.active-page{color:var(--gold);background:var(--gold-glow)}
-#bn-backdrop{display:none;position:fixed;inset:0;z-index:198;background:rgba(0,0,0,0.65)}
-#bn-backdrop.open{display:block}
-
-/* ══════════════════════════════════════════
-   RESPONSIVE
-══════════════════════════════════════════ */
-@media(max-width:768px){
-  nav{position:relative;}                          /* ADD */
-  .page{display:none}                              /* ADD */
-  .page.active{display:block !important;           /* ADD */
-    min-height:calc(100vh - 80px);}                /* ADD */
-.nav-inner{grid-template-columns:1fr auto;height:auto;padding:10px 1rem;gap:8px}
-  .nav-links{display:none}
+@media(max-width:600px){
   .form-grid{grid-template-columns:1fr}
-  .stat-banner{flex-direction:column;gap:0}
-  .stat-item{
-    border-right:none;
-    border-bottom:1px solid var(--border);
-    padding:14px 0;
-  }
+  .stat-banner{flex-direction:column;gap:16px}
+  .stat-item{border-right:none;border-bottom:1px solid rgba(255,255,255,0.15);padding-bottom:14px}
   .stat-item:last-child{border-bottom:none}
   .carousel-btn{display:none}
-  .comp-grid{grid-template-columns:1fr !important}
-  .rule-panel-grid{grid-template-columns:1fr !important}
-  .theme-split{grid-template-columns:1fr !important}
-  #bottom-nav{display:block}
-  body{padding-bottom:calc(65px + env(safe-area-inset-bottom,0px))}
-  .hero{padding:70px 16px 50px}
-  .section{padding:40px 1rem}
-  .tier-grid{grid-template-columns:1fr}
-  .page-header{padding:32px 1rem}
-  .page-header h2{font-size:24px}
-  .form-card{padding:1.25rem}
-  .sponsors-grid{flex-direction:column;align-items:center}
-  .sponsor-card{max-width:100%;width:100%}
-  .partners-section,.sponsors-section{padding:32px 16px}
-  .countdown-inner{gap:12px}
-  .countdown-units{gap:6px}
-}
-@media(max-width:480px){
-  .bn-item{font-size:8px;padding:5px 2px}
-  .bn-item i{font-size:18px}
-  .hero h1{font-size:clamp(28px,9vw,42px)}
-  .stat-num{font-size:26px}
-  .tier-price{font-size:26px}
 }
 </style>
-</head>
-<body>
 
-<!-- ══════════════════════════════════════════
-     NAV
-══════════════════════════════════════════ -->
+<h2 class="sr-only">EM Karnataka 2026 — Emergency Medicine State Conference</h2>
+
+<!-- ══════════════════════════════════════════════════════════
+     NAV  (centred, larger buttons)
+══════════════════════════════════════════════════════════ -->
 <nav>
   <div class="nav-inner">
+    <!-- logo row -->
     <div class="logo" onclick="showPage('home')">
-      <img class="logo-img" src="logos/emk.jpg" alt="EM Karnataka logo" onerror="this.style.display='none'" />
+      <div class="logo-cross"></div>
       <div class="logo-text">
         <span class="logo-main">EM Karnataka 2026</span>
-        <span class="logo-sub">6th Annual State Conference</span>
+        <span class="logo-sub">Emergency Medicine State Conference</span>
       </div>
     </div>
+    <!-- centred link row -->
     <div class="nav-links">
       <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
       <button onclick="showPage('schedule')" id="nav-schedule">Schedule</button>
-      <button onclick="showPage('workshops')" id="nav-workshops">Workshops</button>
-      <button onclick="showPage('competitions')" id="nav-competitions">Competitions</button>
+      <button onclick="showPage('register')" id="nav-register">Register</button>
+      <button onclick="showPage('abstracts')" id="nav-abstracts">Abstracts</button>
       <button onclick="showPage('stay')" id="nav-stay">Stay</button>
       <button onclick="showPage('updates')" id="nav-updates">Updates</button>
       <button onclick="showPage('venue')" id="nav-venue">Venue</button>
       <button onclick="showPage('contact')" id="nav-contact">Contact</button>
+      <button class="nav-cta" onclick="showPage('register')"><i class="ti ti-pencil" style="font-size:13px"></i> Register Now</button>
     </div>
-    <button class="nav-cta-btn" onclick="showPage('register')">
-      <i class="ti ti-user-plus" style="font-size:14px"></i> Register Now
-    </button>
   </div>
 </nav>
 
-<!-- ══════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════
      HOME PAGE
-══════════════════════════════════════════ -->
+══════════════════════════════════════════════════════════ -->
 <div id="page-home" class="page active">
 
-  <!-- HERO -->
+  <!-- Hero -->
   <div class="hero">
-    <div class="hero-bg" id="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80')"></div>
+    <div class="hero-bg" id="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80');background-size:cover;background-position:center"></div>
     <div class="hero-overlay"></div>
     <div class="hero-content">
-      <div class="hero-badge"><i class="ti ti-heart-rate-monitor" style="font-size:13px"></i> 6th Annual State Conference · Emergency Medicine Karnataka</div>
+      <div class="hero-badge"><i class="ti ti-heart-rate-monitor" style="font-size:13px"></i> Karnataka State Conference · Emergency Medicine</div>
       <h1>EM Karnataka <em>2026</em></h1>
       <p class="hero-sub">Climate Change &amp; Emergency Medicine — Preparing for the Health Crises of Tomorrow</p>
       <div class="hero-meta">
@@ -690,9 +287,9 @@ footer strong{color:var(--gold)}
         <div class="hero-meta-item"><i class="ti ti-users"></i> 4 Days · Workshops + Conference</div>
       </div>
       <div class="hero-btns">
-        <button class="btn btn-gold" onclick="showPage('register')"><i class="ti ti-user-plus"></i> Register Now</button>
-        <button class="btn btn-outline" onclick="showPage('schedule')"><i class="ti ti-layout-list"></i> Schedule</button>
-        <button class="btn btn-outline" onclick="showPage('competitions')"><i class="ti ti-file-text"></i> Submit Abstract</button>
+        <button class="btn btn-red" onclick="showPage('register')"><i class="ti ti-pencil"></i> Register Now</button>
+        <button class="btn btn-outline-white" onclick="showPage('schedule')"><i class="ti ti-layout-list"></i> Schedule</button>
+        <button class="btn btn-outline-white" onclick="showPage('abstracts')"><i class="ti ti-file-text"></i> Submit Abstract</button>
       </div>
     </div>
     <div style="position:relative;z-index:2;display:flex;gap:6px;justify-content:center;margin-top:20px">
@@ -702,143 +299,197 @@ footer strong{color:var(--gold)}
     </div>
   </div>
 
-  <!-- COUNTDOWN -->
+  <!-- Countdown -->
   <div class="countdown-bar">
     <div class="countdown-inner">
-      <span class="countdown-label"><i class="ti ti-clock" style="font-size:13px;vertical-align:-2px;color:var(--gold)"></i> Early Bird Closes</span>
+      <span class="countdown-label"><i class="ti ti-clock" style="font-size:13px;vertical-align:-2px;color:#ff9e95"></i> Early Bird Closes</span>
       <div class="countdown-units">
         <div class="countdown-unit"><span class="countdown-num" id="cd-d">--</span><span class="countdown-lbl">Days</span></div>
         <div class="countdown-unit"><span class="countdown-num" id="cd-h">--</span><span class="countdown-lbl">Hrs</span></div>
         <div class="countdown-unit"><span class="countdown-num" id="cd-m">--</span><span class="countdown-lbl">Min</span></div>
         <div class="countdown-unit"><span class="countdown-num" id="cd-s">--</span><span class="countdown-lbl">Sec</span></div>
       </div>
-      <button class="btn btn-gold" style="padding:6px 16px;font-size:12px" onclick="showPage('register')">Grab Early Bird</button>
+      <button class="btn btn-red" style="padding:6px 16px;font-size:12px" onclick="showPage('register')">Grab Early Bird</button>
     </div>
   </div>
 
-  <!-- STAT BANNER -->
+  <!-- Stat banner -->
   <div class="stat-banner">
     <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">Conference Days</span></div>
     <div class="stat-item"><span class="stat-num">500+</span><span class="stat-lbl">Expected Delegates</span></div>
     <div class="stat-item"><span class="stat-num">7</span><span class="stat-lbl">Workshops</span></div>
     <div class="stat-item"><span class="stat-num">20+</span><span class="stat-lbl">Expert Faculty</span></div>
     <div class="stat-item"><span class="stat-num">CME</span><span class="stat-lbl">Accredited</span></div>
-    <div class="stat-item"><span class="stat-num" style="font-size:14px;line-height:1.3">Father Muller<br>Medical College</span><span class="stat-lbl">Kankanady, Mangaluru</span></div>
+    <div class="stat-item"><span class="stat-num" style="font-size:15px;line-height:1.3">Father Muller<br>Medical College</span><span class="stat-lbl">Kankanady, Mangaluru</span></div>
   </div>
 
-  <!-- WHAT TO EXPECT -->
-  <div class="section">
-    <h2 class="section-title">What to Expect</h2>
-    <p class="section-sub">Four days built around clinical learning, hands-on skills, and meaningful connections</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
-      <div class="img-card">
-        <img class="img-card-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=75" alt="Workshops" />
-        <div style="padding:14px 16px"><span class="img-card-tag">Days 1–2</span><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Hands-on Workshops</div><div style="font-size:12px;color:var(--text-muted)">Simulation &amp; skills stations. Limited seats per workshop for maximum hands-on time.</div></div>
-      </div>
-      <div class="img-card">
-        <img class="img-card-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=75" alt="Conference" />
-        <div style="padding:14px 16px"><span class="img-card-tag">Days 3–4</span><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Keynotes &amp; Sessions</div><div style="font-size:12px;color:var(--text-muted)">Plenary lectures, panel debates, and abstract presentations on climate &amp; EM.</div></div>
-      </div>
-      <div class="img-card">
-        <img class="img-card-img" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=75" alt="Research" />
-        <div style="padding:14px 16px"><span class="img-card-tag">Research</span><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Paper Presentations</div><div style="font-size:12px;color:var(--text-muted)">Oral &amp; e-poster slots. Awards for best paper, best e-poster, young investigator.</div></div>
-      </div>
-      <div class="img-card">
-        <img class="img-card-img" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=75" alt="Networking" />
-        <div style="padding:14px 16px"><span class="img-card-tag">Networking</span><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Connect &amp; Collaborate</div><div style="font-size:12px;color:var(--text-muted)">Welcome dinner, conference gala, and structured networking with peers across Karnataka.</div></div>
-      </div>
-    </div>
-
-    <!-- THEME BLOCK -->
-    <div class="theme-split" style="margin-top:48px;border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border)">
-      <div style="padding:36px 32px;background:var(--midnight-3)">
-        <span style="display:inline-block;background:var(--gold);color:var(--midnight);font-size:10px;font-weight:700;padding:3px 12px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.5px">Conference Theme 2026</span>
-        <h2 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:12px;line-height:1.2">Climate Change &amp;<br/>Emergency Medicine</h2>
-        <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.7">Rising temperatures, extreme weather events, shifting disease vectors — the climate crisis is reshaping the landscape of emergency care in India.</p>
-        <div style="display:flex;flex-wrap:wrap;gap:8px">
-          <span class="topic-pill"><i class="ti ti-flame" style="font-size:12px"></i> Heatstroke</span>
-          <span class="topic-pill"><i class="ti ti-bug" style="font-size:12px"></i> Vector-borne</span>
-          <span class="topic-pill"><i class="ti ti-cloud-storm" style="font-size:12px"></i> Disaster EM</span>
-          <span class="topic-pill"><i class="ti ti-lungs" style="font-size:12px"></i> Air Quality</span>
-          <span class="topic-pill"><i class="ti ti-droplet" style="font-size:12px"></i> Floods</span>
-        </div>
-      </div>
-      <div style="position:relative;min-height:220px;overflow:hidden">
-        <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&q=75" alt="Climate emergency" style="width:100%;height:100%;object-fit:cover;display:block" />
-        <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--midnight-3) 0%,transparent 35%)"></div>
-      </div>
-    </div>
-
-    <!-- FACULTY -->
-    <div style="margin-top:48px">
-      <h2 class="section-title">Faculty <span style="font-size:15px;font-weight:400;color:var(--text-muted)">— Announcements coming soon</span></h2>
-      <p class="section-sub">Leading voices in emergency medicine and climate health from across India</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:28px">
-        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(212,160,23,0.2)">SK</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#fff">Speaker TBA</div><div style="font-size:11px;color:var(--text-muted)">Keynote Faculty</div></div></div>
-        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,rgba(30,22,5,0.8),rgba(60,44,10,0.9));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(212,160,23,0.2)">FK</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#fff">Faculty TBA</div><div style="font-size:11px;color:var(--text-muted)">Workshop Lead</div></div></div>
-        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,rgba(60,50,8,0.9),rgba(100,80,12,0.8));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(212,160,23,0.2)">PL</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#fff">Panelist TBA</div><div style="font-size:11px;color:var(--text-muted)">Panel Discussant</div></div></div>
-        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(212,160,23,0.2)">WL</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#fff">Faculty TBA</div><div style="font-size:11px;color:var(--text-muted)">Workshop Faculty</div></div></div>
-      </div>
-      <p style="font-size:13px;color:var(--text-muted);text-align:center"><i class="ti ti-bell" style="font-size:14px;vertical-align:-2px;color:var(--gold)"></i> <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);text-decoration:none;font-weight:600">Subscribe to updates</a> for faculty announcements</p>
-    </div>
-
-    <!-- ABSTRACT CTA -->
-    <div style="margin-top:48px;background:var(--midnight-3);border-radius:var(--radius);padding:40px;text-align:center;position:relative;overflow:hidden;border:1px solid var(--gold-border)">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)"></div>
-      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(212,160,23,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,160,23,0.03) 1px,transparent 1px);background-size:40px 40px;"></div>
-      <div style="position:relative;z-index:1">
-        <h2 style="font-size:24px;font-weight:800;color:#fff;margin-bottom:8px">Abstract Submission Open</h2>
-        <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px;max-width:420px;margin-left:auto;margin-right:auto">Submit original research by <strong style="color:var(--gold)">31 August 2026</strong>. Oral and e-poster slots available. Awards for top submissions.</p>
-        <button class="btn btn-gold" onclick="showPage('competitions')"><i class="ti ti-file-text"></i> Submit Abstract</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- PARTNERS -->
+  <!-- ══ ACADEMIC PARTNERS ══ -->
   <div class="partners-section">
     <h2>Academic Partners</h2>
     <p class="sub">Proudly supported by leading medical bodies across India</p>
     <div class="carousel-wrap">
       <button class="carousel-btn prev" onclick="scrollCarousel('partners-track',-1)" aria-label="Previous">&#8249;</button>
       <div class="carousel-track" id="partners-track">
-        <div class="logo-card"><img src="logos/KEPA.jpg" alt="KEPA" onerror="this.outerHTML='<div class=\'logo-placeholder\'>KEPA</div>'" /></div>
-        <div class="logo-card"><img src="logos/LAPS.jpg" alt="FMCI" onerror="this.outerHTML='<div class=\'logo-placeholder\'>FMCI</div>'" /></div>
-        <div class="logo-card"><img src="logos/founder.png" alt="Founder" onerror="this.outerHTML='<div class=\'logo-placeholder\'>Founder</div>'" /></div>
+
+        <!-- ─ Replace src with your actual logo image paths or URLs ─ -->
+        <div class="logo-card">
+          <img src="logos/partner-nnatology-forum.png" alt="National Neonatology Forum"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>National Neonatology Forum</div>'" />
+        </div>
+        <div class="logo-card">
+          <img src="logos/partner-nnf-telangana.png" alt="NNF State Chapter Telangana"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>NNF State Chapter Telangana</div>'" />
+        </div>
+        <div class="logo-card">
+          <img src="logos/partner-pats.png" alt="Pediatric Academy of Telangana (PATS)"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>PATS · IAP</div>'" />
+        </div>
+        <div class="logo-card">
+          <img src="logos/partner-ima-manikonda.png" alt="IMA Manikonda"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>IMA Manikonda</div>'" />
+        </div>
+        <div class="logo-card">
+          <img src="logos/partner-iap-pem.png" alt="IAP Pediatric Emergency Medicine"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>IAP Pediatric Emergency Medicine</div>'" />
+        </div>
+        <div class="logo-card">
+          <img src="logos/partner-acee.png" alt="Academic College of Emergency Experts in India"
+               onerror="this.outerHTML='<div class=\'logo-placeholder\'>ACEE India</div>'" />
+        </div>
+        <!-- Add more logo-card blocks here as needed -->
       </div>
       <button class="carousel-btn next" onclick="scrollCarousel('partners-track',1)" aria-label="Next">&#8250;</button>
     </div>
   </div>
 
-  <!-- SPONSORS -->
+  <!-- ══ SPONSORS ══ -->
   <div class="sponsors-section">
     <h2>Sponsors</h2>
     <p class="sub">Thank you to our generous conference sponsors</p>
     <div class="sponsors-grid">
+
+      <!-- Gold sponsors -->
       <div class="sponsor-card">
         <span class="sponsor-tier-badge tier-gold">Gold Sponsor</span>
-        <img src="logos/sponsor-resplice.png" alt="Resplice" onerror="this.outerHTML='<div style=\'width:80px;height:50px;background:rgba(212,160,23,0.1);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:var(--gold)\'>EM</div>'" />
-        <span class="sponsor-name">EM</span>
+        <img src="logos/sponsor-resplice.png" alt="Resplice Autism Research Institute"
+             onerror="this.outerHTML='<div class=\'logo-placeholder\'>Resplice Autism Research Institute</div>'" />
+        <span class="sponsor-name">Resplice</span>
       </div>
+
+      <!-- Silver sponsors -->
       <div class="sponsor-card">
         <span class="sponsor-tier-badge tier-silver">Silver Sponsor</span>
-        <img src="logos/sponsor-doc-tutorials.png" alt="Doc Tutorials" onerror="this.outerHTML='<div style=\'width:80px;height:50px;background:rgba(255,255,255,0.04);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(255,255,255,0.5)\'>ABC</div>'" />
-        <span class="sponsor-name">ABC</span>
+        <img src="logos/sponsor-doc-tutorials.png" alt="Doc Tutorials"
+             onerror="this.outerHTML='<div class=\'logo-placeholder\'>DOC Tutorials</div>'" />
+        <span class="sponsor-name">Doc Tutorials</span>
       </div>
+
       <div class="sponsor-card">
         <span class="sponsor-tier-badge tier-silver">Silver Sponsor</span>
-        <img src="logos/sponsor-neuronurture.png" alt="NeuroNurture" onerror="this.outerHTML='<div style=\'width:80px;height:50px;background:rgba(255,255,255,0.04);border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:11px;color:rgba(255,255,255,0.5)\'>XYZ</div>'" />
-        <span class="sponsor-name">XYZ</span>
+        <img src="logos/sponsor-neuronurture.png" alt="NeuroNurture"
+             onerror="this.outerHTML='<div class=\'logo-placeholder\'>NeuroNurture</div>'" />
+        <span class="sponsor-name">NeuroNurture</span>
       </div>
+
+      <!-- Add more sponsor-card blocks here -->
     </div>
-    <p style="margin-top:28px;font-size:13px;color:var(--text-muted)">Interested in sponsoring? <a href="mailto:sponsors@emkarnataka2026.in" style="color:var(--gold);font-weight:600;text-decoration:none">sponsors@emkarnataka2026.in</a></p>
+
+    <p style="margin-top:28px;font-size:13px;color:var(--muted)">
+      Interested in sponsoring?
+      <a href="mailto:sponsors@emkarnataka2026.in" style="color:var(--red);font-weight:600;text-decoration:none">sponsors@emkarnataka2026.in</a>
+    </p>
   </div>
 
-  <footer><strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026<br/><span style="font-size:11px;margin-top:6px;display:block;opacity:0.4">Organised by Father Muller Medical College, Mangaluru</span></footer>
+  <!-- What to Expect -->
+  <div class="section">
+    <h2 class="section-title">What to Expect</h2>
+    <p class="section-sub">Four days built around clinical learning, hands-on skills, and meaningful connections</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+      <div class="img-card">
+        <img class="img-card-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=75" alt="Workshops" onerror="this.style.background='#C0392B'" />
+        <div style="padding:14px 16px">
+          <span class="img-card-tag">Days 1–2</span>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Hands-on Workshops</div>
+          <div style="font-size:12px;color:var(--muted)">Simulation &amp; skills stations. Limited seats per workshop for maximum hands-on time.</div>
+        </div>
+      </div>
+      <div class="img-card">
+        <img class="img-card-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=75" alt="Conference" onerror="this.style.background='#1A252F'" />
+        <div style="padding:14px 16px">
+          <span class="img-card-tag">Days 3–4</span>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Keynotes &amp; Sessions</div>
+          <div style="font-size:12px;color:var(--muted)">Plenary lectures, panel debates, and abstract presentations on climate &amp; EM.</div>
+        </div>
+      </div>
+      <div class="img-card">
+        <img class="img-card-img" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=75" alt="Research" onerror="this.style.background='#922B21'" />
+        <div style="padding:14px 16px">
+          <span class="img-card-tag">Research</span>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Abstract Presentations</div>
+          <div style="font-size:12px;color:var(--muted)">Oral &amp; poster slots. Awards for best abstract, best poster, young investigator.</div>
+        </div>
+      </div>
+      <div class="img-card">
+        <img class="img-card-img" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=75" alt="Networking" onerror="this.style.background='#2C3E50'" />
+        <div style="padding:14px 16px">
+          <span class="img-card-tag">Networking</span>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Connect &amp; Collaborate</div>
+          <div style="font-size:12px;color:var(--muted)">Welcome dinner, conference gala, and structured networking with peers across Karnataka.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Theme block -->
+    <div style="margin-top:48px;border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0;border:0.5px solid var(--border)">
+      <div style="padding:36px 32px;background:var(--navy);color:#fff">
+        <span style="display:inline-block;background:var(--red);color:#fff;font-size:10px;font-weight:700;padding:3px 12px;border-radius:100px;margin-bottom:14px;text-transform:uppercase;letter-spacing:0.5px">Conference Theme 2026</span>
+        <h2 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:12px;line-height:1.2">Climate Change &amp;<br/>Emergency Medicine</h2>
+        <p style="font-size:13px;color:rgba(255,255,255,0.7);margin-bottom:20px;line-height:1.7">Rising temperatures, extreme weather events, shifting disease vectors — the climate crisis is reshaping the landscape of emergency care in India. This conference explores how EM physicians lead the response.</p>
+        <div style="display:flex;flex-wrap:wrap;gap:8px">
+          <span class="topic-pill" style="background:rgba(192,57,43,0.3);color:#ff9e95;border-color:rgba(192,57,43,0.4)"><i class="ti ti-flame" style="font-size:12px"></i> Heatstroke</span>
+          <span class="topic-pill" style="background:rgba(192,57,43,0.3);color:#ff9e95;border-color:rgba(192,57,43,0.4)"><i class="ti ti-bug" style="font-size:12px"></i> Vector-borne</span>
+          <span class="topic-pill" style="background:rgba(192,57,43,0.3);color:#ff9e95;border-color:rgba(192,57,43,0.4)"><i class="ti ti-cloud-storm" style="font-size:12px"></i> Disaster EM</span>
+          <span class="topic-pill" style="background:rgba(192,57,43,0.3);color:#ff9e95;border-color:rgba(192,57,43,0.4)"><i class="ti ti-lungs" style="font-size:12px"></i> Air Quality</span>
+          <span class="topic-pill" style="background:rgba(192,57,43,0.3);color:#ff9e95;border-color:rgba(192,57,43,0.4)"><i class="ti ti-droplet" style="font-size:12px"></i> Floods</span>
+        </div>
+      </div>
+      <div style="position:relative;min-height:220px;overflow:hidden">
+        <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&q=75" alt="Climate emergency" style="width:100%;height:100%;object-fit:cover;display:block" />
+        <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--navy) 0%,transparent 35%)"></div>
+      </div>
+    </div>
+
+    <!-- Faculty placeholder -->
+    <div style="margin-top:48px">
+      <h2 class="section-title">Faculty <span style="font-size:15px;font-weight:400;color:var(--muted)">— Announcements coming soon</span></h2>
+      <p class="section-sub">Leading voices in emergency medicine and climate health from across India</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:28px">
+        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,var(--navy),var(--navy-mid));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(255,255,255,0.25)">SK</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Speaker TBA</div><div style="font-size:11px;color:var(--muted)">Keynote Faculty</div></div></div>
+        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,var(--red-dark),var(--red));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(255,255,255,0.25)">FK</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Faculty TBA</div><div style="font-size:11px;color:var(--muted)">Workshop Lead</div></div></div>
+        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,#7D6608,var(--amber));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(255,255,255,0.25)">PL</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Panelist TBA</div><div style="font-size:11px;color:var(--muted)">Panel Discussant</div></div></div>
+        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,#1a3a5c,#2471A3);display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(255,255,255,0.25)">WL</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px">Faculty TBA</div><div style="font-size:11px;color:var(--muted)">Workshop Faculty</div></div></div>
+      </div>
+      <p style="font-size:13px;color:var(--muted);text-align:center"><i class="ti ti-bell" style="font-size:14px;vertical-align:-2px;color:var(--red)"></i> <a href="#" onclick="showPage('updates');return false" style="color:var(--red);text-decoration:none;font-weight:600">Subscribe to updates</a> for faculty announcements</p>
+    </div>
+
+    <!-- Abstract CTA -->
+    <div style="margin-top:48px;background:var(--navy);border-radius:var(--radius);padding:40px;text-align:center;position:relative;overflow:hidden">
+      <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=60" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0.08" />
+      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--red)"></div>
+      <div style="position:relative;z-index:1">
+        <h2 style="font-size:24px;font-weight:800;color:#fff;margin-bottom:8px">Abstract Submission Open</h2>
+        <p style="font-size:14px;color:rgba(255,255,255,0.75);margin-bottom:24px;max-width:420px;margin-left:auto;margin-right:auto">Submit original research by <strong style="color:#ff9e95">31 August 2026</strong>. Oral and poster slots available. Awards for top submissions.</p>
+        <button class="btn btn-red" onclick="showPage('abstracts')"><i class="ti ti-file-text"></i> Submit Abstract</button>
+      </div>
+    </div>
+  </div>
+
+  <footer><strong>EM Karnataka 2026</strong> · Emergency Medicine State Conference, Karnataka · November 2026<br/><span style="font-size:11px;margin-top:6px;display:block;opacity:0.5">Organised under the auspices of the Emergency Medicine Association of Karnataka</span></footer>
 </div>
 
-<!-- ══════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════
      SCHEDULE PAGE
-══════════════════════════════════════════ -->
+══════════════════════════════════════════════════════════ -->
 <div id="page-schedule" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -852,199 +503,70 @@ footer strong{color:var(--gold)}
       <button class="tab-btn" onclick="showDay('3',this)"><i class="ti ti-presentation" style="font-size:13px;vertical-align:-2px"></i> Day 3 · 14 Nov</button>
       <button class="tab-btn" onclick="showDay('4',this)"><i class="ti ti-trophy" style="font-size:13px;vertical-align:-2px"></i> Day 4 · 15 Nov</button>
     </div>
-    <div class="sched-box">
-      <!-- Day 1 -->
+    <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem">
       <div class="sched-day active" id="sd1">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--gold-border)">
-          <div style="background:var(--gold);color:var(--midnight);font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Thursday, 12 November 2026</div>
-          <div style="font-size:12px;color:var(--text-muted)">Workshop Day 1 — 4 Simultaneous Workshops</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--red-border)">
+          <div style="background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Thursday, 12 November 2026</div>
+          <div style="font-size:12px;color:var(--muted)">Workshop Day 1 — 4 Simultaneous Workshops</div>
         </div>
-        <div class="sched-item"><div class="sched-time">08:00–08:45</div><div><span class="stag stag-br">Registration</span><div class="sched-item-title">Delegate registration &amp; welcome tea</div></div></div>
-        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div class="sched-item-title">Point-of-Care Ultrasound (POCUS)</div><div class="sched-item-sub">Hands-on · Conducted simultaneously</div></div></div>
-        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div class="sched-item-title">Mechanical Ventilator</div><div class="sched-item-sub">Hands-on · Conducted simultaneously</div></div></div>
-        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div class="sched-item-title">Disaster Management</div><div class="sched-item-sub">Table-top + practical · Conducted simultaneously</div></div></div>
-        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div class="sched-item-title">NALS — Neonatal Advanced Life Support</div><div class="sched-item-sub">Simulation-based · Conducted simultaneously</div></div></div>
-        <div class="sched-item"><div class="sched-time">12:30–13:30</div><div><span class="stag stag-br">Break</span><div class="sched-item-title">Lunch</div></div></div>
-        <div class="sched-item"><div class="sched-time">13:30–17:00</div><div><span class="stag stag-ws">Afternoon</span><div class="sched-item-title">Workshop continuation &amp; hands-on practice</div></div></div>
-        <div class="sched-item"><div class="sched-time">19:00+</div><div><span class="stag stag-br">Social</span><div class="sched-item-title">Welcome dinner &amp; networking</div></div></div>
+        <div class="sched-item"><div class="sched-time">08:00–08:45</div><div><span class="stag stag-br">Registration</span><div style="font-size:14px;font-weight:600">Delegate registration &amp; welcome tea</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Point-of-Care Ultrasound (POCUS)</div><div style="font-size:12px;color:var(--muted)">Hands-on · Conducted simultaneously with other workshops</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Mechanical Ventilator</div><div style="font-size:12px;color:var(--muted)">Hands-on · Conducted simultaneously with other workshops</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Disaster Management</div><div style="font-size:12px;color:var(--muted)">Table-top + practical · Conducted simultaneously with other workshops</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">NALS — Neonatal Advanced Life Support</div><div style="font-size:12px;color:var(--muted)">Simulation-based · Conducted simultaneously with other workshops</div></div></div>
+        <div class="sched-item"><div class="sched-time">12:30–13:30</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch</div></div></div>
+        <div class="sched-item"><div class="sched-time">13:30–17:00</div><div><span class="stag stag-ws">Afternoon Session</span><div style="font-size:14px;font-weight:600">Workshop continuation &amp; hands-on practice</div><div style="font-size:12px;color:var(--muted)">All 4 workshops continue in afternoon slots</div></div></div>
+        <div class="sched-item"><div class="sched-time">19:00+</div><div><span class="stag stag-br">Social</span><div style="font-size:14px;font-weight:600">Welcome dinner &amp; networking</div></div></div>
       </div>
-      <!-- Day 2 -->
       <div class="sched-day" id="sd2">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--gold-border)">
-          <div style="background:var(--gold);color:var(--midnight);font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Friday, 13 November 2026</div>
-          <div style="font-size:12px;color:var(--text-muted)">Workshop Day 2 — 3 Workshops</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--red-border)">
+          <div style="background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Friday, 13 November 2026</div>
+          <div style="font-size:12px;color:var(--muted)">Workshop Day 2 — 3 Workshops</div>
         </div>
-        <div class="sched-item"><div class="sched-time">08:30–09:00</div><div><span class="stag stag-br">Morning</span><div class="sched-item-title">Registration &amp; morning tea</div></div></div>
-        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div class="sched-item-title">Peripheral Nerve Block</div></div></div>
-        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div class="sched-item-title">Virtual Anatomy</div></div></div>
-        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div class="sched-item-title">Maternal Resuscitation Program</div></div></div>
-        <div class="sched-item"><div class="sched-time">12:30–13:30</div><div><span class="stag stag-br">Break</span><div class="sched-item-title">Lunch</div></div></div>
-        <div class="sched-item"><div class="sched-time">13:30–17:00</div><div><span class="stag stag-ws">Afternoon</span><div class="sched-item-title">Workshop continuation</div></div></div>
-        <div class="sched-item"><div class="sched-time">17:15–18:00</div><div><span class="stag stag-se">Feedback</span><div class="sched-item-title">Workshop feedback &amp; wrap-up</div></div></div>
+        <div class="sched-item"><div class="sched-time">08:30–09:00</div><div><span class="stag stag-br">Morning</span><div style="font-size:14px;font-weight:600">Registration &amp; morning tea</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Peripheral Nerve Block</div><div style="font-size:12px;color:var(--muted)">Hands-on · Faculty TBA</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Virtual Anatomy</div><div style="font-size:12px;color:var(--muted)">Technology-assisted learning · Faculty TBA</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–12:30</div><div><span class="stag stag-ws">Workshop</span><div style="font-size:14px;font-weight:600">Maternal Resuscitation Program</div><div style="font-size:12px;color:var(--muted)">Simulation-based · Faculty TBA</div></div></div>
+        <div class="sched-item"><div class="sched-time">12:30–13:30</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch</div></div></div>
+        <div class="sched-item"><div class="sched-time">13:30–17:00</div><div><span class="stag stag-ws">Afternoon Session</span><div style="font-size:14px;font-weight:600">Workshop continuation &amp; hands-on practice</div></div></div>
+        <div class="sched-item"><div class="sched-time">17:15–18:00</div><div><span class="stag stag-se">Feedback</span><div style="font-size:14px;font-weight:600">Workshop feedback &amp; wrap-up</div></div></div>
       </div>
-      <!-- Day 3 -->
       <div class="sched-day" id="sd3">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--gold-border)">
-          <div style="background:var(--gold);color:var(--midnight);font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Saturday, 14 November 2026</div>
-          <div style="font-size:12px;color:var(--text-muted)">Conference Day 1 — Inauguration + Keynotes + Papers</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--red-border)">
+          <div style="background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Saturday, 14 November 2026</div>
+          <div style="font-size:12px;color:var(--muted)">Conference Day 1 — Inauguration + Keynotes + Papers</div>
         </div>
-        <div class="sched-item"><div class="sched-time">08:30–09:00</div><div><span class="stag stag-br">Registration</span><div class="sched-item-title">Conference registration &amp; morning tea</div></div></div>
-        <div class="sched-item"><div class="sched-time">09:00–10:00</div><div><span class="stag stag-kn">Inauguration</span><div class="sched-item-title">Inaugural Ceremony</div><div class="sched-item-sub">Lighting of the lamp · Welcome address · Chief guest address</div></div></div>
-        <div class="sched-item"><div class="sched-time">10:00–11:00</div><div><span class="stag stag-kn">Keynote</span><div class="sched-item-title">Keynote Address — Speaker TBA</div></div></div>
-        <div class="sched-item"><div class="sched-time">11:00–11:30</div><div><span class="stag stag-br">Break</span><div class="sched-item-title">Tea &amp; exhibition</div></div></div>
-        <div class="sched-item"><div class="sched-time">11:30–13:00</div><div><span class="stag stag-se">Papers</span><div class="sched-item-title">Paper Presentations — Session 1</div></div></div>
-        <div class="sched-item"><div class="sched-time">13:00–14:00</div><div><span class="stag stag-br">Break</span><div class="sched-item-title">Lunch &amp; e-Poster Presentations</div></div></div>
-        <div class="sched-item"><div class="sched-time">14:00–16:00</div><div><span class="stag stag-se">Papers</span><div class="sched-item-title">Paper Presentations — Session 2</div></div></div>
-        <div class="sched-item"><div class="sched-time">16:00–17:30</div><div><span class="stag stag-kn">Keynote</span><div class="sched-item-title">Keynote Address — Evening Session</div></div></div>
-        <div class="sched-item"><div class="sched-time">19:00+</div><div><span class="stag stag-br">Social</span><div class="sched-item-title">🥂 Conference Banquet</div></div></div>
+        <div class="sched-item"><div class="sched-time">08:30–09:00</div><div><span class="stag stag-br">Registration</span><div style="font-size:14px;font-weight:600">Conference delegate registration &amp; morning tea</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–10:00</div><div><span class="stag stag-kn">Inauguration</span><div style="font-size:14px;font-weight:600">Inaugural Ceremony</div><div style="font-size:12px;color:var(--muted)">Lighting of the lamp · Welcome address · Chief guest address</div></div></div>
+        <div class="sched-item"><div class="sched-time">10:00–11:00</div><div><span class="stag stag-kn">Keynote</span><div style="font-size:14px;font-weight:600">Keynote Address</div><div style="font-size:12px;color:var(--muted)">Speaker TBA</div></div></div>
+        <div class="sched-item"><div class="sched-time">11:00–11:30</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Tea &amp; exhibition</div></div></div>
+        <div class="sched-item"><div class="sched-time">11:30–13:00</div><div><span class="stag stag-se">Papers</span><div style="font-size:14px;font-weight:600">Free Paper Presentations — Session 1</div></div></div>
+        <div class="sched-item"><div class="sched-time">13:00–14:00</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch &amp; poster viewing</div></div></div>
+        <div class="sched-item"><div class="sched-time">14:00–16:00</div><div><span class="stag stag-se">Papers</span><div style="font-size:14px;font-weight:600">Free Paper Presentations — Session 2</div></div></div>
+        <div class="sched-item"><div class="sched-time">16:00–17:30</div><div><span class="stag stag-kn">Keynote</span><div style="font-size:14px;font-weight:600">Keynote Address — Evening Session</div></div></div>
+        <div class="sched-item"><div class="sched-time">19:00+</div><div><span class="stag stag-br">Social</span><div style="font-size:14px;font-weight:600">🥂 Conference Banquet</div></div></div>
       </div>
-      <!-- Day 4 -->
       <div class="sched-day" id="sd4">
-        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1px solid var(--gold-border)">
-          <div style="background:var(--gold);color:var(--midnight);font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Sunday, 15 November 2026</div>
-          <div style="font-size:12px;color:var(--text-muted)">Conference Day 2 — CPC · Quiz · Awards · Closing</div>
+        <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px;padding-bottom:12px;border-bottom:1.5px solid var(--red-border)">
+          <div style="background:var(--red);color:#fff;font-size:11px;font-weight:700;padding:3px 12px;border-radius:100px">Sunday, 15 November 2026</div>
+          <div style="font-size:12px;color:var(--muted)">Conference Day 2 — CPC · Quiz · Awards · Closing</div>
         </div>
-        <div class="sched-item"><div class="sched-time">08:30–09:00</div><div><span class="stag stag-br">Morning</span><div class="sched-item-title">Morning tea &amp; registration</div></div></div>
-        <div class="sched-item"><div class="sched-time">09:00–11:00</div><div><span class="stag stag-se">CPC</span><div class="sched-item-title">CPC Competition</div></div></div>
-        <div class="sched-item"><div class="sched-time">11:00–11:30</div><div><span class="stag stag-br">Break</span><div class="sched-item-title">Tea break</div></div></div>
-        <div class="sched-item"><div class="sched-time">11:30–13:00</div><div><span class="stag stag-ws">Quiz</span><div class="sched-item-title">Emergency Medicine Quiz Finals</div></div></div>
-        <div class="sched-item"><div class="sched-time">13:00–14:00</div><div><span class="stag stag-br">Break</span><div class="sched-item-title">Lunch</div></div></div>
-        <div class="sched-item"><div class="sched-time">14:00–15:30</div><div><span class="stag stag-kn">Awards</span><div class="sched-item-title">Awards &amp; Prize Distribution</div><div class="sched-item-sub">Best paper · Best e-poster · Best quiz team · Young investigator award</div></div></div>
-        <div class="sched-item"><div class="sched-time">15:30–16:30</div><div><span class="stag stag-kn">Valedictory</span><div class="sched-item-title">Closing Ceremony &amp; Valedictory</div></div></div>
+        <div class="sched-item"><div class="sched-time">08:30–09:00</div><div><span class="stag stag-br">Morning</span><div style="font-size:14px;font-weight:600">Morning tea &amp; registration</div></div></div>
+        <div class="sched-item"><div class="sched-time">09:00–11:00</div><div><span class="stag stag-se">CPC</span><div style="font-size:14px;font-weight:600">Clinico-Pathological Conference (CPC)</div></div></div>
+        <div class="sched-item"><div class="sched-time">11:00–11:30</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Tea break</div></div></div>
+        <div class="sched-item"><div class="sched-time">11:30–13:00</div><div><span class="stag stag-ws">Quiz</span><div style="font-size:14px;font-weight:600">Emergency Medicine Quiz</div></div></div>
+        <div class="sched-item"><div class="sched-time">13:00–14:00</div><div><span class="stag stag-br">Break</span><div style="font-size:14px;font-weight:600">Lunch</div></div></div>
+        <div class="sched-item"><div class="sched-time">14:00–15:30</div><div><span class="stag stag-kn">Awards</span><div style="font-size:14px;font-weight:600">Awards &amp; Prize Distribution</div><div style="font-size:12px;color:var(--muted)">Best paper · Best poster · Best quiz team · Young investigator award</div></div></div>
+        <div class="sched-item"><div class="sched-time">15:30–16:30</div><div><span class="stag stag-kn">Valedictory</span><div style="font-size:14px;font-weight:600">Closing Ceremony &amp; Valedictory</div></div></div>
       </div>
     </div>
   </div>
   <footer><strong>EM Karnataka 2026</strong> · Tentative schedule — subject to revision</footer>
 </div>
 
-<!-- ══════════════════════════════════════════
-     WORKSHOPS PAGE
-══════════════════════════════════════════ -->
-<div id="page-workshops" class="page">
-  <div class="page-header">
-    <div class="page-header-bg"></div>
-    <div class="page-header-content"><div class="page-header-accent"></div><h2>Workshops</h2><p>Hands-on clinical skills · Days 1 &amp; 2 · 12–13 November 2026</p></div>
-  </div>
-  <div class="section" style="padding-top:36px">
-    <div class="info-box" style="margin-bottom:28px">
-      <i class="ti ti-info-circle"></i>
-      <span>Workshops run on <strong>Days 1 &amp; 2 (12–13 Nov)</strong>. Each delegate may select <strong>1 workshop</strong>; Faculty/Consultant registration includes access to all. Seats are limited — preference noted at registration.</span>
-    </div>
-
-    <h2 class="section-title">Day 1 Workshops <span style="font-size:15px;font-weight:400;color:var(--text-muted)">— Thursday, 12 November</span></h2>
-    <p class="section-sub">4 simultaneous workshops running 09:00 – 17:00</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:48px">
-
-      <div class="ws-card">
-        <div class="ws-card-header" style="background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5))">
-          <div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-wave-sine" style="font-size:20px;color:var(--gold)"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Point-of-Care Ultrasound</div>
-          <div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">POCUS</div>
-        </div>
-        <div class="ws-card-body">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Hands-on</span><span class="ws-badge ws-badge-dim">Day 1</span></div>
-          <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Practical POCUS skills for emergency physicians — cardiac, lung, FAST, and vascular access applications.</p>
-          <div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div>
-        </div>
-      </div>
-
-      <div class="ws-card">
-        <div class="ws-card-header" style="background:linear-gradient(135deg,rgba(100,70,5,0.6),rgba(60,42,3,0.8))">
-          <div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-lungs" style="font-size:20px;color:var(--gold)"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Mechanical Ventilator</div>
-          <div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">Ventilation Workshop</div>
-        </div>
-        <div class="ws-card-body">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Hands-on</span><span class="ws-badge ws-badge-dim">Day 1</span></div>
-          <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Ventilator setup, modes, troubleshooting, and weaning strategies for critically ill emergency patients.</p>
-          <div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div>
-        </div>
-      </div>
-
-      <div class="ws-card">
-        <div class="ws-card-header" style="background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5))">
-          <div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-cloud-storm" style="font-size:20px;color:var(--gold)"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Disaster Management</div>
-          <div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">Table-top + Practical</div>
-        </div>
-        <div class="ws-card-body">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Simulation</span><span class="ws-badge ws-badge-dim">Day 1</span></div>
-          <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Mass casualty triage, ICS structure, and climate-related disaster scenarios including flood and heatwave events.</p>
-          <div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div>
-        </div>
-      </div>
-
-      <div class="ws-card">
-        <div class="ws-card-header" style="background:linear-gradient(135deg,rgba(10,30,55,0.8),rgba(15,45,80,0.9))">
-          <div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-baby-carriage" style="font-size:20px;color:var(--gold)"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">NALS</div>
-          <div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">Neonatal Advanced Life Support</div>
-        </div>
-        <div class="ws-card-body">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Simulation</span><span class="ws-badge ws-badge-dim">Day 1</span></div>
-          <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Simulation-based neonatal resuscitation training covering airway, breathing, circulation, and special scenarios.</p>
-          <div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div>
-        </div>
-      </div>
-
-    </div>
-
-    <h2 class="section-title">Day 2 Workshops <span style="font-size:15px;font-weight:400;color:var(--text-muted)">— Friday, 13 November</span></h2>
-    <p class="section-sub">3 simultaneous workshops running 09:00 – 17:00</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:36px">
-
-      <div class="ws-card">
-        <div class="ws-card-header" style="background:linear-gradient(135deg,rgba(8,40,20,0.8),rgba(12,55,28,0.9))">
-          <div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-needle" style="font-size:20px;color:var(--gold)"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Peripheral Nerve Block</div>
-          <div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">Regional Anaesthesia in EM</div>
-        </div>
-        <div class="ws-card-body">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Hands-on</span><span class="ws-badge ws-badge-dim">Day 2</span></div>
-          <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">POCUS-guided nerve blocks for pain management in the emergency department — femoral, fascia iliaca, and more.</p>
-          <div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div>
-        </div>
-      </div>
-
-      <div class="ws-card">
-        <div class="ws-card-header" style="background:linear-gradient(135deg,rgba(30,8,50,0.8),rgba(45,12,70,0.9))">
-          <div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-3d-cube-sphere" style="font-size:20px;color:var(--gold)"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Virtual Anatomy</div>
-          <div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">Technology-Assisted Learning</div>
-        </div>
-        <div class="ws-card-body">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Interactive</span><span class="ws-badge ws-badge-dim">Day 2</span></div>
-          <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Immersive 3D anatomy exploration using cutting-edge visualisation tools relevant to emergency procedures.</p>
-          <div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div>
-        </div>
-      </div>
-
-      <div class="ws-card">
-        <div class="ws-card-header" style="background:linear-gradient(135deg,rgba(50,10,8,0.8),rgba(70,15,12,0.9))">
-          <div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-heart-rate-monitor" style="font-size:20px;color:var(--gold)"></i></div>
-          <div style="font-size:16px;font-weight:700;margin-bottom:4px">Maternal Resuscitation</div>
-          <div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">Maternal Resuscitation Program</div>
-        </div>
-        <div class="ws-card-body">
-          <div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Simulation</span><span class="ws-badge ws-badge-dim">Day 2</span></div>
-          <p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">High-fidelity simulation covering obstetric emergencies, perimortem caesarean, and team-based resuscitation.</p>
-          <div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div>
-        </div>
-      </div>
-    </div>
-
-    <div style="background:var(--midnight-3);border-radius:var(--radius);padding:32px;text-align:center;border:1px solid var(--gold-border)">
-      <h3 style="font-size:20px;font-weight:800;color:#fff;margin-bottom:8px">Secure Your Workshop Seat</h3>
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Workshop seats are limited. Select your preference during registration.</p>
-      <button class="btn btn-gold" onclick="showPage('register')"><i class="ti ti-user-plus"></i> Register Now</button>
-    </div>
-  </div>
-  <footer><strong>EM Karnataka 2026</strong> · Workshops · 12–13 November 2026 · Father Muller Medical College, Mangaluru</footer>
-</div>
-
-<!-- ══════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════
      REGISTER PAGE
-══════════════════════════════════════════ -->
+══════════════════════════════════════════════════════════ -->
 <div id="page-register" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -1062,7 +584,7 @@ footer strong{color:var(--gold)}
           <li><i class="ti ti-check"></i> Conference kit &amp; meals</li>
           <li><i class="ti ti-check"></i> CME certificate</li>
         </ul>
-        <button class="btn btn-gold" style="width:100%;justify-content:center">Select</button>
+        <button class="btn btn-red" style="width:100%;justify-content:center">Select</button>
       </div>
       <div class="tier selected" onclick="selectTier('Delegate',this)">
         <div class="tier-name">Delegate</div>
@@ -1075,7 +597,7 @@ footer strong{color:var(--gold)}
           <li><i class="ti ti-check"></i> CME certificate</li>
           <li><i class="ti ti-check"></i> Conference dinner</li>
         </ul>
-        <button class="btn btn-gold" style="width:100%;justify-content:center">Select</button>
+        <button class="btn btn-red" style="width:100%;justify-content:center">Select</button>
       </div>
       <div class="tier" onclick="selectTier('Faculty',this)">
         <div class="tier-badge">Most inclusive</div>
@@ -1089,11 +611,11 @@ footer strong{color:var(--gold)}
           <li><i class="ti ti-check"></i> Faculty CME certificate</li>
           <li><i class="ti ti-check"></i> Networking lounge access</li>
         </ul>
-        <button class="btn btn-gold" style="width:100%;justify-content:center">Select</button>
+        <button class="btn btn-red" style="width:100%;justify-content:center">Select</button>
       </div>
     </div>
     <div class="form-card">
-      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;color:#fff">Your Details</h3>
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px">Your Details</h3>
       <div class="form-grid">
         <div class="fg"><label>First Name *</label><input id="rf" type="text" placeholder="Dr. Ananya" /></div>
         <div class="fg"><label>Last Name *</label><input id="rl" type="text" placeholder="Sharma" /></div>
@@ -1108,8 +630,8 @@ footer strong{color:var(--gold)}
             <option value="PG Student">PG Student — ₹2,500</option>
           </select>
         </div>
-        <div class="fg full"><label>Institution / Hospital *</label><input type="text" placeholder="Father Muller Medical College, Mangaluru" /></div>
-        <div class="fg full"><label>Registration Number</label><input type="text" placeholder="KMC-XXXXX" /></div>
+        <div class="fg full"><label>Institution / Hospital *</label><input type="text" placeholder="Victoria Hospital, Bengaluru" /></div>
+        <div class="fg full"><label>NMC Registration Number</label><input type="text" placeholder="KAR-XXXXX" /></div>
         <div class="fg full"><label>Workshop Preference</label>
           <select>
             <option>Choose later / No preference</option>
@@ -1126,13 +648,13 @@ footer strong{color:var(--gold)}
           <select><option>Vegetarian</option><option>Non-vegetarian</option><option>Vegan</option><option>Jain</option></select>
         </div>
       </div>
-      <div style="margin-top:20px;background:var(--gold-glow);border-radius:var(--radius-sm);padding:14px;border-left:3px solid var(--gold)">
-        <p style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px"><i class="ti ti-credit-card" style="vertical-align:-2px"></i> Payment via Razorpay</p>
-        <p style="font-size:12px;color:var(--text-muted)">UPI (GPay, PhonePe, Paytm), Net Banking, Debit &amp; Credit Cards. Instant confirmation email after payment.</p>
+      <div style="margin-top:20px;background:var(--red-light);border-radius:var(--radius-sm);padding:14px;border-left:3px solid var(--red)">
+        <p style="font-size:13px;font-weight:700;color:var(--red);margin-bottom:4px"><i class="ti ti-credit-card" style="vertical-align:-2px"></i> Payment via Razorpay</p>
+        <p style="font-size:12px;color:var(--muted)">UPI (GPay, PhonePe, Paytm), Net Banking, Debit &amp; Credit Cards. Instant confirmation email after payment.</p>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:12px">
-        <p style="font-size:12px;color:var(--text-muted)"><i class="ti ti-lock" style="font-size:13px;vertical-align:-1px"></i> PCI DSS compliant · Instant confirmation</p>
-        <button class="btn btn-gold" onclick="doReg()"><i class="ti ti-arrow-right"></i> Proceed to Pay</button>
+        <p style="font-size:12px;color:var(--muted)"><i class="ti ti-lock" style="font-size:13px;vertical-align:-1px"></i> PCI DSS compliant · Instant confirmation</p>
+        <button class="btn btn-red" onclick="doReg()"><i class="ti ti-arrow-right"></i> Proceed to Pay</button>
       </div>
       <div id="reg-ok" class="success-msg hidden"><i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i><div><strong>Registration received!</strong> Confirmation with your registration ID sent. Our team will follow up within 24 hours.</div></div>
     </div>
@@ -1140,433 +662,239 @@ footer strong{color:var(--gold)}
   <footer><strong>EM Karnataka 2026</strong> · registrations@emkarnataka2026.in</footer>
 </div>
 
-<!-- ══════════════════════════════════════════
-     COMPETITIONS PAGE
-══════════════════════════════════════════ -->
-<div id="page-competitions" class="page">
+<!-- ══════════════════════════════════════════════════════════
+     ABSTRACTS PAGE
+══════════════════════════════════════════════════════════ -->
+<div id="page-abstracts" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
     <img class="page-header-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=50" alt="" />
-    <div class="page-header-content">
-      <div class="page-header-accent"></div>
-      <h2>Competitions</h2>
-      <p>Paper &nbsp;·&nbsp; e-Poster &nbsp;·&nbsp; CPC &nbsp;·&nbsp; Quiz &nbsp;&nbsp;|&nbsp;&nbsp; Deadline: <strong style="color:var(--gold)">31 August 2026</strong></p>
+    <div class="page-header-content"><div class="page-header-accent"></div><h2>Abstract Submission</h2><p>Blind peer review · Deadline 31 August 2026 · Results by 30 September 2026</p></div>
+  </div>
+  <div class="section" style="padding-top:36px">
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:14px;margin-bottom:32px">
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center"><i class="ti ti-calendar-event" style="font-size:26px;color:var(--red);display:block;margin-bottom:6px"></i><p style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Submission deadline</p><p style="font-size:14px;font-weight:700">31 Aug 2026</p></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center"><i class="ti ti-mail-opened" style="font-size:26px;color:var(--red);display:block;margin-bottom:6px"></i><p style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Results by</p><p style="font-size:14px;font-weight:700">30 Sep 2026</p></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center"><i class="ti ti-file-text" style="font-size:26px;color:var(--red);display:block;margin-bottom:6px"></i><p style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Word limit</p><p style="font-size:14px;font-weight:700">300 words</p></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;text-align:center"><i class="ti ti-trophy" style="font-size:26px;color:var(--amber);display:block;margin-bottom:6px"></i><p style="font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Awards</p><p style="font-size:14px;font-weight:700">Best abstract · Poster</p></div>
+    </div>
+    <div style="margin-bottom:28px"><p style="font-size:12px;font-weight:700;margin-bottom:10px;color:var(--muted);text-transform:uppercase;letter-spacing:0.5px">Preferred topics</p><div style="display:flex;flex-wrap:wrap;gap:8px"><span class="topic-pill">Climate-related emergencies</span><span class="topic-pill">Heatstroke management</span><span class="topic-pill">Flood disaster response</span><span class="topic-pill">Vector-borne disease outbreaks</span><span class="topic-pill">Air quality &amp; respiratory EM</span><span class="topic-pill">Toxicology</span><span class="topic-pill">Paediatric environmental emergencies</span><span class="topic-pill">General emergency medicine</span><span class="topic-pill">Trauma &amp; critical care</span><span class="topic-pill">Emergency nursing</span></div></div>
+    <div class="form-card">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px">Submit Your Abstract</h3>
+      <div class="form-grid">
+        <div class="fg"><label>Presenting author *</label><input type="text" placeholder="Dr. Ravi Kumar" /></div>
+        <div class="fg"><label>Email *</label><input type="email" placeholder="dr.ravi@hospital.in" /></div>
+        <div class="fg full"><label>Institution *</label><input type="text" placeholder="St. John's Medical College, Bengaluru" /></div>
+        <div class="fg full"><label>Co-authors</label><input type="text" placeholder="Dr. A, Dr. B" /></div>
+        <div class="fg full"><label>Abstract title *</label><input type="text" placeholder="Title of your abstract" /></div>
+        <div class="fg"><label>Topic *</label><select><option value="">Select topic</option><option>Climate-related emergencies</option><option>Heatstroke management</option><option>Vector-borne disease outbreaks</option><option>Air quality &amp; respiratory EM</option><option>Toxicology</option><option>General emergency medicine</option><option>Trauma &amp; critical care</option></select></div>
+        <div class="fg"><label>Presentation type *</label><select><option>Oral presentation</option><option>Poster presentation</option><option>Either (committee decides)</option></select></div>
+        <div class="fg"><label>Study type *</label><select><option>Original research</option><option>Case report / series</option><option>Review article</option><option>Quality improvement</option></select></div>
+        <div class="fg full"><label>Abstract (max 300 words) *</label>
+          <textarea id="abs-txt" placeholder="Background · Methods · Results · Conclusion" style="min-height:130px" oninput="countW(this)"></textarea>
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-top:6px">
+            <span style="font-size:11px;color:var(--muted)" id="wc-label">0 / 300 words</span>
+            <div style="flex:1;margin-left:12px;max-width:180px"><div class="word-count-bar"><div class="word-count-fill" id="wc-fill" style="width:0%"></div></div></div>
+          </div>
+        </div>
+        <div class="fg full"><div style="display:flex;align-items:flex-start;gap:8px"><input type="checkbox" id="decl" style="width:auto;margin-top:3px" /><label for="decl" style="text-transform:none;letter-spacing:0;font-size:12px;color:var(--muted);font-weight:400">I confirm this is original unpublished work. The presenting author is registered (or will register) for the conference.</label></div></div>
+      </div>
+      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:12px">
+        <p style="font-size:12px;color:var(--muted)">Blind peer review · Acknowledgement within 1 hour</p>
+        <button class="btn btn-red" onclick="doAbs()"><i class="ti ti-send"></i> Submit Abstract</button>
+      </div>
+      <div id="abs-ok" class="success-msg hidden"><i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i><div><strong>Abstract submitted!</strong> Results communicated by 30 September 2026.</div></div>
     </div>
   </div>
-
-  <div class="section" style="padding-top:40px">
-
-    <!-- DEADLINE STRIP -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:40px">
-      <div class="deadline-card"><i class="ti ti-calendar-event"></i><div class="dl-label">Submission Deadline</div><div class="dl-val">31 Aug 2026</div></div>
-      <div class="deadline-card"><i class="ti ti-mail-opened"></i><div class="dl-label">Acceptance Notification</div><div class="dl-val">30 Sep 2026</div></div>
-      <div class="deadline-card"><i class="ti ti-file-text"></i><div class="dl-label">Abstract Word Limit</div><div class="dl-val">300 words</div></div>
-      <div class="deadline-card"><i class="ti ti-shield-check"></i><div class="dl-label">Review Process</div><div class="dl-val">Blind Peer Review</div></div>
-      <div class="deadline-card"><i class="ti ti-trophy" style="color:var(--gold)"></i><div class="dl-label">Award Categories</div><div class="dl-val">4 Competitions</div></div>
-    </div>
-
-    <!-- STEP BAR -->
-    <div class="step-bar" style="margin-bottom:40px">
-      <div class="step done"><div class="step-num"><i class="ti ti-check" style="font-size:12px"></i></div><div class="step-lbl">Portal Open</div></div>
-      <div class="step done"><div class="step-num">2</div><div class="step-lbl">Submit via Form</div></div>
-      <div class="step pending"><div class="step-num">3</div><div class="step-lbl">Peer Review</div></div>
-      <div class="step pending"><div class="step-num">4</div><div class="step-lbl">Acceptance Letter</div></div>
-      <div class="step pending"><div class="step-num">5</div><div class="step-lbl">Present at Conf.</div></div>
-    </div>
-
-    <!-- ══ COMPETITION CARDS — DROPDOWN ══ -->
-    <h2 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px">Competitions</h2>
-    <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px">Click any card to expand full rules and details</p>
-
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:48px" class="comp-grid">
-
-      <!-- PAPER PRESENTATION -->
-      <div class="comp-card" id="cc-paper">
-        <div class="comp-card-header" style="background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5))" onclick="toggleComp('cc-paper')">
-          <div class="comp-card-header-left">
-            <div class="comp-card-icon"><i class="ti ti-microphone" style="font-size:22px;color:var(--gold)"></i></div>
-            <div>
-              <div style="font-size:18px;font-weight:800;margin-bottom:4px">Paper Presentation</div>
-              <div style="font-size:12px;opacity:0.55;text-transform:uppercase;letter-spacing:0.6px">Oral · Days 3 &amp; 4 · Main Auditorium</div>
-              <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap"><span class="comp-tag comp-tag-gold">Best Paper Award</span><span class="comp-tag comp-tag-dim">Young Investigator</span></div>
-            </div>
-          </div>
-          <div class="comp-card-toggle"><i class="ti ti-chevron-down"></i></div>
-        </div>
-        <div class="comp-card-body">
-          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Present original research to a panel of national judges and 500+ delegates. Selected papers receive an 8-minute slot followed by a 2-minute Q&amp;A.</p>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-file-type-doc" style="color:var(--gold)"></i><span><strong style="color:#fff">Submit:</strong> Abstract (300 words) + Full manuscript as <strong>.doc / .docx</strong> — Introduction · Methods · Results · Conclusion</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-clock" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Presentation:</strong> 8 min talk + 2 min Q&amp;A. Bring slides on the day (PPT or PDF)</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-users" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Eligibility:</strong> All registered delegates, faculty &amp; PG students. Presenting author must be registered</span></div>
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-copy" style="color:var(--gold)"></i><span><strong style="color:#fff">Originality:</strong> Unpublished, not submitted elsewhere. Max 5 co-authors</span></div>
-          </div>
-          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin-bottom:10px">Judging Criteria (100 pts)</div>
-          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Scientific Content &amp; Originality</span><span class="score-pts">30 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Relevance, novelty, hypothesis clarity</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Methodology &amp; Study Design</span><span class="score-pts">25 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Design, sample size, statistical analysis</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Results &amp; Data Presentation</span><span class="score-pts">20 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Clarity, tables/figures, data integrity</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Presentation &amp; Delivery</span><span class="score-pts">15 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Slide quality, time adherence, confidence</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Response to Q&amp;A</span><span class="score-pts">10 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Accuracy, depth, composure</div></div>
-          </div>
-          <div class="award-badge"><i class="ti ti-trophy" style="font-size:16px"></i> Best Paper · Runner-up · Young Investigator Award (≤30 yrs or PG)</div>
-        </div>
-      </div>
-
-      <!-- E-POSTER -->
-      <div class="comp-card" id="cc-poster">
-        <div class="comp-card-header" style="background:linear-gradient(135deg,rgba(40,20,5,0.9),rgba(60,30,8,0.9))" onclick="toggleComp('cc-poster')">
-          <div class="comp-card-header-left">
-            <div class="comp-card-icon"><i class="ti ti-layout-board" style="font-size:22px;color:var(--gold)"></i></div>
-            <div>
-              <div style="font-size:18px;font-weight:800;margin-bottom:4px">e-Poster Presentation</div>
-              <div style="font-size:12px;opacity:0.55;text-transform:uppercase;letter-spacing:0.6px">Display · Day 3 Afternoon · e-Poster Hall</div>
-              <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap"><span class="comp-tag comp-tag-gold">Best e-Poster Award</span><span class="comp-tag comp-tag-dim">Runner-up</span></div>
-            </div>
-          </div>
-          <div class="comp-card-toggle"><i class="ti ti-chevron-down"></i></div>
-        </div>
-        <div class="comp-card-body">
-          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Display research, case reports, or quality improvement projects as an e-poster. Presenters give a 3-minute summary to judges during the dedicated viewing session.</p>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-file-type-pdf" style="color:var(--gold)"></i><span><strong style="color:#fff">Submit:</strong> Abstract (300 words) + e-Poster as <strong>.ppt / .pptx</strong> — 1 slide only, A0 portrait (33.1 × 46.8 in)</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-clock" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Judging:</strong> 3-min summary to judges, Day 3 13:00–14:00</span></div>
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-layout-columns" style="color:var(--gold)"></i><span><strong style="color:#fff">Content:</strong> Title · Authors · Background · Methods · Results · Conclusions · Institution logo</span></div>
-          </div>
-          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin-bottom:10px">Judging Criteria (100 pts)</div>
-          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Scientific Content &amp; Relevance</span><span class="score-pts">25 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Originality, clinical significance</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Visual Design &amp; Layout</span><span class="score-pts">20 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Readability, logical flow, figures</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Methodology &amp; Results</span><span class="score-pts">25 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Study design, data accuracy</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Oral Summary to Judges</span><span class="score-pts">20 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Clarity, highlighting key findings</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Response to Questions</span><span class="score-pts">10 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Depth, handling critical questions</div></div>
-          </div>
-          <div class="award-badge"><i class="ti ti-trophy" style="font-size:16px"></i> Best e-Poster Award · Runner-up e-Poster Award</div>
-        </div>
-      </div>
-
-      <!-- CPC -->
-      <div class="comp-card" id="cc-cpc">
-        <div class="comp-card-header" style="background:linear-gradient(135deg,rgba(30,20,5,0.9),rgba(55,38,8,0.9))" onclick="toggleComp('cc-cpc')">
-          <div class="comp-card-header-left">
-            <div class="comp-card-icon"><i class="ti ti-stethoscope" style="font-size:22px;color:var(--gold)"></i></div>
-            <div>
-              <div style="font-size:18px;font-weight:800;margin-bottom:4px">CPC Competition</div>
-              <div style="font-size:12px;opacity:0.55;text-transform:uppercase;letter-spacing:0.6px">Clinical Problem Solving · Day 4 · Morning</div>
-              <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap"><span class="comp-tag comp-tag-gold">Best CPC Team</span><span class="comp-tag comp-tag-dim">Teams of 2–3</span></div>
-            </div>
-          </div>
-          <div class="comp-card-toggle"><i class="ti ti-chevron-down"></i></div>
-        </div>
-        <div class="comp-card-body">
-          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Tests diagnostic reasoning and clinical acumen. Teams present a real-world EM case — history, investigations, differentials — and defend their final diagnosis before expert judges.</p>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-file-type-pdf" style="color:var(--gold)"></i><span><strong style="color:#fff">Submit:</strong> Case summary (300 words) + Slides as <strong>.ppt / .pptx</strong> — Case History → Investigations → Differentials → Diagnosis → Learning Points</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-users" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Team:</strong> 2–3 members, all registered delegates or PG students</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-clock" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Presentation:</strong> 10 min + 5 min cross-examination by judges</span></div>
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-eye-off" style="color:var(--gold)"></i><span><strong style="color:#fff">Anonymise:</strong> All patient details de-identified. Do not reveal final diagnosis in submitted file</span></div>
-          </div>
-          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin-bottom:10px">Judging Criteria (100 pts)</div>
-          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Case Complexity &amp; Selection</span><span class="score-pts">15 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Rarity, educational value, EM relevance</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Clinical Reasoning &amp; Differentials</span><span class="score-pts">30 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Systematic approach, breadth &amp; prioritisation</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Interpretation of Investigations</span><span class="score-pts">20 pts</span></div><div style="font-size:11px;color:var(--text-muted)">ECG, imaging, labs — accurate reading</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Presentation &amp; Team Coordination</span><span class="score-pts">20 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Slide quality, time adherence, teamwork</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Response to Cross-examination</span><span class="score-pts">15 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Accuracy under pressure, depth</div></div>
-          </div>
-          <div class="award-badge"><i class="ti ti-trophy" style="font-size:16px"></i> Best CPC Team · Runner-up CPC Award</div>
-        </div>
-      </div>
-
-      <!-- QUIZ -->
-      <div class="comp-card" id="cc-quiz">
-        <div class="comp-card-header" style="background:linear-gradient(135deg,rgba(5,15,35,0.9),rgba(8,22,50,0.95))" onclick="toggleComp('cc-quiz')">
-          <div class="comp-card-header-left">
-            <div class="comp-card-icon"><i class="ti ti-bulb" style="font-size:22px;color:var(--gold)"></i></div>
-            <div>
-              <div style="font-size:18px;font-weight:800;margin-bottom:4px">EM Quiz</div>
-              <div style="font-size:12px;opacity:0.55;text-transform:uppercase;letter-spacing:0.6px">Teams of 2 · Prelims + Finals · Day 4 Morning</div>
-              <div style="display:flex;gap:6px;margin-top:10px;flex-wrap:wrap"><span class="comp-tag comp-tag-gold">Best Quiz Team</span><span class="comp-tag comp-tag-dim">6 Rounds</span></div>
-            </div>
-          </div>
-          <div class="comp-card-toggle"><i class="ti ti-chevron-down"></i></div>
-        </div>
-        <div class="comp-card-body">
-          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">A high-energy EM quiz testing clinical knowledge, ECG &amp; imaging interpretation, and rapid-fire recall. Prelims are written MCQs; top 6 teams compete in a live multi-round final.</p>
-          <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-users" style="color:var(--gold)"></i><span><strong style="color:#fff">Team:</strong> Exactly 2 members. Both must be registered delegates or PG students</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-pencil" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Prelims:</strong> 30 MCQs in 30 minutes. Top 6 teams advance to live finals</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-layout-list" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Finals:</strong> 6 rounds — Direct · Visual (ECG/X-ray) · Rapid Fire · Lifeline · Audio-Visual · Sudden Death</span></div>
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-info-circle" style="color:var(--gold)"></i><span><strong style="color:#fff">Registration:</strong> No abstract needed — register as quiz team during conference registration</span></div>
-          </div>
-          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin-bottom:10px">Finals Round Structure</div>
-          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-            <div class="score-row"><div class="score-row-top"><span style="font-size:12px;font-weight:600">Round 1 — Direct Questions</span><span class="score-pts">10 pts</span></div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:12px;font-weight:600">Round 2 — Visual (ECG / X-ray / Image)</span><span class="score-pts">10 pts</span></div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:12px;font-weight:600">Round 3 — Rapid Fire (60 sec/team)</span><span class="score-pts">5 pts</span></div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:12px;font-weight:600">Round 4 — Lifeline Round</span><span class="score-pts">10 pts</span></div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:12px;font-weight:600">Round 5 — Audio-Visual</span><span class="score-pts">10 pts</span></div></div>
-            <div class="score-row" style="border:1px solid var(--gold-border)"><div class="score-row-top"><span style="font-size:12px;font-weight:600;color:var(--gold)">Round 6 — Sudden Death (if tied)</span><span class="score-pts">Winner takes all</span></div></div>
-          </div>
-          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin-bottom:8px">Topics Covered</div>
-          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px">
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">Emergency Pharmacology</span>
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">Trauma &amp; Resuscitation</span>
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">ECG Interpretation</span>
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">Radiology in EM</span>
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">Toxicology</span>
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">Paediatric EM</span>
-            <span style="background:var(--gold-glow);color:var(--gold);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;border:1px solid var(--gold-border)">Climate Change &amp; EM (Theme)</span>
-          </div>
-          <div class="award-badge"><i class="ti ti-trophy" style="font-size:16px"></i> Best Quiz Team · Runner-up Quiz Team</div>
-        </div>
-      </div>
-
-    </div><!-- end comp grid -->
-
-    <!-- DISCLAIMER -->
-    <div class="info-box" style="margin-bottom:36px">
-      <i class="ti ti-info-circle" style="font-size:18px;margin-top:2px"></i>
-      <span>All competitions are open only to <strong>registered delegates</strong>. The organising committee reserves the right to adjust time slots, merge categories, or modify scoring criteria. Any changes will be communicated by email prior to the conference.</span>
-    </div>
-
-    <!-- FILE FORMAT INSTRUCTIONS -->
-    <div style="background:var(--midnight-3);border-radius:var(--radius);padding:32px;margin-bottom:36px;border:1px solid var(--border);position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)"></div>
-      <div style="font-size:18px;font-weight:800;color:#fff;margin-bottom:4px;display:flex;align-items:center;gap:10px">
-        <i class="ti ti-paperclip" style="color:var(--gold);font-size:20px"></i>
-        Submission File Format Instructions
-      </div>
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:28px">Read carefully before uploading — incorrect formats will be returned for revision</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
-        <div class="file-fmt-card">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-            <div class="file-fmt-icon-wrap" style="background:rgba(44,62,80,0.6)"><i class="ti ti-file-type-doc" style="font-size:20px;color:#9FD1FF"></i></div>
-            <div><div style="font-size:14px;font-weight:700;color:#fff">Paper Manuscript</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px">Oral presentation</div></div>
-          </div>
-          <span class="file-fmt-tag" style="background:rgba(44,62,80,0.5);color:#9FD1FF;border:1px solid rgba(100,140,200,0.2)">.doc / .docx — Microsoft Word</span>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Times New Roman 12pt, 1.5 line spacing</li>
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Sections: Title · Abstract · Intro · Methods · Results · Discussion · Conclusion · References</li>
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Vancouver references. Tables &amp; figures embedded</li>
-            <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>No author names in body (blind review). Max 5 MB</li>
-          </ul>
-        </div>
-        <div class="file-fmt-card">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-            <div class="file-fmt-icon-wrap" style="background:rgba(212,160,23,0.15)"><i class="ti ti-layout-board" style="font-size:20px;color:var(--gold)"></i></div>
-            <div><div style="font-size:14px;font-weight:700;color:#fff">e-Poster File</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px">e-Poster competition</div></div>
-          </div>
-          <span class="file-fmt-tag" style="background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-border)">.ppt / .pptx — PowerPoint</span>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>1 slide only — A0 Portrait: 33.1" W × 46.8" H</li>
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Min font: 24pt body, 40pt+ title. High-res images (≥150 DPI)</li>
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Include institution logo</li>
-            <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>Max 20 MB. No embedded videos</li>
-          </ul>
-        </div>
-        <div class="file-fmt-card">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-            <div class="file-fmt-icon-wrap" style="background:rgba(125,102,8,0.3)"><i class="ti ti-stethoscope" style="font-size:20px;color:#FFE08A"></i></div>
-            <div><div style="font-size:14px;font-weight:700;color:#fff">CPC Presentation</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px">CPC competition</div></div>
-          </div>
-          <span class="file-fmt-tag" style="background:rgba(125,102,8,0.3);color:#FFE08A;border:1px solid rgba(200,165,50,0.2)">.ppt / .pptx — PowerPoint</span>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Widescreen 16:9, max 20 slides</li>
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Order: Case History → Investigations → Differentials → Diagnosis → Learning Points</li>
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Patient fully anonymised</li>
-            <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>Do NOT include final diagnosis in file. Max 30 MB</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-
-    <!-- FILE NAMING -->
-    <div class="file-naming-box">
-      <div style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:12px;display:flex;align-items:center;gap:8px">
-        <i class="ti ti-tag" style="font-size:15px"></i> File Naming Convention — Name your file exactly as shown before uploading
-      </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:10px">
-        <div class="fname-row"><div class="fname-label">Paper</div><code class="fname-code" style="color:#9FD1FF">EMKA2026_PAPER_Lastname_Institute.docx</code><div class="fname-eg">e.g. EMKA2026_PAPER_Sharma_FMMC.docx</div></div>
-        <div class="fname-row"><div class="fname-label">e-Poster</div><code class="fname-code" style="color:var(--gold)">EMKA2026_POSTER_Lastname_Institute.pptx</code><div class="fname-eg">e.g. EMKA2026_POSTER_Ravi_KMC.pptx</div></div>
-        <div class="fname-row"><div class="fname-label">CPC</div><code class="fname-code" style="color:#FFE08A">EMKA2026_CPC_Lastname_Institute.pptx</code><div class="fname-eg">e.g. EMKA2026_CPC_Nair_SJMC.pptx</div></div>
-      </div>
-      <div style="margin-top:12px;font-size:11px;color:rgba(255,255,255,0.35);display:flex;gap:16px;flex-wrap:wrap">
-        <span>· Underscores only, no spaces</span>
-        <span>· Presenting author's last name</span>
-        <span>· Institute abbreviation (FMMC, KMC, SJMC…)</span>
-        <span>· All caps throughout</span>
-      </div>
-    </div>
-
-    <!-- IMPORTANT NOTES -->
-    <div class="info-box" style="margin-bottom:36px">
-      <i class="ti ti-alert-triangle" style="font-size:20px;margin-top:2px"></i>
-      <div style="font-size:13px;line-height:1.85">
-        <strong style="color:var(--gold-mid);display:block;margin-bottom:4px">Important notes before submitting</strong>
-        · The <strong>presenting author must be registered</strong> for EM Karnataka 2026 at time of acceptance.<br/>
-        · Each participant may submit a <strong>maximum of 2 abstracts</strong> across all categories combined.<br/>
-        · Submitting the <strong>same work to multiple categories</strong> is not permitted.<br/>
-        · All submissions undergo <strong>blind peer review</strong> — ensure author/institution details are absent from uploaded file.<br/>
-        · Shortlisted candidates notified by <strong>30 September 2026</strong>. Organising committee's decision is <strong>final</strong>.
-      </div>
-    </div>
-
-    <!-- GOOGLE FORM -->
-    <div style="margin-bottom:12px">
-      <h2 style="font-size:20px;font-weight:800;color:#fff;margin-bottom:4px">Submit Your Abstract</h2>
-      <p style="font-size:13px;color:var(--text-muted)">Fill the form below and upload your manuscript (.docx) or presentation (.pptx) file within the form.</p>
-    </div>
-    <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
-      <div style="background:var(--midnight-4);padding:12px 20px;display:flex;align-items:center;gap:10px;border-bottom:1px solid var(--gold-border)">
-        <i class="ti ti-forms" style="color:var(--gold);font-size:16px"></i>
-        <span style="font-size:13px;font-weight:700;color:#fff">Abstract Submission Form</span>
-        <span style="font-size:11px;color:var(--text-muted);margin-left:4px">Powered by Google Forms · Responses saved securely</span>
-      </div>
-      <iframe src="https://docs.google.com/forms/d/e/1FAIpQLSfIttBidRRURWCX9KwtiWMUJ5pdIw0MOqjTLvgbo8ocYpOFhA/viewform?embedded=true"
-        width="100%" height="1400" frameborder="0" marginheight="0" marginwidth="0" style="display:block;border:none;background:var(--midnight-4)">Loading…</iframe>
-    </div>
-  </div>
-  <footer><strong>EM Karnataka 2026</strong> · abstracts@emkarnataka2026.in &nbsp;·&nbsp; Father Muller Medical College, Mangaluru</footer>
+  <footer><strong>EM Karnataka 2026</strong> · abstracts@emkarnataka2026.in</footer>
 </div>
 
-<!-- ══════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════
      STAY PAGE
-══════════════════════════════════════════ -->
+══════════════════════════════════════════════════════════ -->
 <div id="page-stay" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
-    <div class="page-header-content"><div class="page-header-accent"></div><h2>Accommodation</h2><p>Negotiated conference rates · Use booking code <strong style="color:var(--gold)">EMKA2026</strong></p></div>
+    <div class="page-header-content"><div class="page-header-accent"></div><h2>Accommodation</h2><p>Negotiated conference rates · Use booking code <strong>EMKA2026</strong></p></div>
   </div>
   <div class="section" style="padding-top:36px">
-    <div class="info-box" style="margin-bottom:28px">
-      <i class="ti ti-info-circle"></i>
-      <span>Use booking code <strong>EMKA2026</strong> to avail the conference rate. Block valid until <strong>15 October 2026</strong> or until sold out.</span>
+    <div style="background:var(--amber-light);border:0.5px solid rgba(212,160,23,0.3);border-radius:var(--radius-sm);padding:13px 16px;margin-bottom:28px;font-size:13px;color:#7D6608;display:flex;gap:10px;align-items:flex-start">
+      <i class="ti ti-info-circle" style="font-size:17px;flex-shrink:0;margin-top:1px"></i>
+      <span>Use booking code <strong>EMKA2026</strong> to avail the conference rate. Block valid until 15 October 2026 or until sold out.</span>
     </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
-      <div class="hotel-card">
-        <div class="hotel-img-wrap">
-          <img class="hotel-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=75" alt="5-star hotel" />
-          <div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.6);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★★</div>
-          <div style="position:absolute;top:12px;right:12px;background:var(--gold);color:var(--midnight);font-size:10px;padding:3px 10px;border-radius:100px;font-weight:700">Partner Hotel</div>
-          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:16px;color:#fff">
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden">
+        <div style="position:relative">
+          <img src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=75" alt="5-star hotel" style="width:100%;height:200px;object-fit:cover;display:block" />
+          <div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.55);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★★</div>
+          <div style="position:absolute;top:12px;right:12px;background:var(--red);color:#fff;font-size:10px;padding:3px 10px;border-radius:100px;font-weight:700">Partner Hotel</div>
+          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;color:#fff">
             <div style="font-size:16px;font-weight:700">Conference partner hotel (5★)</div>
-            <div style="font-size:12px;opacity:0.8"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> Adjacent to venue (TBA)</div>
+            <div style="font-size:12px;opacity:0.85"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> Adjacent to venue (TBA)</div>
           </div>
         </div>
         <div style="padding:1.25rem">
-          <div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">₹5,500 <span style="font-size:13px;font-weight:400;color:var(--text-muted)">/ night incl. breakfast</span></div>
+          <div style="font-size:26px;font-weight:800;color:var(--navy);margin-bottom:4px">₹5,500 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ night incl. breakfast</span></div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px">
-            <span class="ws-badge ws-badge-gold">Shuttle to venue</span>
-            <span class="ws-badge ws-badge-gold">Pool &amp; spa</span>
-            <span class="ws-badge ws-badge-gold">High-speed WiFi</span>
+            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Shuttle to venue</span>
+            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Pool &amp; spa</span>
+            <span style="background:var(--red-light);color:var(--red);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">High-speed WiFi</span>
           </div>
-          <button class="btn btn-dark" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button>
+          <button class="btn btn-navy" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button>
         </div>
       </div>
-      <div class="hotel-card">
-        <div class="hotel-img-wrap">
-          <img class="hotel-img" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=75" alt="4-star hotel" />
-          <div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.6);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★</div>
-          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:16px;color:#fff">
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);overflow:hidden">
+        <div style="position:relative">
+          <img src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=75" alt="4-star hotel" style="width:100%;height:200px;object-fit:cover;display:block" />
+          <div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.55);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★</div>
+          <div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.7));padding:16px;color:#fff">
             <div style="font-size:16px;font-weight:700">Budget partner hotel (4★)</div>
-            <div style="font-size:12px;opacity:0.8"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> 10 min from venue (TBA)</div>
+            <div style="font-size:12px;opacity:0.85"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> 10 min from venue (TBA)</div>
           </div>
         </div>
         <div style="padding:1.25rem">
-          <div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">₹3,200 <span style="font-size:13px;font-weight:400;color:var(--text-muted)">/ night incl. breakfast</span></div>
+          <div style="font-size:26px;font-weight:800;color:var(--navy);margin-bottom:4px">₹3,200 <span style="font-size:13px;font-weight:400;color:var(--muted)">/ night incl. breakfast</span></div>
           <div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px">
-            <span class="ws-badge ws-badge-dim">WiFi</span>
-            <span class="ws-badge ws-badge-dim">Gym</span>
-            <span class="ws-badge ws-badge-dim">Shuttle available</span>
+            <span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">WiFi</span>
+            <span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Gym</span>
+            <span style="background:var(--navy-light);color:var(--navy-mid);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600">Shuttle available</span>
           </div>
-          <button class="btn btn-dark" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button>
+          <button class="btn btn-navy" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button>
         </div>
       </div>
     </div>
-    <div style="margin-top:24px;background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:14px;color:#fff"><i class="ti ti-navigation" style="color:var(--gold);vertical-align:-2px;margin-right:6px"></i>Getting there</h3>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;font-size:13px;color:var(--text-muted)">
-        <div style="display:flex;gap:10px"><i class="ti ti-plane" style="font-size:18px;color:var(--gold);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">By air</strong>Mangaluru International Airport, ~15 km away</div></div>
-        <div style="display:flex;gap:10px"><i class="ti ti-train" style="font-size:18px;color:var(--gold);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">By train</strong>Mangaluru Central — ~5 km. Cabs readily available</div></div>
-        <div style="display:flex;gap:10px"><i class="ti ti-bus" style="font-size:18px;color:var(--gold);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">Venue shuttle</strong>Partner hotel shuttle on all conference days</div></div>
+    <div style="margin-top:24px;background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:14px"><i class="ti ti-navigation" style="color:var(--red);vertical-align:-2px;margin-right:6px"></i>Getting there</h3>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;font-size:13px;color:var(--muted)">
+        <div style="display:flex;gap:10px"><i class="ti ti-plane" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">By air</strong>Mangaluru International Airport, ~15 km away</div></div>
+        <div style="display:flex;gap:10px"><i class="ti ti-train" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">By train</strong>Mangaluru Central — ~5 km. Cabs readily available</div></div>
+        <div style="display:flex;gap:10px"><i class="ti ti-bus" style="font-size:18px;color:var(--red);flex-shrink:0;margin-top:1px"></i><div><strong style="color:var(--text);display:block;margin-bottom:2px">Venue shuttle</strong>Partner hotel shuttle on all conference days</div></div>
       </div>
     </div>
   </div>
   <footer><strong>EM Karnataka 2026</strong> · accommodation@emkarnataka2026.in</footer>
 </div>
 
-<!-- ══════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════
      UPDATES PAGE
-══════════════════════════════════════════ -->
+══════════════════════════════════════════════════════════ -->
 <div id="page-updates" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
     <div class="page-header-content"><div class="page-header-accent"></div><h2>Conference Updates</h2><p>Announcements, deadlines, and programme news</p></div>
   </div>
   <div class="section" style="padding-top:36px">
-    <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:28px">
-      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px;color:#fff"><i class="ti ti-bell" style="color:var(--gold);vertical-align:-2px;margin-right:6px"></i>Subscribe for updates</h3>
+    <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:28px">
+      <h3 style="font-size:15px;font-weight:700;margin-bottom:12px"><i class="ti ti-bell" style="color:var(--red);vertical-align:-2px;margin-right:6px"></i>Subscribe for updates</h3>
       <div style="display:flex;gap:10px;flex-wrap:wrap">
         <input type="email" placeholder="your@email.com" style="flex:1;min-width:200px" />
-        <button class="btn btn-gold" onclick="doSub()"><i class="ti ti-bell"></i> Subscribe</button>
+        <button class="btn btn-red" onclick="doSub()"><i class="ti ti-bell"></i> Subscribe</button>
       </div>
       <div id="sub-ok" class="success-msg hidden" style="margin-top:10px"><i class="ti ti-circle-check" style="font-size:18px;flex-shrink:0"></i>You're subscribed — we'll notify you of all major updates.</div>
     </div>
-    <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
-      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div><div style="padding-bottom:16px;flex:1"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:12px;color:var(--text-muted)">May 2026</span><span style="background:var(--gold);color:var(--midnight);font-size:10px;padding:1px 7px;border-radius:100px;font-weight:700">NEW</span></div><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Website launched</div><div style="font-size:13px;color:var(--text-muted)">The official EM Karnataka 2026 website is live. Registration and abstract submission are now open.</div></div></div>
-      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div><div style="padding-bottom:16px;flex:1"><div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">May 2026</div><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Abstract submission portal open</div><div style="font-size:13px;color:var(--text-muted)">Submit original research for oral or e-poster presentation. Deadline: 31 August 2026.</div></div></div>
-      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div><div style="padding-bottom:16px;flex:1"><div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">May 2026</div><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Early bird registration rates live</div><div style="font-size:13px;color:var(--text-muted)">PG students ₹2,500 · Delegates ₹4,500 · Faculty ₹5,500 — valid until 31 August 2026.</div></div></div>
-      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot" style="background:var(--border)"></div></div><div style="flex:1"><div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Coming soon</div><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:var(--text-muted)">Faculty &amp; speaker announcements</div><div style="font-size:13px;color:var(--text-muted)">National and international faculty confirmations coming shortly.</div></div></div>
+    <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.5rem">
+      <div class="update-item">
+        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div>
+        <div style="padding-bottom:16px;flex:1">
+          <div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:12px;color:var(--muted)">May 2026</span><span style="background:var(--red);color:#fff;font-size:10px;padding:1px 7px;border-radius:100px;font-weight:700">NEW</span></div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Website launched</div>
+          <div style="font-size:13px;color:var(--muted)">The official EM Karnataka 2026 website is live. Registration and abstract submission are now open.</div>
+        </div>
+      </div>
+      <div class="update-item">
+        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div>
+        <div style="padding-bottom:16px;flex:1">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:4px">May 2026</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Abstract submission portal open</div>
+          <div style="font-size:13px;color:var(--muted)">Submit original research for oral or poster presentation. Deadline: 31 August 2026.</div>
+        </div>
+      </div>
+      <div class="update-item">
+        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div>
+        <div style="padding-bottom:16px;flex:1">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:4px">May 2026</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px">Early bird registration rates live</div>
+          <div style="font-size:13px;color:var(--muted)">PG students ₹2,500 · Delegates ₹4,500 · Faculty ₹5,500 — valid until 31 August 2026.</div>
+        </div>
+      </div>
+      <div class="update-item">
+        <div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot" style="background:#ccc"></div></div>
+        <div style="flex:1">
+          <div style="font-size:12px;color:var(--muted);margin-bottom:4px">Coming soon</div>
+          <div style="font-size:14px;font-weight:700;margin-bottom:4px;color:var(--muted)">Faculty &amp; speaker announcements</div>
+          <div style="font-size:13px;color:var(--muted)">National and international faculty confirmations coming shortly.</div>
+        </div>
+      </div>
     </div>
   </div>
   <footer><strong>EM Karnataka 2026</strong> · Follow on WhatsApp &amp; Email</footer>
 </div>
 
-<!-- ══════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════
      VENUE PAGE
-══════════════════════════════════════════ -->
+══════════════════════════════════════════════════════════ -->
 <div id="page-venue" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
-    <div class="page-header-content"><div class="page-header-accent"></div><h2>Venue</h2><p>Father Muller Medical College, Kankanady, Mangaluru</p></div>
+    <div class="page-header-content">
+      <div class="page-header-accent"></div>
+      <h2>Venue</h2>
+      <p>Father Muller Medical College, Kankanady, Mangaluru</p>
+    </div>
   </div>
   <div class="section" style="padding-top:36px">
-    <div class="theme-split" style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:36px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)">
-      <div style="position:relative;min-height:260px;overflow:hidden;background:var(--midnight-4)">
-        <img src="images/venue.jpg" alt="Father Muller Medical College" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'" />
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:36px;border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border)">
+      <div style="position:relative;min-height:260px;overflow:hidden;background:var(--navy-light)">
+        <img src="images/venue.jpg" alt="Father Muller Medical College" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.parentElement.style.background='linear-gradient(135deg,#1A252F,#2C3E50)';this.style.display='none'" />
+        <div style="position:absolute;bottom:0;left:0;right:0;padding:10px 14px;background:linear-gradient(transparent,rgba(0,0,0,0.6));color:#fff;font-size:12px">Add venue photo → images/venue.jpg</div>
       </div>
-      <div style="padding:28px 24px;background:var(--midnight-3)">
-        <span class="img-card-tag" style="margin-bottom:12px">Conference Venue</span>
-        <h3 style="font-size:20px;font-weight:800;color:#fff;margin-bottom:6px">Father Muller Medical College</h3>
-        <p style="font-size:14px;color:var(--text-muted);margin-bottom:18px;line-height:1.6">Kankanady, Mangaluru<br>Karnataka, India</p>
+      <div style="padding:28px 24px;background:var(--white)">
+        <span style="display:inline-block;background:var(--red-light);color:var(--red);font-size:10px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px">Conference Venue</span>
+        <h3 style="font-size:20px;font-weight:800;color:var(--navy);margin-bottom:6px">Father Muller Medical College</h3>
+        <p style="font-size:14px;color:var(--muted);margin-bottom:18px;line-height:1.6">Kankanady, Mangaluru<br>Karnataka, India</p>
         <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:22px">
-          <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--gold-border)"><i class="ti ti-map-pin" style="color:var(--gold);font-size:15px"></i></div><div><div style="font-size:12px;font-weight:700;color:var(--text)">Address</div><div style="font-size:12px;color:var(--text-muted)">Father Muller Rd, Kankanady, Mangaluru, Karnataka 575002</div></div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--gold-border)"><i class="ti ti-plane" style="color:var(--gold);font-size:15px"></i></div><div><div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Airport</div><div style="font-size:12px;color:var(--text-muted)">Mangaluru International Airport — ~15 km away</div></div></div>
-          <div style="display:flex;gap:10px;align-items:flex-start"><div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--gold-border)"><i class="ti ti-train" style="color:var(--gold);font-size:15px"></i></div><div><div style="font-size:12px;font-weight:700;color:var(--text)">Railway Station</div><div style="font-size:12px;color:var(--text-muted)">Mangaluru Central — ~5 km away</div></div></div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-map-pin" style="color:var(--red);font-size:15px"></i></div>
+            <div><div style="font-size:12px;font-weight:700;color:var(--text)">Address</div><div style="font-size:12px;color:var(--muted)">Father Muller Rd, Kankanady, Mangaluru, Karnataka 575002</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-plane" style="color:var(--red);font-size:15px"></i></div>
+            <div><div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Airport</div><div style="font-size:12px;color:var(--muted)">Mangaluru International Airport — ~15 km away</div></div>
+          </div>
+          <div style="display:flex;gap:10px;align-items:flex-start">
+            <div style="width:32px;height:32px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-train" style="color:var(--red);font-size:15px"></i></div>
+            <div><div style="font-size:12px;font-weight:700;color:var(--text)">Nearest Railway Station</div><div style="font-size:12px;color:var(--muted)">Mangaluru Central — ~5 km away</div></div>
+          </div>
         </div>
-        <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-dark" style="text-decoration:none;font-size:13px;padding:9px 18px"><i class="ti ti-brand-google-maps"></i> Open in Maps</a>
+        <div style="display:flex;gap:10px;flex-wrap:wrap">
+          <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-red" style="text-decoration:none;font-size:13px;padding:9px 18px"><i class="ti ti-map-pin"></i> Get Directions</a>
+          <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-navy" style="text-decoration:none;font-size:13px;padding:9px 18px"><i class="ti ti-brand-google-maps"></i> Open in Maps</a>
+        </div>
       </div>
     </div>
-    <div style="border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin-bottom:36px">
-      <div style="background:var(--midnight-4);padding:12px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--gold-border)"><i class="ti ti-map" style="color:var(--gold);font-size:16px"></i><span style="font-size:13px;font-weight:700;color:#fff">Location Map</span></div>
-      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d74.8473!3d12.8785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c17d48a0b%3A0x8f3d3e8c1a2b4c5d!2sFather+Muller+Medical+College!5e0!3m2!1sen!2sin!4v1" width="100%" height="400" style="border:0;display:block" allowfullscreen="" loading="lazy"></iframe>
+    <div style="border-radius:var(--radius);overflow:hidden;border:0.5px solid var(--border);margin-bottom:36px">
+      <div style="background:var(--navy);padding:12px 18px;display:flex;align-items:center;gap:8px">
+        <i class="ti ti-map" style="color:#ff9e95;font-size:16px"></i>
+        <span style="font-size:13px;font-weight:700;color:#fff">Location Map</span>
+        <span style="font-size:11px;color:rgba(255,255,255,0.5);margin-left:4px">Father Muller Medical College, Kankanady, Mangaluru</span>
+      </div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d74.8473!3d12.8785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c17d48a0b%3A0x8f3d3e8c1a2b4c5d!2sFather+Muller+Medical+College!5e0!3m2!1sen!2sin!4v1" width="100%" height="400" style="border:0;display:block" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
     </div>
     <h2 class="section-title">How to Reach</h2>
     <p class="section-sub">Mangaluru is well connected by air, rail, and road</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
-      <div class="reach-card"><div class="reach-icon"><i class="ti ti-plane"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Air</div><div style="font-size:12px;color:var(--text-muted)">Fly into <strong style="color:var(--text)">Mangaluru International Airport (IXE)</strong>. Cabs to venue ~30 min, ₹400–600.</div></div>
-      <div class="reach-card"><div class="reach-icon"><i class="ti ti-train"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Train</div><div style="font-size:12px;color:var(--text-muted)">Alight at <strong style="color:var(--text)">Mangaluru Central</strong>. Auto/cab to venue ~15 min.</div></div>
-      <div class="reach-card"><div class="reach-icon"><i class="ti ti-bus"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Bus</div><div style="font-size:12px;color:var(--text-muted)">KSRTC buses to <strong style="color:var(--text)">Mangaluru KSRTC Stand</strong>. Kankanady is a major local bus stop.</div></div>
-      <div class="reach-card"><div class="reach-icon"><i class="ti ti-car"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Road</div><div style="font-size:12px;color:var(--text-muted)">Via NH-66 (Mumbai–Kochi highway). Ample parking at campus.</div></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:36px">
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><i class="ti ti-plane" style="font-size:18px;color:var(--red)"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px">By Air</div><div style="font-size:12px;color:var(--muted)">Fly into <strong>Mangaluru International Airport (IXE)</strong>. Cabs to venue ~30 min, ₹400–600.</div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><i class="ti ti-train" style="font-size:18px;color:var(--red)"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px">By Train</div><div style="font-size:12px;color:var(--muted)">Alight at <strong>Mangaluru Central</strong> or <strong>Mangaluru Junction</strong>. Auto/cab to venue ~15 min.</div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><i class="ti ti-bus" style="font-size:18px;color:var(--red)"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px">By Bus</div><div style="font-size:12px;color:var(--muted)">KSRTC buses to <strong>Mangaluru KSRTC Stand</strong>. Kankanady is a major local bus stop nearby.</div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;margin-bottom:10px"><i class="ti ti-car" style="font-size:18px;color:var(--red)"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px">By Road</div><div style="font-size:12px;color:var(--muted)">Via NH-66 (Mumbai–Kochi highway). Ample parking available at the college campus.</div></div>
     </div>
   </div>
   <footer><strong>EM Karnataka 2026</strong> · Father Muller Medical College, Kankanady, Mangaluru</footer>
 </div>
 
-<!-- ══════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════
      CONTACT PAGE
-══════════════════════════════════════════ -->
+══════════════════════════════════════════════════════════ -->
 <div id="page-contact" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -1574,15 +902,15 @@ footer strong{color:var(--gold)}
   </div>
   <div class="section" style="padding-top:36px">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:36px">
-      <div class="contact-card"><div class="contact-icon"><i class="ti ti-pencil"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Registrations</p><p style="font-size:12px;color:var(--text-muted)">registrations@emkarnataka2026.in</p></div></div>
-      <div class="contact-card"><div class="contact-icon"><i class="ti ti-file-text"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Abstracts</p><p style="font-size:12px;color:var(--text-muted)">abstracts@emkarnataka2026.in</p></div></div>
-      <div class="contact-card"><div class="contact-icon"><i class="ti ti-building"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Accommodation</p><p style="font-size:12px;color:var(--text-muted)">accommodation@emkarnataka2026.in</p></div></div>
-      <div class="contact-card"><div class="contact-icon"><i class="ti ti-briefcase"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Sponsorships</p><p style="font-size:12px;color:var(--text-muted)">sponsors@emkarnataka2026.in</p></div></div>
-      <div class="contact-card"><div class="contact-icon"><i class="ti ti-phone"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Secretariat</p><p style="font-size:12px;color:var(--text-muted)">+91 XXXXX XXXXX · Mon–Sat, 10am–5pm</p></div></div>
-      <div class="contact-card"><div class="contact-icon" style="background:rgba(46,125,50,0.15);border-color:rgba(46,125,50,0.3)"><i class="ti ti-brand-whatsapp" style="color:#4CAF50"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">WhatsApp helpdesk</p><p style="font-size:12px;color:var(--text-muted)">+91 XXXXX XXXXX</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-pencil" style="font-size:18px;color:var(--red)"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">Registrations</p><p style="font-size:12px;color:var(--muted)">registrations@emkarnataka2026.in</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-file-text" style="font-size:18px;color:var(--red)"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">Abstracts</p><p style="font-size:12px;color:var(--muted)">abstracts@emkarnataka2026.in</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-building" style="font-size:18px;color:var(--red)"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">Accommodation</p><p style="font-size:12px;color:var(--muted)">accommodation@emkarnataka2026.in</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--amber-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-briefcase" style="font-size:18px;color:var(--amber)"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">Sponsorships</p><p style="font-size:12px;color:var(--muted)">sponsors@emkarnataka2026.in</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--red-light);display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-phone" style="font-size:18px;color:var(--red)"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">Secretariat</p><p style="font-size:12px;color:var(--muted)">+91 XXXXX XXXXX · Mon–Sat, 10am–5pm</p></div></div>
+      <div style="background:var(--white);border:0.5px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;gap:12px;align-items:flex-start"><div style="width:38px;height:38px;border-radius:var(--radius-sm);background:#E8F5E9;display:flex;align-items:center;justify-content:center;flex-shrink:0"><i class="ti ti-brand-whatsapp" style="font-size:18px;color:#2e7d32"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px">WhatsApp helpdesk</p><p style="font-size:12px;color:var(--muted)">+91 XXXXX XXXXX</p></div></div>
     </div>
     <div class="form-card" style="max-width:620px">
-      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;color:#fff">Send a Message</h3>
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px">Send a Message</h3>
       <div class="form-grid">
         <div class="fg"><label>Name *</label><input type="text" placeholder="Your name" /></div>
         <div class="fg"><label>Email *</label><input type="email" placeholder="your@email.com" /></div>
@@ -1590,44 +918,20 @@ footer strong{color:var(--gold)}
         <div class="fg full"><label>Message *</label><textarea placeholder="Your message..."></textarea></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:12px">
-        <p style="font-size:12px;color:var(--text-muted)">We respond within 1–2 working days</p>
-        <button class="btn btn-gold" onclick="doContact()"><i class="ti ti-send"></i> Send Message</button>
+        <p style="font-size:12px;color:var(--muted)">We respond within 1–2 working days</p>
+        <button class="btn btn-red" onclick="doContact()"><i class="ti ti-send"></i> Send Message</button>
       </div>
       <div id="ctc-ok" class="success-msg hidden"><i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i>Message sent! We'll respond within 1–2 working days.</div>
     </div>
   </div>
-  <footer><strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026</footer>
+  <footer><strong>EM Karnataka 2026</strong> · Emergency Medicine State Conference · November 2026</footer>
 </div>
 
-<!-- ══════════════════════════════════════════
-     MOBILE BOTTOM NAV
-══════════════════════════════════════════ -->
-<div id="bn-backdrop" onclick="closeMoreMenu()"></div>
-
-<div id="bn-more-menu">
-  <div style="width:40px;height:4px;background:rgba(212,160,23,0.3);border-radius:2px;margin:0 auto 12px"></div>
-  <button class="bn-more-item" id="bn-more-workshops" onclick="bnGo('workshops')"><i class="ti ti-tool"></i> Workshops</button>
-  <button class="bn-more-item" id="bn-more-stay"      onclick="bnGo('stay')">     <i class="ti ti-bed"></i>  Stay</button>
-  <button class="bn-more-item" id="bn-more-updates"   onclick="bnGo('updates')">  <i class="ti ti-bell"></i> Updates</button>
-  <button class="bn-more-item" id="bn-more-venue"     onclick="bnGo('venue')">    <i class="ti ti-map-pin"></i> Venue</button>
-  <button class="bn-more-item" id="bn-more-contact"   onclick="bnGo('contact')">  <i class="ti ti-headset"></i> Contact</button>
-</div>
-
-<nav id="bottom-nav">
-  <div class="bn-inner">
-    <button class="bn-item active" id="bn-home"         onclick="bnGo('home')">        <i class="ti ti-home"></i>      Home</button>
-    <button class="bn-item"        id="bn-schedule"     onclick="bnGo('schedule')">    <i class="ti ti-layout-list"></i>Schedule</button>
-    <button class="bn-item"        id="bn-register"     onclick="bnGo('register')">    <i class="ti ti-user-plus" style="font-size:22px;color:var(--gold)"></i>Register</button>
-    <button class="bn-item"        id="bn-competitions" onclick="bnGo('competitions')"><i class="ti ti-file-text"></i>  Compete</button>
-    <button class="bn-item"        id="bn-more-btn"     onclick="toggleMoreMenu()">    <i class="ti ti-dots"></i>       More</button>
-  </div>
-</nav>
-
-<!-- ══════════════════════════════════════════
+<!-- ══════════════════════════════════════════════════════════
      JAVASCRIPT
-══════════════════════════════════════════ -->
+══════════════════════════════════════════════════════════ -->
 <script>
-/* ── Hero slideshow ── */
+/* Hero slideshow */
 const heroImgs=[
   'https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80',
   'https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1400&q=80',
@@ -1641,7 +945,7 @@ function switchHero(i){
 }
 setInterval(()=>switchHero((hIdx+1)%heroImgs.length),5000);
 
-/* ── Page navigation ── */
+/* Page navigation */
 function showPage(p){
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.nav-links button').forEach(x=>x.classList.remove('active'));
@@ -1651,7 +955,7 @@ function showPage(p){
   window.scrollTo(0,0);
 }
 
-/* ── Schedule tabs ── */
+/* Schedule tabs */
 function showDay(d,btn){
   document.querySelectorAll('.sched-day').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));
@@ -1659,7 +963,7 @@ function showDay(d,btn){
   btn.classList.add('active');
 }
 
-/* ── Registration tier selection ── */
+/* Registration tier selection */
 function selectTier(t,card){
   document.querySelectorAll('.tier').forEach(c=>c.classList.remove('selected'));
   card.classList.add('selected');
@@ -1667,23 +971,23 @@ function selectTier(t,card){
   for(let i=0;i<s.options.length;i++)if(s.options[i].value===t){s.selectedIndex=i;break;}
 }
 
-/* ── Competition card dropdown ── */
-function toggleComp(id){
-  const card=document.getElementById(id);
-  const isOpen=card.classList.contains('open');
-  // close all first
-  document.querySelectorAll('.comp-card').forEach(c=>c.classList.remove('open'));
-  // if it was closed, open it
-  if(!isOpen) card.classList.add('open');
+/* Abstract word count */
+function countW(el){
+  const w=el.value.trim()===''?0:el.value.trim().split(/\s+/).length;
+  const pct=Math.min(100,Math.round(w/300*100));
+  document.getElementById('wc-label').textContent=w+' / 300 words';
+  const f=document.getElementById('wc-fill');
+  f.style.width=pct+'%';
+  f.style.background=w>300?'#C0392B':w>250?'#D4A017':'var(--red-mid)';
 }
 
-/* ── Carousel scroll ── */
+/* Partners carousel scroll */
 function scrollCarousel(trackId,dir){
   const t=document.getElementById(trackId);
   t.scrollBy({left:dir*220,behavior:'smooth'});
 }
 
-/* ── Form submissions ── */
+/* Form submissions */
 function doReg(){
   const f=document.getElementById('rf').value,
         e=document.getElementById('re').value,
@@ -1693,10 +997,16 @@ function doReg(){
   el.classList.remove('hidden');
   el.scrollIntoView({behavior:'smooth',block:'center'});
 }
+function doAbs(){
+  if(!document.getElementById('decl').checked){alert('Please accept the declaration.');return;}
+  const el=document.getElementById('abs-ok');
+  el.classList.remove('hidden');
+  el.scrollIntoView({behavior:'smooth',block:'center'});
+}
 function doSub(){document.getElementById('sub-ok').classList.remove('hidden');}
 function doContact(){document.getElementById('ctc-ok').classList.remove('hidden');}
 
-/* ── Countdown timer ── */
+/* Countdown timer */
 function tick(){
   const diff=new Date('2026-08-31T23:59:59')-new Date();
   if(diff<=0)return;
@@ -1706,48 +1016,5 @@ function tick(){
   document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');
 }
 tick();setInterval(tick,1000);
-
-/* ── Mobile bottom nav ── */
-const BN_DIRECT=['home','schedule','register','competitions'];
-const BN_MORE=['workshops','stay','updates','venue','contact'];
-
-function bnGo(page){
-  closeMoreMenu();
-  showPage(page);
-  updateBottomNav(page);
-}
-function updateBottomNav(page){
-  document.querySelectorAll('.bn-item').forEach(el=>el.classList.remove('active'));
-  document.querySelectorAll('.bn-more-item').forEach(el=>el.classList.remove('active-page'));
-  if(BN_DIRECT.includes(page)){
-    const el=document.getElementById('bn-'+page);
-    if(el)el.classList.add('active');
-  } else {
-    const moreBtn=document.getElementById('bn-more-btn');
-    if(moreBtn)moreBtn.classList.add('active');
-    const moreItem=document.getElementById('bn-more-'+page);
-    if(moreItem)moreItem.classList.add('active-page');
-  }
-}
-function toggleMoreMenu(){
-  const menu=document.getElementById('bn-more-menu');
-  const backdrop=document.getElementById('bn-backdrop');
-  const isOpen=menu.classList.contains('open');
-  if(isOpen){closeMoreMenu();}
-  else{
-    menu.classList.add('open');
-    backdrop.classList.add('open');
-    document.getElementById('bn-more-btn').classList.add('active');
-  }
-}
-function closeMoreMenu(){
-  document.getElementById('bn-more-menu').classList.remove('open');
-  document.getElementById('bn-backdrop').classList.remove('open');
-}
-
-/* Keep bottom nav in sync with desktop nav clicks */
-const _origShowPage=showPage;
-showPage=function(p){_origShowPage(p);updateBottomNav(p);};
 </script>
-</body>
 </html>
