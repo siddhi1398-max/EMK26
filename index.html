@@ -323,7 +323,7 @@ footer strong{color:var(--gold)}
 .ec-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
 @media(max-width:768px){
-  .nav-inner{height:60px;padding:0 1rem;grid-template-columns:auto 1fr auto}
+ .nav-inner{height:60px;padding:0 1rem;grid-template-columns:auto auto}
   .logo-img{height:40px;width:40px}
   .logo-main{font-size:15px}
   .logo-sub{display:none}
@@ -1170,18 +1170,19 @@ tick();setInterval(tick,1000);
 </div>
 
 <style>
-  #palm-footer {
-    position: fixed; bottom: 0; left: 0;
-    width: 100%; pointer-events: none; z-index: 99;
-    display: flex; justify-content: space-between; align-items: flex-end;
-  }
-  #palm-left, #palm-right { width: 200px; height: 200px; opacity: 0.9; }
-  #palm-left { transform: scaleX(-1); }
-  @media (max-width: 600px) {
-    #palm-left, #palm-right { width: 110px; height: 110px; }
-    #palm-left {transform: scaleX (-1); margin-left: -50px;}
-    #palm-right {margin-right: -50px}
-  }
+ #palm-footer {
+  position: fixed; bottom: 0; left: 0;
+  width: 100%; pointer-events: none; z-index: 99;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+#palm-left, #palm-right { width: 140px; height: 140px; opacity: 0.9; }
+#palm-left { transform: scaleX(-1); margin-left: -20px; }
+#palm-right { margin-right: -20px; }
+@media (max-width: 768px) {
+  #palm-left, #palm-right { width: 100px; height: 100px; }
+  #palm-left { margin-left: -15px; }
+  #palm-right { margin-right: -15px; }
+}
 </style>
 
 <script>
