@@ -67,29 +67,16 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
 .hi-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
 @media (max-width: 768px) {
-  /* Keep top nav exactly as desktop but just hide the links */
-  .nav-links { display: none; }
-  .logo-sub { display: none; }
-  .nav-inner { height: 64px; padding: 0 1rem; }
-  .logo-img { height: 44px; width: 44px; }
-  .logo-main { font-size: 16px; }
-  .nav-cta-btn { display: none; }
-
-  /* Fix hero so it sits below the nav properly */
   .hero {
     padding: 50px 20px 80px;
     min-height: 480px;
   }
-
   .hero-content {
     position: relative;
     z-index: 10;
   }
-
   .hero h1 { font-size: 30px; }
   .hero-sub { font-size: 14px; }
-
-  /* Palm trees smaller on mobile */
   #palm-left, #palm-right { width: 90px; height: 90px; }
   #palm-left { margin-left: 0; }
   #palm-right { margin-right: 0; }
