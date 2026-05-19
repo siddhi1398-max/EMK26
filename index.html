@@ -333,9 +333,6 @@ footer strong{color:var(--gold)}
 .ec-dots{display:flex;gap:6px;justify-content:center;margin-top:14px}
 .ec-dot{width:6px;height:6px;border-radius:50%;background:rgba(212,160,23,0.25);border:none;cursor:pointer;padding:0;transition:all 0.2s}
 .ec-dot.active{background:var(--gold);width:18px;border-radius:3px}
-
-@media(max-width:768px){
-  .nav-inner{height:60px;padding:0 1rem;grid-template-columns:auto 1fr auto auto;gap:8px}
 .logo-img{
   height:60px;
   width:60px;
@@ -348,6 +345,9 @@ footer strong{color:var(--gold)}
     0 0 28px rgba(212,160,23,0.35),
     0 0 60px rgba(212,160,23,0.15);
 }
+
+@media(max-width:768px){
+  .nav-inner{height:60px;padding:0 1rem;grid-template-columns:auto 1fr auto auto;gap:8px}
   .logo-main{font-size:15px}
   .logo-sub{display:none}
   .nav-links{display:none}
