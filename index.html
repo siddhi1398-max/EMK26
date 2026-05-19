@@ -322,35 +322,22 @@ footer strong{color:var(--gold)}
 .ec-dot{width:6px;height:6px;border-radius:50%;background:rgba(212,160,23,0.25);border:none;cursor:pointer;padding:0;transition:all 0.2s}
 .ec-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
-#bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--midnight-2);border-top:1px solid var(--gold-border);padding:6px 0 env(safe-area-inset-bottom,8px);box-shadow:0 -4px 20px rgba(0,0,0,0.5);}
-.bn-inner{display:flex;justify-content:space-around;align-items:stretch;max-width:600px;margin:0 auto}
-.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:5px 2px;background:none;border:none;cursor:pointer;font-family:inherit;color:rgba(240,238,216,0.35);font-size:8.5px;font-weight:600;letter-spacing:0.3px;text-transform:uppercase;transition:color 0.15s;-webkit-tap-highlight-color:transparent;position:relative;}
-.bn-item i{font-size:19px;line-height:1;transition:color 0.15s,transform 0.15s}
-.bn-item.active{color:var(--gold)}
-.bn-item.active i{color:var(--gold);transform:translateY(-1px)}
-.bn-item.active::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--gold);border-radius:0 0 2px 2px;}
-#bn-more-menu{display:none;position:fixed;bottom:0;left:0;right:0;z-index:199;background:var(--midnight-3);border-top:1px solid var(--gold-border);box-shadow:0 -8px 32px rgba(0,0,0,0.6);padding:12px 0 calc(env(safe-area-inset-bottom,8px) + 58px);border-radius:20px 20px 0 0;animation:slideUpMenu 0.22s ease;}
-#bn-more-menu.open{display:block}
-@keyframes slideUpMenu{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
-.bn-more-item{display:flex;align-items:center;gap:14px;padding:13px 24px;color:rgba(240,238,216,0.75);font-size:14px;font-weight:500;cursor:pointer;border:none;background:none;width:100%;font-family:inherit;transition:background 0.12s;-webkit-tap-highlight-color:transparent;}
-.bn-more-item i{font-size:20px;color:var(--gold);width:24px;flex-shrink:0}
-.bn-more-item:hover,.bn-more-item:active{background:rgba(212,160,23,0.06)}
-.bn-more-item.active-page{color:var(--gold);background:var(--gold-glow)}
-#bn-backdrop{display:none;position:fixed;inset:0;z-index:198;background:rgba(0,0,0,0.6)}
-#bn-backdrop.open{display:block}
-
 @media(max-width:768px){
-  .nav-inner{grid-template-columns:1fr auto;height:64px;padding:0 1rem;gap:8px}
+  .nav-inner{height:60px;padding:0 1rem;grid-template-columns:auto 1fr auto}
+  .logo-img{height:40px;width:40px}
+  .logo-main{font-size:15px}
+  .logo-sub{display:none}
   .nav-links{display:none}
+  .nav-cta-btn{font-size:12px;padding:8px 14px}
   .form-grid{grid-template-columns:1fr}
   .stat-banner{flex-direction:column;gap:16px}
   .stat-item{border-right:none;border-bottom:1px solid rgba(0,0,0,0.12);padding-bottom:14px}
   .stat-item:last-child{border-bottom:none}
   .carousel-btn{display:none}
-  .comp-grid{grid-template-columns:1fr !important}
-  .theme-split{grid-template-columns:1fr !important}
-  #bottom-nav{display:block}
-  body{padding-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
+  body{padding-bottom:0}
+}
+@media(max-width:480px){
+  .hero h1{font-size:clamp(30px,8vw,44px)}
 }
 @media(max-width:480px){
   .bn-item{font-size:7.5px;padding:4px 1px}
@@ -1091,26 +1078,6 @@ footer strong{color:var(--gold)}
   <footer><strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026</footer>
 </div>
 
-<!-- ═══════════ MOBILE BOTTOM NAV ═══════════ -->
-<div id="bn-backdrop" onclick="closeMoreMenu()"></div>
-<div id="bn-more-menu">
-  <div style="width:40px;height:4px;background:rgba(212,160,23,0.3);border-radius:2px;margin:0 auto 12px"></div>
-  <button class="bn-more-item" id="bn-more-workshops" onclick="bnGo('workshops')"><i class="ti ti-tool"></i> Workshops</button>
-  <button class="bn-more-item" id="bn-more-stay" onclick="bnGo('stay')"><i class="ti ti-bed"></i> Stay</button>
-  <button class="bn-more-item" id="bn-more-updates" onclick="bnGo('updates')"><i class="ti ti-bell"></i> Updates</button>
-  <button class="bn-more-item" id="bn-more-venue" onclick="bnGo('venue')"><i class="ti ti-map-pin"></i> Venue</button>
-  <button class="bn-more-item" id="bn-more-contact" onclick="bnGo('contact')"><i class="ti ti-headset"></i> Contact</button>
-</div>
-<nav id="bottom-nav">
-  <div class="bn-inner">
-    <button class="bn-item active" id="bn-home" onclick="bnGo('home')"><i class="ti ti-home"></i>Home</button>
-    <button class="bn-item" id="bn-schedule" onclick="bnGo('schedule')"><i class="ti ti-layout-list"></i>Schedule</button>
-    <button class="bn-item" id="bn-register" onclick="bnGo('register')"><i class="ti ti-user-plus" style="font-size:22px;color:var(--gold)"></i>Register</button>
-    <button class="bn-item" id="bn-competitions" onclick="bnGo('competitions')"><i class="ti ti-file-text"></i>Compete</button>
-    <button class="bn-item" id="bn-more-btn" onclick="toggleMoreMenu()"><i class="ti ti-dots"></i>More</button>
-  </div>
-</nav>
-
 <script>
 const heroImgs=['images/mlr_9_kambala.webp','images/mlr_8_yk.png','images/mlr_7_tigerdance.jpg','images/mlr_6_lighthouse.jpg','images/mlr_5_ullal.jpg','images/mlr_4_tnrbeach.webp'];
 let hIdx=0;
@@ -1162,15 +1129,6 @@ function doContact(){document.getElementById('ctc-ok').classList.remove('hidden'
 
 function tick(){const diff=new Date('2026-09-15T23:59:59')-new Date();if(diff<=0)return;document.getElementById('cd-d').textContent=Math.floor(diff/86400000);document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
 tick();setInterval(tick,1000);
-
-const BN_DIRECT=['home','schedule','register','competitions'];
-const BN_MORE=['workshops','stay','updates','venue','contact'];
-function bnGo(page){closeMoreMenu();showPage(page);updateBottomNav(page);}
-function updateBottomNav(page){document.querySelectorAll('.bn-item').forEach(el=>el.classList.remove('active'));document.querySelectorAll('.bn-more-item').forEach(el=>el.classList.remove('active-page'));if(BN_DIRECT.includes(page)){const el=document.getElementById('bn-'+page);if(el)el.classList.add('active');}else{const moreBtn=document.getElementById('bn-more-btn');if(moreBtn)moreBtn.classList.add('active');const moreItem=document.getElementById('bn-more-'+page);if(moreItem)moreItem.classList.add('active-page');}}
-function toggleMoreMenu(){const menu=document.getElementById('bn-more-menu');const backdrop=document.getElementById('bn-backdrop');const isOpen=menu.classList.contains('open');if(isOpen){closeMoreMenu();}else{menu.classList.add('open');backdrop.classList.add('open');document.getElementById('bn-more-btn').classList.add('active');}}
-function closeMoreMenu(){document.getElementById('bn-more-menu').classList.remove('open');document.getElementById('bn-backdrop').classList.remove('open');}
-const _origShowPage=showPage;
-showPage=function(p){_origShowPage(p);updateBottomNav(p);};
 
 (function(){
   const TOTAL=9;
