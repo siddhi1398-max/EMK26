@@ -66,11 +66,6 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
 .hi-dot{width:6px;height:6px;border-radius:50%;background:rgba(212,160,23,0.3);border:none;cursor:pointer;padding:0;transition:all 0.2s}
 .hi-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
-  <button id="ham-btn" onclick="toggleDrawer()" aria-label="Menu">
-  <i class="ti ti-menu-2"></i>
-</button>
-
-
   #ham-btn{display:none;background:none;border:none;cursor:pointer;color:var(--text);font-size:26px;padding:4px;line-height:1}
 #drawer{position:fixed;top:0;right:-280px;width:280px;height:100vh;background:var(--midnight-2);z-index:300;border-left:1px solid var(--gold-border);transition:right 0.3s ease;padding-top:0;overflow-y:auto;}
 #drawer.open{right:0}
@@ -391,6 +386,9 @@ footer strong{color:var(--gold)}
       <button onclick="showPage('venue')" id="nav-venue">Venue</button>
       <button onclick="showPage('contact')" id="nav-contact">Contact</button>
     </div>
+     <button id="ham-btn" onclick="toggleDrawer()" aria-label="Menu">
+  <i class="ti ti-menu-2"></i>
+</button>
     <button class="nav-cta-btn" onclick="showPage('register')">
       <i class="ti ti-user-plus" style="font-size:15px"></i> Register Now
     </button>
