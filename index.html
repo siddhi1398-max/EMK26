@@ -1188,8 +1188,7 @@ showPage=function(p){_origShowPage(p);updateBottomNav(p);};
 })();
 </script>
   
-  <!-- Palm Tree Footer Animation -->
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 
 <div id="palm-footer">
   <div id="palm-left"></div>
@@ -1198,38 +1197,25 @@ showPage=function(p){_origShowPage(p);updateBottomNav(p);};
 
 <style>
   #palm-footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    pointer-events: none;
-    z-index: 99; /* just under your nav z-index:100 */
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
+    position: fixed; bottom: 0; left: 0;
+    width: 100%; pointer-events: none; z-index: 99;
+    display: flex; justify-content: space-between; align-items: flex-end;
   }
-  #palm-left, #palm-right {
-    width: 200px;
-    height: 200px;
-    opacity: 0.85;
-  }
-  #palm-right {
-    transform: scaleX(-1);
-  }
+  #palm-left, #palm-right { width: 200px; height: 200px; opacity: 0.9; }
+  #palm-left { transform: scaleX(-1); }
   @media (max-width: 600px) {
     #palm-left, #palm-right { width: 110px; height: 110px; }
   }
 </style>
 
 <script>
-  const palmCfg = {
-    renderer: 'svg',
-    loop: true,
-    autoplay: true,
-    path: 'Palm_Tree_Leaf_Animation.json'
-  };
-  lottie.loadAnimation({ ...palmCfg, container: document.getElementById('palm-left') });
-  lottie.loadAnimation({ ...palmCfg, container: document.getElementById('palm-right') });
+  fetch('/Palm_Tree_Leaf_Animation.json')
+    .then(r => r.json())
+    .then(animData => {
+      const cfg = { renderer: 'svg', loop: true, autoplay: true, animationData };
+      lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left') });
+      lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
+    });
 </script>
 </body>
 </html>
