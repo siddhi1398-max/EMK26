@@ -67,35 +67,32 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
 .hi-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
 @media (max-width: 768px) {
-  /* Shrink the nav */
-  .nav-inner {
-    height: 56px;
-    padding: 0 1rem;
-    grid-template-columns: auto 1fr auto;
-  }
-
-  /* Smaller logo */
-  .logo-img { height: 38px; width: 38px; }
-  .logo-main { font-size: 15px; }
-  .logo-sub { display: none; }
-
-  /* Hide desktop nav links */
+  /* Keep top nav exactly as desktop but just hide the links */
   .nav-links { display: none; }
+  .logo-sub { display: none; }
+  .nav-inner { height: 64px; padding: 0 1rem; }
+  .logo-img { height: 44px; width: 44px; }
+  .logo-main { font-size: 16px; }
+  .nav-cta-btn { display: none; }
 
-  /* Smaller register button */
-  .nav-cta-btn {
-    font-size: 12px;
-    padding: 8px 14px;
-  }
-
-  /* Fix hero top padding so it doesn't hide behind nav */
+  /* Fix hero so it sits below the nav properly */
   .hero {
-    padding-top: 60px;
-    min-height: 420px;
+    padding: 50px 20px 80px;
+    min-height: 480px;
   }
 
-  /* Shrink palm trees on mobile */
+  .hero-content {
+    position: relative;
+    z-index: 10;
+  }
+
+  .hero h1 { font-size: 30px; }
+  .hero-sub { font-size: 14px; }
+
+  /* Palm trees smaller on mobile */
   #palm-left, #palm-right { width: 90px; height: 90px; }
+  #palm-left { margin-left: 0; }
+  #palm-right { margin-right: 0; }
 }
   
 .countdown-bar{background:var(--midnight-3);padding:11px 1.5rem;text-align:center;border-bottom:1px solid var(--gold-border);}
