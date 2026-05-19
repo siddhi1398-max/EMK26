@@ -66,6 +66,23 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
 .hi-dot{width:6px;height:6px;border-radius:50%;background:rgba(212,160,23,0.3);border:none;cursor:pointer;padding:0;transition:all 0.2s}
 .hi-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
+  <button id="ham-btn" onclick="toggleDrawer()" aria-label="Menu">
+  <i class="ti ti-menu-2"></i>
+</button>
+
+
+  #ham-btn{display:none;background:none;border:none;cursor:pointer;color:var(--text);font-size:26px;padding:4px;line-height:1}
+#drawer{position:fixed;top:0;right:-280px;width:280px;height:100vh;background:var(--midnight-2);z-index:300;border-left:1px solid var(--gold-border);transition:right 0.3s ease;padding-top:0;overflow-y:auto;}
+#drawer.open{right:0}
+#drawer-backdrop{display:none;position:fixed;inset:0;z-index:299;background:rgba(0,0,0,0.6)}
+#drawer-backdrop.open{display:block}
+#drawer-header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--gold-border);}
+.drawer-item{display:flex;align-items:center;gap:14px;padding:14px 20px;color:var(--text-dim);font-size:14px;font-weight:500;cursor:pointer;border:none;background:none;width:100%;font-family:inherit;transition:background 0.12s,color 0.12s;text-align:left;}
+.drawer-item i{font-size:20px;color:var(--gold);width:24px;flex-shrink:0}
+.drawer-item:hover{background:var(--gold-glow);color:var(--gold)}
+.drawer-item.active{color:var(--gold);background:var(--gold-glow)}
+@media(max-width:768px){#ham-btn{display:block}}
+  
 @media (max-width: 768px) {
   .hero {
     padding: 50px 20px 80px;
@@ -323,18 +340,25 @@ footer strong{color:var(--gold)}
 .ec-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
 @media(max-width:768px){
- .nav-inner{height:60px;padding:0 1rem;grid-template-columns:auto auto}
+  .nav-inner{height:60px;padding:0 1rem;grid-template-columns:auto 1fr auto auto;gap:8px}
   .logo-img{height:40px;width:40px}
   .logo-main{font-size:15px}
   .logo-sub{display:none}
   .nav-links{display:none}
-  .nav-cta-btn{font-size:12px;padding:8px 14px}
+  .nav-cta-btn{display:none}
   .form-grid{grid-template-columns:1fr}
   .stat-banner{flex-direction:column;gap:16px}
   .stat-item{border-right:none;border-bottom:1px solid rgba(0,0,0,0.12);padding-bottom:14px}
   .stat-item:last-child{border-bottom:none}
   .carousel-btn{display:none}
   body{padding-bottom:0}
+  .theme-split{grid-template-columns:1fr !important}
+  .comp-grid{grid-template-columns:1fr !important}
+  .section{padding:40px 1rem}
+  .hero{padding:40px 16px 60px}
+  .hero-meta{flex-direction:column;align-items:center;gap:8px}
+  .tier-grid{grid-template-columns:1fr}
+  .sponsors-grid{flex-direction:column;align-items:center}
 }
 @media(max-width:480px){
   .hero h1{font-size:clamp(30px,8vw,44px)}
@@ -1160,6 +1184,14 @@ tick();setInterval(tick,1000);
   function init(){buildDots();ecGo(0);window.addEventListener('resize',()=>{buildDots();ecGo(Math.min(ecIdx,ecMaxIdx()));});}
   if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
+  function toggleDrawer(){
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('drawer-backdrop').classList.toggle('open');
+}
+function drawerGo(page){
+  toggleDrawer();
+  showPage(page);
+}
 </script>
   
  <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
@@ -1194,5 +1226,28 @@ tick();setInterval(tick,1000);
   lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
 });
 </script>
+
+  <!-- Hamburger button — add inside .nav-inner in your HTML -->
+
+<!-- Drawer -->
+<div id="drawer-backdrop" onclick="toggleDrawer()"></div>
+<div id="drawer">
+  <div id="drawer-header">
+    <span style="font-weight:800;font-size:16px;color:#fff">Menu</span>
+    <button onclick="toggleDrawer()" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:22px"><i class="ti ti-x"></i></button>
+  </div>
+  <button class="drawer-item" onclick="drawerGo('home')"><i class="ti ti-home"></i>Home</button>
+  <button class="drawer-item" onclick="drawerGo('schedule')"><i class="ti ti-layout-list"></i>Schedule</button>
+  <button class="drawer-item" onclick="drawerGo('workshops')"><i class="ti ti-tool"></i>Workshops</button>
+  <button class="drawer-item" onclick="drawerGo('competitions')"><i class="ti ti-file-text"></i>Competitions</button>
+  <button class="drawer-item" onclick="drawerGo('stay')"><i class="ti ti-bed"></i>Stay</button>
+  <button class="drawer-item" onclick="drawerGo('updates')"><i class="ti ti-bell"></i>Updates</button>
+  <button class="drawer-item" onclick="drawerGo('venue')"><i class="ti ti-map-pin"></i>Venue</button>
+  <button class="drawer-item" onclick="drawerGo('contact')"><i class="ti ti-headset"></i>Contact</button>
+  <div style="padding:16px 20px;margin-top:8px;border-top:1px solid var(--gold-border)">
+    <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="drawerGo('register')"><i class="ti ti-user-plus"></i>Register Now</button>
+  </div>
+</div>
+  
 </body>
 </html>
