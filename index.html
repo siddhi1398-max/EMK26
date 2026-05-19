@@ -1212,10 +1212,10 @@ showPage=function(p){_origShowPage(p);updateBottomNav(p);};
   fetch('/Palm_Tree_Leaf_Animation.json')
     .then(r => r.json())
     .then(animData => {
-      const cfg = { renderer: 'svg', loop: true, autoplay: true, animationData };
-      lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left') });
-      lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
-    });
+  const cfg = { renderer: 'svg', loop: true, autoplay: true, animationData: animData };
+  lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left') });
+  lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
+});
 </script>
 </body>
 </html>
