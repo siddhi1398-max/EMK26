@@ -273,19 +273,7 @@ textarea{resize:vertical;min-height:90px}
 .contact-icon{width:38px;height:38px;border-radius:var(--radius-sm);background:var(--gold-glow);display:flex;align-items:center;justify-content:center;flex-shrink:0;border:1px solid var(--gold-border)}
 .contact-icon i{font-size:18px;color:var(--gold)}
 
-footer{
-  background:linear-gradient(180deg,var(--midnight-2) 0%,#060c0a 100%);
-  color:var(--text-muted);text-align:center;
-  padding:48px 1.5rem 80px;font-size:13px;
-  border-top:1px solid var(--gold-border);
-  position:relative;overflow:hidden;
-}
-footer::before{
-  content:'';position:absolute;inset:0;
-  background-image:url('https://images.unsplash.com/photo-1591017403286-fd8493524e1e?w=800&q=20');
-  background-size:cover;background-position:center top;
-  opacity:0.04;
-}
+footer{background:var(--midnight-2);color:var(--text-muted);text-align:center;padding:36px 1.5rem;font-size:13px;border-top:1px solid var(--border);}
 footer strong{color:var(--gold)}
 
 .ws-card{background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s}
@@ -298,114 +286,22 @@ footer strong{color:var(--gold)}
 .ws-meta{font-size:11px;color:var(--text-muted);display:flex;flex-direction:column;gap:4px}
 .ws-meta span i{vertical-align:-2px;color:var(--gold)}
 
-
-
-
-
-
-
-
-
-
-to{transform:translateY(0);opacity:1}}
-
-
-
-
-
-
-
-/* ══ COCONUT PALM TREES — fixed side decorations ══ */
-.palm-wrap{
-  position:fixed;bottom:0;z-index:50;pointer-events:none;
-  display:flex;align-items:flex-end;
-}
-.palm-wrap.left{left:0}
-.palm-wrap.right{right:0}
-
-/* ══ MANGALURU GALLERY STRIP ══ */
-.mgr-gallery{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:0;
-  height:220px;
-  overflow:hidden;
-  position:relative;
-}
-.mgr-gallery-item{
-  position:relative;overflow:hidden;cursor:pointer;
-}
-.mgr-gallery-item img{
-  width:100%;height:100%;object-fit:cover;display:block;
-  transition:transform 0.5s ease,filter 0.3s;
-  filter:saturate(1.15) brightness(0.9);
-}
-.mgr-gallery-item:hover img{transform:scale(1.07);filter:saturate(1.4) brightness(1.05)}
-.mgr-gallery-item .mgr-cap{
-  position:absolute;bottom:0;left:0;right:0;
-  background:linear-gradient(transparent,rgba(8,9,13,0.82));
-  padding:20px 10px 8px;
-  font-size:10px;font-weight:700;color:rgba(240,238,216,0.9);
-  text-transform:uppercase;letter-spacing:0.8px;text-align:center;
-  opacity:0;transition:opacity 0.25s;
-}
-.mgr-gallery-item:hover .mgr-cap{opacity:1}
-.mgr-gallery::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(90deg,var(--midnight) 0%,transparent 8%,transparent 92%,var(--midnight) 100%);
-  pointer-events:none;
-}
-
-/* ══ CITY FACTS STRIP ══ */
-.city-strip{
-  background:linear-gradient(135deg,#0a0f1a 0%,#0e1a14 50%,#141008 100%);
-  border-top:1px solid var(--gold-border);
-  border-bottom:1px solid var(--gold-border);
-  padding:28px 24px;
-  position:relative;overflow:hidden;
-}
-.city-strip::before{
-  content:'';position:absolute;inset:0;
-  background-image:url('https://images.unsplash.com/photo-1504274066651-8d31a536b11a?w=1400&q=40');
-  background-size:cover;background-position:center 60%;
-  opacity:0.08;
-}
-.city-strip-inner{
-  position:relative;z-index:1;max-width:1100px;margin:0 auto;
-  display:flex;align-items:center;gap:20px;flex-wrap:wrap;justify-content:center;
-}
-.city-fact{
-  display:flex;align-items:center;gap:10px;
-  background:rgba(212,160,23,0.08);border:1px solid var(--gold-border);
-  border-radius:100px;padding:7px 16px;font-size:13px;color:var(--text);
-  backdrop-filter:blur(4px);
-}
-.city-fact i{color:var(--gold);font-size:16px}
-.city-fact strong{color:var(--gold)}
-
-/* ══ VIBRANT TEAL ACCENT ══ */
-:root{
-  --teal:#0fa88a;
-  --teal-glow:rgba(15,168,138,0.15);
-  --teal-border:rgba(15,168,138,0.3);
-  --coral:#e8542a;
-  --coral-glow:rgba(232,84,42,0.12);
-}
-
-/* ══ PAGE HEADER — richer with Mangaluru scene tint ══ */
-.page-header-mgr{
-  background:linear-gradient(160deg,rgba(8,9,13,0.92) 0%,rgba(8,30,20,0.85) 50%,rgba(20,14,4,0.88) 100%);
-}
-
-/* ══ ANIMATED GRADIENT BORDER on featured cards ══ */
-@keyframes borderPulse{0%,100%{opacity:0.4}50%{opacity:1}}
-.featured-border{
-  border-color:var(--gold) !important;
-  animation:borderPulse 3s ease-in-out infinite;
-}
-
-/* ══ BOTTOM PALM PADDING ══ */
-footer{padding-bottom:60px}
+#bottom-nav{display:none;position:fixed;bottom:0;left:0;right:0;z-index:200;background:var(--midnight-2);border-top:1px solid var(--gold-border);padding:6px 0 env(safe-area-inset-bottom,8px);box-shadow:0 -4px 20px rgba(0,0,0,0.5);}
+.bn-inner{display:flex;justify-content:space-around;align-items:stretch;max-width:600px;margin:0 auto}
+.bn-item{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;padding:5px 2px;background:none;border:none;cursor:pointer;font-family:inherit;color:rgba(240,238,216,0.35);font-size:8.5px;font-weight:600;letter-spacing:0.3px;text-transform:uppercase;transition:color 0.15s;-webkit-tap-highlight-color:transparent;position:relative;}
+.bn-item i{font-size:19px;line-height:1;transition:color 0.15s,transform 0.15s}
+.bn-item.active{color:var(--gold)}
+.bn-item.active i{color:var(--gold);transform:translateY(-1px)}
+.bn-item.active::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:20px;height:2px;background:var(--gold);border-radius:0 0 2px 2px;}
+#bn-more-menu{display:none;position:fixed;bottom:0;left:0;right:0;z-index:199;background:var(--midnight-3);border-top:1px solid var(--gold-border);box-shadow:0 -8px 32px rgba(0,0,0,0.6);padding:12px 0 calc(env(safe-area-inset-bottom,8px) + 58px);border-radius:20px 20px 0 0;animation:slideUpMenu 0.22s ease;}
+#bn-more-menu.open{display:block}
+@keyframes slideUpMenu{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}
+.bn-more-item{display:flex;align-items:center;gap:14px;padding:13px 24px;color:rgba(240,238,216,0.75);font-size:14px;font-weight:500;cursor:pointer;border:none;background:none;width:100%;font-family:inherit;transition:background 0.12s;-webkit-tap-highlight-color:transparent;}
+.bn-more-item i{font-size:20px;color:var(--gold);width:24px;flex-shrink:0}
+.bn-more-item:hover,.bn-more-item:active{background:rgba(212,160,23,0.06)}
+.bn-more-item.active-page{color:var(--gold);background:var(--gold-glow)}
+#bn-backdrop{display:none;position:fixed;inset:0;z-index:198;background:rgba(0,0,0,0.6)}
+#bn-backdrop.open{display:block}
 
 @media(max-width:768px){
   .nav-inner{grid-template-columns:1fr auto;height:auto;padding:8px 1rem;gap:8px}
@@ -418,26 +314,17 @@ footer{padding-bottom:60px}
   .comp-grid{grid-template-columns:1fr !important}
   .rule-panel-grid{grid-template-columns:1fr !important}
   .theme-split{grid-template-columns:1fr !important}
-  .mgr-gallery{grid-template-columns:repeat(3,1fr);height:160px}
-  .mgr-gallery-item:nth-child(4),.mgr-gallery-item:nth-child(5){display:none}
+  #bottom-nav{display:block}
+  body{padding-bottom:calc(58px + env(safe-area-inset-bottom,0px))}
 }
 @media(max-width:480px){
-  
-  
+  .bn-item{font-size:7.5px;padding:4px 1px}
+  .bn-item i{font-size:17px}
   .hero h1{font-size:clamp(30px,8vw,44px)}
 }
 </style>
 </head>
 <body>
-
-<!-- ══ COCONUT PALM TREES — both sides, always visible ══ -->
-<div class="palm-wrap left" aria-hidden="true">
-  <img src="palm.png" alt="" style="width:200px;height:auto;display:block;" />
-</div>
-
-<div class="palm-wrap right" aria-hidden="true">
-  <img src="palm.png" alt="" style="width:200px;height:auto;display:block;transform:scaleX(-1);" />
-</div>
 
 <nav>
   <div class="nav-inner">
@@ -468,7 +355,7 @@ footer{padding-bottom:60px}
 <div id="page-home" class="page active">
   <div class="hero">
     <div class="hero-bg" id="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80')"></div>
-    <div class="hero-overlay" style="background:linear-gradient(160deg,rgba(4,6,10,0.95) 0%,rgba(5,20,14,0.87) 40%,rgba(25,15,4,0.78) 100%)"></div>
+    <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge"><i class="ti ti-heart-rate-monitor" style="font-size:13px"></i> 6th Annual State Conference · Emergency Medicine Karnataka</div>
       <h1>EM Karnataka <em>2026</em></h1>
@@ -505,51 +392,13 @@ footer{padding-bottom:60px}
     </div>
   </div>
 
-  <div class="stat-banner" style="background:linear-gradient(135deg,#c8880a 0%,#e6b820 40%,#d4a017 70%,#b8890e 100%);position:relative;overflow:hidden">
-    <div style="position:absolute;inset:0;background-image:url('https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=30');background-size:cover;background-position:center;opacity:0.08;mix-blend-mode:multiply"></div>
+  <div class="stat-banner">
     <div class="stat-item"><span class="stat-num">4</span><span class="stat-lbl">Conference Days</span></div>
     <div class="stat-item"><span class="stat-num">500+</span><span class="stat-lbl">Expected Delegates</span></div>
     <div class="stat-item"><span class="stat-num">7</span><span class="stat-lbl">Workshops</span></div>
     <div class="stat-item"><span class="stat-num">20+</span><span class="stat-lbl">Expert Faculty</span></div>
     <div class="stat-item"><span class="stat-num">CME</span><span class="stat-lbl">Accredited</span></div>
     <div class="stat-item"><span class="stat-num" style="font-size:14px;line-height:1.3">Father Muller<br>Medical College</span><span class="stat-lbl">Kankanady, Mangaluru</span></div>
-  </div>
-
-  <!-- ══ MANGALURU GALLERY STRIP ══ -->
-  <div class="mgr-gallery">
-    <div class="mgr-gallery-item">
-      <img src="https://images.unsplash.com/photo-1504274066651-8d31a536b11a?w=500&q=80" alt="Mangaluru coastline" loading="lazy"/>
-      <div class="mgr-cap">Mangaluru Coast</div>
-    </div>
-    <div class="mgr-gallery-item">
-      <img src="https://images.unsplash.com/photo-1591017403286-fd8493524e1e?w=500&q=80" alt="Coconut palms" loading="lazy"/>
-      <div class="mgr-cap">Coconut Groves</div>
-    </div>
-    <div class="mgr-gallery-item">
-      <img src="https://images.unsplash.com/photo-1621592484082-54f7b0e81a6a?w=500&q=80" alt="Mangaluru temple" loading="lazy"/>
-      <div class="mgr-cap">Kadri Temple</div>
-    </div>
-    <div class="mgr-gallery-item">
-      <img src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=500&q=80" alt="Arabian Sea sunset" loading="lazy"/>
-      <div class="mgr-cap">Arabian Sea Sunset</div>
-    </div>
-    <div class="mgr-gallery-item">
-      <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&q=80" alt="Tropical beach" loading="lazy"/>
-      <div class="mgr-cap">Panambur Beach</div>
-    </div>
-  </div>
-
-  <!-- ══ CITY FACTS STRIP ══ -->
-  <div class="city-strip">
-    <div class="city-strip-inner">
-      <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px;flex-shrink:0">About Mangaluru</div>
-      <div class="city-fact"><i class="ti ti-map-pin"></i> Gateway to Karnataka's Coast</div>
-      <div class="city-fact"><i class="ti ti-sun"></i> <strong>26–32°C</strong> in November</div>
-      <div class="city-fact"><i class="ti ti-droplet"></i> Arabian Sea shoreline</div>
-      <div class="city-fact"><i class="ti ti-tree"></i> Coconut &amp; cashew heartland</div>
-      <div class="city-fact"><i class="ti ti-plane"></i> Direct flights from major cities</div>
-      <div class="city-fact"><i class="ti ti-fish"></i> Famous Mangalorean seafood</div>
-    </div>
   </div>
 
   <div class="section">
@@ -578,30 +427,6 @@ footer{padding-bottom:60px}
       <div style="position:relative;min-height:220px;overflow:hidden">
         <img src="https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=600&q=75" alt="Climate emergency" style="width:100%;height:100%;object-fit:cover;display:block" />
         <div style="position:absolute;inset:0;background:linear-gradient(90deg,var(--midnight-3) 0%,transparent 35%)"></div>
-      </div>
-    </div>
-
-    <!-- ══ MANGALURU VISTA PANORAMA ══ -->
-    <div style="margin-top:48px;border-radius:var(--radius);overflow:hidden;position:relative;height:180px;border:1px solid var(--gold-border)">
-      <img src="https://images.unsplash.com/photo-1504274066651-8d31a536b11a?w=1400&q=75" alt="Mangaluru coastline panorama" style="width:100%;height:100%;object-fit:cover;object-position:center 70%;display:block;filter:saturate(1.3) brightness(0.7)"/>
-      <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,9,13,0.85) 0%,rgba(8,9,13,0.2) 40%,rgba(8,9,13,0.2) 60%,rgba(8,9,13,0.85) 100%)"></div>
-      <div style="position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:8px">
-        <div style="font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:2px">Conference City</div>
-        <div style="font-size:28px;font-weight:900;color:#fff;letter-spacing:1px;text-shadow:0 2px 20px rgba(0,0,0,0.6)">Mangaluru</div>
-        <div style="font-size:12px;color:rgba(240,238,216,0.7);display:flex;align-items:center;gap:8px">
-          <span>The Coastal Pearl of Karnataka</span>
-          <span style="color:var(--gold)">·</span>
-          <span>Arabian Sea</span>
-          <span style="color:var(--gold)">·</span>
-          <span>November 2026</span>
-        </div>
-      </div>
-      <!-- coconut tree silhouette overlays -->
-      <div style="position:absolute;right:40px;bottom:0;opacity:0.35">
-        <svg width="60" height="160" viewBox="0 0 60 160" fill="none"><path d="M28 160 C26 130 24 100 26 78 C27 62 25 42 24 28" stroke="#2d5a1a" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M24 28 C4 12 -14 8 -22 16" stroke="#2d5a1a" stroke-width="3" fill="none"/><path d="M24 28 C30 8 38 -2 52 4" stroke="#2d5a1a" stroke-width="3" fill="none"/><path d="M24 28 C28 10 44 4 56 12" stroke="#2d5a1a" stroke-width="2.5" fill="none"/></svg>
-      </div>
-      <div style="position:absolute;left:40px;bottom:0;opacity:0.35">
-        <svg width="60" height="140" viewBox="0 0 60 140" fill="none"><path d="M30 140 C32 112 34 85 32 65 C30 50 32 33 34 20" stroke="#2d5a1a" stroke-width="5" stroke-linecap="round" fill="none"/><path d="M34 20 C54 6 70 2 78 10" stroke="#2d5a1a" stroke-width="3" fill="none"/><path d="M34 20 C28 2 20 -8 8 -2" stroke="#2d5a1a" stroke-width="3" fill="none"/><path d="M34 20 C30 4 16 -2 4 6" stroke="#2d5a1a" stroke-width="2.5" fill="none"/></svg>
       </div>
     </div>
 
@@ -660,7 +485,7 @@ footer{padding-bottom:60px}
 <!-- SCHEDULE PAGE -->
 <div id="page-schedule" class="page">
   <div class="page-header">
-    <div class="page-header-bg" style="background:linear-gradient(135deg,var(--midnight) 0%,#081a10 50%,rgba(20,10,3,0.98) 100%)"></div>
+    <div class="page-header-bg"></div>
     <img class="page-header-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1200&q=50" alt="" />
     <div class="page-header-content"><div class="page-header-accent"></div><h2>Programme Schedule</h2><p>Tentative — final schedule confirmed October 2026</p></div>
   </div>
@@ -723,8 +548,7 @@ footer{padding-bottom:60px}
 <!-- WORKSHOPS PAGE -->
 <div id="page-workshops" class="page">
   <div class="page-header">
-    <div class="page-header-bg" style="background:linear-gradient(135deg,#07100a 0%,#0e1a10 50%,#14100a 100%)"></div>
-    <img class="page-header-img" src="https://images.unsplash.com/photo-1591017403286-fd8493524e1e?w=1200&q=50" alt="" style="opacity:0.12"/>
+    <div class="page-header-bg"></div>
     <div class="page-header-content"><div class="page-header-accent"></div><h2>Workshops</h2><p>Hands-on clinical skills · Days 1 &amp; 2 · 12–13 November 2026</p></div>
   </div>
   <div class="section" style="padding-top:36px">
@@ -763,8 +587,7 @@ footer{padding-bottom:60px}
 ══════════════════════════════════════════ -->
 <div id="page-register" class="page">
   <div class="page-header">
-    <div class="page-header-bg" style="background:linear-gradient(135deg,#07100a 0%,#0e1412 50%,#140a05 100%)"></div>
-    <img class="page-header-img" src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=50" alt="" style="opacity:0.1"/>
+    <div class="page-header-bg"></div>
     <div class="page-header-content"><div class="page-header-accent"></div><h2>Registration</h2><p>Includes conference kit, meals, and CME certificate. Secure payment via Razorpay.</p></div>
   </div>
   <div class="section" style="padding-top:36px">
@@ -868,7 +691,7 @@ footer{padding-bottom:60px}
 <!-- COMPETITIONS PAGE -->
 <div id="page-competitions" class="page">
   <div class="page-header">
-    <div class="page-header-bg" style="background:linear-gradient(135deg,#07100a 0%,#0e1412 50%,#140a05 100%)"></div>
+    <div class="page-header-bg"></div>
     <img class="page-header-img" src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?w=1200&q=50" alt="" />
     <div class="page-header-content">
       <div class="page-header-accent"></div>
@@ -966,18 +789,9 @@ footer{padding-bottom:60px}
 
 <!-- STAY PAGE -->
 <div id="page-stay" class="page">
-  <div class="page-header"><div class="page-header-bg" style="background:linear-gradient(135deg,#040e18 0%,#071810 50%,#140a03 100%)"></div>
-  <img class="page-header-img" src="https://images.unsplash.com/photo-1504274066651-8d31a536b11a?w=1200&q=50" alt="" style="opacity:0.14;object-position:center 60%"/>
-  <div class="page-header-content"><div class="page-header-accent"></div><h2>Accommodation</h2><p>Negotiated conference rates · Use booking code <strong style="color:var(--gold)">EMKA2026</strong></p></div></div>
+  <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Accommodation</h2><p>Negotiated conference rates · Use booking code <strong style="color:var(--gold)">EMKA2026</strong></p></div></div>
   <div class="section" style="padding-top:36px">
     <div class="info-box" style="margin-bottom:28px"><i class="ti ti-info-circle"></i><span>Use booking code <strong>EMKA2026</strong> to avail the conference rate. Block valid until <strong>15 October 2026</strong> or until sold out.</span></div>
-
-    <!-- Mangaluru beaches visual row -->
-    <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin-bottom:28px;border-radius:var(--radius);overflow:hidden;height:130px">
-      <div style="position:relative;overflow:hidden"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&q=70" alt="Panambur Beach" style="width:100%;height:100%;object-fit:cover;filter:saturate(1.3)"/><div style="position:absolute;bottom:6px;left:8px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.8px">Panambur Beach</div></div>
-      <div style="position:relative;overflow:hidden"><img src="https://images.unsplash.com/photo-1504274066651-8d31a536b11a?w=400&q=70" alt="Tannirbhavi Beach" style="width:100%;height:100%;object-fit:cover;filter:saturate(1.2)"/><div style="position:absolute;bottom:6px;left:8px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.8px">Tannirbhavi</div></div>
-      <div style="position:relative;overflow:hidden"><img src="https://images.unsplash.com/photo-1591017403286-fd8493524e1e?w=400&q=70" alt="Coconut coast" style="width:100%;height:100%;object-fit:cover;object-position:center 30%;filter:saturate(1.3)"/><div style="position:absolute;bottom:6px;left:8px;font-size:9px;font-weight:700;color:rgba(255,255,255,0.7);text-transform:uppercase;letter-spacing:0.8px">Coconut Coast</div></div>
-    </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px">
       <div class="hotel-card"><div class="hotel-img-wrap"><img class="hotel-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=75" alt="5-star hotel" /><div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.6);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★★</div><div style="position:absolute;top:12px;right:12px;background:var(--gold);color:var(--midnight);font-size:10px;padding:3px 10px;border-radius:100px;font-weight:700">Partner Hotel</div><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:16px;color:#fff"><div style="font-size:16px;font-weight:700">Conference partner hotel (5★)</div><div style="font-size:12px;opacity:0.8"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> Adjacent to venue (TBA)</div></div></div><div style="padding:1.25rem"><div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">₹5,500 <span style="font-size:13px;font-weight:400;color:var(--text-muted)">/ night incl. breakfast</span></div><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px"><span class="ws-badge ws-badge-gold">Shuttle to venue</span><span class="ws-badge ws-badge-gold">Pool &amp; spa</span><span class="ws-badge ws-badge-gold">High-speed WiFi</span></div><button class="btn btn-dark" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button></div></div>
       <div class="hotel-card"><div class="hotel-img-wrap"><img class="hotel-img" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=75" alt="4-star hotel" /><div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.6);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★</div><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:16px;color:#fff"><div style="font-size:16px;font-weight:700">Budget partner hotel (4★)</div><div style="font-size:12px;opacity:0.8"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> 10 min from venue (TBA)</div></div></div><div style="padding:1.25rem"><div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">₹3,200 <span style="font-size:13px;font-weight:400;color:var(--text-muted)">/ night incl. breakfast</span></div><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px"><span class="ws-badge ws-badge-dim">WiFi</span><span class="ws-badge ws-badge-dim">Gym</span><span class="ws-badge ws-badge-dim">Shuttle available</span></div><button class="btn btn-dark" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button></div></div>
@@ -988,7 +802,7 @@ footer{padding-bottom:60px}
 
 <!-- UPDATES PAGE -->
 <div id="page-updates" class="page">
-  <div class="page-header"><div class="page-header-bg" style="background:linear-gradient(135deg,#07100a 0%,#0a1410 50%,#140a05 100%)"></div><img class="page-header-img" src="https://images.unsplash.com/photo-1570168007204-dfb528c6958f?w=1200&q=40" alt="" style="opacity:0.12"/><div class="page-header-content"><div class="page-header-accent"></div><h2>Conference Updates</h2><p>Announcements, deadlines, and programme news</p></div></div>
+  <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Conference Updates</h2><p>Announcements, deadlines, and programme news</p></div></div>
   <div class="section" style="padding-top:36px">
     <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:28px"><h3 style="font-size:15px;font-weight:700;margin-bottom:12px;color:#fff"><i class="ti ti-bell" style="color:var(--gold);vertical-align:-2px;margin-right:6px"></i>Subscribe for updates</h3><div style="display:flex;gap:10px;flex-wrap:wrap"><input type="email" placeholder="your@email.com" style="flex:1;min-width:200px" /><button class="btn btn-gold" onclick="doSub()"><i class="ti ti-bell"></i> Subscribe</button></div><div id="sub-ok" class="success-msg hidden" style="margin-top:10px"><i class="ti ti-circle-check" style="font-size:18px;flex-shrink:0"></i>You're subscribed — we'll notify you of all major updates.</div></div>
     <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
@@ -1003,7 +817,7 @@ footer{padding-bottom:60px}
 
 <!-- VENUE PAGE -->
 <div id="page-venue" class="page">
-  <div class="page-header"><div class="page-header-bg" style="background:linear-gradient(135deg,#040e18 0%,#071810 50%,#140a03 100%)"></div><img class="page-header-img" src="https://images.unsplash.com/photo-1591017403286-fd8493524e1e?w=1200&q=40" alt="" style="opacity:0.12"/><div class="page-header-content"><div class="page-header-accent"></div><h2>Venue</h2><p>Father Muller Medical College, Kankanady, Mangaluru</p></div></div>
+  <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Venue</h2><p>Father Muller Medical College, Kankanady, Mangaluru</p></div></div>
   <div class="section" style="padding-top:36px">
     <div class="theme-split" style="display:grid;grid-template-columns:1fr 1fr;gap:0;margin-bottom:36px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--border)">
       <div style="position:relative;min-height:260px;overflow:hidden;background:var(--midnight-4)"><img src="images/venue.jpg" alt="Father Muller Medical College" style="width:100%;height:100%;object-fit:cover;display:block" onerror="this.style.display='none'" /></div>
@@ -1025,13 +839,6 @@ footer{padding-bottom:60px}
     </div>
     <h2 class="section-title">How to Reach</h2>
     <p class="section-sub">Mangaluru is well connected by air, rail, and road</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:36px">
-      <div style="border-radius:var(--radius);overflow:hidden;grid-column:1/-1;height:160px;position:relative;border:1px solid var(--gold-border)">
-        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=1200&q=70" alt="Panambur beach Mangaluru" style="width:100%;height:100%;object-fit:cover;object-position:center 40%;filter:saturate(1.3) brightness(0.75)"/>
-        <div style="position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,9,13,0.7) 0%,transparent 30%,transparent 70%,rgba(8,9,13,0.7) 100%)"></div>
-        <div style="position:absolute;bottom:12px;left:20px;font-size:11px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:1px">Mangaluru — Panambur Beach</div>
-      </div>
-    </div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px">
       <div class="reach-card"><div class="reach-icon"><i class="ti ti-plane"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Air</div><div style="font-size:12px;color:var(--text-muted)">Fly into <strong style="color:var(--text)">Mangaluru International Airport (IXE)</strong>. Cabs to venue ~30 min, ₹400–600.</div></div>
       <div class="reach-card"><div class="reach-icon"><i class="ti ti-train"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Train</div><div style="font-size:12px;color:var(--text-muted)">Alight at <strong style="color:var(--text)">Mangaluru Central</strong>. Auto/cab to venue ~15 min.</div></div>
@@ -1044,7 +851,7 @@ footer{padding-bottom:60px}
 
 <!-- CONTACT PAGE -->
 <div id="page-contact" class="page">
-  <div class="page-header"><div class="page-header-bg" style="background:linear-gradient(135deg,#07100a 0%,#0e1412 50%,#140a05 100%)"></div><img class="page-header-img" src="https://images.unsplash.com/photo-1504274066651-8d31a536b11a?w=1200&q=40" alt="" style="opacity:0.1"/><div class="page-header-content"><div class="page-header-accent"></div><h2>Contact Us</h2><p>Reach the right team for your query</p></div></div>
+  <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Contact Us</h2><p>Reach the right team for your query</p></div></div>
   <div class="section" style="padding-top:36px">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:36px">
       <div class="contact-card"><div class="contact-icon"><i class="ti ti-pencil"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Registrations</p><p style="font-size:12px;color:var(--text-muted)">registrations@emkarnataka2026.in</p></div></div>
@@ -1073,8 +880,24 @@ footer{padding-bottom:60px}
 </div>
 
 <!-- MOBILE BOTTOM NAV -->
+<div id="bn-backdrop" onclick="closeMoreMenu()"></div>
+<div id="bn-more-menu">
+  <div style="width:40px;height:4px;background:rgba(212,160,23,0.3);border-radius:2px;margin:0 auto 12px"></div>
+  <button class="bn-more-item" id="bn-more-workshops" onclick="bnGo('workshops')"><i class="ti ti-tool"></i> Workshops</button>
+  <button class="bn-more-item" id="bn-more-stay" onclick="bnGo('stay')"><i class="ti ti-bed"></i> Stay</button>
+  <button class="bn-more-item" id="bn-more-updates" onclick="bnGo('updates')"><i class="ti ti-bell"></i> Updates</button>
+  <button class="bn-more-item" id="bn-more-venue" onclick="bnGo('venue')"><i class="ti ti-map-pin"></i> Venue</button>
+  <button class="bn-more-item" id="bn-more-contact" onclick="bnGo('contact')"><i class="ti ti-headset"></i> Contact</button>
 </div>
-
+<nav id="bottom-nav">
+  <div class="bn-inner">
+    <button class="bn-item active" id="bn-home" onclick="bnGo('home')"><i class="ti ti-home"></i>Home</button>
+    <button class="bn-item" id="bn-schedule" onclick="bnGo('schedule')"><i class="ti ti-layout-list"></i>Schedule</button>
+    <button class="bn-item" id="bn-register" onclick="bnGo('register')"><i class="ti ti-user-plus" style="font-size:22px;color:var(--gold)"></i>Register</button>
+    <button class="bn-item" id="bn-competitions" onclick="bnGo('competitions')"><i class="ti ti-file-text"></i>Compete</button>
+    <button class="bn-item" id="bn-more-btn" onclick="toggleMoreMenu()"><i class="ti ti-dots"></i>More</button>
+  </div>
+</nav>
 
 <script>
 /* ── Hero slideshow ── */
@@ -1141,6 +964,14 @@ function tick(){const diff=new Date('2026-08-31T23:59:59')-new Date();if(diff<=0
 tick();setInterval(tick,1000);
 
 /* ── Mobile bottom nav ── */
+const BN_DIRECT=['home','schedule','register','competitions'];
+const BN_MORE=['workshops','stay','updates','venue','contact'];
+function bnGo(page){closeMoreMenu();showPage(page);updateBottomNav(page);}
+function updateBottomNav(page){document.querySelectorAll('.bn-item').forEach(el=>el.classList.remove('active'));document.querySelectorAll('.bn-more-item').forEach(el=>el.classList.remove('active-page'));if(BN_DIRECT.includes(page)){const el=document.getElementById('bn-'+page);if(el)el.classList.add('active');}else{const moreBtn=document.getElementById('bn-more-btn');if(moreBtn)moreBtn.classList.add('active');const moreItem=document.getElementById('bn-more-'+page);if(moreItem)moreItem.classList.add('active-page');}}
+function toggleMoreMenu(){const menu=document.getElementById('bn-more-menu');const backdrop=document.getElementById('bn-backdrop');const isOpen=menu.classList.contains('open');if(isOpen){closeMoreMenu();}else{menu.classList.add('open');backdrop.classList.add('open');document.getElementById('bn-more-btn').classList.add('active');}}
+function closeMoreMenu(){document.getElementById('bn-more-menu').classList.remove('open');document.getElementById('bn-backdrop').classList.remove('open');}
+const _origShowPage=showPage;
+showPage=function(p){_origShowPage(p);updateBottomNav(p);};
 </script>
 </body>
 </html>
