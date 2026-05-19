@@ -1,0 +1,423 @@
+<!--
+  ╔══════════════════════════════════════════════════════════════╗
+  ║         COCONUT TREE ANIMATION — HTML SNIPPET                ║
+  ║                                                              ║
+  ║  HOW TO ADD THIS TO YOUR PAGE                                ║
+  ║  ─────────────────────────────                               ║
+  ║  1. Paste the <style> block into your existing <style> tag   ║
+  ║     (or inside <head>).                                      ║
+  ║                                                              ║
+  ║  2. Add  id="palm-scene"  to the SVG inside your .hero:      ║
+  ║       <div class="hero">                                     ║
+  ║         <svg id="palm-scene"></svg>   ← add this line        ║
+  ║         <div class="hero-bg" ...>...</div>                   ║
+  ║         ...rest of hero...                                   ║
+  ║       </div>                                                 ║
+  ║                                                              ║
+  ║  3. Paste the <script> block just before </body>.            ║
+  ╚══════════════════════════════════════════════════════════════╝
+-->
+
+
+<!-- ══════════════════════════════════════════════════
+     STEP 1 — Add this inside your <style> tag
+══════════════════════════════════════════════════════ -->
+<style>
+/* ── Palm scene SVG ── */
+#palm-scene {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 1;         /* sits above hero-bg, below hero-content */
+  overflow: visible;
+}
+
+/* ── Crown sway (entire frond cluster) ── */
+@keyframes crownSway {
+  0%,100% { transform: rotate(0deg);     }
+  30%     { transform: rotate(4.2deg);   }
+  70%     { transform: rotate(-3.0deg);  }
+}
+
+/* ── Individual frond sway ── */
+@keyframes frondSway {
+  0%,100% { transform: rotate(0deg);                          }
+  30%     { transform: rotate(var(--sway, 3deg));             }
+  70%     { transform: rotate(calc(var(--sway, 3deg) * -0.65)); }
+}
+
+/* ── Fade-in when page loads ── */
+@keyframes palmFadeIn {
+  from { opacity: 0; }
+  to   { opacity: var(--palm-opacity, 1); }
+}
+
+.palm-root {
+  animation: palmFadeIn var(--fade-dur, 2s) ease-out forwards;
+  opacity: 0;
+}
+
+.palm-crown {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;  /* bottom-centre of crown */
+  animation: crownSway var(--crown-speed, 3.4s) ease-in-out infinite;
+  animation-delay: var(--crown-delay, 0s);
+}
+
+.palm-frond {
+  transform-box: fill-box;
+  transform-origin: 0% 0%;     /* frond base = crown centre */
+  animation: frondSway var(--frond-speed, 5s) ease-in-out infinite;
+  animation-delay: var(--frond-delay, 0s);
+}
+</style>
+
+
+<!-- ══════════════════════════════════════════════════
+     STEP 2 — Add this SVG tag inside your .hero div
+     (place it BEFORE <div class="hero-bg">)
+══════════════════════════════════════════════════════ -->
+<!--
+  <svg id="palm-scene" viewBox="0 0 1200 580"
+       preserveAspectRatio="xMidYMax slice"
+       aria-hidden="true"></svg>
+-->
+
+
+<!-- ══════════════════════════════════════════════════
+     STEP 3 — Paste this script just before </body>
+══════════════════════════════════════════════════════ -->
+<script>
+(function () {
+  'use strict';
+
+  /* ── SVG namespace helper ── */
+  const NS = 'http://www.w3.org/2000/svg';
+  function el(tag, attrs, styles) {
+    const node = document.createElementNS(NS, tag);
+    if (attrs)  Object.entries(attrs).forEach(([k, v]) => node.setAttribute(k, String(v)));
+    if (styles) Object.entries(styles).forEach(([k, v]) => node.style.setProperty(k, String(v)));
+    return node;
+  }
+
+  /* ── Quadratic bezier helpers ── */
+  function qbPoint(t, x0, y0, cx, cy, x1, y1) {
+    const u = 1 - t;
+    return [
+      u*u*x0 + 2*u*t*cx + t*t*x1,
+      u*u*y0 + 2*u*t*cy + t*t*y1,
+    ];
+  }
+  function qbTan(t, x0, y0, cx, cy, x1, y1) {
+    const u = 1 - t;
+    const dx = 2*u*(cx - x0) + 2*t*(x1 - cx);
+    const dy = 2*u*(cy - y0) + 2*t*(y1 - cy);
+    const len = Math.sqrt(dx*dx + dy*dy) || 1;
+    return [dx/len, dy/len];
+  }
+
+  /* ─────────────────────────────────────────────────
+     buildFrond(crownX, crownY, tipDx, tipDy, cpDx, cpDy, opts)
+     Returns an SVG <g> with rachis spine + leaflet lines.
+
+     crownX/Y  – attachment point (crown centre)
+     tipDx/Dy  – offset from crown to frond tip
+     cpDx/Dy   – offset from crown to bezier control point
+                 (cpDy < 0  =  arches upward before drooping)
+     opts = {
+       leaflets  : 30,          // leaflet pairs along rachis
+       sway      : 3,           // CSS rotation in degrees
+       speed     : 5,           // animation duration in seconds
+       delay     : 0,           // animation delay in seconds
+       rachisColor   : '#2A5E0A',
+       leafTopColor  : '#2E7012',
+       leafBotColor  : '#1A4808',
+     }
+  ───────────────────────────────────────────────── */
+  function buildFrond(crownX, crownY, tipDx, tipDy, cpDx, cpDy, opts) {
+    const o = Object.assign({
+      leaflets: 30,
+      sway: 3,
+      speed: 5,
+      delay: 0,
+      rachisColor: '#2A5E0A',
+      leafTopColor: '#2E7012',
+      leafBotColor: '#1A4808',
+    }, opts);
+
+    const x0 = crownX,     y0 = crownY;
+    const cpx = crownX + cpDx, cpy = crownY + cpDy;
+    const x1  = crownX + tipDx, y1  = crownY + tipDy;
+    const frondLen = Math.sqrt(tipDx*tipDx + tipDy*tipDy);
+
+    const g = el('g', { class: 'palm-frond' }, {
+      '--sway':         o.sway + 'deg',
+      '--frond-speed':  o.speed + 's',
+      '--frond-delay':  o.delay + 's',
+    });
+
+    // Leaflet data
+    const lower = [], upper = [];
+    for (let i = 0; i < o.leaflets; i++) {
+      const t = (i + 0.5) / o.leaflets;
+      const [bx, by]   = qbPoint(t, x0, y0, cpx, cpy, x1, y1);
+      const [tx2, ty2] = qbTan(t, x0, y0, cpx, cpy, x1, y1);
+      const nx = -ty2, ny = tx2;
+      const envelope   = Math.pow(Math.sin(t * Math.PI), 0.7) * (1 - 0.25 * t);
+      const leafLen     = frondLen * 0.21 * envelope;
+      if (leafLen < 2) continue;
+      const droopX = ty2 * 0.2 * t;
+      const droopY = -tx2 * 0.2 * t + 0.15 * t;
+      const lw = Math.max(1, leafLen * 0.085);
+      lower.push({ x1: bx, y1: by, x2: bx - (nx + droopX)*leafLen, y2: by - (ny + droopY)*leafLen, lw });
+      upper.push({ x1: bx, y1: by, x2: bx + (nx + droopX)*leafLen, y2: by + (ny + droopY)*leafLen, lw });
+    }
+
+    // Draw lower leaflets (behind rachis)
+    lower.forEach(p => {
+      g.appendChild(el('line', {
+        x1: p.x1.toFixed(2), y1: p.y1.toFixed(2),
+        x2: p.x2.toFixed(2), y2: p.y2.toFixed(2),
+        stroke: o.leafBotColor, 'stroke-width': p.lw.toFixed(2),
+        'stroke-linecap': 'round', opacity: '0.82',
+      }));
+    });
+
+    // Rachis spine
+    g.appendChild(el('path', {
+      d: `M${x0.toFixed(2)},${y0.toFixed(2)} Q${cpx.toFixed(2)},${cpy.toFixed(2)} ${x1.toFixed(2)},${y1.toFixed(2)}`,
+      fill: 'none', stroke: o.rachisColor,
+      'stroke-width': '2.2', 'stroke-linecap': 'round',
+    }));
+
+    // Draw upper leaflets (in front of rachis)
+    upper.forEach(p => {
+      g.appendChild(el('line', {
+        x1: p.x1.toFixed(2), y1: p.y1.toFixed(2),
+        x2: p.x2.toFixed(2), y2: p.y2.toFixed(2),
+        stroke: o.leafTopColor, 'stroke-width': p.lw.toFixed(2),
+        'stroke-linecap': 'round', opacity: '0.88',
+      }));
+    });
+
+    return g;
+  }
+
+  /* ─────────────────────────────────────────────────
+     buildPalm(rootX, rootY, trunkHeight, crownLean, opts)
+     Returns an SVG <g> with trunk + all fronds.
+
+     rootX/Y      – base of trunk
+     trunkHeight  – trunk height in SVG units
+     crownLean    – how far the crown shifts right (+) or left (-)
+     opts = {
+       delay   : 0,    // fade-in delay (seconds)
+       speed   : 5,    // animation speed base (seconds)
+       opacity : 1,    // final opacity after fade-in
+     }
+  ───────────────────────────────────────────────── */
+  function buildPalm(rootX, rootY, trunkHeight, crownLean, opts) {
+    const o = Object.assign({ delay: 0, speed: 5, opacity: 1 }, opts);
+
+    const crownX = rootX + crownLean;
+    const crownY = rootY - trunkHeight;
+    const cpx    = rootX + crownLean * 0.42;
+    const cpy    = rootY - trunkHeight * 0.55;
+    const baseW  = 11, topW = 5;
+    const H = trunkHeight;
+    const sp = o.speed;
+
+    /* ── Outer wrapper (fade-in) ── */
+    const root = el('g', { class: 'palm-root' }, {
+      '--palm-opacity': o.opacity,
+      '--fade-dur':     (1.5 + o.delay * 0.4) + 's',
+      'animation-delay': (o.delay * 0.5) + 's',
+    });
+
+    /* Ground shadow */
+    root.appendChild(el('ellipse', {
+      cx: (rootX + crownLean * 0.06).toFixed(2), cy: rootY,
+      rx: (baseW * 2.2).toFixed(2), ry: (baseW * 0.6).toFixed(2),
+      fill: 'rgba(0,0,0,0.25)',
+    }));
+
+    /* ── Static trunk ── */
+    const trunkGroup = el('g');
+
+    // Trunk filled shape
+    trunkGroup.appendChild(el('path', {
+      d: [
+        `M${(rootX - baseW).toFixed(2)},${rootY}`,
+        `Q${(cpx - baseW*0.55).toFixed(2)},${cpy.toFixed(2)}`,
+          `${(crownX - topW).toFixed(2)},${crownY}`,
+        `L${(crownX + topW).toFixed(2)},${crownY}`,
+        `Q${(cpx + baseW*0.55).toFixed(2)},${cpy.toFixed(2)}`,
+          `${(rootX + baseW).toFixed(2)},${rootY}`,
+        'Z',
+      ].join(' '),
+      fill: 'url(#trunkGrad)',
+    }));
+
+    // Trunk segment rings
+    [0.1, 0.2, 0.31, 0.42, 0.53, 0.64, 0.75, 0.86, 0.94].forEach(t => {
+      const [rx, ry] = qbPoint(t, rootX, rootY, cpx, cpy, crownX, crownY);
+      const w = baseW*(1-t) + topW*t;
+      const dip = 3.5*(1-t);
+      trunkGroup.appendChild(el('path', {
+        d: `M${(rx-w).toFixed(2)},${ry.toFixed(2)} Q${rx.toFixed(2)},${(ry+dip).toFixed(2)} ${(rx+w).toFixed(2)},${ry.toFixed(2)}`,
+        fill: 'none', stroke: 'rgba(30,16,6,0.55)', 'stroke-width': '1.4',
+      }));
+    });
+
+    // Trunk specular highlight
+    trunkGroup.appendChild(el('path', {
+      d: [
+        `M${(rootX+2).toFixed(2)},${rootY}`,
+        `Q${(cpx+2).toFixed(2)},${cpy.toFixed(2)} ${(crownX+2).toFixed(2)},${crownY}`,
+        `L${(crownX+topW*0.55).toFixed(2)},${crownY}`,
+        `Q${(cpx+topW*0.55).toFixed(2)},${cpy.toFixed(2)} ${(rootX+baseW*0.35).toFixed(2)},${rootY}`,
+        'Z',
+      ].join(' '),
+      fill: 'rgba(255,255,255,0.07)',
+    }));
+
+    root.appendChild(trunkGroup);
+
+    /* ── Crown group (sways) ── */
+    const crown = el('g', { class: 'palm-crown' }, {
+      '--crown-speed': (sp * 0.68) + 's',
+      '--crown-delay': (o.delay + 0.8) + 's',
+    });
+    // Override transform-origin to crown centre
+    crown.style.transformOrigin = `${crownX}px ${crownY}px`;
+
+    /* Frond definitions
+       tipDx/tipDy  = tip offset from crown (scales with H)
+       cpDx/cpDy    = control point offset (cpDy negative = arches up)
+       sway         = max rotation in degrees
+    */
+    const frondDefs = [
+      // far-drooping left
+      { dx: -H*0.75, dy: H*0.08,  cdx: -H*0.35, cdy: -H*0.18, sway:4.5, spMul:1.00, dly:0.0,
+        rc:'#24560A', lt:'#2D6B10', lb:'#183D07' },
+      // upper-left diagonal
+      { dx: -H*0.58, dy:-H*0.28, cdx: -H*0.20, cdy: -H*0.50, sway:3.8, spMul:0.90, dly:0.4,
+        rc:'#2A6010', lt:'#337514', lb:'#1C4A08' },
+      // steeply upper-left
+      { dx: -H*0.32, dy:-H*0.60, cdx: -H*0.08, cdy: -H*0.72, sway:3.2, spMul:0.85, dly:0.8,
+        rc:'#2A6010', lt:'#337514', lb:'#1C4A08' },
+      // near-vertical left
+      { dx: -H*0.06, dy:-H*0.70, cdx: -H*0.02, cdy: -H*0.82, sway:2.5, spMul:0.78, dly:1.1,
+        rc:'#2E6612', lt:'#397A16', lb:'#1E500A', n:28 },
+      // near-vertical right
+      { dx:  H*0.06, dy:-H*0.70, cdx:  H*0.02, cdy: -H*0.82, sway:2.5, spMul:0.80, dly:0.6,
+        rc:'#2E6612', lt:'#397A16', lb:'#1E500A', n:28 },
+      // steeply upper-right
+      { dx:  H*0.32, dy:-H*0.60, cdx:  H*0.08, cdy: -H*0.72, sway:3.2, spMul:0.87, dly:0.3,
+        rc:'#2A6010', lt:'#337514', lb:'#1C4A08' },
+      // upper-right diagonal
+      { dx:  H*0.58, dy:-H*0.28, cdx:  H*0.20, cdy: -H*0.50, sway:3.8, spMul:0.92, dly:0.7,
+        rc:'#2A6010', lt:'#337514', lb:'#1C4A08' },
+      // far-drooping right
+      { dx:  H*0.75, dy: H*0.08,  cdx:  H*0.35, cdy: -H*0.18, sway:4.5, spMul:1.00, dly:0.2,
+        rc:'#24560A', lt:'#2D6B10', lb:'#183D07' },
+      // drooping lower-right (aged)
+      { dx:  H*0.60, dy: H*0.30,  cdx:  H*0.40, cdy: -H*0.05, sway:5.0, spMul:1.10, dly:1.4,
+        rc:'#1E4A08', lt:'#255A0C', lb:'#133506', n:24 },
+      // drooping lower-left (aged)
+      { dx: -H*0.60, dy: H*0.30,  cdx: -H*0.40, cdy: -H*0.05, sway:5.0, spMul:1.05, dly:1.8,
+        rc:'#1E4A08', lt:'#255A0C', lb:'#133506', n:24 },
+    ];
+
+    frondDefs.forEach(f => {
+      crown.appendChild(buildFrond(crownX, crownY, f.dx, f.dy, f.cdx, f.cdy, {
+        leaflets:      f.n || 30,
+        sway:          f.sway,
+        speed:         sp * f.spMul,
+        delay:         o.delay + f.dly,
+        rachisColor:   f.rc,
+        leafTopColor:  f.lt,
+        leafBotColor:  f.lb,
+      }));
+    });
+
+    // Crown knob (hides frond bases)
+    crown.appendChild(el('ellipse', {
+      cx: crownX, cy: crownY, rx:12, ry:9, fill:'#1A3D06' }));
+    crown.appendChild(el('ellipse', {
+      cx: crownX, cy: crownY-3, rx:8, ry:6, fill:'#1E4808' }));
+
+    // Coconut cluster
+    [[-10,-2,8,7],[5,-6,7.5,6.5],[2,4,7,6],[-3,-14,6.5,6]].forEach(([dx,dy,rx,ry],i) => {
+      crown.appendChild(el('ellipse', {
+        cx: crownX+dx, cy: crownY+dy, rx, ry,
+        fill: i%2===0 ? '#5A3010' : '#6B3A14', opacity:'0.95',
+      }));
+    });
+
+    root.appendChild(crown);
+    return root;
+  }
+
+  /* ─────────────────────────────────────────────────
+     buildScene()  –  creates the full SVG and injects
+                      it into #palm-scene
+  ───────────────────────────────────────────────── */
+  function buildScene() {
+    const scene = document.getElementById('palm-scene');
+    if (!scene) return;
+
+    scene.setAttribute('viewBox', '0 0 1200 580');
+    scene.setAttribute('preserveAspectRatio', 'xMidYMax slice');
+    scene.setAttribute('aria-hidden', 'true');
+
+    /* Gradients & vignette */
+    const defs = el('defs');
+
+    // Trunk gradient (horizontal, creates roundness illusion)
+    const tg = el('linearGradient', { id:'trunkGrad', x1:'0', y1:'0', x2:'1', y2:'0' });
+    [['0%','#3E2410'],['30%','#7A5030'],['55%','#8B6035'],['80%','#6A4525'],['100%','#3A2010']]
+      .forEach(([off,col]) => {
+        const s = el('stop'); s.setAttribute('offset',off);
+        s.setAttribute('stop-color',col); tg.appendChild(s);
+      });
+    defs.appendChild(tg);
+
+    // Bottom vignette
+    const vg = el('linearGradient', { id:'palmVignette', x1:'0', y1:'0.4', x2:'0', y2:'1' });
+    [['0%','rgba(8,9,13,0)'],['100%','rgba(8,9,13,0.55)']].forEach(([off,col]) => {
+      const s = el('stop'); s.setAttribute('offset',off);
+      s.setAttribute('stop-color',col); vg.appendChild(s);
+    });
+    defs.appendChild(vg);
+
+    scene.appendChild(defs);
+
+    /* ── LEFT SIDE (4 depth layers) ── */
+    scene.appendChild(buildPalm(148,  580, 155,  22, { delay:3.0, speed:6.8, opacity:0.25 }));
+    scene.appendChild(buildPalm( 82,  580, 195,  32, { delay:2.0, speed:5.8, opacity:0.45 }));
+    scene.appendChild(buildPalm( 30,  580, 242,  44, { delay:1.0, speed:5.0, opacity:0.68 }));
+    scene.appendChild(buildPalm(-18,  612, 298,  62, { delay:0.0, speed:4.2, opacity:0.90 }));
+
+    /* ── RIGHT SIDE (mirrored) ── */
+    scene.appendChild(buildPalm(1052, 580, 155, -22, { delay:3.5, speed:6.4, opacity:0.25 }));
+    scene.appendChild(buildPalm(1118, 580, 195, -32, { delay:2.2, speed:5.6, opacity:0.45 }));
+    scene.appendChild(buildPalm(1170, 580, 242, -44, { delay:1.2, speed:4.8, opacity:0.68 }));
+    scene.appendChild(buildPalm(1218, 612, 298, -62, { delay:0.3, speed:4.0, opacity:0.90 }));
+
+    /* Vignette overlay */
+    scene.appendChild(el('rect', {
+      x:0, y:0, width:1200, height:580, fill:'url(#palmVignette)',
+    }));
+  }
+
+  // Run after DOM is ready
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', buildScene);
+  } else {
+    buildScene();
+  }
+})();
+</script>
