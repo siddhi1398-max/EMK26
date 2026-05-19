@@ -22,18 +22,19 @@
 body{font-family:'Outfit',system-ui,sans-serif;background:var(--midnight);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden;}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--midnight-2)}::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:3px}
 
+/* ── NAV — increased height ── */
 nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--gold-border);backdrop-filter:blur(12px);}
-.nav-inner{max-width:1200px;margin:auto;padding:0 1.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;height:58px;}
-.logo{font-size:17px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:10px;flex-shrink:0}
-.logo-img{height:36px;width:36px;object-fit:cover;border-radius:6px;flex-shrink:0;border:1px solid var(--gold-border)}
+.nav-inner{max-width:1200px;margin:auto;padding:0 1.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;height:76px;}
+.logo{font-size:17px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.logo-img{height:46px;width:46px;object-fit:cover;border-radius:8px;flex-shrink:0;border:1px solid var(--gold-border)}
 .logo-text{display:flex;flex-direction:column}
-.logo-main{font-size:14px;font-weight:700;color:#fff;line-height:1.1}
-.logo-sub{font-size:10px;font-weight:400;color:var(--text-muted);letter-spacing:0.3px;line-height:1.2}
+.logo-main{font-size:17px;font-weight:800;color:#fff;line-height:1.1}
+.logo-sub{font-size:11px;font-weight:400;color:var(--text-muted);letter-spacing:0.3px;line-height:1.3;margin-top:2px}
 .nav-links{display:flex;gap:2px;align-items:center;justify-content:center;flex-wrap:nowrap;overflow:hidden}
-.nav-links button{background:none;border:none;cursor:pointer;font-size:13px;color:var(--text-dim);padding:7px 11px;border-radius:var(--radius-sm);font-family:inherit;transition:all 0.15s;font-weight:500;white-space:nowrap;}
+.nav-links button{background:none;border:none;cursor:pointer;font-size:13.5px;color:var(--text-dim);padding:8px 12px;border-radius:var(--radius-sm);font-family:inherit;transition:all 0.15s;font-weight:500;white-space:nowrap;}
 .nav-links button:hover{color:var(--gold);background:var(--gold-glow)}
 .nav-links button.active{background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-border)}
-.nav-cta-btn{background:var(--gold);color:var(--midnight);border:none;cursor:pointer;font-size:13px;font-weight:700;font-family:inherit;padding:9px 18px;border-radius:var(--radius-sm);display:flex;align-items:center;gap:7px;white-space:nowrap;flex-shrink:0;transition:all 0.18s;}
+.nav-cta-btn{background:var(--gold);color:var(--midnight);border:none;cursor:pointer;font-size:14px;font-weight:700;font-family:inherit;padding:11px 22px;border-radius:var(--radius-sm);display:flex;align-items:center;gap:7px;white-space:nowrap;flex-shrink:0;transition:all 0.18s;}
 .nav-cta-btn:hover{background:var(--gold-mid);transform:translateY(-1px);box-shadow:0 4px 16px rgba(212,160,23,0.3)}
 
 .page{display:none}.page.active{display:block}
@@ -261,6 +262,23 @@ footer strong{color:var(--gold)}
 .ws-meta{font-size:11px;color:var(--text-muted);display:flex;flex-direction:column;gap:4px}
 .ws-meta span i{vertical-align:-2px;color:var(--gold)}
 
+/* ── FILE FORMAT CARDS (Competitions page) ── */
+.file-fmt-card{background:var(--midnight-4);border:1px solid var(--border);border-radius:var(--radius);padding:1.25rem;display:flex;flex-direction:column;gap:10px;transition:border-color 0.2s;}
+.file-fmt-card:hover{border-color:var(--gold-border)}
+.file-fmt-icon-wrap{width:40px;height:40px;border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.file-fmt-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:4px;letter-spacing:0.3px}
+.file-fmt-li{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--text-muted);padding:4px 0;line-height:1.5}
+.file-fmt-li i{font-size:13px;flex-shrink:0;margin-top:1px}
+.file-fmt-li-yes i{color:#4db88a}
+.file-fmt-li-no i{color:#e24b4a}
+
+/* ── FILE NAMING BOX (Competitions page) ── */
+.file-naming-box{background:var(--midnight-3);border:1px solid var(--gold-border);border-radius:var(--radius);padding:1.5rem;margin-bottom:36px;}
+.fname-row{background:var(--midnight-4);border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;display:flex;flex-direction:column;gap:4px}
+.fname-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.7px;color:var(--text-muted)}
+.fname-code{font-family:monospace;font-size:12px;word-break:break-all;font-weight:600}
+.fname-eg{font-size:11px;color:var(--text-muted);font-family:monospace}
+
 /* ── Explore Carousel ── */
 .explore-carousel-wrap{position:relative;margin-top:36px;padding-top:4px}
 .explore-carousel-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:10px}
@@ -306,7 +324,7 @@ footer strong{color:var(--gold)}
 #bn-backdrop.open{display:block}
 
 @media(max-width:768px){
-  .nav-inner{grid-template-columns:1fr auto;height:auto;padding:8px 1rem;gap:8px}
+  .nav-inner{grid-template-columns:1fr auto;height:auto;padding:10px 1rem;gap:8px}
   .nav-links{display:none}
   .form-grid{grid-template-columns:1fr}
   .stat-banner{flex-direction:column;gap:16px}
@@ -347,7 +365,7 @@ footer strong{color:var(--gold)}
       <button onclick="showPage('contact')" id="nav-contact">Contact</button>
     </div>
     <button class="nav-cta-btn" onclick="showPage('register')">
-      <i class="ti ti-user-plus" style="font-size:14px"></i> Register Now
+      <i class="ti ti-user-plus" style="font-size:15px"></i> Register Now
     </button>
   </div>
 </nav>
@@ -402,7 +420,7 @@ footer strong{color:var(--gold)}
     <div class="stat-item"><span class="stat-num">6</span><span class="stat-lbl">Workshops</span></div>
     <div class="stat-item"><span class="stat-num">20+</span><span class="stat-lbl">Expert Faculty</span></div>
     <div class="stat-item"><span class="stat-num">CME</span><span class="stat-lbl">Accredited</span></div>
- </div>
+  </div>
 
   <div class="section">
     <h2 class="section-title">What to Expect</h2>
@@ -695,13 +713,12 @@ footer strong{color:var(--gold)}
       <div class="step pending"><div class="step-num">5</div><div class="step-lbl">Present at Conf.</div></div>
     </div>
 
-    <!-- ══ COMPETITION CARDS — DROPDOWN ══ -->
+    <!-- ══ COMPETITION CARDS ══ -->
     <h2 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px">Competitions</h2>
     <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px">Click any card to expand full rules and details</p>
 
     <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:48px" class="comp-grid">
 
-      <!-- PAPER PRESENTATION -->
       <div class="comp-card" id="cc-paper">
         <div class="comp-card-header" style="background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5))" onclick="toggleComp('cc-paper')">
           <div class="comp-card-header-left">
@@ -717,9 +734,9 @@ footer strong{color:var(--gold)}
         <div class="comp-card-body">
           <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Present original research to a panel of national judges and 500+ delegates. Selected papers receive an 8-minute slot followed by a 2-minute Q&amp;A.</p>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-file-type-doc" style="color:var(--gold)"></i><span><strong style="color:#fff">Submit:</strong> Abstract (300 words) + Full manuscript as <strong>.doc / .docx</strong> — Introduction · Methods · Results · Conclusion</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-clock" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Presentation:</strong> 8 min talk + 2 min Q&amp;A. Bring slides on the day (PPT or PDF)</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-users" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Eligibility:</strong> All registered delegates, faculty &amp; PG students. Presenting author must be registered</span></div>
+            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-file-type-doc" style="color:var(--gold)"></i><span><strong style="color:#fff">Submit:</strong> Abstract (300 words) + Full manuscript as <strong>.doc / .docx</strong></span></div>
+            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-clock" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Presentation:</strong> 8 min talk + 2 min Q&amp;A</span></div>
+            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-users" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Eligibility:</strong> All registered delegates, faculty &amp; PG students</span></div>
             <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-copy" style="color:var(--gold)"></i><span><strong style="color:#fff">Originality:</strong> Unpublished, not submitted elsewhere. Max 5 co-authors</span></div>
           </div>
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin-bottom:10px">Judging Criteria (100 pts)</div>
@@ -734,7 +751,6 @@ footer strong{color:var(--gold)}
         </div>
       </div>
 
-      <!-- E-POSTER -->
       <div class="comp-card" id="cc-poster">
         <div class="comp-card-header" style="background:linear-gradient(135deg,rgba(40,20,5,0.9),rgba(60,30,8,0.9))" onclick="toggleComp('cc-poster')">
           <div class="comp-card-header-left">
@@ -750,7 +766,7 @@ footer strong{color:var(--gold)}
         <div class="comp-card-body">
           <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Display research, case reports, or quality improvement projects as an e-poster. Presenters give a 3-minute summary to judges during the dedicated viewing session.</p>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-file-type-pdf" style="color:var(--gold)"></i><span><strong style="color:#fff">Submit:</strong> Abstract (300 words) + e-Poster as <strong>.ppt / .pptx</strong> — 1 slide only, A0 portrait (33.1 × 46.8 in)</span></div>
+            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-file-type-pdf" style="color:var(--gold)"></i><span><strong style="color:#fff">Submit:</strong> Abstract (300 words) + e-Poster as <strong>.ppt / .pptx</strong> — 1 slide only, A0 portrait</span></div>
             <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-clock" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Judging:</strong> 3-min summary to judges, Day 3 13:00–14:00</span></div>
             <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-layout-columns" style="color:var(--gold)"></i><span><strong style="color:#fff">Content:</strong> Title · Authors · Background · Methods · Results · Conclusions · Institution logo</span></div>
           </div>
@@ -766,7 +782,6 @@ footer strong{color:var(--gold)}
         </div>
       </div>
 
-      <!-- CPC -->
       <div class="comp-card" id="cc-cpc">
         <div class="comp-card-header" style="background:linear-gradient(135deg,rgba(30,20,5,0.9),rgba(55,38,8,0.9))" onclick="toggleComp('cc-cpc')">
           <div class="comp-card-header-left">
@@ -780,26 +795,25 @@ footer strong{color:var(--gold)}
           <div class="comp-card-toggle"><i class="ti ti-chevron-down"></i></div>
         </div>
         <div class="comp-card-body">
-          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Tests diagnostic reasoning and clinical acumen. Teams present a real-world EM case — history, investigations, differentials — and defend their final diagnosis before expert judges.</p>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">Tests diagnostic reasoning and clinical acumen. Teams present a real-world EM case and defend their final diagnosis before expert judges.</p>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
-            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-file-type-pdf" style="color:var(--gold)"></i><span><strong style="color:#fff">Submit:</strong> Case summary (300 words) + Slides as <strong>.ppt / .pptx</strong> — Case History → Investigations → Differentials → Diagnosis → Learning Points</span></div>
+            <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-file-type-pdf" style="color:var(--gold)"></i><span><strong style="color:#fff">Submit:</strong> Case summary (300 words) + Slides as <strong>.ppt / .pptx</strong></span></div>
             <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-users" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Team:</strong> 2–3 members, all registered delegates or PG students</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-clock" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Presentation:</strong> 10 min + 5 min cross-examination by judges</span></div>
+            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-clock" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Presentation:</strong> 10 min + 5 min cross-examination</span></div>
             <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-eye-off" style="color:var(--gold)"></i><span><strong style="color:#fff">Anonymise:</strong> All patient details de-identified. Do not reveal final diagnosis in submitted file</span></div>
           </div>
           <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin-bottom:10px">Judging Criteria (100 pts)</div>
           <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Case Complexity &amp; Selection</span><span class="score-pts">15 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Rarity, educational value, EM relevance</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Clinical Reasoning &amp; Differentials</span><span class="score-pts">30 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Systematic approach, breadth &amp; prioritisation</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Interpretation of Investigations</span><span class="score-pts">20 pts</span></div><div style="font-size:11px;color:var(--text-muted)">ECG, imaging, labs — accurate reading</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Presentation &amp; Team Coordination</span><span class="score-pts">20 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Slide quality, time adherence, teamwork</div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Response to Cross-examination</span><span class="score-pts">15 pts</span></div><div style="font-size:11px;color:var(--text-muted)">Accuracy under pressure, depth</div></div>
+            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Case Complexity &amp; Selection</span><span class="score-pts">15 pts</span></div></div>
+            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Clinical Reasoning &amp; Differentials</span><span class="score-pts">30 pts</span></div></div>
+            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Interpretation of Investigations</span><span class="score-pts">20 pts</span></div></div>
+            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Presentation &amp; Team Coordination</span><span class="score-pts">20 pts</span></div></div>
+            <div class="score-row"><div class="score-row-top"><span style="font-size:13px;font-weight:600">Response to Cross-examination</span><span class="score-pts">15 pts</span></div></div>
           </div>
           <div class="award-badge"><i class="ti ti-trophy" style="font-size:16px"></i> Best CPC Team · Runner-up CPC Award</div>
         </div>
       </div>
 
-      <!-- QUIZ -->
       <div class="comp-card" id="cc-quiz">
         <div class="comp-card-header" style="background:linear-gradient(135deg,rgba(5,15,35,0.9),rgba(8,22,50,0.95))" onclick="toggleComp('cc-quiz')">
           <div class="comp-card-header-left">
@@ -813,42 +827,22 @@ footer strong{color:var(--gold)}
           <div class="comp-card-toggle"><i class="ti ti-chevron-down"></i></div>
         </div>
         <div class="comp-card-body">
-          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">A high-energy EM quiz testing clinical knowledge, ECG &amp; imaging interpretation, and rapid-fire recall. Prelims are written MCQs; top 6 teams compete in a live multi-round final.</p>
+          <p style="font-size:13px;color:var(--text-muted);line-height:1.7;margin-bottom:16px">A high-energy EM quiz testing clinical knowledge, ECG &amp; imaging interpretation, and rapid-fire recall. Top 6 teams from written prelims compete in live finals.</p>
           <div style="display:flex;flex-direction:column;gap:8px;margin-bottom:16px">
             <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-users" style="color:var(--gold)"></i><span><strong style="color:#fff">Team:</strong> Exactly 2 members. Both must be registered delegates or PG students</span></div>
             <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-pencil" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Prelims:</strong> 30 MCQs in 30 minutes. Top 6 teams advance to live finals</span></div>
-            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-layout-list" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Finals:</strong> 6 rounds — Direct · Visual (ECG/X-ray) · Rapid Fire · Lifeline · Audio-Visual · Sudden Death</span></div>
+            <div class="comp-info-row" style="border-left:3px solid rgba(255,255,255,0.2)"><i class="ti ti-layout-list" style="color:rgba(255,255,255,0.5)"></i><span><strong style="color:#fff">Finals:</strong> 6 rounds — Direct · Visual · Rapid Fire · Lifeline · Audio-Visual · Sudden Death</span></div>
             <div class="comp-info-row" style="border-left:3px solid var(--gold)"><i class="ti ti-info-circle" style="color:var(--gold)"></i><span><strong style="color:#fff">Registration:</strong> No abstract needed — register as quiz team during conference registration</span></div>
-          </div>
-          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin-bottom:10px">Finals Round Structure</div>
-          <div style="display:flex;flex-direction:column;gap:6px;margin-bottom:14px">
-            <div class="score-row"><div class="score-row-top"><span style="font-size:12px;font-weight:600">Round 1 — Direct Questions</span><span class="score-pts">10 pts</span></div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:12px;font-weight:600">Round 2 — Visual (ECG / X-ray / Image)</span><span class="score-pts">10 pts</span></div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:12px;font-weight:600">Round 3 — Rapid Fire (60 sec/team)</span><span class="score-pts">5 pts</span></div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:12px;font-weight:600">Round 4 — Lifeline Round</span><span class="score-pts">10 pts</span></div></div>
-            <div class="score-row"><div class="score-row-top"><span style="font-size:12px;font-weight:600">Round 5 — Audio-Visual</span><span class="score-pts">10 pts</span></div></div>
-            <div class="score-row" style="border:1px solid var(--gold-border)"><div class="score-row-top"><span style="font-size:12px;font-weight:600;color:var(--gold)">Round 6 — Sudden Death (if tied)</span><span class="score-pts">Winner takes all</span></div></div>
-          </div>
-          <div style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin-bottom:8px">Topics Covered</div>
-          <div style="display:flex;flex-wrap:wrap;gap:7px;margin-bottom:14px">
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">Emergency Pharmacology</span>
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">Trauma &amp; Resuscitation</span>
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">ECG Interpretation</span>
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">Radiology in EM</span>
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">Toxicology</span>
-            <span style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.7);font-size:11px;padding:3px 10px;border-radius:100px;border:1px solid var(--border-subtle)">Paediatric EM</span>
-            <span style="background:var(--gold-glow);color:var(--gold);font-size:11px;padding:3px 10px;border-radius:100px;font-weight:600;border:1px solid var(--gold-border)">Climate Change &amp; EM (Theme)</span>
           </div>
           <div class="award-badge"><i class="ti ti-trophy" style="font-size:16px"></i> Best Quiz Team · Runner-up Quiz Team</div>
         </div>
       </div>
 
-    </div><!-- end comp grid -->
+    </div>
 
-    <!-- DISCLAIMER -->
     <div class="info-box" style="margin-bottom:36px">
       <i class="ti ti-info-circle" style="font-size:18px;margin-top:2px"></i>
-      <span>All competitions are open only to <strong>registered delegates</strong>. The organising committee reserves the right to adjust time slots, merge categories, or modify scoring criteria. Any changes will be communicated by email prior to the conference.</span>
+      <span>All competitions are open only to <strong>registered delegates</strong>. The organising committee reserves the right to adjust time slots or modify scoring criteria. Any changes will be communicated by email.</span>
     </div>
 
     <!-- FILE FORMAT INSTRUCTIONS -->
@@ -860,45 +854,49 @@ footer strong{color:var(--gold)}
       </div>
       <p style="font-size:13px;color:var(--text-muted);margin-bottom:28px">Read carefully before uploading — incorrect formats will be returned for revision</p>
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+
         <div class="file-fmt-card">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
             <div class="file-fmt-icon-wrap" style="background:rgba(44,62,80,0.6)"><i class="ti ti-file-type-doc" style="font-size:20px;color:#9FD1FF"></i></div>
             <div><div style="font-size:14px;font-weight:700;color:#fff">Paper Manuscript</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px">Oral presentation</div></div>
           </div>
           <span class="file-fmt-tag" style="background:rgba(44,62,80,0.5);color:#9FD1FF;border:1px solid rgba(100,140,200,0.2)">.doc / .docx — Microsoft Word</span>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px">
             <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Times New Roman 12pt, 1.5 line spacing</li>
             <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Sections: Title · Abstract · Intro · Methods · Results · Discussion · Conclusion · References</li>
             <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Vancouver references. Tables &amp; figures embedded</li>
             <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>No author names in body (blind review). Max 5 MB</li>
           </ul>
         </div>
+
         <div class="file-fmt-card">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
             <div class="file-fmt-icon-wrap" style="background:rgba(212,160,23,0.15)"><i class="ti ti-layout-board" style="font-size:20px;color:var(--gold)"></i></div>
             <div><div style="font-size:14px;font-weight:700;color:#fff">e-Poster File</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px">e-Poster competition</div></div>
           </div>
           <span class="file-fmt-tag" style="background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-border)">.ppt / .pptx — PowerPoint</span>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px">
             <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>1 slide only — A0 Portrait: 33.1" W × 46.8" H</li>
             <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Min font: 24pt body, 40pt+ title. High-res images (≥150 DPI)</li>
             <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Include institution logo</li>
             <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>Max 20 MB. No embedded videos</li>
           </ul>
         </div>
+
         <div class="file-fmt-card">
           <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
             <div class="file-fmt-icon-wrap" style="background:rgba(125,102,8,0.3)"><i class="ti ti-stethoscope" style="font-size:20px;color:#FFE08A"></i></div>
             <div><div style="font-size:14px;font-weight:700;color:#fff">CPC Presentation</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px">CPC competition</div></div>
           </div>
           <span class="file-fmt-tag" style="background:rgba(125,102,8,0.3);color:#FFE08A;border:1px solid rgba(200,165,50,0.2)">.ppt / .pptx — PowerPoint</span>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px">
+          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px">
             <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Widescreen 16:9, max 20 slides</li>
             <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Order: Case History → Investigations → Differentials → Diagnosis → Learning Points</li>
             <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Patient fully anonymised</li>
             <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>Do NOT include final diagnosis in file. Max 30 MB</li>
           </ul>
         </div>
+
       </div>
     </div>
 
@@ -950,6 +948,7 @@ footer strong{color:var(--gold)}
   </div>
   <footer><strong>EM Karnataka 2026</strong> · abstracts@emkarnataka2026.in &nbsp;·&nbsp; Father Muller Medical College, Mangaluru</footer>
 </div>
+
 <!-- ═══════════ STAY PAGE ═══════════ -->
 <div id="page-stay" class="page">
   <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Stay &amp; Explore</h2><p>Accommodation · Getting around · Things to do in Mangaluru</p></div></div>
@@ -960,7 +959,6 @@ footer strong{color:var(--gold)}
       <div class="hotel-card"><div class="hotel-img-wrap"><img class="hotel-img" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=75" alt="4-star hotel" /><div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.6);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★</div><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:16px;color:#fff"><div style="font-size:16px;font-weight:700">Budget partner hotel (4★)</div><div style="font-size:12px;opacity:0.8"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> 10 min from venue (TBA)</div></div></div><div style="padding:1.25rem"><div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">₹3,200 <span style="font-size:13px;font-weight:400;color:var(--text-muted)">/ night incl. breakfast</span></div><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px"><span class="ws-badge ws-badge-dim">WiFi</span><span class="ws-badge ws-badge-dim">Gym</span><span class="ws-badge ws-badge-dim">Shuttle available</span></div><button class="btn btn-dark" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button></div></div>
     </div>
 
-    <!-- ── Explore Mangaluru Carousel ── -->
     <div class="explore-carousel-wrap">
       <div class="explore-carousel-header">
         <div class="explore-carousel-title"><i class="ti ti-compass"></i> Explore Mangaluru</div>
@@ -971,15 +969,15 @@ footer strong{color:var(--gold)}
       </div>
       <div class="explore-carousel-track-wrap">
         <div class="explore-carousel-track" id="ec-track">
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_9_kambala.webp" alt="Kambala" /><div class="ec-cat"><i class="ti ti-run" style="font-size:10px;vertical-align:-1px"></i> Sport</div></div><div class="ec-body"><div class="ec-title">Kambala — Buffalo Racing</div><div class="ec-desc">A centuries-old traditional buffalo race in flooded paddy fields. One of the most electrifying folk sports in India — mud flies, crowds roar.</div><div class="ec-tags"><span class="ec-tag">Tulu Nadu</span><span class="ec-tag">Nov–Feb season</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_8_yk.png" alt="Yakshagana" /><div class="ec-cat"><i class="ti ti-theater" style="font-size:10px;vertical-align:-1px"></i> Performing Art</div></div><div class="ec-body"><div class="ec-title">Yakshagana</div><div class="ec-desc">Classical overnight theatre blending dance, music, elaborate costume, and mythology. Ornate headgear and face painting are jaw-dropping.</div><div class="ec-tags"><span class="ec-tag">Classical theatre</span><span class="ec-tag">Overnight show</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_7_tigerdance.jpg" alt="Tiger Dance" /><div class="ec-cat"><i class="ti ti-masks-theater" style="font-size:10px;vertical-align:-1px"></i> Folk Dance</div></div><div class="ec-body"><div class="ec-title">Pili Vesha — Tiger Dance</div><div class="ec-desc">Performers paint their entire bodies as tigers and dance through streets during festivals. Vivid, energetic, utterly unique.</div><div class="ec-tags"><span class="ec-tag">Festival</span><span class="ec-tag">Body art</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_6_lighthouse.jpg" alt="Lighthouse Beach" /><div class="ec-cat"><i class="ti ti-beach" style="font-size:10px;vertical-align:-1px"></i> Landmark</div></div><div class="ec-body"><div class="ec-title">Lighthouse Beach</div><div class="ec-desc">The iconic red-and-white lighthouse perched above the Arabian Sea. Sweeping coastal panoramas and the city's favourite sunset spot.</div><div class="ec-tags"><span class="ec-tag">Sunset</span><span class="ec-tag">~4 km from venue</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_4_tnrbeach.webp" alt="Tannirbhavi Beach" /><div class="ec-cat"><i class="ti ti-beach" style="font-size:10px;vertical-align:-1px"></i> Beach</div></div><div class="ec-body"><div class="ec-title">Tannirbhavi Beach</div><div class="ec-desc">Dramatic tetrapods bracing heavy Arabian Sea waves. Raw, unspoiled coastline perfect for a quiet morning walk.</div><div class="ec-tags"><span class="ec-tag">Unspoiled</span><span class="ec-tag">~10 km</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_5_ullal.jpg" alt="Ullal Beach" /><div class="ec-cat"><i class="ti ti-beach" style="font-size:10px;vertical-align:-1px"></i> Beach</div></div><div class="ec-body"><div class="ec-title">Ullal Beach &amp; Viewpoint</div><div class="ec-desc">A sweeping staircase descends to a pristine cove — one of the most photographed viewpoints on the Karnataka coast.</div><div class="ec-tags"><span class="ec-tag">Viewpoint</span><span class="ec-tag">~14 km</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_1_pabbas.jpg" alt="Pabbas" /><div class="ec-cat"><i class="ti ti-ice-cream" style="font-size:10px;vertical-align:-1px"></i> Food</div></div><div class="ec-body"><div class="ec-title">Pabbas Ice Cream</div><div class="ec-desc">A Mangaluru institution since 1948. Legendary local flavours — sitaphal, tender coconut, chikoo. Non-negotiable.</div><div class="ec-tags"><span class="ec-tag">Since 1948</span><span class="ec-tag">Must visit</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_2_sundae.webp" alt="Sundae" /><div class="ec-cat"><i class="ti ti-ice-cream-2" style="font-size:10px;vertical-align:-1px"></i> Food</div></div><div class="ec-body"><div class="ec-title">Sundaes &amp; Faloodas</div><div class="ec-desc">Gorgeous layered sundaes, passion-fruit faloodas, mango parfaits from Mangaluru's buzzing cafe scene.</div><div class="ec-tags"><span class="ec-tag">Desserts</span><span class="ec-tag">Cafe culture</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_3_fishfood.avif" alt="Seafood" /><div class="ec-cat"><i class="ti ti-fish" style="font-size:10px;vertical-align:-1px"></i> Cuisine</div></div><div class="ec-body"><div class="ec-title">Tulu Nadu Seafood</div><div class="ec-desc">Kane fry, prawn gassi, crab sukka, neer dosa. Among the finest coastal cuisines in India. Don't leave without a proper fish meal.</div><div class="ec-tags"><span class="ec-tag">Seafood</span><span class="ec-tag">Coastal cuisine</span></div></div></div>
+          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_9_kambala.webp" alt="Kambala" /><div class="ec-cat"><i class="ti ti-run" style="font-size:10px;vertical-align:-1px"></i> Sport</div></div><div class="ec-body"><div class="ec-title">Kambala — Buffalo Racing</div><div class="ec-desc">A centuries-old traditional buffalo race in flooded paddy fields. One of the most electrifying folk sports in India.</div><div class="ec-tags"><span class="ec-tag">Tulu Nadu</span><span class="ec-tag">Nov–Feb season</span></div></div></div>
+          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_8_yk.png" alt="Yakshagana" /><div class="ec-cat"><i class="ti ti-theater" style="font-size:10px;vertical-align:-1px"></i> Performing Art</div></div><div class="ec-body"><div class="ec-title">Yakshagana</div><div class="ec-desc">Classical overnight theatre blending dance, music, elaborate costume, and mythology.</div><div class="ec-tags"><span class="ec-tag">Classical theatre</span><span class="ec-tag">Overnight show</span></div></div></div>
+          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_7_tigerdance.jpg" alt="Tiger Dance" /><div class="ec-cat"><i class="ti ti-masks-theater" style="font-size:10px;vertical-align:-1px"></i> Folk Dance</div></div><div class="ec-body"><div class="ec-title">Pili Vesha — Tiger Dance</div><div class="ec-desc">Performers paint their entire bodies as tigers and dance through streets during festivals.</div><div class="ec-tags"><span class="ec-tag">Festival</span><span class="ec-tag">Body art</span></div></div></div>
+          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_6_lighthouse.jpg" alt="Lighthouse Beach" /><div class="ec-cat"><i class="ti ti-beach" style="font-size:10px;vertical-align:-1px"></i> Landmark</div></div><div class="ec-body"><div class="ec-title">Lighthouse Beach</div><div class="ec-desc">Iconic red-and-white lighthouse perched above the Arabian Sea. The city's favourite sunset spot.</div><div class="ec-tags"><span class="ec-tag">Sunset</span><span class="ec-tag">~4 km from venue</span></div></div></div>
+          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_4_tnrbeach.webp" alt="Tannirbhavi Beach" /><div class="ec-cat"><i class="ti ti-beach" style="font-size:10px;vertical-align:-1px"></i> Beach</div></div><div class="ec-body"><div class="ec-title">Tannirbhavi Beach</div><div class="ec-desc">Raw, unspoiled coastline with dramatic tetrapods bracing heavy Arabian Sea waves.</div><div class="ec-tags"><span class="ec-tag">Unspoiled</span><span class="ec-tag">~10 km</span></div></div></div>
+          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_5_ullal.jpg" alt="Ullal Beach" /><div class="ec-cat"><i class="ti ti-beach" style="font-size:10px;vertical-align:-1px"></i> Beach</div></div><div class="ec-body"><div class="ec-title">Ullal Beach &amp; Viewpoint</div><div class="ec-desc">One of the most photographed viewpoints on the Karnataka coast.</div><div class="ec-tags"><span class="ec-tag">Viewpoint</span><span class="ec-tag">~14 km</span></div></div></div>
+          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_1_pabbas.jpg" alt="Pabbas" /><div class="ec-cat"><i class="ti ti-ice-cream" style="font-size:10px;vertical-align:-1px"></i> Food</div></div><div class="ec-body"><div class="ec-title">Pabbas Ice Cream</div><div class="ec-desc">A Mangaluru institution since 1948. Legendary local flavours — sitaphal, tender coconut, chikoo.</div><div class="ec-tags"><span class="ec-tag">Since 1948</span><span class="ec-tag">Must visit</span></div></div></div>
+          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_2_sundae.webp" alt="Sundae" /><div class="ec-cat"><i class="ti ti-ice-cream-2" style="font-size:10px;vertical-align:-1px"></i> Food</div></div><div class="ec-body"><div class="ec-title">Sundaes &amp; Faloodas</div><div class="ec-desc">Gorgeous layered sundaes, passion-fruit faloodas, and mango parfaits from the buzzing cafe scene.</div><div class="ec-tags"><span class="ec-tag">Desserts</span><span class="ec-tag">Cafe culture</span></div></div></div>
+          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_3_fishfood.avif" alt="Seafood" /><div class="ec-cat"><i class="ti ti-fish" style="font-size:10px;vertical-align:-1px"></i> Cuisine</div></div><div class="ec-body"><div class="ec-title">Tulu Nadu Seafood</div><div class="ec-desc">Kane fry, prawn gassi, crab sukka, neer dosa. Among the finest coastal cuisines in India.</div><div class="ec-tags"><span class="ec-tag">Seafood</span><span class="ec-tag">Coastal cuisine</span></div></div></div>
         </div>
       </div>
       <div class="ec-dots" id="ec-dots"></div>
@@ -1021,8 +1019,6 @@ footer strong{color:var(--gold)}
         <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-dark" style="text-decoration:none;font-size:13px;padding:9px 18px"><i class="ti ti-brand-google-maps"></i> Open in Maps</a>
       </div>
     </div>
-
-    <!-- Smaller map -->
     <div style="border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin-bottom:36px">
       <div style="background:var(--midnight-4);padding:12px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--gold-border)">
         <i class="ti ti-map" style="color:var(--gold);font-size:16px"></i>
@@ -1031,48 +1027,13 @@ footer strong{color:var(--gold)}
       </div>
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d74.8473!3d12.8785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c17d48a0b%3A0x8f3d3e8c1a2b4c5d!2sFather+Muller+Medical+College!5e0!3m2!1sen!2sin!4v1" width="100%" height="260" style="border:0;display:block" allowfullscreen="" loading="lazy"></iframe>
     </div>
-
-    <!-- How to reach — 2 columns with booking links -->
     <h2 class="section-title">How to Reach</h2>
     <p class="section-sub">Mangaluru is well connected by air, rail, and road</p>
     <div class="reach-2col">
-      <div class="reach-card">
-        <div class="reach-icon"><i class="ti ti-plane"></i></div>
-        <div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Air</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.6">Fly into <strong style="color:var(--text)">Mangaluru International Airport (IXE)</strong>. Cabs to venue ~30 min, ₹400–600. Direct flights from Bengaluru, Mumbai, Chennai, Hyderabad &amp; Goa.</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
-          <a class="reach-card-link" href="https://www.makemytrip.com/flights/cheap-flights-to-mangalore.html" target="_blank"><i class="ti ti-plane-departure" style="font-size:11px"></i> MakeMyTrip</a>
-          <a class="reach-card-link" href="https://www.goindigo.in/" target="_blank"><i class="ti ti-plane-departure" style="font-size:11px"></i> IndiGo</a>
-          <a class="reach-card-link" href="https://www.airindia.com/" target="_blank"><i class="ti ti-plane-departure" style="font-size:11px"></i> Air India</a>
-        </div>
-      </div>
-      <div class="reach-card">
-        <div class="reach-icon"><i class="ti ti-train"></i></div>
-        <div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Train</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.6">Alight at <strong style="color:var(--text)">Mangaluru Central (MAQ)</strong> or Mangaluru Junction (MAJN). Auto/cab to venue ~15 min. Well connected from Bengaluru, Mumbai &amp; Kerala.</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
-          <a class="reach-card-link" href="https://www.irctc.co.in/nget/train-search?fromStation=SBC&toStation=MAQ&journeyDate=20261112" target="_blank"><i class="ti ti-train" style="font-size:11px"></i> IRCTC — Arrive 12 Nov</a>
-          <a class="reach-card-link" href="https://www.irctc.co.in/nget/train-search?fromStation=MAQ&toStation=SBC&journeyDate=20261115" target="_blank"><i class="ti ti-train" style="font-size:11px"></i> IRCTC — Return 15 Nov</a>
-        </div>
-      </div>
-      <div class="reach-card">
-        <div class="reach-icon"><i class="ti ti-bus"></i></div>
-        <div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Bus</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.6">KSRTC and private sleeper buses to <strong style="color:var(--text)">Mangaluru KSRTC Stand</strong>. Kankanady is a major local bus stop — 10 min from stand.</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
-          <a class="reach-card-link" href="https://www.ksrtc.in/oprs-web/oprs/busSearch.do" target="_blank"><i class="ti ti-bus" style="font-size:11px"></i> KSRTC Booking</a>
-          <a class="reach-card-link" href="https://www.redbus.in/bus-tickets/bangalore-to-mangalore" target="_blank"><i class="ti ti-bus" style="font-size:11px"></i> redBus</a>
-        </div>
-      </div>
-      <div class="reach-card">
-        <div class="reach-icon"><i class="ti ti-car"></i></div>
-        <div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Road</div>
-        <div style="font-size:12px;color:var(--text-muted);line-height:1.6">Via <strong style="color:var(--text)">NH-66</strong> (Mumbai–Kochi highway). ~350 km from Bengaluru (~6 hrs). Ample parking at campus.</div>
-        <div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px">
-          <a class="reach-card-link" href="https://www.google.com/maps/dir/Bengaluru/Father+Muller+Medical+College,+Kankanady,+Mangaluru" target="_blank"><i class="ti ti-brand-google-maps" style="font-size:11px"></i> Get Directions</a>
-          <a class="reach-card-link" href="https://www.olacabs.com/outstation" target="_blank"><i class="ti ti-car" style="font-size:11px"></i> Ola Outstation</a>
-        </div>
-      </div>
+      <div class="reach-card"><div class="reach-icon"><i class="ti ti-plane"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Air</div><div style="font-size:12px;color:var(--text-muted);line-height:1.6">Fly into <strong style="color:var(--text)">Mangaluru International Airport (IXE)</strong>. Cabs to venue ~30 min, ₹400–600. Direct flights from Bengaluru, Mumbai, Chennai, Hyderabad &amp; Goa.</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px"><a class="reach-card-link" href="https://www.makemytrip.com/flights/cheap-flights-to-mangalore.html" target="_blank"><i class="ti ti-plane-departure" style="font-size:11px"></i> MakeMyTrip</a><a class="reach-card-link" href="https://www.goindigo.in/" target="_blank"><i class="ti ti-plane-departure" style="font-size:11px"></i> IndiGo</a></div></div>
+      <div class="reach-card"><div class="reach-icon"><i class="ti ti-train"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Train</div><div style="font-size:12px;color:var(--text-muted);line-height:1.6">Alight at <strong style="color:var(--text)">Mangaluru Central (MAQ)</strong> or Mangaluru Junction (MAJN). Auto/cab to venue ~15 min.</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px"><a class="reach-card-link" href="https://www.irctc.co.in/" target="_blank"><i class="ti ti-train" style="font-size:11px"></i> IRCTC</a></div></div>
+      <div class="reach-card"><div class="reach-icon"><i class="ti ti-bus"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Bus</div><div style="font-size:12px;color:var(--text-muted);line-height:1.6">KSRTC and private sleeper buses to <strong style="color:var(--text)">Mangaluru KSRTC Stand</strong>. Kankanady is a major local bus stop — 10 min from stand.</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px"><a class="reach-card-link" href="https://www.redbus.in/bus-tickets/bangalore-to-mangalore" target="_blank"><i class="ti ti-bus" style="font-size:11px"></i> redBus</a></div></div>
+      <div class="reach-card"><div class="reach-icon"><i class="ti ti-car"></i></div><div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">By Road</div><div style="font-size:12px;color:var(--text-muted);line-height:1.6">Via <strong style="color:var(--text)">NH-66</strong>. ~350 km from Bengaluru (~6 hrs). Ample parking at campus.</div><div style="display:flex;flex-wrap:wrap;gap:6px;margin-top:10px"><a class="reach-card-link" href="https://www.google.com/maps/dir/Bengaluru/Father+Muller+Medical+College,+Kankanady,+Mangaluru" target="_blank"><i class="ti ti-brand-google-maps" style="font-size:11px"></i> Get Directions</a></div></div>
     </div>
   </div>
   <footer><strong>EM Karnataka 2026</strong> · Father Muller Medical College, Kankanady, Mangaluru</footer>
@@ -1129,20 +1090,11 @@ footer strong{color:var(--gold)}
 </nav>
 
 <script>
-/* ── Hero slideshow — 6 local images ── */
-const heroImgs=[
-  'images/mlr_9_kambala.webp',
-  'images/mlr_8_yk.png',
-  'images/mlr_7_tigerdance.jpg',
-  'images/mlr_6_lighthouse.jpg',
-  'images/mlr_5_ullal.jpg',
-  'images/mlr_4_tnrbeach.webp'
-];
+const heroImgs=['images/mlr_9_kambala.webp','images/mlr_8_yk.png','images/mlr_7_tigerdance.jpg','images/mlr_6_lighthouse.jpg','images/mlr_5_ullal.jpg','images/mlr_4_tnrbeach.webp'];
 let hIdx=0;
 function switchHero(i){hIdx=i;document.getElementById('hero-bg').style.backgroundImage=`url('${heroImgs[i]}')`;document.querySelectorAll('.hi-dot').forEach((d,j)=>d.classList.toggle('active',i===j));}
 setInterval(()=>switchHero((hIdx+1)%heroImgs.length),5000);
 
-/* ── Page navigation ── */
 function showPage(p){
   document.querySelectorAll('.page').forEach(x=>x.classList.remove('active'));
   document.querySelectorAll('.nav-links button').forEach(x=>x.classList.remove('active'));
@@ -1151,10 +1103,8 @@ function showPage(p){
   window.scrollTo(0,0);
 }
 
-/* ── Schedule tabs ── */
 function showDay(d,btn){document.querySelectorAll('.sched-day').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));document.getElementById('sd'+d).classList.add('active');btn.classList.add('active');}
 
-/* ── Registration tier selection ── */
 function selectTier(t,card){
   document.querySelectorAll('.tier').forEach(c=>c.classList.remove('selected'));
   card.classList.add('selected');
@@ -1169,7 +1119,6 @@ function resetWorkshops(){
   const warn=document.getElementById('ws-warn');if(warn)warn.style.display='none';
 }
 
-/* ── Workshop checkbox limit ── */
 function wsLimit(cb){
   const checked=document.querySelectorAll('.ws-chk:checked');
   const MAX=2;
@@ -1181,22 +1130,17 @@ function wsLimit(cb){
   if(warn)warn.style.display=atMax?'flex':'none';
 }
 
-/* ── Competition card dropdown ── */
 function toggleComp(id){const card=document.getElementById(id);const isOpen=card.classList.contains('open');document.querySelectorAll('.comp-card').forEach(c=>c.classList.remove('open'));if(!isOpen)card.classList.add('open');}
 
-/* ── Carousel scroll ── */
 function scrollCarousel(trackId,dir){const t=document.getElementById(trackId);t.scrollBy({left:dir*220,behavior:'smooth'});}
 
-/* ── Form submissions ── */
 function doReg(){const f=document.getElementById('rf').value,e=document.getElementById('re').value,t=document.getElementById('rt').value;if(!f||!e||!t){alert('Please fill all required fields.');return;}const el=document.getElementById('reg-ok');el.classList.remove('hidden');el.scrollIntoView({behavior:'smooth',block:'center'});}
 function doSub(){document.getElementById('sub-ok').classList.remove('hidden');}
 function doContact(){document.getElementById('ctc-ok').classList.remove('hidden');}
 
-/* ── Countdown timer ── */
 function tick(){const diff=new Date('2026-09-15T23:59:59')-new Date();if(diff<=0)return;document.getElementById('cd-d').textContent=Math.floor(diff/86400000);document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
 tick();setInterval(tick,1000);
 
-/* ── Mobile bottom nav ── */
 const BN_DIRECT=['home','schedule','register','competitions'];
 const BN_MORE=['workshops','stay','updates','venue','contact'];
 function bnGo(page){closeMoreMenu();showPage(page);updateBottomNav(page);}
@@ -1206,7 +1150,6 @@ function closeMoreMenu(){document.getElementById('bn-more-menu').classList.remov
 const _origShowPage=showPage;
 showPage=function(p){_origShowPage(p);updateBottomNav(p);};
 
-/* ── Explore Mangaluru Carousel ── */
 (function(){
   const TOTAL=9;
   let ecIdx=0;
