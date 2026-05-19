@@ -336,7 +336,18 @@ footer strong{color:var(--gold)}
 
 @media(max-width:768px){
   .nav-inner{height:60px;padding:0 1rem;grid-template-columns:auto 1fr auto auto;gap:8px}
-  .logo-img{height:40px;width:40px}
+.logo-img{
+  height:60px;
+  width:60px;
+  object-fit:cover;
+  border-radius:10px;
+  flex-shrink:0;
+  border:2.5px solid var(--gold);
+  box-shadow:
+    0 0 12px rgba(212,160,23,0.6),
+    0 0 28px rgba(212,160,23,0.35),
+    0 0 60px rgba(212,160,23,0.15);
+}
   .logo-main{font-size:15px}
   .logo-sub{display:none}
   .nav-links{display:none}
