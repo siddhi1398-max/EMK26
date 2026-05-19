@@ -354,8 +354,8 @@ footer strong{color:var(--gold)}
 <!-- HOME PAGE -->
 <div id="page-home" class="page active">
   <div class="hero">
-    <div class="hero-bg" id="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80')"></div>
-    <div class="hero-overlay"></div>
+<div class="hero-bg" id="hero-bg" style="background-image:url('images/mlr_9_kambala.webp')">
+  <div class="hero-overlay"></div>
     <div class="hero-content">
       <div class="hero-badge"><i class="ti ti-heart-rate-monitor" style="font-size:13px"></i> 6th Annual State Conference · Emergency Medicine Karnataka</div>
       <h1>EM Karnataka <em>2026</em></h1>
@@ -374,8 +374,11 @@ footer strong{color:var(--gold)}
     </div>
     <div style="position:relative;z-index:2;display:flex;gap:6px;justify-content:center;margin-top:20px">
       <button class="hi-dot active" onclick="switchHero(0)"></button>
-      <button class="hi-dot" onclick="switchHero(1)"></button>
-      <button class="hi-dot" onclick="switchHero(2)"></button>
+<button class="hi-dot" onclick="switchHero(1)"></button>
+<button class="hi-dot" onclick="switchHero(2)"></button>
+<button class="hi-dot" onclick="switchHero(3)"></button>
+<button class="hi-dot" onclick="switchHero(4)"></button>
+<button class="hi-dot" onclick="switchHero(5)"></button>
     </div>
   </div>
 
@@ -993,8 +996,15 @@ footer strong{color:var(--gold)}
 
 <script>
 /* ── Hero slideshow ── */
-const heroImgs=['https://images.unsplash.com/photo-1584820927498-cfe5211fd8bf?w=1400&q=80','https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=1400&q=80','https://images.unsplash.com/photo-1580281657702-257584239a55?w=1400&q=80'];
-let hIdx=0;
+const heroImgs=[
+  'images/mlr_9_kambala.webp',
+  'images/mlr_8_yk.jpg',
+  'images/mlr_7_tigerdance.jpg',
+  'images/mlr_6_lighthouse.jpg',
+  'images/mlr_5_ullal.jpg',
+  'images/mlr_4_tnrbeach.webp'
+];
+  let hIdx=0;
 function switchHero(i){hIdx=i;document.getElementById('hero-bg').style.backgroundImage=`url('${heroImgs[i]}')`;document.querySelectorAll('.hi-dot').forEach((d,j)=>d.classList.toggle('active',i===j));}
 setInterval(()=>switchHero((hIdx+1)%heroImgs.length),5000);
 
