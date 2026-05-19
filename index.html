@@ -66,6 +66,38 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
 .hi-dot{width:6px;height:6px;border-radius:50%;background:rgba(212,160,23,0.3);border:none;cursor:pointer;padding:0;transition:all 0.2s}
 .hi-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
+@media (max-width: 768px) {
+  /* Shrink the nav */
+  .nav-inner {
+    height: 56px;
+    padding: 0 1rem;
+    grid-template-columns: auto 1fr auto;
+  }
+
+  /* Smaller logo */
+  .logo-img { height: 38px; width: 38px; }
+  .logo-main { font-size: 15px; }
+  .logo-sub { display: none; }
+
+  /* Hide desktop nav links */
+  .nav-links { display: none; }
+
+  /* Smaller register button */
+  .nav-cta-btn {
+    font-size: 12px;
+    padding: 8px 14px;
+  }
+
+  /* Fix hero top padding so it doesn't hide behind nav */
+  .hero {
+    padding-top: 60px;
+    min-height: 420px;
+  }
+
+  /* Shrink palm trees on mobile */
+  #palm-left, #palm-right { width: 90px; height: 90px; }
+}
+  
 .countdown-bar{background:var(--midnight-3);padding:11px 1.5rem;text-align:center;border-bottom:1px solid var(--gold-border);}
 .countdown-inner{max-width:560px;margin:auto;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
 .countdown-label{font-size:11px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.8px}
