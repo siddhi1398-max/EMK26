@@ -1257,10 +1257,11 @@ document.getElementById('ws-warn').style.display=(checked.length===2&&_regTier.w
 function updatePriceSummary(){
   const checked=document.querySelectorAll('.ws-chk:checked').length;
   let total=_regTier.price;
-  if(_regTier.wsMax<99 && checked===2) total+=1000;
+  if(_regTier.wsMax<99 && checked>=2) total+=1000;
   const fmt='₹'+total.toLocaleString('en-IN');
   document.getElementById('sum-price').textContent=fmt;
   document.getElementById('btn-price').textContent=fmt;
+  document.getElementById('sum-tier').textContent=_regTier.name+(checked>=2?' – Conference + 2 Workshops':' – Conference + 1 Workshop');
   _regTier.finalPrice=total;
 }
 
