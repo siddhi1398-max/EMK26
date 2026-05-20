@@ -1237,9 +1237,20 @@ function wsChange(cb){
   const checked=document.querySelectorAll('.ws-chk:checked');
   document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.toggle('checked',l.querySelector('input').checked));
   const MAX = _regTier.wsMax >= 99 ? 6 : 2;
-  const atMax=checked.length>=MAX;
-  document.querySelectorAll('.ws-chk').forEach(c=>{if(!c.checked)c.disabled=atMax;});
-  document.getElementById('ws-warn').style.display=(atMax&&_regTier.wsMax<99)?'flex':'none';
+ const atMax=checked.length>=MAX;
+document.querySelectorAll('.ws-chk').forEach(c=>{
+  if(!c.checked){
+    if(_regTier.wsMax<99){
+      // Only disable within the same day group
+      const sameDay = c.closest('#ws-d1,#ws-d2');
+      const checkedInSameDay = sameDay ? sameDay.querySelectorAll('.ws-chk:checked').length : 0;
+      c.disabled = checkedInSameDay >= 1;
+    } else {
+      c.disabled = atMax;
+    }
+  }
+});
+document.getElementById('ws-warn').style.display=(checked.length===2&&_regTier.wsMax<99)?'flex':'none';
   updatePriceSummary();
 }
 
