@@ -1300,10 +1300,12 @@ function drawerGo(page){
 }
 </style>
 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 <script>
+document.addEventListener('DOMContentLoaded', function() {
   fetch('Palm_Tree_Leaf_Animation.json')
     .then(r => {
-      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      if (!r.ok) throw new Error('HTTP ' + r.status);
       return r.json();
     })
     .then(animData => {
@@ -1312,6 +1314,7 @@ function drawerGo(page){
       lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
     })
     .catch(err => console.error('PALM ERROR:', err));
+});
 </script>
 
   <!-- Hamburger button — add inside .nav-inner in your HTML -->
