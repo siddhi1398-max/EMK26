@@ -1240,7 +1240,7 @@ function wsChange(cb){
  const atMax=checked.length>=MAX;
 document.querySelectorAll('.ws-chk').forEach(c=>{
   if(!c.checked){
-    if(_regTier.wsMax<99 && checked>=2)total+=1000;{
+    if(_regTier.wsMax<99){
       // Only disable within the same day group
       const sameDay = c.closest('#ws-d1,#ws-d2');
       const checkedInSameDay = sameDay ? sameDay.querySelectorAll('.ws-chk:checked').length : 0;
