@@ -345,14 +345,17 @@ footer strong{color:var(--gold)}
 .explore-carousel-nav{display:flex;gap:8px}
 .ec-nav-btn{width:34px;height:34px;border-radius:50%;background:var(--midnight-3);border:1px solid var(--border);color:var(--text);font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;line-height:1;}
 .ec-nav-btn:hover{background:var(--gold);color:var(--midnight);border-color:var(--gold)}
-  .ec-nav-btn:disabled{opacity:0.25;cursor:default;}
 .explore-carousel-track-wrap{overflow:hidden;border-radius:var(--radius)}
 .explore-carousel-track{display:flex;gap:16px;transition:transform 0.35s cubic-bezier(.4,0,.2,1);will-change:transform}
+.explore-carousel-stage {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
 .explore-carousel-track-wrap {
   flex: 1;
   min-width: 0;
-  overflow: hidden;
-  border-radius: var(--radius);
 }
   .ec-slide{flex:0 0 calc(33.333% - 11px);min-width:0;border-radius:var(--radius);overflow:hidden;background:var(--midnight-3);border:1px solid var(--border);transition:border-color 0.2s,box-shadow 0.2s}
 .ec-slide:hover{border-color:var(--gold-border);box-shadow:0 8px 28px rgba(212,160,23,0.12)}
@@ -1026,54 +1029,31 @@ footer strong{color:var(--gold)}
       <div class="hotel-card"><div class="hotel-img-wrap"><img class="hotel-img" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=75" alt="4-star hotel" /><div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.6);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★</div><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:16px;color:#fff"><div style="font-size:16px;font-weight:700">Budget partner hotel (4★)</div><div style="font-size:12px;opacity:0.8"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> 10 min from venue (TBA)</div></div></div><div style="padding:1.25rem"><div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">₹3,200 <span style="font-size:13px;font-weight:400;color:var(--text-muted)">/ night incl. breakfast</span></div><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px"><span class="ws-badge ws-badge-dim">WiFi</span><span class="ws-badge ws-badge-dim">Gym</span><span class="ws-badge ws-badge-dim">Shuttle available</span></div><button class="btn btn-dark" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button></div></div>
     </div>
 
-    <!-- EXPLORE CAROUSEL -->
-    <div style="margin-top:48px">
-      <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px">
-        <i class="ti ti-compass" style="color:var(--gold);font-size:20px"></i>
-        <span style="font-size:18px;font-weight:800;color:#fff">Explore Mangaluru</span>
+    <div class="explore-carousel-wrap">
+  <div class="explore-carousel-header">
+    <div class="explore-carousel-title">
+      <i class="ti ti-compass"></i>
+      Explore Mangaluru
+    </div>
       </div>
+  <div class="explore-carousel-stage">
+    <button class="ec-nav-btn" id="ecPrev" aria-label="Previous">&#8249;</button>
 
-      <div style="position:relative;">
-        <!-- Prev button -->
-        <button id="ecPrev" onclick="ecScroll(-1)" aria-label="Previous" style="position:absolute;left:-18px;top:50%;transform:translateY(-60%);z-index:10;width:36px;height:36px;border-radius:50%;background:var(--midnight-3);border:1px solid var(--border);color:var(--text);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;line-height:1;">&#8249;</button>
+    <div class="explore-carousel-track-wrap">
+      <div class="explore-carousel-track" id="ecTrack">
+        <!-- your .ec-slide cards here, unchanged -->
+      </div>
+    </div>
 
-        <!-- Scrollable track -->
-        <div id="ecTrackWrap" style="overflow:hidden;border-radius:var(--radius);">
-          <div id="ecTrack" style="display:flex;gap:16px;transition:transform 0.35s cubic-bezier(.4,0,.2,1);will-change:transform;">
+    <button class="ec-nav-btn" id="ecNext" aria-label="Next">&#8250;</button>
+  </div>
 
-            <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_1_pabbas.jpg" alt="Pabbas Ice Cream"/><span class="ec-cat">📍 Food</span></div><div class="ec-body"><div class="ec-title">Pabbas Ice Cream</div><div class="ec-desc">A Mangaluru institution since 1948. Legendary local flavours — sitaphal, tender coconut, chikoo.</div><div class="ec-tags"><span class="ec-tag">Since 1948</span><span class="ec-tag">Must visit</span></div></div></div>
-
-            <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_2_sundae.webp" alt="Sundaes and Faloodas"/><span class="ec-cat">📍 Food</span></div><div class="ec-body"><div class="ec-title">Sundaes &amp; Faloodas</div><div class="ec-desc">Gorgeous layered sundaes, passion-fruit faloodas, and mango parfaits from the buzzing cafe scene.</div><div class="ec-tags"><span class="ec-tag">Desserts</span><span class="ec-tag">Cafe culture</span></div></div></div>
-
-            <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_3_fishfood.avif" alt="Tulu Nadu Seafood"/><span class="ec-cat">🍽 Cuisine</span></div><div class="ec-body"><div class="ec-title">Tulu Nadu Seafood</div><div class="ec-desc">Kane fry, prawn gassi, crab sukka, neer dosa. Among the finest coastal cuisines in India.</div><div class="ec-tags"><span class="ec-tag">Seafood</span><span class="ec-tag">Coastal cuisine</span></div></div></div>
-
-            <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_4_tnrbeach.webp" alt="Tannirbhavi Beach"/><span class="ec-cat">🌊 Beach</span></div><div class="ec-body"><div class="ec-title">Tannirbhavi Beach</div><div class="ec-desc">A serene stretch of the Arabian Sea coastline, popular for evening walks, sunsets, and the iconic tetrapod breakwater.</div><div class="ec-tags"><span class="ec-tag">Beach</span><span class="ec-tag">Sunset</span></div></div></div>
-
-            <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_5_ullal.jpg" alt="Ullal Beach"/><span class="ec-cat">🌿 Nature</span></div><div class="ec-body"><div class="ec-title">Ullal Beach</div><div class="ec-desc">Rocky outcrops, golden sands, and sweeping Arabian Sea views from the historic clifftop stairway at Ullal.</div><div class="ec-tags"><span class="ec-tag">Scenic</span><span class="ec-tag">Heritage</span></div></div></div>
-
-            <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_6_lighthouse.jpg" alt="Mangaluru Lighthouse"/><span class="ec-cat">🏛 Landmark</span></div><div class="ec-body"><div class="ec-title">Mangaluru Lighthouse</div><div class="ec-desc">The iconic red-and-white lighthouse at Bunder, standing guard over the Arabian Sea since the colonial era.</div><div class="ec-tags"><span class="ec-tag">Landmark</span><span class="ec-tag">Coastal</span></div></div></div>
-
-            <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_7_tigerdance.jpg" alt="Pili Vesha Tiger Dance"/><span class="ec-cat">🎭 Culture</span></div><div class="ec-body"><div class="ec-title">Pili Vesha — Tiger Dance</div><div class="ec-desc">A spectacular folk art form performed during Navrathi and Dasara — performers painted as tigers fill the streets with energy.</div><div class="ec-tags"><span class="ec-tag">Folk art</span><span class="ec-tag">Festival</span></div></div></div>
-
-            <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_8_yk.png" alt="Yakshagana"/><span class="ec-cat">🎭 Culture</span></div><div class="ec-body"><div class="ec-title">Yakshagana</div><div class="ec-desc">Tulu Nadu's living theatre tradition — elaborate costumes, dramatic makeup, and all-night mythological performances.</div><div class="ec-tags"><span class="ec-tag">Performing arts</span><span class="ec-tag">Tulu culture</span></div></div></div>
-
-            <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_9_kambala.webp" alt="Kambala Buffalo Race"/><span class="ec-cat">🐃 Tradition</span></div><div class="ec-body"><div class="ec-title">Kambala</div><div class="ec-desc">The legendary buffalo race of coastal Karnataka — a centuries-old harvest festival tradition that draws massive crowds every season.</div><div class="ec-tags"><span class="ec-tag">Buffalo race</span><span class="ec-tag">Tradition</span></div></div></div>
-
-          </div><!-- /#ecTrack -->
-        </div><!-- /#ecTrackWrap -->
-
-        <!-- Next button -->
-        <button id="ecNext" onclick="ecScroll(1)" aria-label="Next" style="position:absolute;right:-18px;top:50%;transform:translateY(-60%);z-index:10;width:36px;height:36px;border-radius:50%;background:var(--midnight-3);border:1px solid var(--border);color:var(--text);font-size:20px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all 0.15s;line-height:1;">&#8250;</button>
-      </div><!-- /position:relative wrapper -->
-
-      <!-- Dots -->
-      <div id="ecDots" style="display:flex;gap:6px;justify-content:center;margin-top:16px;"></div>
-    </div><!-- /margin-top:48px explore block -->
-
-  </div><!-- /.section -->
+  <div class="ec-dots" id="ecDots"></div>
+</div>
+  </div>
   <footer><strong>EM Karnataka 2026</strong> · accommodation@emkarnataka2026.in</footer>
-</div><!-- /#page-stay -->
-  
+</div>
+
 <!-- ═══════════ UPDATES PAGE ═══════════ -->
 <div id="page-updates" class="page">
   <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Conference Updates</h2><p>Announcements, deadlines, and programme news</p></div></div>
@@ -1209,64 +1189,47 @@ function doContact(){document.getElementById('ctc-ok').classList.remove('hidden'
 function tick(){const diff=new Date('2026-09-15T23:59:59')-new Date();if(diff<=0)return;document.getElementById('cd-d').textContent=Math.floor(diff/86400000);document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
 tick();setInterval(tick,1000);
 
-
 (function(){
-  const TOTAL = 9;
-  let ecIdx = 0;
-
-  function ecVisible(){
-    const w = document.getElementById('ecTrackWrap');
-    if(!w) return 3;
-    if(w.offsetWidth < 560) return 1;
-    if(w.offsetWidth < 900) return 2;
-    return 3;
-  }
-
-  function ecMaxIdx(){ return Math.max(0, TOTAL - ecVisible()); }
-
+  const TOTAL=9;
+  let ecIdx=0;
+  function ecVisible(){const w=document.querySelector('.explore-carousel-track-wrap');if(!w)return 3;if(w.offsetWidth<560)return 1;if(w.offsetWidth<900)return 2;return 3;}
+  function ecMaxIdx(){return Math.max(0,TOTAL-ecVisible());}
   function ecGo(idx){
-    const track = document.getElementById('ecTrack');
-    if(!track) return;
-    const slides = track.querySelectorAll('.ec-slide');
-    if(!slides.length) return;
-    const slideW = slides[0].offsetWidth + 16;
-    ecIdx = Math.max(0, Math.min(idx, ecMaxIdx()));
-    track.style.transform = `translateX(-${ecIdx * slideW}px)`;
-    document.querySelectorAll('.ec-dot').forEach((d,i) => d.classList.toggle('active', i === ecIdx));
-    const prev = document.getElementById('ecPrev');
-    const next = document.getElementById('ecNext');
-    if(prev){ prev.style.opacity = ecIdx === 0 ? '0.3' : '1'; prev.style.pointerEvents = ecIdx === 0 ? 'none' : 'auto'; }
-    if(next){ next.style.opacity = ecIdx >= ecMaxIdx() ? '0.3' : '1'; next.style.pointerEvents = ecIdx >= ecMaxIdx() ? 'none' : 'auto'; }
+    const track=document.getElementById('ec-track');
+    if(!track)return;
+    const slides=track.querySelectorAll('.ec-slide');
+    if(!slides.length)return;
+    const slideW=slides[0].offsetWidth+16;
+    ecIdx=Math.max(0,Math.min(idx,ecMaxIdx()));
+    track.style.transform=`translateX(-${ecIdx*slideW}px)`;
+    document.querySelectorAll('.ec-dot').forEach((d,i)=>d.classList.toggle('active',i===ecIdx));
   }
-
-  window.ecScroll = function(dir){ ecGo(ecIdx + dir); };
-
+  window.ecScroll=function(dir){ecGo(ecIdx+dir);};
   function buildDots(){
-    const container = document.getElementById('ecDots');
-    if(!container) return;
-    container.innerHTML = '';
-    for(let i = 0; i <= ecMaxIdx(); i++){
-      const btn = document.createElement('button');
-      btn.className = 'ec-dot' + (i === 0 ? ' active' : '');
-      btn.onclick = () => ecGo(i);
+    const container=document.getElementById('ec-dots');
+    if(!container)return;
+    container.innerHTML='';
+    for(let i=0;i<=ecMaxIdx();i++){
+      const btn=document.createElement('button');
+      btn.className='ec-dot'+(i===0?' active':'');
+      btn.onclick=()=>ecGo(i);
       container.appendChild(btn);
     }
   }
-
-  function init(){
-    buildDots();
-    ecGo(0);
-    window.addEventListener('resize', () => { buildDots(); ecGo(Math.min(ecIdx, ecMaxIdx())); });
-  }
-
-  if(document.readyState === 'loading'){ document.addEventListener('DOMContentLoaded', init); }
-  else { init(); }
+  function init(){buildDots();ecGo(0);window.addEventListener('resize',()=>{buildDots();ecGo(Math.min(ecIdx,ecMaxIdx()));});}
+  if(document.readyState==='loading'){document.addEventListener('DOMContentLoaded',init);}else{init();}
 })();
-
-
-<!-- ═══ Palm trees — move this block to just before </body>, AFTER the drawer div ═══ -->
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+  function toggleDrawer(){
+  document.getElementById('drawer').classList.toggle('open');
+  document.getElementById('drawer-backdrop').classList.toggle('open');
+}
+function drawerGo(page){
+  toggleDrawer();
+  showPage(page);
+}
+</script>
+  
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 
 <div id="palm-footer">
   <div id="palm-left"></div>
@@ -1274,26 +1237,32 @@ tick();setInterval(tick,1000);
 </div>
 
 <style>
-#palm-footer{position:fixed;bottom:0;left:0;width:100%;pointer-events:none;z-index:99;display:flex;justify-content:space-between;align-items:flex-end;}
-#palm-left,#palm-right{width:180px;height:180px;opacity:0.9;}
-#palm-left{transform:scaleX(-1);margin-left:-20px;}
-#palm-right{margin-right:-20px;}
-@media(max-width:768px){
-  #palm-left,#palm-right{width:80px;height:80px;}
-  #palm-left{margin-left:-10px;}
-  #palm-right{margin-right:-10px;}
+ #palm-footer {
+  position: fixed; bottom: 0; left: 0;
+  width: 100%; pointer-events: none; z-index: 99;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+#palm-left, #palm-right { width: 180px; height: 180px; opacity: 0.9; }
+#palm-left { transform: scaleX(-1); margin-left: -20px; }
+#palm-right { margin-right: -20px; }
+@media (max-width: 768px) {
+  #palm-left, #palm-right { width: 80px; height: 80px; }
+  #palm-left { margin-left: -10px; }
+  #palm-right { margin-right: -10px; }
 }
 </style>
 
 <script>
-fetch('/Palm_Tree_Leaf_Animation.json')
-  .then(r => r.json())
-  .then(animData => {
-    const cfg = { renderer:'svg', loop:true, autoplay:true, animationData:animData };
-    lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left') });
-    lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
-  });
+  fetch('/Palm_Tree_Leaf_Animation.json')
+    .then(r => r.json())
+    .then(animData => {
+  const cfg = { renderer: 'svg', loop: true, autoplay: true, animationData: animData };
+  lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left') });
+  lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
+});
 </script>
+
+  <!-- Hamburger button — add inside .nav-inner in your HTML -->
 
 <!-- Drawer -->
 <div id="drawer-backdrop" onclick="toggleDrawer()"></div>
@@ -1314,6 +1283,6 @@ fetch('/Palm_Tree_Leaf_Animation.json')
     <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="drawerGo('register')"><i class="ti ti-user-plus"></i>Register Now</button>
   </div>
 </div>
-
+  
 </body>
 </html>
