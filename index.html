@@ -350,13 +350,17 @@ footer strong{color:var(--gold)}
 .explore-carousel-track{display:flex;gap:16px;transition:transform 0.35s cubic-bezier(.4,0,.2,1);will-change:transform}
 .explore-carousel-stage {
   display: flex;
+  flex-direction: row;
   align-items: center;
   gap: 10px;
+  width: 100%;
 }
 
 .explore-carousel-track-wrap {
   flex: 1;
   min-width: 0;
+  overflow: hidden;
+  border-radius: var(--radius);
 }
   .ec-slide{flex:0 0 calc(33.333% - 11px);min-width:0;border-radius:var(--radius);overflow:hidden;background:var(--midnight-3);border:1px solid var(--border);transition:border-color 0.2s,box-shadow 0.2s}
 .ec-slide:hover{border-color:var(--gold-border);box-shadow:0 8px 28px rgba(212,160,23,0.12)}
