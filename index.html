@@ -673,37 +673,37 @@ footer strong{color:var(--gold)}
     <!-- TIER CARDS -->
   <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
 
-  <div class="tier selected" id="tier-1" onclick="selectTier('Delegate',4500,1,this)">
-    <div class="tier-name">Delegate</div>
-    <div class="tier-price">₹4,500 <span>early bird</span></div>
-    <div class="tier-note">₹5,500 after 15 Sept 2026</div>
-    <ul class="tier-features">
-      <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
-      <li><i class="ti ti-check"></i>1 workshop of choice (Days 1 or 2)</li>
-      <li><i class="ti ti-check"></i>Conference kit &amp; delegate bag</li>
-      <li><i class="ti ti-check"></i>All meals during conference days</li>
-      <li><i class="ti ti-check"></i>CME certificate</li>
-      <li><i class="ti ti-check"></i>Conference dinner</li>
-      <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>2nd workshop: +₹1,000</li>
-    </ul>
-    <button class="btn btn-gold" style="width:100%;justify-content:center">Selected</button>
-  </div>
-
-  <div class="tier" id="tier-2" onclick="selectTier('Faculty',5500,99,this)">
-    <div class="tier-badge">Most Inclusive</div>
-    <div class="tier-name">Faculty / Consultant</div>
-    <div class="tier-price">₹5,500 <span>early bird</span></div>
-    <div class="tier-note">₹6,500 after 15 Sept 2026</div>
-    <ul class="tier-features">
-      <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
-      <li><i class="ti ti-check"></i>All 6 workshops included</li>
-      <li><i class="ti ti-check"></i>Conference kit &amp; delegate bag</li>
-      <li><i class="ti ti-check"></i>All meals across all 4 days</li>
-      <li><i class="ti ti-check"></i>Faculty CME certificate</li>
-      <li><i class="ti ti-check"></i>Gala dinner &amp; networking lounge</li>
-    </ul>
-    <button class="btn btn-outline-gold" style="width:100%;justify-content:center">Select</button>
-  </div>
+ <div class="tier selected" id="tier-1" onclick="selectTier('Delegate',4500,2,this)">
+  <div class="tier-name">Delegate</div>
+  <div class="tier-price">₹4,500 <span>+ workshops</span></div>
+  <div class="tier-note">+₹1,000 for 1 workshop · +₹1,500 for 2</div>
+  <ul class="tier-features">
+    <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
+    <li><i class="ti ti-check"></i>Conference kit &amp; delegate bag</li>
+    <li><i class="ti ti-check"></i>All meals during conference days</li>
+    <li><i class="ti ti-check"></i>CME certificate</li>
+    <li><i class="ti ti-check"></i>Conference dinner</li>
+    <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>1 workshop: +₹1,000</li>
+    <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>2 workshops: +₹1,500</li>
+  </ul>
+  <button class="btn btn-gold" style="width:100%;justify-content:center">Selected</button>
+</div>
+    
+  <div class="tier" id="tier-2" onclick="selectTier('Faculty',7500,99,this)">
+  <div class="tier-badge">Most Inclusive</div>
+  <div class="tier-name">Faculty / Consultant</div>
+  <div class="tier-price">₹7,500 <span>early bird</span></div>
+  <div class="tier-note">Includes all 6 workshops</div>
+  <ul class="tier-features">
+    <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
+    <li><i class="ti ti-check"></i>All 6 workshops included</li>
+    <li><i class="ti ti-check"></i>Conference kit &amp; delegate bag</li>
+    <li><i class="ti ti-check"></i>All meals across all 4 days</li>
+    <li><i class="ti ti-check"></i>Faculty CME certificate</li>
+    <li><i class="ti ti-check"></i>Gala dinner &amp; networking lounge</li>
+  </ul>
+  <button class="btn btn-outline-gold" style="width:100%;justify-content:center">Select</button>
+</div>
 
 </div>
 
@@ -754,8 +754,7 @@ footer strong{color:var(--gold)}
             <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Virtual Anatomy" onchange="wsChange(this)"> Virtual Anatomy</label>
           </div>
         </div>
-<div id="ws-warn" style="display:none;font-size:12px;color:var(--gold);margin-top:8px;align-items:center;gap:6px;background:rgba(212,160,23,0.08);padding:8px 12px;border-radius:8px;border:1px solid var(--gold-border)"><i class="ti ti-info-circle"></i> 2nd workshop selected — <strong>+₹1,000 added</strong> to your total</div>      </div>
-
+<div id="ws-warn" style="display:none;font-size:12px;color:var(--gold);margin-top:8px;align-items:center;gap:6px;background:rgba(212,160,23,0.08);padding:8px 12px;border-radius:8px;border:1px solid var(--gold-border)"><i class="ti ti-info-circle"></i> 2 workshops selected — <strong>+₹1,500 added</strong> to your total</div>
       <!-- SUMMARY + PAY -->
       <div style="background:var(--midnight-4);border:1px solid var(--gold-border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
         <div><div style="font-size:11px;color:var(--text-muted);margin-bottom:2px">Selected plan</div><div style="font-size:14px;font-weight:700;color:#fff" id="sum-tier">Delegate – Conference + 1 Workshop</div></div>
@@ -1257,11 +1256,18 @@ document.getElementById('ws-warn').style.display=(checked.length===2&&_regTier.w
 function updatePriceSummary(){
   const checked=document.querySelectorAll('.ws-chk:checked').length;
   let total=_regTier.price;
-  if(_regTier.wsMax<99 && checked>=2) total+=1000;
+  if(_regTier.wsMax<99){
+    if(checked===1) total+=1000;
+    if(checked>=2) total+=1500;
+  }
   const fmt='₹'+total.toLocaleString('en-IN');
   document.getElementById('sum-price').textContent=fmt;
   document.getElementById('btn-price').textContent=fmt;
-  document.getElementById('sum-tier').textContent=_regTier.name+(checked>=2?' – Conference + 2 Workshops':' – Conference + 1 Workshop');
+  let label=_regTier.name;
+  if(checked===1) label+=' – Conference + 1 Workshop';
+  else if(checked>=2) label+=' – Conference + 2 Workshops';
+  else label+=' – Conference Only';
+  document.getElementById('sum-tier').textContent=label;
   _regTier.finalPrice=total;
 }
 
@@ -1415,12 +1421,23 @@ function selectTier(name, price, wsMax, card){
 }
 
 function wsChange(cb){
-  const checked = document.querySelectorAll('.ws-chk:checked');
+  const checked=document.querySelectorAll('.ws-chk:checked');
   document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.toggle('checked',l.querySelector('input').checked));
-  const atMax = checked.length >= _regTier.wsMax;
-  document.querySelectorAll('.ws-chk').forEach(c=>{if(!c.checked) c.disabled=atMax;});
-  const warn = document.getElementById('ws-warn');
-  warn.style.display = (atMax && _regTier.wsMax < 99) ? 'flex' : 'none';
+  const MAX=_regTier.wsMax>=99?6:2;
+  const atMax=checked.length>=MAX;
+  document.querySelectorAll('.ws-chk').forEach(c=>{
+    if(!c.checked){
+      if(_regTier.wsMax<99){
+        const sameDay=c.closest('#ws-d1,#ws-d2');
+        const checkedInSameDay=sameDay?sameDay.querySelectorAll('.ws-chk:checked').length:0;
+        c.disabled=checkedInSameDay>=1;
+      } else {
+        c.disabled=atMax;
+      }
+    }
+  });
+  document.getElementById('ws-warn').style.display=(checked.length===2&&_regTier.wsMax<99)?'flex':'none';
+  updatePriceSummary();
 }
 
 function submitToGoogleForm(data){
