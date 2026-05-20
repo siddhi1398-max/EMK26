@@ -1237,8 +1237,6 @@ function wsChange(cb){
   document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.toggle('checked',l.querySelector('input').checked));
   const MAX = _regTier.wsMax >= 99 ? 6 : 2;
   const atMax=checked.length>=MAX;
-  const tierLabel = _regTier.name + (ws.length===2 && _regTier.wsMax<99 ? ' + 2nd Workshop' : '');
-  const formData={..., tier:tierLabel, workshops:ws};
   document.querySelectorAll('.ws-chk').forEach(c=>{if(!c.checked)c.disabled=atMax;});
   document.getElementById('ws-warn').style.display=(atMax&&_regTier.wsMax<99)?'flex':'none';
   updatePriceSummary();
@@ -1439,12 +1437,13 @@ function initiatePayment(){
 
   const ws=[];
   document.querySelectorAll('.ws-chk:checked').forEach(c=>ws.push(c.value));
+  const tierLabel = _regTier.name + (ws.length===2 && _regTier.wsMax<99 ? ' + 2nd Workshop' : '');
 
   const formData={name,email,phone,designation:desig,institution:inst,
     regno:document.getElementById('r-regno').value.trim(),
     diet:document.getElementById('r-diet').value,
-    tier:_regTier.name, workshops:ws};
-
+   tier:tierLabel, workshops:ws};
+  
   const options={
     key:'YOUR_RAZORPAY_KEY',   // ← replace with rzp_live_XXXXXX
    amount: (_regTier.finalPrice || _regTier.price) * 100,
