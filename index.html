@@ -2151,29 +2151,6 @@ footer strong{color:var(--gold)}
   <footer><strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026</footer>
 </div>
 
-  <script>
-  function showDay(d, btn) {
-    document.querySelectorAll('.sched-day').forEach(el => el.classList.remove('active'));
-    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-    document.getElementById('sd' + d).classList.add('active');
-    btn.classList.add('active');
-  }
-
-  function toggleVenue(id) {
-    const panel = document.getElementById(id);
-    const btn = panel.previousElementSibling;
-    const isOpen = panel.classList.contains('open');
-    panel.classList.toggle('open', !isOpen);
-    btn.classList.toggle('open', !isOpen);
-    if (!isOpen) {
-      btn.innerHTML = btn.innerHTML
-        .replace('View Venue', 'Hide Venue');
-    } else {
-      btn.innerHTML = btn.innerHTML
-        .replace('Hide Venue', 'View Venue');
-    }
-  }
-</script>
 <script>
 const heroImgs=['images/mlr_9_kambala.webp','images/mlr_8_yk.png','images/mlr_7_tigerdance.jpg','images/mlr_6_lighthouse.jpg','images/mlr_5_ullal.jpg','images/mlr_4_tnrbeach.webp'];
 let hIdx=0;
@@ -2488,6 +2465,29 @@ function initiatePayment(){
   const rzp=new Razorpay(options);
   rzp.open();
 }
+</script>
+   <script>
+  function showDay(d, btn) {
+    document.querySelectorAll('.sched-day').forEach(el => el.classList.remove('active'));
+    document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+    document.getElementById('sd' + d).classList.add('active');
+    btn.classList.add('active');
+  }
+
+  function toggleVenue(id) {
+    const panel = document.getElementById(id);
+    const btn = panel.previousElementSibling;
+    const isOpen = panel.classList.contains('open');
+    panel.classList.toggle('open', !isOpen);
+    btn.classList.toggle('open', !isOpen);
+    if (!isOpen) {
+      btn.innerHTML = btn.innerHTML
+        .replace('View Venue', 'Hide Venue');
+    } else {
+      btn.innerHTML = btn.innerHTML
+        .replace('Hide Venue', 'View Venue');
+    }
+  }
 </script>
 </body>
 </html>
