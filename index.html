@@ -348,14 +348,6 @@ footer strong{color:var(--gold)}
   .ec-nav-btn:disabled{opacity:0.25;cursor:default;}
 .explore-carousel-track-wrap{overflow:hidden;border-radius:var(--radius)}
 .explore-carousel-track{display:flex;gap:16px;transition:transform 0.35s cubic-bezier(.4,0,.2,1);will-change:transform}
-.explore-carousel-stage {
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: 10px;
-  width: 100%;
-}
-
 .explore-carousel-track-wrap {
   flex: 1;
   min-width: 0;
@@ -1034,21 +1026,20 @@ footer strong{color:var(--gold)}
       <div class="hotel-card"><div class="hotel-img-wrap"><img class="hotel-img" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=75" alt="4-star hotel" /><div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.6);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★</div><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:16px;color:#fff"><div style="font-size:16px;font-weight:700">Budget partner hotel (4★)</div><div style="font-size:12px;opacity:0.8"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> 10 min from venue (TBA)</div></div></div><div style="padding:1.25rem"><div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">₹3,200 <span style="font-size:13px;font-weight:400;color:var(--text-muted)">/ night incl. breakfast</span></div><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px"><span class="ws-badge ws-badge-dim">WiFi</span><span class="ws-badge ws-badge-dim">Gym</span><span class="ws-badge ws-badge-dim">Shuttle available</span></div><button class="btn btn-dark" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button></div></div>
     </div>
 
-    <div class="explore-carousel-wrap">
+    <div class="explore-carousel-wrap" style="margin-top:36px;padding-top:4px">
   <div class="explore-carousel-header">
     <div class="explore-carousel-title">
       <i class="ti ti-compass"></i>
       Explore Mangaluru
     </div>
-      </div>
-  <div class="explore-carousel-stage">
-  <button class="ec-nav-btn" id="ecPrev" aria-label="Previous">&#8249;</button>
+  </div>
 
-  <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:14px;">
-    <div class="explore-carousel-track-wrap">
-      <div class="explore-carousel-track" id="ecTrack">
-    <div class="explore-carousel-track-wrap">
-     <div class="explore-carousel-track" id="ecTrack">
+  <div style="display:flex;flex-direction:row;align-items:center;gap:10px;width:100%;">
+    <button class="ec-nav-btn" id="ecPrev" aria-label="Previous">&#8249;</button>
+
+    <div style="flex:1;min-width:0;display:flex;flex-direction:column;gap:14px;">
+      <div class="explore-carousel-track-wrap">
+        <div class="explore-carousel-track" id="ecTrack">
 
   <div class="ec-slide">
     <div class="ec-img-wrap">
@@ -1155,11 +1146,13 @@ footer strong{color:var(--gold)}
       <div class="ec-title">Kambala</div>
       <div class="ec-desc">The legendary buffalo race of coastal Karnataka — a centuries-old harvest festival tradition that draws massive crowds every season.</div>
       <div class="ec-tags"><span class="ec-tag">Buffalo race</span><span class="ec-tag">Tradition</span></div>
+   </div>
+      </div>
+      <div class="ec-dots" id="ecDots"></div>
     </div>
+
+    <button class="ec-nav-btn" id="ecNext" aria-label="Next">&#8250;</button>
   </div>
-        <div class="ec-dots" id="ecDots"></div>
-     </div>
-  <button class="ec-nav-btn" id="ecNext" aria-label="Next">&#8250;</button>
 </div>
       
   </div>
