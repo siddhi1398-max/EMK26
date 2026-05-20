@@ -375,25 +375,27 @@ footer strong{color:var(--gold)}
 .ec-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
 @media(max-width:768px){
-  .nav-inner{height:60px;padding:0 1rem;grid-template-columns:auto 1fr auto auto;gap:8px}
-  .logo-main{font-size:15px}
-  .logo-sub{display:none}
+  .nav-inner{
+    height:64px;
+    padding:0 1rem;
+    grid-template-columns:auto 1fr auto;
+    align-items:center;
+  }
+  .logo-img{height:44px;width:44px;border-radius:6px}
+  .logo-main{font-size:14px}
+  .logo-sub{display:block;font-size:11px}
+  .logo{gap:8px}
   .nav-links{display:none}
   .nav-cta-btn{display:none}
-  .form-grid{grid-template-columns:1fr}
-  .stat-banner{flex-direction:column;gap:16px}
-  .stat-item{border-right:none;border-bottom:1px solid rgba(0,0,0,0.12);padding-bottom:14px}
-  .stat-item:last-child{border-bottom:none}
-  .carousel-btn{display:none}
-  body{padding-bottom:0}
-  .theme-split{grid-template-columns:1fr !important}
-  .comp-grid{grid-template-columns:1fr !important}
-  .section{padding:40px 1rem}
-  .hero{padding:40px 16px 60px}
-  .hero-meta{flex-direction:column;align-items:center;gap:8px}
-  .tier-grid{grid-template-columns:1fr}
-  .sponsors-grid{flex-direction:column;align-items:center}
-}
+  #ham-btn{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    width:36px;height:36px;
+    padding:0;
+    font-size:20px;
+  }
+
 @media(max-width:480px){
   .hero h1{font-size:clamp(30px,8vw,44px)}
 }
