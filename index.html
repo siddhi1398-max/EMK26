@@ -665,86 +665,120 @@ footer strong{color:var(--gold)}
 
 <!-- ═══════════ REGISTER PAGE ═══════════ -->
 <div id="page-register" class="page">
-  <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Registration</h2><p>Includes conference kit, meals, and CME certificate. Secure payment via Razorpay.</p></div></div>
+  <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Registration</h2><p>Includes conference kit, meals, and CME certificate · Secure payment via Razorpay</p></div></div>
   <div class="section" style="padding-top:36px">
-    <div class="tier-grid">
-      <div class="tier selected" onclick="selectTier('Delegate',this)">
-        <div class="tier-name">Delegate</div>
-        <div class="tier-price">₹4,500 <span>early bird</span></div>
-        <div class="tier-note">₹5,500 after 15 Sept 2026 · Up to 2 workshops</div>
-        <ul class="tier-features">
-          <li><i class="ti ti-check"></i> All conference sessions</li>
-          <li><i class="ti ti-check"></i> Up to 2 workshops access</li>
-          <li><i class="ti ti-check"></i> Conference kit &amp; meals</li>
-          <li><i class="ti ti-check"></i> CME certificate</li>
-          <li><i class="ti ti-check"></i> Conference dinner</li>
-        </ul>
-        <button class="btn btn-gold" style="width:100%;justify-content:center">Select</button>
-      </div>
-      <div class="tier" onclick="selectTier('Faculty',this)">
-        <div class="tier-badge">Most inclusive</div>
-        <div class="tier-name">Faculty / Consultant</div>
-        <div class="tier-price">₹5,500 <span>early bird</span></div>
-        <div class="tier-note">₹6,500 after 15 Sept 2026 · Up to 2 workshops</div>
-        <ul class="tier-features">
-          <li><i class="ti ti-check"></i> All conference sessions</li>
-          <li><i class="ti ti-check"></i> Up to 2 workshops access</li>
-          <li><i class="ti ti-check"></i> Kit, all meals &amp; gala dinner</li>
-          <li><i class="ti ti-check"></i> Faculty CME certificate</li>
-          <li><i class="ti ti-check"></i> Networking lounge access</li>
-        </ul>
-        <button class="btn btn-gold" style="width:100%;justify-content:center">Select</button>
-      </div>
+
+    <!-- TIER CARDS -->
+  <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
+
+  <div class="tier selected" id="tier-1" onclick="selectTier('Delegate',4500,1,this)">
+    <div class="tier-name">Delegate</div>
+    <div class="tier-price">₹4,500 <span>early bird</span></div>
+    <div class="tier-note">₹5,500 after 15 Sept 2026</div>
+    <ul class="tier-features">
+      <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
+      <li><i class="ti ti-check"></i>1 workshop of choice (Days 1 or 2)</li>
+      <li><i class="ti ti-check"></i>Conference kit &amp; delegate bag</li>
+      <li><i class="ti ti-check"></i>All meals during conference days</li>
+      <li><i class="ti ti-check"></i>CME certificate</li>
+      <li><i class="ti ti-check"></i>Conference dinner</li>
+      <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>2nd workshop: +₹1,000</li>
+    </ul>
+    <button class="btn btn-gold" style="width:100%;justify-content:center">Selected</button>
+  </div>
+
+  <div class="tier" id="tier-2" onclick="selectTier('Faculty',5500,99,this)">
+    <div class="tier-badge">Most Inclusive</div>
+    <div class="tier-name">Faculty / Consultant</div>
+    <div class="tier-price">₹5,500 <span>early bird</span></div>
+    <div class="tier-note">₹6,500 after 15 Sept 2026</div>
+    <ul class="tier-features">
+      <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
+      <li><i class="ti ti-check"></i>All 6 workshops included</li>
+      <li><i class="ti ti-check"></i>Conference kit &amp; delegate bag</li>
+      <li><i class="ti ti-check"></i>All meals across all 4 days</li>
+      <li><i class="ti ti-check"></i>Faculty CME certificate</li>
+      <li><i class="ti ti-check"></i>Gala dinner &amp; networking lounge</li>
+    </ul>
+    <button class="btn btn-outline-gold" style="width:100%;justify-content:center">Select</button>
+  </div>
+
+</div>
+
     </div>
-    <div class="form-card">
-      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;color:#fff">Your Details</h3>
+
+    <!-- FORM -->
+    <div class="form-card" id="reg-form-wrap">
+
+      <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--gold-border);display:flex;align-items:center;gap:8px">
+        <i class="ti ti-user"></i> Personal Details
+      </div>
+
       <div class="form-grid">
-        <div class="fg"><label>First Name *</label><input id="rf" type="text" placeholder="Dr. Peter" /></div>
-        <div class="fg"><label>Last Name *</label><input id="rl" type="text" placeholder="Safar" /></div>
-        <div class="fg"><label>Email *</label><input id="re" type="email" placeholder="dr.safar@hospital.in" /></div>
-        <div class="fg"><label>Mobile *</label><input type="tel" placeholder="+91 xxxxx xxxxx" /></div>
-        <div class="fg"><label>Designation *</label><input type="text" placeholder="Emergency Medicine Consultant" /></div>
-        <div class="fg"><label>Registration Type *</label>
-          <select id="rt" onchange="onRegTypeChange()">
-            <option value="">Select type</option>
-            <option value="Delegate">Delegate — ₹4,500</option>
-            <option value="Faculty">Faculty / Consultant — ₹5,500</option>
+        <div class="fg"><label>Full Name *</label><input id="r-name" type="text" placeholder="Dr. Peter Safar" /></div>
+        <div class="fg"><label>Email *</label><input id="r-email" type="email" placeholder="dr@hospital.in" /></div>
+        <div class="fg"><label>Mobile *</label><input id="r-phone" type="tel" placeholder="+91 xxxxx xxxxx" /></div>
+        <div class="fg"><label>Designation *</label><input id="r-desig" type="text" placeholder="Emergency Medicine Consultant" /></div>
+        <div class="fg full"><label>Institution / Hospital *</label><input id="r-inst" type="text" placeholder="Father Muller Medical College, Mangaluru" /></div>
+        <div class="fg"><label>Registration Number</label><input id="r-regno" type="text" placeholder="KMC-XXXXX" /></div>
+        <div class="fg"><label>Dietary Preference</label>
+          <select id="r-diet">
+            <option value="Vegetarian">Vegetarian</option>
+            <option value="Non-vegetarian">Non-vegetarian</option>
+            <option value="Jain">Jain</option>
           </select>
         </div>
-        <div class="fg full"><label>Institution / Hospital *</label><input type="text" placeholder="Father Muller Medical College, Mangaluru" /></div>
-        <div class="fg full"><label>Registration Number</label><input type="text" placeholder="KMC-XXXXX" /></div>
-        <div class="fg full">
-          <label style="margin-bottom:8px">Workshop Preference <span id="ws-limit-note" style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--gold);font-size:11px;margin-left:6px">— select up to 2</span></label>
-          <div style="margin-bottom:10px">
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;padding-left:2px"><i class="ti ti-calendar-event" style="font-size:11px;vertical-align:-1px;color:var(--gold)"></i> Day 1 — Thursday, 12 November</div>
-            <div id="ws-checkboxes-d1" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px">
-              <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Peripheral Nerve Blocks & Advanced Airway" onchange="wsLimit(this)"> Peripheral Nerve Blocks &amp; Advanced Airway</label>
-              <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Mechanical Ventilation" onchange="wsLimit(this)"> Mechanical Ventilation</label>
-              <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Disaster Management" onchange="wsLimit(this)"> Disaster Management</label>
-            </div>
-          </div>
-          <div>
-            <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;padding-left:2px"><i class="ti ti-calendar-event" style="font-size:11px;vertical-align:-1px;color:var(--gold)"></i> Day 2 — Friday, 13 November</div>
-            <div id="ws-checkboxes-d2" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:8px">
-              <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Advanced POCUS" onchange="wsLimit(this)"> Advanced POCUS</label>
-              <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Maternal Resuscitation Program (MRP)" onchange="wsLimit(this)"> Maternal Resuscitation Program (MRP)</label>
-              <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Virtual Anatomy" onchange="wsLimit(this)"> Virtual Anatomy</label>
-            </div>
-          </div>
-          <div id="ws-warn" style="display:none;font-size:11px;color:var(--gold);margin-top:8px;align-items:center;gap:5px"><i class="ti ti-alert-triangle" style="font-size:13px"></i> Maximum 2 workshops reached</div>
+      </div>
+
+      <!-- WORKSHOPS -->
+      <div id="ws-section" style="margin-bottom:20px">
+        <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--gold-border);display:flex;align-items:center;gap:8px">
+          <i class="ti ti-tool"></i> Workshop Preference
+          <span id="ws-limit-note" style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);font-size:11px">— select 1</span>
         </div>
-        <div class="fg full"><label>Dietary Preference</label><select><option>Vegetarian</option><option>Non-vegetarian</option><option>Jain</option></select></div>
+        <div style="margin-bottom:10px">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px"><i class="ti ti-calendar-event" style="font-size:11px;color:var(--gold)"></i> Day 1 — Thursday, 12 November</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" id="ws-d1">
+            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Peripheral Nerve Blocks & Advanced Airway" onchange="wsChange(this)"> Nerve Blocks &amp; Advanced Airway</label>
+            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Mechanical Ventilation" onchange="wsChange(this)"> Mechanical Ventilation</label>
+            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Disaster Management" onchange="wsChange(this)"> Disaster Management</label>
+          </div>
+        </div>
+        <div>
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px"><i class="ti ti-calendar-event" style="font-size:11px;color:var(--gold)"></i> Day 2 — Friday, 13 November</div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" id="ws-d2">
+            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Advanced POCUS" onchange="wsChange(this)"> Advanced POCUS</label>
+            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Maternal Resuscitation Program (MRP)" onchange="wsChange(this)"> Maternal Resuscitation (MRP)</label>
+            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Virtual Anatomy" onchange="wsChange(this)"> Virtual Anatomy</label>
+          </div>
+        </div>
+        <div id="ws-warn" style="display:none;font-size:11px;color:var(--gold);margin-top:8px;align-items:center;gap:5px"><i class="ti ti-alert-triangle"></i> Maximum workshops reached for your tier</div>
       </div>
-      <div style="margin-top:20px;background:var(--gold-glow);border-radius:var(--radius-sm);padding:14px;border-left:3px solid var(--gold)">
-        <p style="font-size:13px;font-weight:700;color:var(--gold);margin-bottom:4px"><i class="ti ti-credit-card" style="vertical-align:-2px"></i> Payment via Razorpay</p>
-        <p style="font-size:12px;color:var(--text-muted)">UPI (GPay, PhonePe, Paytm), Net Banking, Debit &amp; Credit Cards. Instant confirmation email after payment.</p>
+
+      <!-- SUMMARY + PAY -->
+      <div style="background:var(--midnight-4);border:1px solid var(--gold-border);border-radius:var(--radius-sm);padding:14px 16px;margin-bottom:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div><div style="font-size:11px;color:var(--text-muted);margin-bottom:2px">Selected plan</div><div style="font-size:14px;font-weight:700;color:#fff" id="sum-tier">Delegate – Conference + 1 Workshop</div></div>
+        <div style="font-size:24px;font-weight:800;color:var(--gold)" id="sum-price">₹4,500</div>
       </div>
-      <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:12px">
-        <p style="font-size:12px;color:var(--text-muted)"><i class="ti ti-lock" style="font-size:13px;vertical-align:-1px"></i> PCI DSS compliant · Instant confirmation</p>
-        <button class="btn btn-gold" onclick="doReg()"><i class="ti ti-arrow-right"></i> Proceed to Pay</button>
+
+      <div style="background:var(--gold-glow);border-radius:var(--radius-sm);padding:12px 14px;border-left:3px solid var(--gold);margin-bottom:16px">
+        <p style="font-size:12px;font-weight:700;color:var(--gold);margin-bottom:3px"><i class="ti ti-credit-card" style="vertical-align:-2px"></i> Secure Payment via Razorpay</p>
+        <p style="font-size:11px;color:var(--text-muted)">UPI (GPay, PhonePe, Paytm) · Net Banking · Debit &amp; Credit Cards · Instant confirmation email</p>
       </div>
-      <div id="reg-ok" class="success-msg hidden"><i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i><div><strong>Registration received!</strong> Confirmation with your registration ID sent. Our team will follow up within 24 hours.</div></div>
+
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
+        <p style="font-size:11px;color:var(--text-muted)"><i class="ti ti-lock" style="font-size:12px;vertical-align:-1px"></i> PCI DSS compliant</p>
+        <button class="btn btn-gold" style="font-size:15px;padding:13px 32px" onclick="initiatePayment()">
+          <i class="ti ti-credit-card"></i> Pay <span id="btn-price">₹4,500</span>
+        </button>
+      </div>
+
+      <div id="reg-ok" class="success-msg hidden" style="margin-top:16px">
+        <i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i>
+        <div><strong>Registration confirmed!</strong> Payment ID: <span id="reg-payment-id"></span>. Confirmation sent to your email.</div>
+      </div>
     </div>
+
   </div>
   <footer><strong>EM Karnataka 2026</strong> · registrations@emkarnataka2026.in</footer>
 </div>
@@ -1174,6 +1208,49 @@ function resetWorkshops(){
   document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.remove('checked'));
   const warn=document.getElementById('ws-warn');if(warn)warn.style.display='none';
 }
+  function selectTier(name, price, wsMax, card){
+  document.querySelectorAll('.tier').forEach(c=>{
+    c.classList.remove('selected');
+    const btn=c.querySelector('button');
+    btn.className='btn btn-outline-gold';
+    btn.style.width='100%';btn.style.justifyContent='center';
+    btn.textContent='Select';
+  });
+  card.classList.add('selected');
+  const btn=card.querySelector('button');
+  btn.className='btn btn-gold';
+  btn.style.width='100%';btn.style.justifyContent='center';
+  btn.textContent='Selected';
+  _regTier={name,price,wsMax};
+  const note=document.getElementById('ws-limit-note');
+  if(wsMax>=99) note.textContent='— all workshops included';
+  else note.textContent='— 1 included · 2nd workshop +₹1,000';
+  document.getElementById('sum-tier').textContent=name;
+  updatePriceSummary();
+  document.querySelectorAll('.ws-chk').forEach(c=>{c.checked=false;c.disabled=false;});
+  document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.remove('checked'));
+  document.getElementById('ws-warn').style.display='none';
+}
+
+function wsChange(cb){
+  const checked=document.querySelectorAll('.ws-chk:checked');
+  document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.toggle('checked',l.querySelector('input').checked));
+  const MAX = _regTier.wsMax >= 99 ? 6 : 2;
+  const atMax=checked.length>=MAX;
+  document.querySelectorAll('.ws-chk').forEach(c=>{if(!c.checked)c.disabled=atMax;});
+  document.getElementById('ws-warn').style.display=(atMax&&_regTier.wsMax<99)?'flex':'none';
+  updatePriceSummary();
+}
+
+function updatePriceSummary(){
+  const checked=document.querySelectorAll('.ws-chk:checked').length;
+  let total=_regTier.price;
+  if(_regTier.wsMax<99 && checked===2) total+=1000;
+  const fmt='₹'+total.toLocaleString('en-IN');
+  document.getElementById('sum-price').textContent=fmt;
+  document.getElementById('btn-price').textContent=fmt;
+  _regTier.finalPrice=total;
+}
 
 function wsLimit(cb){
   const checked=document.querySelectorAll('.ws-chk:checked');
@@ -1291,6 +1368,100 @@ function drawerGo(page){
     <button class="btn btn-gold" style="width:100%;justify-content:center" onclick="drawerGo('register')"><i class="ti ti-user-plus"></i>Register Now</button>
   </div>
 </div>
-  
+  <!-- Razorpay SDK -->
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+var _regTier = {name:'Delegate - Conference + 1 Workshop', price:4500, wsMax:1};
+
+function selectTier(name, price, wsMax, card){
+  document.querySelectorAll('.tier').forEach(c=>{
+    c.classList.remove('selected');
+    const btn = c.querySelector('button');
+    btn.className='btn btn-outline-gold';
+    btn.style.width='100%'; btn.style.justifyContent='center';
+    btn.textContent='Select';
+  });
+  card.classList.add('selected');
+  const btn = card.querySelector('button');
+  btn.className='btn btn-gold';
+  btn.style.width='100%'; btn.style.justifyContent='center';
+  btn.textContent='Selected';
+  _regTier = {name, price, wsMax};
+  document.getElementById('sum-tier').textContent = name;
+  const fmt = '₹'+price.toLocaleString('en-IN');
+  document.getElementById('sum-price').textContent = fmt;
+  document.getElementById('btn-price').textContent = fmt;
+  const note = document.getElementById('ws-limit-note');
+  if(wsMax>=99) note.textContent='— all workshops included';
+  else if(wsMax===2) note.textContent='— select up to 2';
+  else note.textContent='— select 1';
+  // reset workshops
+  document.querySelectorAll('.ws-chk').forEach(c=>{c.checked=false;c.disabled=false;});
+  document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.remove('checked'));
+  document.getElementById('ws-warn').style.display='none';
+}
+
+function wsChange(cb){
+  const checked = document.querySelectorAll('.ws-chk:checked');
+  document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.toggle('checked',l.querySelector('input').checked));
+  const atMax = checked.length >= _regTier.wsMax;
+  document.querySelectorAll('.ws-chk').forEach(c=>{if(!c.checked) c.disabled=atMax;});
+  const warn = document.getElementById('ws-warn');
+  warn.style.display = (atMax && _regTier.wsMax < 99) ? 'flex' : 'none';
+}
+
+function submitToGoogleForm(data){
+  const ws = data.workshops;
+  const base='https://docs.google.com/forms/d/e/1FAIpQLSc1s5xg5H7BABhs-s1sBf8ODjVawHFAeo_dedr8IQfGWphapA/formResponse';
+  const p=new URLSearchParams({
+    'entry.1830198368': data.name,
+    'entry.601509206': data.phone,
+    'entry.818457747': data.designation,
+    'entry.1751555605': data.institution,
+    'entry.1111862752': data.regno||'',
+    'entry.991667826': data.tier,
+    'entry.315794636': ws[0]||'',
+    'entry.105987593': ws[1]||'',
+    'entry.1846477522': data.diet
+  });
+  new Image().src = base+'?'+p.toString();
+}
+
+function initiatePayment(){
+  const name=document.getElementById('r-name').value.trim();
+  const email=document.getElementById('r-email').value.trim();
+  const phone=document.getElementById('r-phone').value.trim();
+  const desig=document.getElementById('r-desig').value.trim();
+  const inst=document.getElementById('r-inst').value.trim();
+  if(!name||!email||!phone||!desig||!inst){alert('Please fill in all required fields.');return;}
+
+  const ws=[];
+  document.querySelectorAll('.ws-chk:checked').forEach(c=>ws.push(c.value));
+
+  const formData={name,email,phone,designation:desig,institution:inst,
+    regno:document.getElementById('r-regno').value.trim(),
+    diet:document.getElementById('r-diet').value,
+    tier:_regTier.name, workshops:ws};
+
+  const options={
+    key:'YOUR_RAZORPAY_KEY',   // ← replace with rzp_live_XXXXXX
+   amount: (_regTier.finalPrice || _regTier.price) * 100,
+    currency:'INR',
+    name:'EM Karnataka 2026',
+    description:_regTier.name,
+    image:'logos/Emk.png',
+    prefill:{name,email,contact:phone},
+    theme:{color:'#D4A017'},
+    handler:function(response){
+      submitToGoogleForm(formData);
+      document.getElementById('reg-payment-id').textContent=response.razorpay_payment_id;
+      document.getElementById('reg-ok').classList.remove('hidden');
+      document.getElementById('reg-ok').scrollIntoView({behavior:'smooth',block:'center'});
+    }
+  };
+  const rzp=new Razorpay(options);
+  rzp.open();
+}
+</script>
 </body>
 </html>
