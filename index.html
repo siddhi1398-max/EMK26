@@ -1302,12 +1302,16 @@ function drawerGo(page){
 
 <script>
   fetch('Palm_Tree_Leaf_Animation.json')
-    .then(r => r.json())
+    .then(r => {
+      if (!r.ok) throw new Error(`HTTP ${r.status}`);
+      return r.json();
+    })
     .then(animData => {
-  const cfg = { renderer: 'svg', loop: true, autoplay: true, animationData: animData };
-  lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left') });
-  lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
-});
+      const cfg = { renderer: 'svg', loop: true, autoplay: true, animationData: animData };
+      lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left') });
+      lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
+    })
+    .catch(err => console.error('PALM ERROR:', err));
 </script>
 
   <!-- Hamburger button — add inside .nav-inner in your HTML -->
