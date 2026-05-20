@@ -1037,10 +1037,10 @@ footer strong{color:var(--gold)}
     </div>
       </div>
   <div class="explore-carousel-stage">
-    <button class="ec-nav-btn" id="ecPrev" aria-label="Previous">&#8249;</button>
-
+<button class="ec-nav-btn" id="ecPrev" aria-label="Previous" onclick="ecScroll(-1)">&#8249;</button>
+    
     <div class="explore-carousel-track-wrap">
-      <div class="explore-carousel-track" id="ecTrack">
+      <div class="explore-carousel-track" id="ec-track">
        <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_9_kambala.webp" alt="Kambala" /><div class="ec-cat"><i class="ti ti-run" style="font-size:10px;vertical-align:-1px"></i> Sport</div></div><div class="ec-body"><div class="ec-title">Kambala — Buffalo Racing</div><div class="ec-desc">A centuries-old traditional buffalo race in flooded paddy fields. One of the most electrifying folk sports in India.</div><div class="ec-tags"><span class="ec-tag">Tulu Nadu</span><span class="ec-tag">Nov–Feb season</span></div></div></div>
           <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_8_yk.png" alt="Yakshagana" /><div class="ec-cat"><i class="ti ti-theater" style="font-size:10px;vertical-align:-1px"></i> Performing Art</div></div><div class="ec-body"><div class="ec-title">Yakshagana</div><div class="ec-desc">Classical overnight theatre blending dance, music, elaborate costume, and mythology.</div><div class="ec-tags"><span class="ec-tag">Classical theatre</span><span class="ec-tag">Overnight show</span></div></div></div>
           <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_7_tigerdance.jpg" alt="Tiger Dance" /><div class="ec-cat"><i class="ti ti-masks-theater" style="font-size:10px;vertical-align:-1px"></i> Folk Dance</div></div><div class="ec-body"><div class="ec-title">Pili Vesha — Tiger Dance</div><div class="ec-desc">Performers paint their entire bodies as tigers and dance through streets during festivals.</div><div class="ec-tags"><span class="ec-tag">Festival</span><span class="ec-tag">Body art</span></div></div></div>
@@ -1053,7 +1053,7 @@ footer strong{color:var(--gold)}
       </div>
     </div>
 
-    <button class="ec-nav-btn" id="ecNext" aria-label="Next">&#8250;</button>
+<button class="ec-nav-btn" id="ecNext" aria-label="Next" onclick="ecScroll(1)">&#8250;</button>
   </div>
 
   <div class="ec-dots" id="ecDots"></div>
