@@ -1237,6 +1237,8 @@ function wsChange(cb){
   document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.toggle('checked',l.querySelector('input').checked));
   const MAX = _regTier.wsMax >= 99 ? 6 : 2;
   const atMax=checked.length>=MAX;
+  const tierLabel = _regTier.name + (ws.length===2 && _regTier.wsMax<99 ? ' + 2nd Workshop' : '');
+  const formData={..., tier:tierLabel, workshops:ws};
   document.querySelectorAll('.ws-chk').forEach(c=>{if(!c.checked)c.disabled=atMax;});
   document.getElementById('ws-warn').style.display=(atMax&&_regTier.wsMax<99)?'flex':'none';
   updatePriceSummary();
