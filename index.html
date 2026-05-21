@@ -1927,12 +1927,12 @@ function selectTier(name, price, wsMax, card){
   if(wsMax>=99) note.textContent='— all workshops included';
   else if(wsMax===2) note.textContent='— select up to 2';
   else note.textContent='— select 1';
-  // reset workshops
   document.querySelectorAll('.ws-chk').forEach(c=>{c.checked=false;c.disabled=false;});
   document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.remove('checked'));
   document.getElementById('ws-warn').style.display='none';
 }
-  function toggleVenue(id){
+
+function toggleVenue(id){
   const panel=document.getElementById(id);
   const btn=panel.previousElementSibling;
   const isOpen=panel.classList.contains('open');
@@ -1961,20 +1961,12 @@ function wsChange(cb){
 }
 
 function submitToGoogleForm(data){
-  const ws = data.workshops;
-  const base='https://docs.google.com/forms/d/e/1FAIpQLSc1s5xg5H7BABhs-s1sBf8ODjVawHFAeo_dedr8IQfGWphapA/formResponse';
-  const p=new URLSearchParams({
-    'entry.1830198368': data.name,
-    'entry.601509206': data.phone,
-    'entry.818457747': data.designation,
-    'entry.1751555605': data.institution,
-    'entry.1111862752': data.regno||'',
-    'entry.991667826': data.tier,
-    'entry.315794636': ws[0]||'',
-    'entry.105987593': ws[1]||'',
-    'entry.1846477522': data.diet
-  });
-  new Image().src = base+'?'+p.toString();
+  fetch('https://script.google.com/macros/s/AKfycbzvV7tSl6FZD0ZTx7PByVrGBdWmLhVolbtuVmO3Bp51moi96g6qKMZ45Fg8geoOd5UfzA/exec',{
+    method:'POST',
+    mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify(data)
+  }).catch(err=>console.error('Registration save failed:',err));
 }
 
 function initiatePayment(){
@@ -1987,16 +1979,16 @@ function initiatePayment(){
 
   const ws=[];
   document.querySelectorAll('.ws-chk:checked').forEach(c=>ws.push(c.value));
-  const tierLabel = _regTier.name + (ws.length===2 && _regTier.wsMax<99 ? ' + 2nd Workshop' : '');
+  const tierLabel=_regTier.name+(ws.length===2&&_regTier.wsMax<99?' + 2nd Workshop':'');
 
   const formData={name,email,phone,designation:desig,institution:inst,
     regno:document.getElementById('r-regno').value.trim(),
     diet:document.getElementById('r-diet').value,
-   tier:tierLabel, workshops:ws};
-  
+    tier:tierLabel,workshops:ws};
+
   const options={
-    key:'YOUR_RAZORPAY_KEY',   // ← replace with rzp_live_XXXXXX
-   amount: (_regTier.finalPrice || _regTier.price) * 100,
+    key:'YOUR_RAZORPAY_KEY',
+    amount:(_regTier.finalPrice||_regTier.price)*100,
     currency:'INR',
     name:'EM Karnataka 2026',
     description:_regTier.name,
@@ -2004,6 +1996,7 @@ function initiatePayment(){
     prefill:{name,email,contact:phone},
     theme:{color:'#D4A017'},
     handler:function(response){
+      formData.paymentId=response.razorpay_payment_id;
       submitToGoogleForm(formData);
       document.getElementById('reg-payment-id').textContent=response.razorpay_payment_id;
       document.getElementById('reg-ok').classList.remove('hidden');
