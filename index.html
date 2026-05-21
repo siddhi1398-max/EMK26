@@ -652,49 +652,124 @@ footer strong{color:var(--gold)}
                 </div>
                 <div class="venue-panel" id="v1a1">
                   <div class="venue-map-wrap">
-                    <svg class="campus-svg" viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg">
-                      <rect width="700" height="500" fill="#0d1219"/>
-                      <!-- Roads -->
-                      <rect x="20" y="240" width="660" height="16" rx="2" fill="#1a2030"/>
-                      <rect x="340" y="20" width="16" height="460" rx="2" fill="#1a2030"/>
-                      <rect x="20" y="390" width="310" height="14" rx="2" fill="#1a2030"/>
-                      <text x="350" y="236" fill="#3a4560" font-size="10" font-family="sans-serif" text-anchor="middle">Main Campus Road</text>
-                      <!-- HIGHLIGHTED: Skills & Sim Lab -->
-                      <rect x="40" y="40" width="160" height="100" rx="8" fill="#9b7fe8" fill-opacity="0.25" stroke="#9b7fe8" stroke-width="2.5"/>
-                      <text x="120" y="82" fill="#c0aef5" font-size="13" font-weight="700" font-family="sans-serif" text-anchor="middle">SKILLS &amp;</text>
-                      <text x="120" y="100" fill="#c0aef5" font-size="13" font-weight="700" font-family="sans-serif" text-anchor="middle">SIM LAB</text>
-                      <text x="120" y="118" fill="#9b7fe8" font-size="11" font-family="sans-serif" text-anchor="middle">📍 Workshop A</text>
-                      <circle cx="120" cy="55" r="8" fill="#9b7fe8" fill-opacity="0.35"><animate attributeName="r" values="8;16;8" dur="2s" repeatCount="indefinite"/><animate attributeName="fill-opacity" values="0.35;0;0.35" dur="2s" repeatCount="indefinite"/></circle>
-                      <circle cx="120" cy="55" r="6" fill="#9b7fe8"/>
-                      <!-- Dashed route from gate -->
-                      <path d="M350,480 L350,260 L200,260 L200,140 L160,140" stroke="#9b7fe8" stroke-width="2" stroke-dasharray="7,5" fill="none" opacity="0.5"/>
-                      <!-- Other buildings -->
-                      <rect x="370" y="40" width="150" height="100" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-                      <text x="445" y="85" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">LH Complex</text>
-                      <text x="445" y="103" fill="#565e7a" font-size="10" font-family="sans-serif" text-anchor="middle">Block B</text>
-                      <rect x="540" y="40" width="140" height="130" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-                      <text x="610" y="103" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Hospital /</text>
-                      <text x="610" y="121" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">OPD</text>
-                      <rect x="40" y="270" width="120" height="90" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-                      <text x="100" y="320" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Admin</text>
-                      <text x="100" y="338" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Block</text>
-                      <rect x="180" y="270" width="140" height="90" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-                      <text x="250" y="313" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Nursing</text>
-                      <text x="250" y="331" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">College</text>
-                      <rect x="370" y="270" width="140" height="90" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-                      <text x="440" y="313" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Anatomy</text>
-                      <text x="440" y="331" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Dept</text>
-                      <rect x="530" y="270" width="150" height="90" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-                      <text x="605" y="313" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Conference /</text>
-                      <text x="605" y="331" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Auditorium</text>
-                      <rect x="40" y="415" width="280" height="60" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-                      <text x="180" y="450" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Hostel Block</text>
-                      <!-- Gate -->
-                      <rect x="315" y="466" width="90" height="22" rx="5" fill="#d4a843" fill-opacity="0.15" stroke="#d4a843" stroke-width="1"/>
-                      <text x="360" y="481" fill="#d4a843" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="700">MAIN GATE</text>
-                      <!-- Compass -->
-                      <g transform="translate(665,475)"><circle r="16" fill="#1c2238" stroke="#2a3050" stroke-width="1"/><text y="-6" fill="#d4a843" font-size="9" font-family="sans-serif" text-anchor="middle" font-weight="700">N</text><path d="M0,-12 L3.5,-3 L0,2 L-3.5,-3 Z" fill="#d4a843" fill-opacity="0.9"/><path d="M0,12 L3.5,3 L0,-2 L-3.5,3 Z" fill="#3a4560"/></g>
-                    </svg>
+                    <svg class="campus-svg" viewBox="0 0 860 560" xmlns="http://www.w3.org/2000/svg">
+  <rect width="860" height="560" fill="#0d1219"/>
+
+  <!-- ═══ ROADS (orange, matching sketch) ═══ -->
+  <!-- Main horizontal road: Main Gate → left across campus -->
+  <path d="M 840,290 L 560,290 L 420,290" stroke="#2a1f0a" stroke-width="22" fill="none" stroke-linecap="round"/>
+  <path d="M 840,290 L 560,290 L 420,290" stroke="#c8853a" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Upper branch: forks up-left from ~x420 toward B/A blocks -->
+  <path d="M 420,290 Q 360,290 300,240 Q 240,200 180,200" stroke="#2a1f0a" stroke-width="22" fill="none" stroke-linecap="round"/>
+  <path d="M 420,290 Q 360,290 300,240 Q 240,200 180,200" stroke="#c8853a" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Lower branch: forks down-left from ~x420 toward Silver Jubilee/chapel -->
+  <path d="M 420,290 Q 380,320 340,360 Q 300,390 220,400" stroke="#2a1f0a" stroke-width="22" fill="none" stroke-linecap="round"/>
+  <path d="M 420,290 Q 380,320 340,360 Q 300,390 220,400" stroke="#c8853a" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Right vertical spur: connects main road down to lower hospital area -->
+  <path d="M 720,290 L 720,380" stroke="#2a1f0a" stroke-width="22" fill="none" stroke-linecap="round"/>
+  <path d="M 720,290 L 720,380" stroke="#c8853a" stroke-width="14" fill="none" stroke-linecap="round" opacity="0.35"/>
+
+  <!-- Road junction dots -->
+  <circle cx="420" cy="290" r="10" fill="#c8853a" opacity="0.6"/>
+  <circle cx="180" cy="200" r="8" fill="#c8853a" opacity="0.5"/>
+  <circle cx="720" cy="290" r="8" fill="#c8853a" opacity="0.5"/>
+
+  <!-- ═══ GATES ═══ -->
+  <!-- Back gate — left side -->
+  <rect x="10" y="185" width="16" height="30" rx="3" fill="#d4a843" fill-opacity="0.2" stroke="#d4a843" stroke-width="1.5"/>
+  <text x="30" y="196" fill="#d4a843" font-size="9" font-family="sans-serif" font-weight="700">←</text>
+  <text x="30" y="208" fill="#d4a843" font-size="8" font-family="sans-serif">Back</text>
+  <text x="30" y="219" fill="#d4a843" font-size="8" font-family="sans-serif">Gate</text>
+
+  <!-- Main gate — right side -->
+  <rect x="828" y="268" width="22" height="44" rx="4" fill="#d4a843" fill-opacity="0.2" stroke="#d4a843" stroke-width="1.5"/>
+  <text x="824" y="284" fill="#d4a843" font-size="8" font-family="sans-serif" font-weight="700" writing-mode="tb">MAIN GATE</text>
+
+  <!-- ARC label (vertical, on road near gate per sketch) -->
+  <text x="808" y="278" fill="#7a82a0" font-size="8" font-family="sans-serif" writing-mode="tb">ARC</text>
+
+  <!-- ═══ TOP ROW BUILDINGS ═══ -->
+  <!-- Sports — top left -->
+  <rect x="30" y="50" width="120" height="90" rx="10" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="90" y="100" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Sports</text>
+
+  <!-- B Block -->
+  <rect x="210" y="50" width="100" height="85" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="260" y="98" fill="#7a82a0" font-size="13" font-weight="700" font-family="sans-serif" text-anchor="middle">B</text>
+
+  <!-- A Block -->
+  <rect x="320" y="50" width="100" height="85" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="370" y="98" fill="#7a82a0" font-size="13" font-weight="700" font-family="sans-serif" text-anchor="middle">A</text>
+
+  <!-- Library -->
+  <rect x="480" y="60" width="110" height="90" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="535" y="110" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Library</text>
+
+  <!-- Hospital (large, top right) -->
+  <rect x="620" y="40" width="190" height="180" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="715" y="127" fill="#7a82a0" font-size="14" font-weight="700" font-family="sans-serif" text-anchor="middle">Hospital</text>
+  <text x="715" y="147" fill="#565e7a" font-size="10" font-family="sans-serif" text-anchor="middle">(Main)</text>
+
+  <!-- ═══ CENTRE BUILDINGS ═══ -->
+  <!-- Chapel/Cross -->
+  <polygon points="400,310 418,338 400,366 382,338" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="400" y="344" fill="#7a82a0" font-size="13" font-weight="700" font-family="sans-serif" text-anchor="middle">✝</text>
+
+  <!-- Cafe -->
+  <rect x="430" y="310" width="70" height="48" rx="22" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="465" y="340" fill="#7a82a0" font-size="11" font-weight="700" font-family="sans-serif" text-anchor="middle">Cafe</text>
+
+  <!-- ═══ BOTTOM ROW BUILDINGS ═══ -->
+  <!-- Auditorium — bottom left -->
+  <rect x="25" y="360" width="110" height="120" rx="10" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="80" y="415" fill="#7a82a0" font-size="11" font-weight="700" font-family="sans-serif" text-anchor="middle">Auditorium</text>
+
+  <!-- Ground -->
+  <rect x="155" y="350" width="120" height="130" rx="14" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="215" y="420" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Ground</text>
+
+  <!-- Silver Jubilee Hall -->
+  <rect x="295" y="430" width="130" height="75" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="360" y="464" fill="#7a82a0" font-size="11" font-weight="700" font-family="sans-serif" text-anchor="middle">Silver Jubilee</text>
+  <text x="360" y="480" fill="#565e7a" font-size="10" font-family="sans-serif" text-anchor="middle">Hall</text>
+
+  <!-- Nursing College -->
+  <rect x="460" y="390" width="120" height="90" rx="10" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="520" y="431" fill="#7a82a0" font-size="11" font-weight="700" font-family="sans-serif" text-anchor="middle">Nursing</text>
+  <text x="520" y="448" fill="#565e7a" font-size="10" font-family="sans-serif" text-anchor="middle">College</text>
+
+  <!-- Hospital lower (wide, bottom centre-right) -->
+  <rect x="590" y="390" width="210" height="90" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="695" y="440" fill="#7a82a0" font-size="13" font-weight="700" font-family="sans-serif" text-anchor="middle">Hospital</text>
+
+  <!-- SIM Lab — far right top -->
+  <rect x="810" y="120" width="40" height="80" rx="6" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="830" y="158" fill="#7a82a0" font-size="9" font-weight="700" font-family="sans-serif" text-anchor="middle" writing-mode="tb">SIM Lab</text>
+
+  <!-- Canteen — far right bottom -->
+  <rect x="810" y="215" width="40" height="60" rx="6" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="830" y="248" fill="#7a82a0" font-size="9" font-weight="700" font-family="sans-serif" text-anchor="middle" writing-mode="tb">Canteen</text>
+
+  <!-- Parking -->
+  <rect x="155" y="498" width="130" height="50" rx="22" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+  <text x="220" y="528" fill="#7a82a0" font-size="11" font-weight="700" font-family="sans-serif" text-anchor="middle">Parking</text>
+
+  <!-- ═══ HIGHLIGHTED: SIM Lab (Workshop A) ═══ -->
+  <rect x="810" y="120" width="40" height="80" rx="6" fill="#9b7fe8" fill-opacity="0.35" stroke="#9b7fe8" stroke-width="2.5"/>
+  <text x="830" y="148" fill="#c0aef5" font-size="8" font-weight="700" font-family="sans-serif" text-anchor="middle" writing-mode="tb">SIM LAB</text>
+  <text x="818" y="210" fill="#9b7fe8" font-size="8" font-family="sans-serif" text-anchor="middle">📍A</text>
+  <circle cx="830" cy="128" r="6" fill="#9b7fe8" fill-opacity="0.4"><animate attributeName="r" values="6;13;6" dur="2s" repeatCount="indefinite"/><animate attributeName="fill-opacity" values="0.4;0;0.4" dur="2s" repeatCount="indefinite"/></circle>
+  <circle cx="830" cy="128" r="5" fill="#9b7fe8"/>
+
+  <!-- Dashed route: Main Gate → road → right → SIM Lab -->
+  <path d="M 828,290 L 820,290 L 820,200" stroke="#9b7fe8" stroke-width="2" stroke-dasharray="6,4" fill="none" opacity="0.7"/>
+
+  <!-- Compass -->
+  <g transform="translate(820,530)"><circle r="16" fill="#1c2238" stroke="#2a3050" stroke-width="1"/><text y="-5" fill="#d4a843" font-size="9" font-family="sans-serif" text-anchor="middle" font-weight="700">N</text><path d="M0,-11 L3,-3 L0,2 L-3,-3 Z" fill="#d4a843"/><path d="M0,11 L3,3 L0,-2 L-3,3 Z" fill="#3a4560"/></g>
+</svg>
                   </div>
                   <div class="venue-legend">
                     <div class="venue-leg-item"><div class="venue-leg-dot" style="background:#9b7fe8"></div><strong>Skills &amp; Simulation Lab</strong> — Workshop A venue</div>
