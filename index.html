@@ -403,26 +403,27 @@ footer strong{color:var(--gold)}
 .tl-card-sub{font-size:12px;color:var(--text-muted);margin-top:3px}
 
 /* ── PARALLEL WORKSHOPS (column layout) ── */
-.parallel-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:4px}
+.parallel-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:4px}
 .parallel-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);padding:0 0 10px 2px;display:flex;align-items:center;gap:6px}
 .parallel-label::before{content:'';display:inline-block;width:20px;height:1px;background:var(--gold-border)}
 .ws-card-sched{background:var(--midnight-3);border:1px solid rgba(255,255,255,0.05);border-radius:10px;overflow:hidden;transition:border-color 0.2s}
 .ws-card-sched:hover{border-color:var(--gold-border)}
-.ws-card-sched-header{padding:12px 14px 10px;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
-.ws-card-sched-title{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.35}
-.ws-card-sched-sub{font-size:11px;color:var(--text-muted);margin-top:3px}
+.ws-card-sched-header{padding:14px 16px 12px;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
+.ws-card-sched-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.35}
+.ws-card-sched-sub{font-size:12px;color:var(--text-muted);margin-top:3px}
 .ws-card-sched-body{padding:10px 14px}
 
 /* ── VENUE TOGGLE ── */
-.venue-toggle{display:flex;align-items:center;gap:6px;margin-top:8px;background:none;border:1px solid var(--gold-border);color:var(--gold);font-family:inherit;font-size:11.5px;font-weight:500;padding:5px 12px;border-radius:6px;cursor:pointer;transition:all 0.2s;width:fit-content}
+.venue-toggle{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:none;border:1px solid var(--gold-border);color:var(--gold);font-family:inherit;font-size:12px;font-weight:500;padding:6px 14px;border-radius:6px;cursor:pointer;transition:all 0.2s;width:fit-content;flex-shrink:0}
 .venue-toggle:hover{background:var(--gold-glow)}
+.venue-toggle.open .venue-chevron{transform:rotate(180deg)}
 .venue-pin-icon{transition:transform 0.2s,stroke 0.2s;stroke:var(--gold);flex-shrink:0}
 .venue-chevron{transition:transform 0.25s;flex-shrink:0}
 .venue-toggle:hover .venue-pin-icon{transform:translateY(-2px)}
 .venue-toggle.open .venue-chevron{transform:rotate(180deg)}
-.venue-panel{display:none;margin-top:10px;background:var(--midnight-4);border:1px solid var(--gold-border);border-radius:10px;padding:16px;animation:slideDown 0.2s ease}
+.venue-panel{display:none;margin-top:10px;background:var(--midnight-4);border:1px solid var(--gold-border);border-radius:10px;padding:12px;animation:slideDown 0.2s ease}
 .venue-panel.open{display:block}
-.venue-map-wrap{position:relative;width:100%;background:#0d1219;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.06)}
+.venue-map-wrap{position:relative;width:100%;background:#0d1219;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);aspect-ratio:700/420}
 .campus-svg{width:100%;display:block}
 .venue-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px}
 .venue-leg-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text-muted)}
@@ -435,7 +436,26 @@ footer strong{color:var(--gold)}
 .stag-se{background:rgba(62,201,201,0.12);color:var(--teal);border:1px solid rgba(62,201,201,0.25)}
 .stag-cl{background:rgba(94,201,127,0.12);color:var(--green);border:1px solid rgba(94,201,127,0.25)}
 .stag-aw{background:rgba(224,156,62,0.15);color:var(--orange);border:1px solid rgba(224,156,62,0.3)}
-  
+
+@media(max-width:768px){
+  .tl-time{min-width:64px;font-size:10.5px;padding:16px 10px 16px 0}
+  .timeline::before{left:64px}
+  .tl-content{padding:10px 0 10px 18px}
+  .tl-card{padding:12px 14px}
+  .tl-card-title{font-size:13.5px}
+  .venue-map-wrap{aspect-ratio:4/3}
+  .ws-card-sched-header{flex-direction:column;gap:8px}
+  .venue-toggle{align-self:flex-start}
+  .parallel-label{font-size:9px;letter-spacing:1.5px}
+  .venue-legend{gap:6px 12px}
+  .venue-leg-item{font-size:11px}
+}
+@media(max-width:480px){
+  .tl-time{min-width:52px;font-size:10px}
+  .timeline::before{left:52px}
+  .tl-dot{padding-top:20px}
+  .tl-dot::before{top:20px}
+}
 </style>
 </head>
 <body>
