@@ -1993,8 +1993,7 @@ footer strong{color:var(--gold)}
           <div style="font-size:12px;color:var(--text-muted);line-height:1.6" id="campus-info-desc"></div>
           <div id="campus-info-workshops" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"></div>
         </div>
-        <button onclick="document.getElementById('campus-info-panel').style.display='none'" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;flex-shrink:0;padding:0;line-height:1">×</button>
-      </div>
+<button onclick="closeCampusPanel()" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;flex-shrink:0;padding:0;line-height:1">×</button>      </div>
     </div>
   </div>
 </div>
@@ -2003,22 +2002,25 @@ footer strong{color:var(--gold)}
 const campusBuildingData = {
   blockb: {
     name: 'Block B',
-    desc: 'Main academic block housing the Dissection Hall and Anatomy Lab. Two workshop venues for EM Karnataka 2026.',
+    color: '#9b7fe8',
+    desc: 'Main academic block housing the Dissection Hall and Anatomy Lab.',
     workshops: [
-      {label:'Workshop A — Nerve Blocks & Advanced Airway', color:'#9b7fe8', day:'Day 1'},
+      {label:'Workshop A — Peripheral Nerve Blocks & Advanced Airway', color:'#9b7fe8', day:'Day 1'},
       {label:'Workshop F — Virtual Anatomy', color:'#5ec97f', day:'Day 2'}
     ]
   },
   hospital: {
     name: 'Hospital',
-    desc: 'Father Muller Charitable Institution hospital complex. Houses the AV Hall and main clinical departments.',
+    color: '#4a9de0',
+    desc: 'Father Muller Charitable Institution hospital complex. Houses the AV Hall, main clinical departments, Emergency Dept, and workshop spaces.',
     workshops: [
       {label:'Workshop B — Mechanical Ventilation (AV Hall)', color:'#3ec9c9', day:'Day 1'},
       {label:'Workshop D — Advanced POCUS', color:'#4a9de0', day:'Day 2'}
     ]
   },
   avhall: {
-    name: 'Hospital — AV Hall',
+    name: 'Hospital Complex — AV Hall',
+    color: '#3ec9c9',
     desc: 'Audio-Visual Hall within the hospital complex. Equipped for lectures and hands-on demonstrations.',
     workshops: [
       {label:'Workshop B — Mechanical Ventilation', color:'#3ec9c9', day:'Day 1'}
@@ -2026,6 +2028,7 @@ const campusBuildingData = {
   },
   sjh: {
     name: 'Silver Jubilee Hall',
+    color: '#e09a3e',
     desc: 'Large multipurpose hall used for major events and conferences.',
     workshops: [
       {label:'Workshop C — Disaster Management', color:'#e09a3e', day:'Day 1'}
@@ -2033,59 +2036,87 @@ const campusBuildingData = {
   },
   simlab: {
     name: 'SIM Lab',
+    color: '#e05c5c',
     desc: 'State-of-the-art simulation laboratory for clinical skills training.',
     workshops: [
-      {label:'Workshop E — Maternal Resuscitation (MRP)', color:'#e05c5c', day:'Day 2'}
+      {label:'Workshop E — Maternal Resuscitation Program (MRP)', color:'#e05c5c', day:'Day 2'}
     ]
-  },
-  kc: {
-    name: 'Knowledge Centre',
-    desc: 'Modern library and learning resource centre with digital facilities.',
-    workshops: []
-  },
-  nursing: {
-    name: 'Nursing College',
-    desc: 'Father Muller College of Nursing building.',
-    workshops: []
   },
   aud: {
     name: 'Auditorium',
-    desc: 'Main auditorium for conferences, inaugurations, and large gatherings. Conference Days 3 & 4 venue (TBA).',
+    color: '#e09a3e',
+    desc: 'Main auditorium for conferences, inaugurations, and large gatherings.',
     workshops: [
-      {label:'Days 3 & 4 — Main Conference (TBA)', color:'#d4a843', day:'Conference'}
+      {label:'Days 3 & 4 — Main Conference Venue (TBA)', color:'#d4a843', day:'Conference'}
     ]
   },
-  emergency: {
-    name: 'Emergency Department',
-    desc: '24-hour Emergency Department of Father Muller Medical College Hospital.',
-    workshops: []
-  },
-  blocka: { name: 'Block A', desc: 'Academic block.', workshops: [] },
-  cafe1: { name: 'Café', desc: 'Campus café near Block B.', workshops: [] },
-  cafe2: { name: 'Café', desc: 'Campus café near the main road junction.', workshops: [] },
-  ground: { name: 'Ground', desc: 'Sports and open ground area.', workshops: [] },
-  sports: { name: 'Sports Centre', desc: 'Indoor sports facilities.', workshops: [] },
-  canteen: { name: 'Canteen', desc: 'Main campus canteen near the hospital wing.', workshops: [] },
-  museum: { name: 'Museum', desc: 'Campus museum.', workshops: [] },
-  parking1: { name: 'Parking', desc: 'Car parking — lower campus.', workshops: [] },
-  parking2: { name: 'Parking', desc: 'Car parking — upper campus.', workshops: [] },
-  parking3: { name: '2-Wheeler Parking', desc: 'Two-wheeler parking near hospital.', workshops: [] }
+  kc: { name: 'Knowledge Centre', color: '#5ec97f', desc: 'Modern library and learning resource centre with digital facilities.', workshops: [] },
+  nursing: { name: 'Nursing College', color: '#4a9de0', desc: 'Father Muller College of Nursing building.', workshops: [] },
+  emergency: { name: 'Emergency Department', color: '#e05c5c', desc: '24-hour Emergency Department of Father Muller Medical College Hospital.', workshops: [] },
+  blocka: { name: 'Block A', color: '#6b7490', desc: 'Academic block.', workshops: [] },
+  cafe1: { name: 'Café', color: '#6b7490', desc: 'Campus café near Block B.', workshops: [] },
+  cafe2: { name: 'Café', color: '#6b7490', desc: 'Campus café near the main road junction.', workshops: [] },
+  ground: { name: 'Ground', color: '#5ec97f', desc: 'Sports and open ground area.', workshops: [] },
+  sports: { name: 'Sports Centre', color: '#6b7490', desc: 'Indoor sports facilities.', workshops: [] },
+  canteen: { name: 'Canteen', color: '#6b7490', desc: 'Main campus canteen near the hospital wing.', workshops: [] },
+  museum: { name: 'Museum', color: '#6b7490', desc: 'Campus museum.', workshops: [] },
+  parking1: { name: 'Parking', color: '#6b7490', desc: 'Car parking — lower campus.', workshops: [] },
+  parking2: { name: 'Parking', color: '#6b7490', desc: 'Car parking — upper campus.', workshops: [] },
+  parking3: { name: '2-Wheeler Parking', color: '#6b7490', desc: 'Two-wheeler parking near hospital.', workshops: [] }
 };
 
 function showBuildingInfo(id) {
   const data = campusBuildingData[id];
   if (!data) return;
+
+  // Dim all buildings, highlight selected
+  document.querySelectorAll('.campus-building rect, .campus-building text').forEach(el => {
+    el.style.opacity = '0.35';
+  });
+  const target = document.getElementById('bld-' + id);
+  if (target) {
+    target.querySelectorAll('rect, text').forEach(el => { el.style.opacity = '1'; });
+    // Pulse ring
+    const existing = document.getElementById('campus-pulse');
+    if (existing) existing.remove();
+    const firstRect = target.querySelector('rect');
+    if (firstRect) {
+      const pulse = firstRect.cloneNode(false);
+      pulse.id = 'campus-pulse';
+      pulse.style.fill = 'none';
+      pulse.setAttribute('stroke', data.color);
+      pulse.setAttribute('stroke-width', '4');
+      pulse.setAttribute('opacity', '0.7');
+      pulse.innerHTML = '<animate attributeName="stroke-width" values="3;8;3" dur="1.5s" repeatCount="3"/><animate attributeName="opacity" values="0.7;0;0.7" dur="1.5s" repeatCount="3"/>';
+      firstRect.parentNode.insertBefore(pulse, firstRect.nextSibling);
+    }
+  }
+
   document.getElementById('campus-info-name').textContent = data.name;
   document.getElementById('campus-info-desc').textContent = data.desc;
   const wEl = document.getElementById('campus-info-workshops');
   wEl.innerHTML = '';
-  data.workshops.forEach(w => {
-    const badge = document.createElement('span');
-    badge.style.cssText = `display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:2px 9px;border-radius:100px;background:${w.color}22;color:${w.color};border:1px solid ${w.color}55`;
-    badge.innerHTML = `<span style="font-size:9px;opacity:0.7">${w.day}</span> ${w.label}`;
-    wEl.appendChild(badge);
-  });
+  if (data.workshops.length === 0) {
+    wEl.innerHTML = '<span style="font-size:11px;color:var(--text-muted)">No workshops assigned to this building.</span>';
+  } else {
+    data.workshops.forEach(w => {
+      const badge = document.createElement('span');
+      badge.style.cssText = `display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:${w.color}22;color:${w.color};border:1px solid ${w.color}55`;
+      badge.innerHTML = `<span style="font-size:9px;opacity:0.7;font-weight:400">${w.day}</span> ${w.label}`;
+      wEl.appendChild(badge);
+    });
+  }
   document.getElementById('campus-info-panel').style.display = 'block';
+}
+
+function closeCampusPanel() {
+  document.getElementById('campus-info-panel').style.display = 'none';
+  // Restore all buildings
+  document.querySelectorAll('.campus-building rect, .campus-building text').forEach(el => {
+    el.style.opacity = '';
+  });
+  const pulse = document.getElementById('campus-pulse');
+  if (pulse) pulse.remove();
 }
 </script>
     <h2 class="section-title">How to Reach</h2>
