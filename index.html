@@ -403,33 +403,28 @@ footer strong{color:var(--gold)}
 .tl-card-sub{font-size:12px;color:var(--text-muted);margin-top:3px}
 
 /* ── PARALLEL WORKSHOPS (column layout) ── */
-.parallel-grid{display:flex;flex-direction:column;gap:12px;margin-bottom:4px}
+.parallel-grid{display:flex;flex-direction:column;gap:10px;margin-bottom:4px}
 .parallel-label{font-size:10px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--text-muted);padding:0 0 10px 2px;display:flex;align-items:center;gap:6px}
 .parallel-label::before{content:'';display:inline-block;width:20px;height:1px;background:var(--gold-border)}
 .ws-card-sched{background:var(--midnight-3);border:1px solid rgba(255,255,255,0.05);border-radius:10px;overflow:hidden;transition:border-color 0.2s}
 .ws-card-sched:hover{border-color:var(--gold-border)}
-.ws-card-sched-header{padding:14px 16px 12px;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.ws-card-sched-title{font-size:14px;font-weight:600;color:var(--text);line-height:1.35}
-.ws-card-sched-sub{font-size:12px;color:var(--text-muted);margin-top:3px}
+.ws-card-sched-header{padding:12px 14px 10px;border-bottom:1px solid rgba(255,255,255,0.04);display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.ws-card-sched-title{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.35}
+.ws-card-sched-sub{font-size:11px;color:var(--text-muted);margin-top:3px}
 .ws-card-sched-body{padding:10px 14px}
 
 /* ── VENUE TOGGLE ── */
-.venue-toggle{display:inline-flex;align-items:center;gap:6px;margin-top:10px;background:none;border:1px solid var(--gold-border);color:var(--gold);font-family:inherit;font-size:12px;font-weight:500;padding:6px 14px;border-radius:6px;cursor:pointer;transition:all 0.2s;width:fit-content;flex-shrink:0}
+.venue-toggle{display:flex;align-items:center;gap:6px;margin-top:8px;background:none;border:1px solid var(--gold-border);color:var(--gold);font-family:inherit;font-size:11.5px;font-weight:500;padding:5px 12px;border-radius:6px;cursor:pointer;transition:all 0.2s;width:fit-content}
 .venue-toggle:hover{background:var(--gold-glow)}
-.venue-toggle.open .venue-chevron{transform:rotate(180deg)}
 .venue-pin-icon{transition:transform 0.2s,stroke 0.2s;stroke:var(--gold);flex-shrink:0}
 .venue-chevron{transition:transform 0.25s;flex-shrink:0}
 .venue-toggle:hover .venue-pin-icon{transform:translateY(-2px)}
 .venue-toggle.open .venue-chevron{transform:rotate(180deg)}
-.venue-panel{display:none;margin-top:10px;background:var(--midnight-4);border:1px solid var(--gold-border);border-radius:10px;padding:12px;animation:slideDown 0.2s ease}
+.venue-panel{display:none;margin-top:10px;background:var(--midnight-4);border:1px solid var(--gold-border);border-radius:10px;padding:16px;animation:slideDown 0.2s ease}
 .venue-panel.open{display:block}
-.venue-map-wrap{position:relative;width:100%;background:#0d1219;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.06);aspect-ratio:700/420}
+.venue-map-wrap{position:relative;width:100%;background:#0d1219;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.06)}
 .campus-svg{width:100%;display:block}
 .venue-legend{display:flex;flex-wrap:wrap;gap:8px 16px;margin-top:12px}
-.venue-leg-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text-muted)}
-.venue-leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
-.venue-leg-item strong{color:var(--text);font-weight:600}
-.venue-legend{display:flex;flex-wrap:wrap;gap:6px 14px;margin-top:10px}
 .venue-leg-item{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--text-muted)}
 .venue-leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
 .venue-leg-item strong{color:var(--text);font-weight:600}
@@ -440,26 +435,7 @@ footer strong{color:var(--gold)}
 .stag-se{background:rgba(62,201,201,0.12);color:var(--teal);border:1px solid rgba(62,201,201,0.25)}
 .stag-cl{background:rgba(94,201,127,0.12);color:var(--green);border:1px solid rgba(94,201,127,0.25)}
 .stag-aw{background:rgba(224,156,62,0.15);color:var(--orange);border:1px solid rgba(224,156,62,0.3)}
-
-@media(max-width:768px){
-  .tl-time{min-width:64px;font-size:10.5px;padding:16px 10px 16px 0}
-  .timeline::before{left:64px}
-  .tl-content{padding:10px 0 10px 18px}
-  .tl-card{padding:12px 14px}
-  .tl-card-title{font-size:13.5px}
-  .venue-map-wrap{aspect-ratio:4/3}
-  .ws-card-sched-header{flex-direction:column;gap:8px}
-  .venue-toggle{align-self:flex-start}
-  .parallel-label{font-size:9px;letter-spacing:1.5px}
-  .venue-legend{gap:6px 12px}
-  .venue-leg-item{font-size:11px}
-}
-@media(max-width:480px){
-  .tl-time{min-width:52px;font-size:10px}
-  .timeline::before{left:52px}
-  .tl-dot{padding-top:20px}
-  .tl-dot::before{top:20px}
-}
+  
 </style>
 </head>
 <body>
@@ -625,7 +601,6 @@ footer strong{color:var(--gold)}
   <footer><strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026<br/><span style="font-size:11px;margin-top:6px;display:block;opacity:0.4">Organised by Father Muller Medical College, Mangaluru</span></footer>
 </div>
 
-  <!-- ═══════════ SCHEDULE PAGE ═══════════ -->
 <div id="page-schedule" class="page">
   <div class="page-header">
     <div class="page-header-bg"></div>
@@ -671,50 +646,60 @@ footer strong{color:var(--gold)}
                 <div class="ws-card-sched-header">
                   <div><span class="stag stag-ws">Workshop A</span><div class="ws-card-sched-title">Peripheral Nerve Blocks &amp; Advanced Airway</div><div class="ws-card-sched-sub">Hands-on · Regional Anaesthesia + Airway Management</div></div>
                   <button class="venue-toggle" onclick="toggleVenue('v1a1')">
-<svg class="campus-svg" viewBox="0 0 700 420" xmlns="http://www.w3.org/2000/svg">
-<rect width="700" height="420" fill="#0d1219"/>
-<path stroke="#1e2a40" stroke-width="44" stroke-linecap="round" fill="none" d="M507 210 L680 210"/>
-<path stroke="#243050" stroke-width="38" stroke-linecap="round" fill="none" d="M507 210 L680 210"/>
-<path stroke="#3a4a6a" stroke-width="1.5" stroke-dasharray="14 10" fill="none" d="M507 210 L680 210"/>
-<path stroke="#1e2a40" stroke-width="28" stroke-linecap="round" fill="none" d="M507 208 L486 160 L182 162 L230 320"/>
-<path stroke="#243050" stroke-width="22" stroke-linecap="round" fill="none" d="M507 208 L486 160 L182 162 L230 320"/>
-<path stroke="#1e2a40" stroke-width="28" stroke-linecap="round" fill="none" d="M507 210 L503 270 L285 320"/>
-<path stroke="#243050" stroke-width="22" stroke-linecap="round" fill="none" d="M507 210 L503 270 L285 320"/>
-<path stroke="#1e2a40" stroke-width="28" stroke-linecap="round" fill="none" d="M617 208 L594 100 L257 100 L182 162"/>
-<path stroke="#243050" stroke-width="22" stroke-linecap="round" fill="none" d="M617 208 L594 100 L257 100 L182 162"/>
-<path stroke="#1e2a40" stroke-width="28" stroke-linecap="round" fill="none" d="M182 162 L50 210"/>
-<path stroke="#243050" stroke-width="22" stroke-linecap="round" fill="none" d="M182 162 L50 210"/>
-<path stroke="#3a4a6a" stroke-width="1.5" stroke-dasharray="14 10" fill="none" d="M182 162 L50 210"/>
-<path stroke="#1e2a40" stroke-width="20" stroke-linecap="round" fill="none" d="M619 120 L780 120 L782 190"/>
-<path stroke="#243050" stroke-width="14" stroke-linecap="round" fill="none" d="M619 120 L780 120 L782 190"/>
-<rect x="240" y="18" width="130" height="65" rx="4" fill="#9b7fe8" fill-opacity=".22" stroke="#9b7fe8" stroke-width="2"/>
-<text x="305" y="43" fill="#c0aef5" font-size="11" font-weight="700" font-family="sans-serif" text-anchor="middle">BLOCK B</text>
-<text x="305" y="57" fill="#c0aef5" font-size="10" font-family="sans-serif" text-anchor="middle">Dissection Hall</text>
-<text x="305" y="72" fill="#9b7fe8" font-size="10" font-family="sans-serif" text-anchor="middle">Workshop A</text>
-<rect x="385" y="18" width="100" height="65" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-<text x="435" y="55" fill="#7a82a0" font-size="10" font-weight="700" font-family="sans-serif" text-anchor="middle">Knowledge Ctr</text>
-<rect x="500" y="18" width="160" height="100" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-<text x="580" y="73" fill="#7a82a0" font-size="10" font-weight="700" font-family="sans-serif" text-anchor="middle">Hospital</text>
-<rect x="38" y="230" width="110" height="75" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-<text x="93" y="271" fill="#7a82a0" font-size="10" font-weight="700" font-family="sans-serif" text-anchor="middle">Nursing College</text>
-<rect x="165" y="230" width="310" height="75" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-<text x="320" y="271" fill="#7a82a0" font-size="10" font-weight="700" font-family="sans-serif" text-anchor="middle">Hospital</text>
-<rect x="488" y="270" width="120" height="55" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-<text x="548" y="301" fill="#7a82a0" font-size="10" font-weight="700" font-family="sans-serif" text-anchor="middle">SIM Lab</text>
-<rect x="38" y="330" width="220" height="60" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-<text x="148" y="364" fill="#7a82a0" font-size="10" font-weight="700" font-family="sans-serif" text-anchor="middle">Silver Jubilee Hall</text>
-<rect x="666" y="192" width="12" height="40" rx="2" fill="#d4a843"/>
-<text x="682" y="208" fill="#d4a843" font-size="9" font-family="sans-serif" font-weight="700">MAIN</text>
-<text x="682" y="220" fill="#d4a843" font-size="9" font-family="sans-serif" font-weight="700">GATE</text>
-<path stroke="#9b7fe8" stroke-width="2" stroke-dasharray="7 5" fill="none" d="M664 210 L507 210 L486 160 L257 100 L305 100 L305 83"/>
-<circle cx="305" cy="50" r="8" fill="#9b7fe8" fill-opacity=".3"><animate attributeName="r" values="8;16;8" dur="2s" repeatCount="indefinite"/><animate attributeName="fill-opacity" values="0.3;0;0.3" dur="2s" repeatCount="indefinite"/></circle>
-<circle cx="305" cy="50" r="5" fill="#9b7fe8"/>
-</svg>
-</div>
-<div class="venue-legend">
-  <div class="venue-leg-item"><div class="venue-leg-dot" style="background:#9b7fe8"></div><strong>Block B — Dissection Hall</strong> — Workshop A venue</div>
-  <div class="venue-leg-item"><div class="venue-leg-dot" style="background:#9b7fe8;opacity:0.3"></div>Dashed line = walking route from Main Gate</div>
-</div>
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>                    Venue
+<svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>                  
+                  </button>
+                </div>
+                <div class="venue-panel" id="v1a1">
+                  <div class="venue-map-wrap">
+                    <svg class="campus-svg" viewBox="0 0 700 500" xmlns="http://www.w3.org/2000/svg">
+                      <rect width="700" height="500" fill="#0d1219"/>
+                      <!-- Roads -->
+                      <rect x="20" y="240" width="660" height="16" rx="2" fill="#1a2030"/>
+                      <rect x="340" y="20" width="16" height="460" rx="2" fill="#1a2030"/>
+                      <rect x="20" y="390" width="310" height="14" rx="2" fill="#1a2030"/>
+                      <text x="350" y="236" fill="#3a4560" font-size="10" font-family="sans-serif" text-anchor="middle">Main Campus Road</text>
+                      <!-- HIGHLIGHTED: Skills & Sim Lab -->
+                      <rect x="40" y="40" width="160" height="100" rx="8" fill="#9b7fe8" fill-opacity="0.25" stroke="#9b7fe8" stroke-width="2.5"/>
+                      <text x="120" y="82" fill="#c0aef5" font-size="13" font-weight="700" font-family="sans-serif" text-anchor="middle">SKILLS &amp;</text>
+                      <text x="120" y="100" fill="#c0aef5" font-size="13" font-weight="700" font-family="sans-serif" text-anchor="middle">SIM LAB</text>
+                      <text x="120" y="118" fill="#9b7fe8" font-size="11" font-family="sans-serif" text-anchor="middle">📍 Workshop A</text>
+                      <circle cx="120" cy="55" r="8" fill="#9b7fe8" fill-opacity="0.35"><animate attributeName="r" values="8;16;8" dur="2s" repeatCount="indefinite"/><animate attributeName="fill-opacity" values="0.35;0;0.35" dur="2s" repeatCount="indefinite"/></circle>
+                      <circle cx="120" cy="55" r="6" fill="#9b7fe8"/>
+                      <!-- Dashed route from gate -->
+                      <path d="M350,480 L350,260 L200,260 L200,140 L160,140" stroke="#9b7fe8" stroke-width="2" stroke-dasharray="7,5" fill="none" opacity="0.5"/>
+                      <!-- Other buildings -->
+                      <rect x="370" y="40" width="150" height="100" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+                      <text x="445" y="85" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">LH Complex</text>
+                      <text x="445" y="103" fill="#565e7a" font-size="10" font-family="sans-serif" text-anchor="middle">Block B</text>
+                      <rect x="540" y="40" width="140" height="130" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+                      <text x="610" y="103" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Hospital /</text>
+                      <text x="610" y="121" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">OPD</text>
+                      <rect x="40" y="270" width="120" height="90" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+                      <text x="100" y="320" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Admin</text>
+                      <text x="100" y="338" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Block</text>
+                      <rect x="180" y="270" width="140" height="90" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+                      <text x="250" y="313" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Nursing</text>
+                      <text x="250" y="331" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">College</text>
+                      <rect x="370" y="270" width="140" height="90" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+                      <text x="440" y="313" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Anatomy</text>
+                      <text x="440" y="331" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Dept</text>
+                      <rect x="530" y="270" width="150" height="90" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+                      <text x="605" y="313" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Conference /</text>
+                      <text x="605" y="331" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Auditorium</text>
+                      <rect x="40" y="415" width="280" height="60" rx="8" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+                      <text x="180" y="450" fill="#7a82a0" font-size="12" font-weight="700" font-family="sans-serif" text-anchor="middle">Hostel Block</text>
+                      <!-- Gate -->
+                      <rect x="315" y="466" width="90" height="22" rx="5" fill="#d4a843" fill-opacity="0.15" stroke="#d4a843" stroke-width="1"/>
+                      <text x="360" y="481" fill="#d4a843" font-size="11" font-family="sans-serif" text-anchor="middle" font-weight="700">MAIN GATE</text>
+                      <!-- Compass -->
+                      <g transform="translate(665,475)"><circle r="16" fill="#1c2238" stroke="#2a3050" stroke-width="1"/><text y="-6" fill="#d4a843" font-size="9" font-family="sans-serif" text-anchor="middle" font-weight="700">N</text><path d="M0,-12 L3.5,-3 L0,2 L-3.5,-3 Z" fill="#d4a843" fill-opacity="0.9"/><path d="M0,12 L3.5,3 L0,-2 L-3.5,3 Z" fill="#3a4560"/></g>
+                    </svg>
+                  </div>
+                  <div class="venue-legend">
+                    <div class="venue-leg-item"><div class="venue-leg-dot" style="background:#9b7fe8"></div><strong>Skills &amp; Simulation Lab</strong> — Workshop A venue</div>
+                    <div class="venue-leg-item"><div class="venue-leg-dot" style="background:#9b7fe8;opacity:0.3"></div>Dashed line = walking route from Main Gate</div>
+                  </div>
                 </div>
               </div>
 
@@ -1059,136 +1044,56 @@ footer strong{color:var(--gold)}
           <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Registration</span><div class="tl-card-title">Conference Registration &amp; Morning Tea</div><div class="tl-card-sub">Badge collection · Exhibition open · <strong style="color:var(--gold)">Main Auditorium foyer</strong></div></div></div>
         </div>
 
-       <div class="tl-row">
-  <div class="tl-time">09:00<br>10:00</div>
-  <div class="tl-dot"></div>
-  <div class="tl-content">
-    <div class="tl-card">
-      <span class="stag stag-kn">Inauguration</span>
-      <div class="tl-card-title">Inaugural Ceremony</div>
-      <div class="tl-card-sub">Lighting of the lamp · Welcome address · Chief guest address</div>
-      <button class="venue-toggle" onclick="toggleVenue('v3-inaug')">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-        Venue
-        <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="venue-panel" id="v3-inaug">
-        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
-          <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
-          <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — check back closer to the conference date or <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
+        <div class="tl-row">
+          <div class="tl-time">09:00<br>10:00</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-kn">Inauguration</span><div class="tl-card-title">Inaugural Ceremony</div><div class="tl-card-sub">Lighting of the lamp · Welcome address · Chief guest address</div></div></div>
         </div>
+
+        <div class="tl-row">
+          <div class="tl-time">10:00<br>11:00</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-kn">Keynote</span><div class="tl-card-title">Keynote Address</div><div class="tl-card-sub">Speaker TBA · Main Auditorium</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">11:00<br>11:30</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Tea &amp; Exhibition</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">11:30<br>13:00</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-se">Papers</span><div class="tl-card-title">Paper Presentations — Session 1</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">13:00<br>14:00</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Lunch &amp; e-Poster Presentations</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">14:00<br>16:00</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-se">Papers</span><div class="tl-card-title">Paper Presentations — Session 2</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">16:00<br>17:30</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-kn">Keynote</span><div class="tl-card-title">Keynote Address — Evening Session</div><div class="tl-card-sub">Speaker TBA</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">19:00+</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Social</span><div class="tl-card-title">🥂 Conference Banquet</div><div class="tl-card-sub">Venue TBA · Formal dress</div></div></div>
+        </div>
+
       </div>
     </div>
-  </div>
-</div>
-
-<div class="tl-row">
-  <div class="tl-time">10:00<br>11:00</div>
-  <div class="tl-dot"></div>
-  <div class="tl-content">
-    <div class="tl-card">
-      <span class="stag stag-kn">Keynote</span>
-      <div class="tl-card-title">Keynote Address</div>
-      <div class="tl-card-sub">Speaker TBA</div>
-      <button class="venue-toggle" onclick="toggleVenue('v3-kn1')">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-        Venue
-        <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="venue-panel" id="v3-kn1">
-        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
-          <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
-          <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="tl-row">
-  <div class="tl-time">11:00<br>11:30</div>
-  <div class="tl-dot"></div>
-  <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Tea &amp; Exhibition</div></div></div>
-</div>
-
-<div class="tl-row">
-  <div class="tl-time">11:30<br>13:00</div>
-  <div class="tl-dot"></div>
-  <div class="tl-content">
-    <div class="tl-card">
-      <span class="stag stag-se">Papers</span>
-      <div class="tl-card-title">Paper Presentations — Session 1</div>
-      <button class="venue-toggle" onclick="toggleVenue('v3-pp1')">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-        Venue
-        <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="venue-panel" id="v3-pp1">
-        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
-          <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
-          <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="tl-row">
-  <div class="tl-time">13:00<br>14:00</div>
-  <div class="tl-dot"></div>
-  <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Lunch &amp; e-Poster Presentations</div></div></div>
-</div>
-
-<div class="tl-row">
-  <div class="tl-time">14:00<br>16:00</div>
-  <div class="tl-dot"></div>
-  <div class="tl-content">
-    <div class="tl-card">
-      <span class="stag stag-se">Papers</span>
-      <div class="tl-card-title">Paper Presentations — Session 2</div>
-      <button class="venue-toggle" onclick="toggleVenue('v3-pp2')">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-        Venue
-        <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="venue-panel" id="v3-pp2">
-        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
-          <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
-          <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="tl-row">
-  <div class="tl-time">16:00<br>17:30</div>
-  <div class="tl-dot"></div>
-  <div class="tl-content">
-    <div class="tl-card">
-      <span class="stag stag-kn">Keynote</span>
-      <div class="tl-card-title">Keynote Address — Evening Session</div>
-      <div class="tl-card-sub">Speaker TBA</div>
-      <button class="venue-toggle" onclick="toggleVenue('v3-kn2')">
-        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-        Venue
-        <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </button>
-      <div class="venue-panel" id="v3-kn2">
-        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
-          <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
-          <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div class="tl-row">
-  <div class="tl-time">19:00+</div>
-  <div class="tl-dot"></div>
-  <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Social</span><div class="tl-card-title">🥂 Conference Banquet</div><div class="tl-card-sub">Venue TBA · Formal dress</div></div></div>
-</div>
 
     <!-- ═══ DAY 4 ═══ -->
     <div class="sched-day" id="sd4">
@@ -1198,119 +1103,55 @@ footer strong{color:var(--gold)}
       </div>
       <div class="timeline">
 
-        <div class="timeline">
-
-  <div class="tl-row">
-    <div class="tl-time">08:30<br>09:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Morning</span><div class="tl-card-title">Morning Tea &amp; Registration</div></div></div>
-  </div>
-
-  <div class="tl-row">
-    <div class="tl-time">09:00<br>11:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="tl-card">
-        <span class="stag stag-se">CPC</span>
-        <div class="tl-card-title">CPC Competition</div>
-        <div class="tl-card-sub">Clinical problem case presentations</div>
-        <button class="venue-toggle" onclick="toggleVenue('v4-cpc')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-          Venue
-          <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="venue-panel" id="v4-cpc">
-          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
-            <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
-            <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
-          </div>
+        <div class="tl-row">
+          <div class="tl-time">08:30<br>09:00</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Morning</span><div class="tl-card-title">Morning Tea &amp; Registration</div></div></div>
         </div>
+
+        <div class="tl-row">
+          <div class="tl-time">09:00<br>11:00</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-se">CPC</span><div class="tl-card-title">CPC Competition</div><div class="tl-card-sub">Clinical problem case presentations · Main Auditorium</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">11:00<br>11:30</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Tea Break</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">11:30<br>13:00</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-ws">Quiz</span><div class="tl-card-title">Emergency Medicine Quiz Finals</div><div class="tl-card-sub">Main Auditorium</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">13:00<br>14:00</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Lunch</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">14:00<br>15:30</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-aw">Awards</span><div class="tl-card-title">Awards &amp; Prize Distribution</div><div class="tl-card-sub">Best paper · Best e-poster · Best quiz team · Young investigator award</div></div></div>
+        </div>
+
+        <div class="tl-row">
+          <div class="tl-time">15:30<br>16:30</div>
+          <div class="tl-dot"></div>
+          <div class="tl-content"><div class="tl-card"><span class="stag stag-kn">Valedictory</span><div class="tl-card-title">Closing Ceremony &amp; Valedictory</div></div></div>
+        </div>
+
       </div>
     </div>
-  </div>
 
-  <div class="tl-row">
-    <div class="tl-time">11:00<br>11:30</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Tea Break</div></div></div>
   </div>
-
-  <div class="tl-row">
-    <div class="tl-time">11:30<br>13:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="tl-card">
-        <span class="stag stag-ws">Quiz</span>
-        <div class="tl-card-title">Emergency Medicine Quiz Finals</div>
-        <button class="venue-toggle" onclick="toggleVenue('v4-quiz')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-          Venue
-          <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="venue-panel" id="v4-quiz">
-          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
-            <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
-            <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-row">
-    <div class="tl-time">13:00<br>14:00</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Lunch</div></div></div>
-  </div>
-
-  <div class="tl-row">
-    <div class="tl-time">14:00<br>15:30</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="tl-card">
-        <span class="stag stag-aw">Awards</span>
-        <div class="tl-card-title">Awards &amp; Prize Distribution</div>
-        <div class="tl-card-sub">Best paper · Best e-poster · Best quiz team · Young investigator award</div>
-        <button class="venue-toggle" onclick="toggleVenue('v4-awards')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-          Venue
-          <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="venue-panel" id="v4-awards">
-          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
-            <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
-            <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="tl-row">
-    <div class="tl-time">15:30<br>16:30</div>
-    <div class="tl-dot"></div>
-    <div class="tl-content">
-      <div class="tl-card">
-        <span class="stag stag-kn">Valedictory</span>
-        <div class="tl-card-title">Closing Ceremony &amp; Valedictory</div>
-        <button class="venue-toggle" onclick="toggleVenue('v4-closing')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-          Venue
-          <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <div class="venue-panel" id="v4-closing">
-          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
-            <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
-            <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <footer><strong>EM Karnataka 2026</strong> · Tentative schedule — subject to revision</footer>
 </div>
-</div>
-    </div>
-        
+  
 <!-- ═══════════ WORKSHOPS PAGE ═══════════ -->
 <div id="page-workshops" class="page">
   <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Workshops</h2><p>Hands-on clinical skills · Days 1 &amp; 2 · 12–13 November 2026</p></div></div>
@@ -1801,339 +1642,14 @@ footer strong{color:var(--gold)}
         <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" class="btn btn-dark" style="text-decoration:none;font-size:13px;padding:9px 18px"><i class="ti ti-brand-google-maps"></i> Open in Maps</a>
       </div>
     </div>
-    
-    <div style="margin-bottom:36px">
-  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
-    <i class="ti ti-map-2" style="color:var(--gold);font-size:20px"></i>
-    <h2 class="section-title" style="margin-bottom:0">Campus Map</h2>
-  </div>
-  <p class="section-sub" style="margin-top:-28px;margin-bottom:16px">Father Muller Medical College — click any building to learn more</p>
-  <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
-    <div style="background:var(--midnight-4);padding:10px 16px;border-bottom:1px solid var(--gold-border);display:flex;align-items:center;gap:8px;flex-wrap:wrap">
-      <i class="ti ti-info-circle" style="color:var(--gold);font-size:14px"></i>
-      <span style="font-size:12px;color:var(--text-muted)">Click a building to see details</span>
-      <div style="margin-left:auto;display:flex;flex-wrap:wrap;gap:10px">
-        <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#9b7fe8"></span>Block B</span>
-        <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#4a9de0"></span>Hospital</span>
-        <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#5ec97f"></span>Knowledge / Edu</span>
-        <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#e09a3e"></span>Event Spaces</span>
-        <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#e05c5c"></span>Simulation</span>
+    <div style="border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);margin-bottom:36px">
+      <div style="background:var(--midnight-4);padding:12px 18px;display:flex;align-items:center;gap:8px;border-bottom:1px solid var(--gold-border)">
+        <i class="ti ti-map" style="color:var(--gold);font-size:16px"></i>
+        <span style="font-size:13px;font-weight:700;color:#fff">Location Map</span>
+        <a href="https://maps.google.com/?q=Father+Muller+Medical+College+Kankanady+Mangaluru" target="_blank" style="margin-left:auto;font-size:11px;color:var(--gold);text-decoration:none;font-weight:600;display:flex;align-items:center;gap:4px"><i class="ti ti-external-link" style="font-size:12px"></i> Open in Maps</a>
       </div>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d74.8473!3d12.8785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c17d48a0b%3A0x8f3d3e8c1a2b4c5d!2sFather+Muller+Medical+College!5e0!3m2!1sen!2sin!4v1" width="100%" height="260" style="border:0;display:block" allowfullscreen="" loading="lazy"></iframe>
     </div>
-    <svg id="campus-map" viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#0d1219;cursor:default">
-
-      <!-- ── ROADS ── -->
-      <!-- Main horizontal road -->
-      <path d="M507 337 L1147 340" stroke="#1e2a40" stroke-width="50" fill="none" stroke-linecap="round"/>
-      <path d="M507 337 L1147 340" stroke="#243050" stroke-width="44" fill="none" stroke-linecap="round"/>
-      <path d="M507 337 L1147 340" stroke="#3a4a6a" stroke-width="2" fill="none" stroke-dasharray="20 14" stroke-linecap="round" opacity="0.5"/>
-      <!-- Back gate road to junction -->
-      <path d="M498 330 L470 272 L157 274 L216 489" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round"/>
-      <path d="M498 330 L470 272 L157 274 L216 489" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round"/>
-      <!-- Branch road lower -->
-      <path d="M498 333 L495 427 L268 489" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round"/>
-      <path d="M498 333 L495 427 L268 489" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round"/>
-      <!-- Top road from junction -->
-      <path d="M619 331 L581 175 L229 175 L160 277" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round"/>
-      <path d="M619 331 L581 175 L229 175 L160 277" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round"/>
-      <!-- Back gate spur -->
-      <path d="M160 276 L44 341" stroke="#1e2a40" stroke-width="35" fill="none" stroke-linecap="round"/>
-      <path d="M160 276 L44 341" stroke="#243050" stroke-width="29" fill="none" stroke-linecap="round"/>
-      <path d="M160 276 L44 341" stroke="#3a4a6a" stroke-width="2" fill="none" stroke-dasharray="20 14" stroke-linecap="round" opacity="0.5"/>
-      <!-- Knowledge Centre spur -->
-      <path d="M607 249 L784 249 L786 314" stroke="#1e2a40" stroke-width="21" fill="none" stroke-linecap="round"/>
-      <path d="M607 249 L784 249 L786 314" stroke="#243050" stroke-width="15" fill="none" stroke-linecap="round"/>
-      <!-- Hospital vertical road -->
-      <path d="M1023 365 L1025 516" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round"/>
-      <path d="M1023 365 L1025 516" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round"/>
-      <path d="M1021 321 L1019 156" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round"/>
-      <path d="M1021 321 L1019 156" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round"/>
-
-      <!-- ── ROAD JUNCTIONS ── -->
-      <circle cx="161" cy="278" r="24" fill="#1e2a40" stroke="#2a3a55" stroke-width="2"/>
-      <circle cx="1022" cy="340" r="24" fill="#1e2a40" stroke="#2a3a55" stroke-width="2"/>
-      <circle cx="503" cy="337" r="24" fill="#1e2a40" stroke="#2a3a55" stroke-width="2"/>
-      <circle cx="621" cy="335" r="24" fill="#1e2a40" stroke="#2a3a55" stroke-width="2"/>
-      <circle cx="602" cy="248" r="24" fill="#1e2a40" stroke="#2a3a55" stroke-width="2"/>
-
-      <!-- ── GATES ── -->
-      <rect x="18" y="316" width="12" height="52" fill="#d4a843" rx="2"/>
-      <text x="10" y="342" text-anchor="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#d4a843" transform="rotate(-90 10 342)" letter-spacing="1">BACK GATE</text>
-      <rect x="1170" y="316" width="12" height="52" fill="#d4a843" rx="2"/>
-      <text x="1190" y="342" text-anchor="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#d4a843" transform="rotate(90 1190 342)" letter-spacing="1">MAIN GATE</text>
-
-      <!-- ── BUILDINGS ── -->
-
-      <!-- Sports Centre -->
-      <g class="campus-building" onclick="showBuildingInfo('sports')" style="cursor:pointer">
-        <rect x="56" y="135" width="135" height="90" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5" transform="rotate(-43 123 180)"/>
-        <text x="123" y="173" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0" transform="rotate(-43 123 180)">SPORTS</text>
-        <text x="123" y="187" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0" transform="rotate(-43 123 180)">CENTRE</text>
-      </g>
-
-      <!-- BLOCK B -->
-      <g class="campus-building" id="bld-blockb" onclick="showBuildingInfo('blockb')" style="cursor:pointer">
-        <rect x="224" y="25" width="126" height="122" rx="4" fill="#9b7fe8" fill-opacity="0.18" stroke="#9b7fe8" stroke-width="1.5"/>
-        <text x="287" y="81" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="sans-serif" font-weight="700" fill="#c0aef5">BLOCK B</text>
-        <text x="287" y="97" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" fill="#9b7fe8">Dissection Hall</text>
-        <text x="287" y="112" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" fill="#9b7fe8">Anatomy Lab</text>
-      </g>
-
-      <!-- Cafe near block B -->
-      <g class="campus-building" onclick="showBuildingInfo('cafe1')" style="cursor:pointer">
-        <rect x="359" y="97" width="54" height="50" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-        <text x="386" y="122" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">CAFE</text>
-      </g>
-
-      <!-- Block A -->
-      <g class="campus-building" onclick="showBuildingInfo('blocka')" style="cursor:pointer">
-        <rect x="421" y="36" width="110" height="110" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-        <text x="476" y="91" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="sans-serif" font-weight="600" fill="#7a82a0">BLOCK A</text>
-      </g>
-
-      <!-- Knowledge Centre -->
-      <g class="campus-building" id="bld-kc" onclick="showBuildingInfo('kc')" style="cursor:pointer">
-        <rect x="624" y="141" width="144" height="89" rx="4" fill="#5ec97f" fill-opacity="0.15" stroke="#5ec97f" stroke-width="1.5"/>
-        <text x="696" y="179" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#90f0a8">KNOWLEDGE</text>
-        <text x="696" y="193" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#90f0a8">CENTRE</text>
-      </g>
-
-      <!-- Cafe 2 -->
-      <g class="campus-building" onclick="showBuildingInfo('cafe2')" style="cursor:pointer">
-        <rect x="514" y="236" width="55" height="70" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-        <text x="541" y="271" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">CAFE</text>
-      </g>
-
-      <!-- Auditorium -->
-      <g class="campus-building" id="bld-aud" onclick="showBuildingInfo('aud')" style="cursor:pointer">
-        <rect x="86" y="347" width="86" height="174" rx="4" fill="#e09a3e" fill-opacity="0.15" stroke="#e09a3e" stroke-width="1.5" transform="rotate(-15 129 434)"/>
-        <text x="129" y="434" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#f5c070" transform="rotate(-15 129 434)">AUDITORIUM</text>
-      </g>
-
-      <!-- Ground -->
-      <g class="campus-building" onclick="showBuildingInfo('ground')" style="cursor:pointer">
-        <rect x="220" y="310" width="130" height="150" rx="4" fill="#5ec97f" fill-opacity="0.12" stroke="#5ec97f" stroke-width="1" transform="rotate(-15 285 385)"/>
-        <text x="285" y="385" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="sans-serif" font-weight="600" fill="#90f0a8" transform="rotate(-15 285 385)">GROUND</text>
-      </g>
-
-      <!-- Cross marker (junction area) -->
-      <rect x="366" y="304" width="90" height="110" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1" transform="rotate(-15 411 359)"/>
-      <line x1="411" y1="329" x2="411" y2="369" stroke="#2a3a55" stroke-width="5" stroke-linecap="round"/>
-      <line x1="393" y1="349" x2="429" y2="349" stroke="#2a3a55" stroke-width="5" stroke-linecap="round"/>
-
-      <!-- Nursing College -->
-      <g class="campus-building" id="bld-nursing" onclick="showBuildingInfo('nursing')" style="cursor:pointer">
-        <rect x="532" y="373" width="140" height="140" rx="4" fill="#4a9de0" fill-opacity="0.12" stroke="#4a9de0" stroke-width="1.5"/>
-        <text x="602" y="436" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#8ec8f5">NURSING</text>
-        <text x="602" y="450" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#8ec8f5">COLLEGE</text>
-      </g>
-
-      <!-- Hospital (main lower block) -->
-      <g class="campus-building" id="bld-hospital" onclick="showBuildingInfo('hospital')" style="cursor:pointer">
-        <rect x="686" y="373" width="315" height="140" rx="4" fill="#4a9de0" fill-opacity="0.18" stroke="#4a9de0" stroke-width="1.5"/>
-        <text x="843" y="443" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="sans-serif" font-weight="700" fill="#8ec8f5">HOSPITAL</text>
-      </g>
-
-      <!-- Canteen -->
-      <g class="campus-building" onclick="showBuildingInfo('canteen')" style="cursor:pointer">
-        <rect x="1050" y="438" width="114" height="45" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-        <text x="1107" y="461" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">CANTEEN</text>
-      </g>
-
-      <!-- SIM LAB -->
-      <g class="campus-building" id="bld-simlab" onclick="showBuildingInfo('simlab')" style="cursor:pointer">
-        <rect x="1050" y="500" width="116" height="70" rx="4" fill="#e05c5c" fill-opacity="0.2" stroke="#e05c5c" stroke-width="1.5"/>
-        <text x="1108" y="535" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="sans-serif" font-weight="700" fill="#f58888">SIM LAB</text>
-      </g>
-
-      <!-- Parking lower left -->
-      <g class="campus-building" onclick="showBuildingInfo('parking1')" style="cursor:pointer">
-        <rect x="200" y="519" width="154" height="90" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-        <text x="277" y="564" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">PARKING</text>
-      </g>
-
-      <!-- Silver Jubilee Hall -->
-      <g class="campus-building" id="bld-sjh" onclick="showBuildingInfo('sjh')" style="cursor:pointer">
-        <rect x="365" y="476" width="142" height="79" rx="4" fill="#e09a3e" fill-opacity="0.18" stroke="#e09a3e" stroke-width="1.5" transform="rotate(-15 436 515)"/>
-        <text x="436" y="501" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#f5c070" transform="rotate(-15 436 515)">SILVER</text>
-        <text x="436" y="515" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#f5c070" transform="rotate(-15 436 515)">JUBILEE HALL</text>
-      </g>
-
-      <!-- Parking top -->
-      <g class="campus-building" onclick="showBuildingInfo('parking2')" style="cursor:pointer">
-        <rect x="236" y="207" width="200" height="45" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-        <text x="336" y="230" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">PARKING</text>
-      </g>
-
-      <!-- 2W Parking -->
-      <g class="campus-building" onclick="showBuildingInfo('parking3')" style="cursor:pointer">
-        <rect x="883" y="538" width="140" height="55" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-        <text x="953" y="565" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">2W PARKING</text>
-      </g>
-
-      <!-- Hospital upper block -->
-      <g class="campus-building" id="bld-hosp2" onclick="showBuildingInfo('hospital')" style="cursor:pointer">
-        <rect x="803" y="143" width="191" height="165" rx="4" fill="#4a9de0" fill-opacity="0.18" stroke="#4a9de0" stroke-width="1.5"/>
-        <text x="898" y="226" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="sans-serif" font-weight="700" fill="#8ec8f5">HOSPITAL</text>
-      </g>
-
-      <!-- Emergency Dept -->
-      <g class="campus-building" onclick="showBuildingInfo('emergency')" style="cursor:pointer">
-        <rect x="917" y="236" width="75" height="70" rx="4" fill="#e05c5c" fill-opacity="0.15" stroke="#e05c5c" stroke-width="1.5"/>
-        <text x="955" y="264" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" font-weight="700" fill="#f58888">EMERGENCY</text>
-        <text x="955" y="278" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" font-weight="700" fill="#f58888">DEPT</text>
-      </g>
-
-      <!-- AV Hall complex -->
-      <g class="campus-building" id="bld-avhall" onclick="showBuildingInfo('avhall')" style="cursor:pointer">
-        <rect x="741" y="27" width="254" height="100" rx="4" fill="#4a9de0" fill-opacity="0.12" stroke="#4a9de0" stroke-width="1.5"/>
-        <text x="868" y="62" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="sans-serif" font-weight="600" fill="#8ec8f5">HOSPITAL COMPLEX</text>
-        <rect x="808" y="41" width="75" height="70" rx="4" fill="#4a9de0" fill-opacity="0.25" stroke="#4a9de0" stroke-width="1.5"/>
-        <text x="845" y="76" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#8ec8f5">AV HALL</text>
-      </g>
-
-      <!-- Museum -->
-      <g class="campus-building" onclick="showBuildingInfo('museum')" style="cursor:pointer">
-        <rect x="692" y="271" width="70" height="30" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
-        <text x="727" y="286" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" font-weight="600" fill="#7a82a0">Museum</text>
-      </g>
-
-    </svg>
-
-    <!-- Info panel (shown on click) -->
-    <div id="campus-info-panel" style="display:none;padding:14px 18px;background:var(--midnight-4);border-top:1px solid var(--gold-border)">
-      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
-        <div>
-          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px" id="campus-info-name"></div>
-          <div style="font-size:12px;color:var(--text-muted);line-height:1.6" id="campus-info-desc"></div>
-          <div id="campus-info-workshops" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"></div>
-        </div>
-<button onclick="closeCampusPanel()" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;flex-shrink:0;padding:0;line-height:1">×</button>      </div>
-    </div>
-  </div>
-</div>
-
-<script>
-const campusBuildingData = {
-  blockb: {
-    name: 'Block B',
-    color: '#9b7fe8',
-    desc: 'Main academic block housing the Dissection Hall and Anatomy Lab.',
-    workshops: [
-      {label:'Workshop A — Peripheral Nerve Blocks & Advanced Airway', color:'#9b7fe8', day:'Day 1'},
-      {label:'Workshop F — Virtual Anatomy', color:'#5ec97f', day:'Day 2'}
-    ]
-  },
-  hospital: {
-    name: 'Hospital',
-    color: '#4a9de0',
-    desc: 'Father Muller Charitable Institution hospital complex. Houses the AV Hall, main clinical departments, Emergency Dept, and workshop spaces.',
-    workshops: [
-      {label:'Workshop B — Mechanical Ventilation (AV Hall)', color:'#3ec9c9', day:'Day 1'},
-      {label:'Workshop D — Advanced POCUS', color:'#4a9de0', day:'Day 2'}
-    ]
-  },
-  avhall: {
-    name: 'Hospital Complex — AV Hall',
-    color: '#3ec9c9',
-    desc: 'Audio-Visual Hall within the hospital complex. Equipped for lectures and hands-on demonstrations.',
-    workshops: [
-      {label:'Workshop B — Mechanical Ventilation', color:'#3ec9c9', day:'Day 1'}
-    ]
-  },
-  sjh: {
-    name: 'Silver Jubilee Hall',
-    color: '#e09a3e',
-    desc: 'Large multipurpose hall used for major events and conferences.',
-    workshops: [
-      {label:'Workshop C — Disaster Management', color:'#e09a3e', day:'Day 1'}
-    ]
-  },
-  simlab: {
-    name: 'SIM Lab',
-    color: '#e05c5c',
-    desc: 'State-of-the-art simulation laboratory for clinical skills training.',
-    workshops: [
-      {label:'Workshop E — Maternal Resuscitation Program (MRP)', color:'#e05c5c', day:'Day 2'}
-    ]
-  },
-  aud: {
-    name: 'Auditorium',
-    color: '#e09a3e',
-    desc: 'Main auditorium for conferences, inaugurations, and large gatherings.',
-    workshops: [
-      {label:'Days 3 & 4 — Main Conference Venue (TBA)', color:'#d4a843', day:'Conference'}
-    ]
-  },
-  kc: { name: 'Knowledge Centre', color: '#5ec97f', desc: 'Modern library and learning resource centre with digital facilities.', workshops: [] },
-  nursing: { name: 'Nursing College', color: '#4a9de0', desc: 'Father Muller College of Nursing building.', workshops: [] },
-  emergency: { name: 'Emergency Department', color: '#e05c5c', desc: '24-hour Emergency Department of Father Muller Medical College Hospital.', workshops: [] },
-  blocka: { name: 'Block A', color: '#6b7490', desc: 'Academic block.', workshops: [] },
-  cafe1: { name: 'Café', color: '#6b7490', desc: 'Campus café near Block B.', workshops: [] },
-  cafe2: { name: 'Café', color: '#6b7490', desc: 'Campus café near the main road junction.', workshops: [] },
-  ground: { name: 'Ground', color: '#5ec97f', desc: 'Sports and open ground area.', workshops: [] },
-  sports: { name: 'Sports Centre', color: '#6b7490', desc: 'Indoor sports facilities.', workshops: [] },
-  canteen: { name: 'Canteen', color: '#6b7490', desc: 'Main campus canteen near the hospital wing.', workshops: [] },
-  museum: { name: 'Museum', color: '#6b7490', desc: 'Campus museum.', workshops: [] },
-  parking1: { name: 'Parking', color: '#6b7490', desc: 'Car parking — lower campus.', workshops: [] },
-  parking2: { name: 'Parking', color: '#6b7490', desc: 'Car parking — upper campus.', workshops: [] },
-  parking3: { name: '2-Wheeler Parking', color: '#6b7490', desc: 'Two-wheeler parking near hospital.', workshops: [] }
-};
-
-function showBuildingInfo(id) {
-  const data = campusBuildingData[id];
-  if (!data) return;
-
-  // Dim all buildings, highlight selected
-  document.querySelectorAll('.campus-building rect, .campus-building text').forEach(el => {
-    el.style.opacity = '0.35';
-  });
-  const target = document.getElementById('bld-' + id);
-  if (target) {
-    target.querySelectorAll('rect, text').forEach(el => { el.style.opacity = '1'; });
-    // Pulse ring
-    const existing = document.getElementById('campus-pulse');
-    if (existing) existing.remove();
-    const firstRect = target.querySelector('rect');
-    if (firstRect) {
-      const pulse = firstRect.cloneNode(false);
-      pulse.id = 'campus-pulse';
-      pulse.style.fill = 'none';
-      pulse.setAttribute('stroke', data.color);
-      pulse.setAttribute('stroke-width', '4');
-      pulse.setAttribute('opacity', '0.7');
-      pulse.innerHTML = '<animate attributeName="stroke-width" values="3;8;3" dur="1.5s" repeatCount="3"/><animate attributeName="opacity" values="0.7;0;0.7" dur="1.5s" repeatCount="3"/>';
-      firstRect.parentNode.insertBefore(pulse, firstRect.nextSibling);
-    }
-  }
-
-  document.getElementById('campus-info-name').textContent = data.name;
-  document.getElementById('campus-info-desc').textContent = data.desc;
-  const wEl = document.getElementById('campus-info-workshops');
-  wEl.innerHTML = '';
-  if (data.workshops.length === 0) {
-    wEl.innerHTML = '<span style="font-size:11px;color:var(--text-muted)">No workshops assigned to this building.</span>';
-  } else {
-    data.workshops.forEach(w => {
-      const badge = document.createElement('span');
-      badge.style.cssText = `display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:${w.color}22;color:${w.color};border:1px solid ${w.color}55`;
-      badge.innerHTML = `<span style="font-size:9px;opacity:0.7;font-weight:400">${w.day}</span> ${w.label}`;
-      wEl.appendChild(badge);
-    });
-  }
-  document.getElementById('campus-info-panel').style.display = 'block';
-}
-
-function closeCampusPanel() {
-  document.getElementById('campus-info-panel').style.display = 'none';
-  // Restore all buildings
-  document.querySelectorAll('.campus-building rect, .campus-building text').forEach(el => {
-    el.style.opacity = '';
-  });
-  const pulse = document.getElementById('campus-pulse');
-  if (pulse) pulse.remove();
-}
-</script>
     <h2 class="section-title">How to Reach</h2>
     <p class="section-sub">Mangaluru is well connected by air, rail, and road</p>
     <div class="reach-2col">
