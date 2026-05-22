@@ -34,7 +34,7 @@ body{font-family:'Outfit',system-ui,sans-serif;background:var(--midnight);color:
 
 /* ── NAV — increased height ── */
 nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--gold-border);backdrop-filter:blur(12px);}
-.nav-inner{max-width:1280px;margin:auto;padding:0 1.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;height:76px;}
+.nav-inner{max-width:100%;margin:auto;padding:0 1.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;height:76px;}
 .logo{font-size:30px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:12px;flex-shrink:0}
 .logo-img{height:60px;width:60px;object-fit:cover;border-radius:8px;flex-shrink:0;border:auto solid var(--gold-border)}
 .logo-text{display:flex;flex-direction:column}
@@ -342,7 +342,7 @@ footer strong{color:var(--gold)}
 .ec-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
 @media(max-width:768px){
-  .nav-inner{height:64px;padding:0 1rem;grid-template-columns:auto 1fr auto;align-items:center;}
+  .nav-inner{height:64px;padding:0 1rem;}
   .logo-img{height:44px;width:44px;border-radius:6px}
   .logo-main{font-size:14px}
   .logo-sub{display:block;font-size:11px}
