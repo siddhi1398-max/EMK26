@@ -1039,56 +1039,136 @@ footer strong{color:var(--gold)}
           <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Registration</span><div class="tl-card-title">Conference Registration &amp; Morning Tea</div><div class="tl-card-sub">Badge collection · Exhibition open · <strong style="color:var(--gold)">Main Auditorium foyer</strong></div></div></div>
         </div>
 
-        <div class="tl-row">
-          <div class="tl-time">09:00<br>10:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-kn">Inauguration</span><div class="tl-card-title">Inaugural Ceremony</div><div class="tl-card-sub">Lighting of the lamp · Welcome address · Chief guest address</div></div></div>
+       <div class="tl-row">
+  <div class="tl-time">09:00<br>10:00</div>
+  <div class="tl-dot"></div>
+  <div class="tl-content">
+    <div class="tl-card">
+      <span class="stag stag-kn">Inauguration</span>
+      <div class="tl-card-title">Inaugural Ceremony</div>
+      <div class="tl-card-sub">Lighting of the lamp · Welcome address · Chief guest address</div>
+      <button class="venue-toggle" onclick="toggleVenue('v3-inaug')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        Venue
+        <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="venue-panel" id="v3-inaug">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
+          <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
+          <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — check back closer to the conference date or <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
         </div>
-
-        <div class="tl-row">
-          <div class="tl-time">10:00<br>11:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-kn">Keynote</span><div class="tl-card-title">Keynote Address</div><div class="tl-card-sub">Speaker TBA · Main Auditorium</div></div></div>
-        </div>
-
-        <div class="tl-row">
-          <div class="tl-time">11:00<br>11:30</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Tea &amp; Exhibition</div></div></div>
-        </div>
-
-        <div class="tl-row">
-          <div class="tl-time">11:30<br>13:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-se">Papers</span><div class="tl-card-title">Paper Presentations — Session 1</div></div></div>
-        </div>
-
-        <div class="tl-row">
-          <div class="tl-time">13:00<br>14:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Lunch &amp; e-Poster Presentations</div></div></div>
-        </div>
-
-        <div class="tl-row">
-          <div class="tl-time">14:00<br>16:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-se">Papers</span><div class="tl-card-title">Paper Presentations — Session 2</div></div></div>
-        </div>
-
-        <div class="tl-row">
-          <div class="tl-time">16:00<br>17:30</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-kn">Keynote</span><div class="tl-card-title">Keynote Address — Evening Session</div><div class="tl-card-sub">Speaker TBA</div></div></div>
-        </div>
-
-        <div class="tl-row">
-          <div class="tl-time">19:00+</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Social</span><div class="tl-card-title">🥂 Conference Banquet</div><div class="tl-card-sub">Venue TBA · Formal dress</div></div></div>
-        </div>
-
       </div>
     </div>
+  </div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-time">10:00<br>11:00</div>
+  <div class="tl-dot"></div>
+  <div class="tl-content">
+    <div class="tl-card">
+      <span class="stag stag-kn">Keynote</span>
+      <div class="tl-card-title">Keynote Address</div>
+      <div class="tl-card-sub">Speaker TBA</div>
+      <button class="venue-toggle" onclick="toggleVenue('v3-kn1')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        Venue
+        <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="venue-panel" id="v3-kn1">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
+          <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
+          <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-time">11:00<br>11:30</div>
+  <div class="tl-dot"></div>
+  <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Tea &amp; Exhibition</div></div></div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-time">11:30<br>13:00</div>
+  <div class="tl-dot"></div>
+  <div class="tl-content">
+    <div class="tl-card">
+      <span class="stag stag-se">Papers</span>
+      <div class="tl-card-title">Paper Presentations — Session 1</div>
+      <button class="venue-toggle" onclick="toggleVenue('v3-pp1')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        Venue
+        <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="venue-panel" id="v3-pp1">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
+          <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
+          <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-time">13:00<br>14:00</div>
+  <div class="tl-dot"></div>
+  <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Lunch &amp; e-Poster Presentations</div></div></div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-time">14:00<br>16:00</div>
+  <div class="tl-dot"></div>
+  <div class="tl-content">
+    <div class="tl-card">
+      <span class="stag stag-se">Papers</span>
+      <div class="tl-card-title">Paper Presentations — Session 2</div>
+      <button class="venue-toggle" onclick="toggleVenue('v3-pp2')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        Venue
+        <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="venue-panel" id="v3-pp2">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
+          <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
+          <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-time">16:00<br>17:30</div>
+  <div class="tl-dot"></div>
+  <div class="tl-content">
+    <div class="tl-card">
+      <span class="stag stag-kn">Keynote</span>
+      <div class="tl-card-title">Keynote Address — Evening Session</div>
+      <div class="tl-card-sub">Speaker TBA</div>
+      <button class="venue-toggle" onclick="toggleVenue('v3-kn2')">
+        <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+        Venue
+        <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div class="venue-panel" id="v3-kn2">
+        <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
+          <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
+          <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="tl-row">
+  <div class="tl-time">19:00+</div>
+  <div class="tl-dot"></div>
+  <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Social</span><div class="tl-card-title">🥂 Conference Banquet</div><div class="tl-card-sub">Venue TBA · Formal dress</div></div></div>
+</div>
 
     <!-- ═══ DAY 4 ═══ -->
     <div class="sched-day" id="sd4">
@@ -1098,55 +1178,117 @@ footer strong{color:var(--gold)}
       </div>
       <div class="timeline">
 
-        <div class="tl-row">
-          <div class="tl-time">08:30<br>09:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Morning</span><div class="tl-card-title">Morning Tea &amp; Registration</div></div></div>
-        </div>
+        <div class="timeline">
 
-        <div class="tl-row">
-          <div class="tl-time">09:00<br>11:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-se">CPC</span><div class="tl-card-title">CPC Competition</div><div class="tl-card-sub">Clinical problem case presentations · Main Auditorium</div></div></div>
-        </div>
+  <div class="tl-row">
+    <div class="tl-time">08:30<br>09:00</div>
+    <div class="tl-dot"></div>
+    <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Morning</span><div class="tl-card-title">Morning Tea &amp; Registration</div></div></div>
+  </div>
 
-        <div class="tl-row">
-          <div class="tl-time">11:00<br>11:30</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Tea Break</div></div></div>
+  <div class="tl-row">
+    <div class="tl-time">09:00<br>11:00</div>
+    <div class="tl-dot"></div>
+    <div class="tl-content">
+      <div class="tl-card">
+        <span class="stag stag-se">CPC</span>
+        <div class="tl-card-title">CPC Competition</div>
+        <div class="tl-card-sub">Clinical problem case presentations</div>
+        <button class="venue-toggle" onclick="toggleVenue('v4-cpc')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          Venue
+          <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="venue-panel" id="v4-cpc">
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
+            <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
+            <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
+          </div>
         </div>
-
-        <div class="tl-row">
-          <div class="tl-time">11:30<br>13:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-ws">Quiz</span><div class="tl-card-title">Emergency Medicine Quiz Finals</div><div class="tl-card-sub">Main Auditorium</div></div></div>
-        </div>
-
-        <div class="tl-row">
-          <div class="tl-time">13:00<br>14:00</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Lunch</div></div></div>
-        </div>
-
-        <div class="tl-row">
-          <div class="tl-time">14:00<br>15:30</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-aw">Awards</span><div class="tl-card-title">Awards &amp; Prize Distribution</div><div class="tl-card-sub">Best paper · Best e-poster · Best quiz team · Young investigator award</div></div></div>
-        </div>
-
-        <div class="tl-row">
-          <div class="tl-time">15:30<br>16:30</div>
-          <div class="tl-dot"></div>
-          <div class="tl-content"><div class="tl-card"><span class="stag stag-kn">Valedictory</span><div class="tl-card-title">Closing Ceremony &amp; Valedictory</div></div></div>
-        </div>
-
       </div>
     </div>
-
   </div>
-  <footer><strong>EM Karnataka 2026</strong> · Tentative schedule — subject to revision</footer>
+
+  <div class="tl-row">
+    <div class="tl-time">11:00<br>11:30</div>
+    <div class="tl-dot"></div>
+    <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Tea Break</div></div></div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">11:30<br>13:00</div>
+    <div class="tl-dot"></div>
+    <div class="tl-content">
+      <div class="tl-card">
+        <span class="stag stag-ws">Quiz</span>
+        <div class="tl-card-title">Emergency Medicine Quiz Finals</div>
+        <button class="venue-toggle" onclick="toggleVenue('v4-quiz')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          Venue
+          <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="venue-panel" id="v4-quiz">
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
+            <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
+            <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">13:00<br>14:00</div>
+    <div class="tl-dot"></div>
+    <div class="tl-content"><div class="tl-card"><span class="stag stag-br">Break</span><div class="tl-card-title">Lunch</div></div></div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">14:00<br>15:30</div>
+    <div class="tl-dot"></div>
+    <div class="tl-content">
+      <div class="tl-card">
+        <span class="stag stag-aw">Awards</span>
+        <div class="tl-card-title">Awards &amp; Prize Distribution</div>
+        <div class="tl-card-sub">Best paper · Best e-poster · Best quiz team · Young investigator award</div>
+        <button class="venue-toggle" onclick="toggleVenue('v4-awards')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          Venue
+          <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="venue-panel" id="v4-awards">
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
+            <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
+            <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="tl-row">
+    <div class="tl-time">15:30<br>16:30</div>
+    <div class="tl-dot"></div>
+    <div class="tl-content">
+      <div class="tl-card">
+        <span class="stag stag-kn">Valedictory</span>
+        <div class="tl-card-title">Closing Ceremony &amp; Valedictory</div>
+        <button class="venue-toggle" onclick="toggleVenue('v4-closing')">
+          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+          Venue
+          <svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <div class="venue-panel" id="v4-closing">
+          <div style="display:flex;align-items:center;gap:8px;padding:10px 12px;background:rgba(212,160,23,0.08);border-radius:8px;border:1px solid rgba(212,160,23,0.2)">
+            <i class="ti ti-clock" style="color:var(--gold);font-size:16px;flex-shrink:0"></i>
+            <span style="font-size:12px;color:var(--text-muted)">Venue to be announced — <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);font-weight:600;text-decoration:none">subscribe to updates</a>.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
-  
 <!-- ═══════════ WORKSHOPS PAGE ═══════════ -->
 <div id="page-workshops" class="page">
   <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Workshops</h2><p>Hands-on clinical skills · Days 1 &amp; 2 · 12–13 November 2026</p></div></div>
