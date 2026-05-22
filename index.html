@@ -77,7 +77,9 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
 .hi-dot{width:6px;height:6px;border-radius:50%;background:rgba(212,160,23,0.3);border:none;cursor:pointer;padding:0;transition:all 0.2s}
 .hi-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
-#ham-btn{display:none;background:none;border:none;cursor:pointer;color:var(--text);font-size:26px;padding:4px;line-height:1}#drawer.open{right:0}
+#ham-btn{display:none;background:none;border:none;cursor:pointer;color:var(--text);font-size:26px;padding:4px;line-height:1}
+#drawer{position:fixed;top:0;right:-280px;width:280px;height:100vh;background:var(--midnight-2);z-index:300;border-left:1px solid var(--gold-border);transition:right 0.3s ease;padding-top:0;overflow-y:auto;}
+#drawer.open{right:0}
 #drawer-backdrop{display:none;position:fixed;inset:0;z-index:299;background:rgba(0,0,0,0.6)}
 #drawer-backdrop.open{display:block}
 #drawer-header{display:flex;justify-content:space-between;align-items:center;padding:18px 20px;border-bottom:1px solid var(--gold-border);}
@@ -340,21 +342,15 @@ footer strong{color:var(--gold)}
 .ec-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
 @media(max-width:768px){
-  .nav-inner{
-    height:64px;
-    padding:0 1rem;
-    display:flex;
-    justify-content:space-between;
-    align-items:center;
-  }
-  .nav-links{display:none}
-  .nav-cta-btn{display:none}
-  #ham-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;font-size:20px;background:var(--midnight-4);border:1.5px solid var(--gold-border);border-radius:8px;color:var(--gold);flex-shrink:0;}
+  .nav-inner{height:64px;padding:0 1rem;}
   .logo-img{height:44px;width:44px;border-radius:6px}
   .logo-main{font-size:14px}
   .logo-sub{display:block;font-size:11px}
   .logo{gap:8px}
-  
+  .nav-links{display:none}
+  .nav-cta-btn{display:none}
+  #ham-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;font-size:20px;}
+
   /* Fix all 2-column grids to stack */
   .comp-grid{grid-template-columns:1fr !important}
   .theme-split{grid-template-columns:1fr !important;display:flex !important;flex-direction:column !important;}
