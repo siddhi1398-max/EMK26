@@ -34,7 +34,7 @@ body{font-family:'Outfit',system-ui,sans-serif;background:var(--midnight);color:
 
 /* ── NAV — increased height ── */
 nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--gold-border);backdrop-filter:blur(12px);}
-.nav-inner{max-width:auto;margin:auto;padding:0 1.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;height:76px;}
+.nav-inner{max-width:1280px;margin:auto;padding:0 1.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;height:76px;}
 .logo{font-size:30px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:12px;flex-shrink:0}
 .logo-img{height:60px;width:60px;object-fit:cover;border-radius:8px;flex-shrink:0;border:auto solid var(--gold-border)}
 .logo-text{display:flex;flex-direction:column}
@@ -97,8 +97,7 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
   #palm-left, #palm-right { width: 90px; height: 90px; }
   #palm-left { margin-left: 0; }
   #palm-right { margin-right: 0; }
-}
-  
+}  
 .countdown-bar{background:var(--midnight-3);padding:11px 1.5rem;text-align:center;border-bottom:1px solid var(--gold-border);}
 .countdown-inner{max-width:560px;margin:auto;display:flex;align-items:center;justify-content:center;gap:24px;flex-wrap:wrap}
 .countdown-label{font-size:11px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.8px}
@@ -389,6 +388,15 @@ footer strong{color:var(--gold)}
   .bn-item i{font-size:17px}
   .hero h1{font-size:clamp(30px,8vw,44px)}
 }
+   /* Schedule cards — full width on mobile */
+.ws-card-sched-header {flex-direction: column;gap: 8px;}
+.venue-chip {align-self: flex-start;width: auto;}
+.parallel-grid {gap: 8px;}
+.tl-content {padding-right: 12px;}
+/* Prevent horizontal overflow */
+.sched-box {padding: 1rem;}
+.tl-card {padding: 10px 12px;}
+  
   /* ── TIMELINE (Schedule page) ── */
 .timeline{display:flex;flex-direction:column;gap:0;position:relative}
 .timeline::before{content:'';position:absolute;left:88px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,transparent,var(--gold-border) 10%,var(--gold-border) 90%,transparent)}
