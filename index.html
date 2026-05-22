@@ -416,8 +416,10 @@ footer strong{color:var(--gold)}
 /* ── VENUE TOGGLE ── */
 .venue-toggle{display:flex;align-items:center;gap:6px;margin-top:8px;background:none;border:1px solid var(--gold-border);color:var(--gold);font-family:inherit;font-size:11.5px;font-weight:500;padding:5px 12px;border-radius:6px;cursor:pointer;transition:all 0.2s;width:fit-content}
 .venue-toggle:hover{background:var(--gold-glow)}
-.venue-toggle svg{transition:transform 0.25s}
-.venue-toggle.open svg:last-child{transform:rotate(180deg)}
+.venue-pin-icon{transition:transform 0.2s,stroke 0.2s;stroke:var(--gold);flex-shrink:0}
+.venue-chevron{transition:transform 0.25s;flex-shrink:0}
+.venue-toggle:hover .venue-pin-icon{transform:translateY(-2px)}
+.venue-toggle.open .venue-chevron{transform:rotate(180deg)}
 .venue-panel{display:none;margin-top:10px;background:var(--midnight-4);border:1px solid var(--gold-border);border-radius:10px;padding:16px;animation:slideDown 0.2s ease}
 .venue-panel.open{display:block}
 .venue-map-wrap{position:relative;width:100%;background:#0d1219;border-radius:8px;overflow:hidden;border:1px solid rgba(255,255,255,0.06)}
@@ -644,9 +646,8 @@ footer strong{color:var(--gold)}
                 <div class="ws-card-sched-header">
                   <div><span class="stag stag-ws">Workshop A</span><div class="ws-card-sched-title">Peripheral Nerve Blocks &amp; Advanced Airway</div><div class="ws-card-sched-sub">Hands-on · Regional Anaesthesia + Airway Management</div></div>
                   <button class="venue-toggle" onclick="toggleVenue('v1a1')">
-                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><path d="M8 1.5C5.51 1.5 3.5 3.51 3.5 6c0 3.75 4.5 8.5 4.5 8.5S12.5 9.75 12.5 6c0-2.49-2.01-4.5-4.5-4.5Zm0 6.1a1.6 1.6 0 1 1 0-3.2 1.6 1.6 0 0 1 0 3.2Z" fill="currentColor"/></svg>
-                    Venue
-                    <svg width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>                    Venue
+<svg class="venue-chevron" width="10" height="10" viewBox="0 0 16 16" fill="none"><path d="M3 6l5 5 5-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>                  
                   </button>
                 </div>
                 <div class="venue-panel" id="v1a1">
