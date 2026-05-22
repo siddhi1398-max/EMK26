@@ -1645,6 +1645,307 @@ footer strong{color:var(--gold)}
       </div>
       <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.0!2d74.8473!3d12.8785!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba35a4c17d48a0b%3A0x8f3d3e8c1a2b4c5d!2sFather+Muller+Medical+College!5e0!3m2!1sen!2sin!4v1" width="100%" height="260" style="border:0;display:block" allowfullscreen="" loading="lazy"></iframe>
     </div>
+    <div style="margin-bottom:36px">
+  <div style="display:flex;align-items:center;gap:10px;margin-bottom:16px">
+    <i class="ti ti-map-2" style="color:var(--gold);font-size:20px"></i>
+    <h2 class="section-title" style="margin-bottom:0">Campus Map</h2>
+  </div>
+  <p class="section-sub" style="margin-top:-28px;margin-bottom:16px">Father Muller Medical College — click any building to learn more</p>
+  <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
+    <div style="background:var(--midnight-4);padding:10px 16px;border-bottom:1px solid var(--gold-border);display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+      <i class="ti ti-info-circle" style="color:var(--gold);font-size:14px"></i>
+      <span style="font-size:12px;color:var(--text-muted)">Click a building to see details</span>
+      <div style="margin-left:auto;display:flex;flex-wrap:wrap;gap:10px">
+        <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#9b7fe8"></span>Block B</span>
+        <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#4a9de0"></span>Hospital</span>
+        <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#5ec97f"></span>Knowledge / Edu</span>
+        <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#e09a3e"></span>Event Spaces</span>
+        <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#e05c5c"></span>Simulation</span>
+      </div>
+    </div>
+    <svg id="campus-map" viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#0d1219;cursor:default">
+
+      <!-- ── ROADS ── -->
+      <!-- Main horizontal road -->
+      <path d="M507 337 L1147 340" stroke="#1e2a40" stroke-width="50" fill="none" stroke-linecap="round"/>
+      <path d="M507 337 L1147 340" stroke="#243050" stroke-width="44" fill="none" stroke-linecap="round"/>
+      <path d="M507 337 L1147 340" stroke="#3a4a6a" stroke-width="2" fill="none" stroke-dasharray="20 14" stroke-linecap="round" opacity="0.5"/>
+      <!-- Back gate road to junction -->
+      <path d="M498 330 L470 272 L157 274 L216 489" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round"/>
+      <path d="M498 330 L470 272 L157 274 L216 489" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round"/>
+      <!-- Branch road lower -->
+      <path d="M498 333 L495 427 L268 489" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round"/>
+      <path d="M498 333 L495 427 L268 489" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round"/>
+      <!-- Top road from junction -->
+      <path d="M619 331 L581 175 L229 175 L160 277" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round"/>
+      <path d="M619 331 L581 175 L229 175 L160 277" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round"/>
+      <!-- Back gate spur -->
+      <path d="M160 276 L44 341" stroke="#1e2a40" stroke-width="35" fill="none" stroke-linecap="round"/>
+      <path d="M160 276 L44 341" stroke="#243050" stroke-width="29" fill="none" stroke-linecap="round"/>
+      <path d="M160 276 L44 341" stroke="#3a4a6a" stroke-width="2" fill="none" stroke-dasharray="20 14" stroke-linecap="round" opacity="0.5"/>
+      <!-- Knowledge Centre spur -->
+      <path d="M607 249 L784 249 L786 314" stroke="#1e2a40" stroke-width="21" fill="none" stroke-linecap="round"/>
+      <path d="M607 249 L784 249 L786 314" stroke="#243050" stroke-width="15" fill="none" stroke-linecap="round"/>
+      <!-- Hospital vertical road -->
+      <path d="M1023 365 L1025 516" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round"/>
+      <path d="M1023 365 L1025 516" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round"/>
+      <path d="M1021 321 L1019 156" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round"/>
+      <path d="M1021 321 L1019 156" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round"/>
+
+      <!-- ── ROAD JUNCTIONS ── -->
+      <circle cx="161" cy="278" r="24" fill="#1e2a40" stroke="#2a3a55" stroke-width="2"/>
+      <circle cx="1022" cy="340" r="24" fill="#1e2a40" stroke="#2a3a55" stroke-width="2"/>
+      <circle cx="503" cy="337" r="24" fill="#1e2a40" stroke="#2a3a55" stroke-width="2"/>
+      <circle cx="621" cy="335" r="24" fill="#1e2a40" stroke="#2a3a55" stroke-width="2"/>
+      <circle cx="602" cy="248" r="24" fill="#1e2a40" stroke="#2a3a55" stroke-width="2"/>
+
+      <!-- ── GATES ── -->
+      <rect x="18" y="316" width="12" height="52" fill="#d4a843" rx="2"/>
+      <text x="10" y="342" text-anchor="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#d4a843" transform="rotate(-90 10 342)" letter-spacing="1">BACK GATE</text>
+      <rect x="1170" y="316" width="12" height="52" fill="#d4a843" rx="2"/>
+      <text x="1190" y="342" text-anchor="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#d4a843" transform="rotate(90 1190 342)" letter-spacing="1">MAIN GATE</text>
+
+      <!-- ── BUILDINGS ── -->
+
+      <!-- Sports Centre -->
+      <g class="campus-building" onclick="showBuildingInfo('sports')" style="cursor:pointer">
+        <rect x="56" y="135" width="135" height="90" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5" transform="rotate(-43 123 180)"/>
+        <text x="123" y="173" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0" transform="rotate(-43 123 180)">SPORTS</text>
+        <text x="123" y="187" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0" transform="rotate(-43 123 180)">CENTRE</text>
+      </g>
+
+      <!-- BLOCK B -->
+      <g class="campus-building" id="bld-blockb" onclick="showBuildingInfo('blockb')" style="cursor:pointer">
+        <rect x="224" y="25" width="126" height="122" rx="4" fill="#9b7fe8" fill-opacity="0.18" stroke="#9b7fe8" stroke-width="1.5"/>
+        <text x="287" y="81" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="sans-serif" font-weight="700" fill="#c0aef5">BLOCK B</text>
+        <text x="287" y="97" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" fill="#9b7fe8">Dissection Hall</text>
+        <text x="287" y="112" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" fill="#9b7fe8">Anatomy Lab</text>
+      </g>
+
+      <!-- Cafe near block B -->
+      <g class="campus-building" onclick="showBuildingInfo('cafe1')" style="cursor:pointer">
+        <rect x="359" y="97" width="54" height="50" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+        <text x="386" y="122" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">CAFE</text>
+      </g>
+
+      <!-- Block A -->
+      <g class="campus-building" onclick="showBuildingInfo('blocka')" style="cursor:pointer">
+        <rect x="421" y="36" width="110" height="110" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+        <text x="476" y="91" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="sans-serif" font-weight="600" fill="#7a82a0">BLOCK A</text>
+      </g>
+
+      <!-- Knowledge Centre -->
+      <g class="campus-building" id="bld-kc" onclick="showBuildingInfo('kc')" style="cursor:pointer">
+        <rect x="624" y="141" width="144" height="89" rx="4" fill="#5ec97f" fill-opacity="0.15" stroke="#5ec97f" stroke-width="1.5"/>
+        <text x="696" y="179" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#90f0a8">KNOWLEDGE</text>
+        <text x="696" y="193" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#90f0a8">CENTRE</text>
+      </g>
+
+      <!-- Cafe 2 -->
+      <g class="campus-building" onclick="showBuildingInfo('cafe2')" style="cursor:pointer">
+        <rect x="514" y="236" width="55" height="70" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+        <text x="541" y="271" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">CAFE</text>
+      </g>
+
+      <!-- Auditorium -->
+      <g class="campus-building" id="bld-aud" onclick="showBuildingInfo('aud')" style="cursor:pointer">
+        <rect x="86" y="347" width="86" height="174" rx="4" fill="#e09a3e" fill-opacity="0.15" stroke="#e09a3e" stroke-width="1.5" transform="rotate(-15 129 434)"/>
+        <text x="129" y="434" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#f5c070" transform="rotate(-15 129 434)">AUDITORIUM</text>
+      </g>
+
+      <!-- Ground -->
+      <g class="campus-building" onclick="showBuildingInfo('ground')" style="cursor:pointer">
+        <rect x="220" y="310" width="130" height="150" rx="4" fill="#5ec97f" fill-opacity="0.12" stroke="#5ec97f" stroke-width="1" transform="rotate(-15 285 385)"/>
+        <text x="285" y="385" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="sans-serif" font-weight="600" fill="#90f0a8" transform="rotate(-15 285 385)">GROUND</text>
+      </g>
+
+      <!-- Cross marker (junction area) -->
+      <rect x="366" y="304" width="90" height="110" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1" transform="rotate(-15 411 359)"/>
+      <line x1="411" y1="329" x2="411" y2="369" stroke="#2a3a55" stroke-width="5" stroke-linecap="round"/>
+      <line x1="393" y1="349" x2="429" y2="349" stroke="#2a3a55" stroke-width="5" stroke-linecap="round"/>
+
+      <!-- Nursing College -->
+      <g class="campus-building" id="bld-nursing" onclick="showBuildingInfo('nursing')" style="cursor:pointer">
+        <rect x="532" y="373" width="140" height="140" rx="4" fill="#4a9de0" fill-opacity="0.12" stroke="#4a9de0" stroke-width="1.5"/>
+        <text x="602" y="436" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#8ec8f5">NURSING</text>
+        <text x="602" y="450" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#8ec8f5">COLLEGE</text>
+      </g>
+
+      <!-- Hospital (main lower block) -->
+      <g class="campus-building" id="bld-hospital" onclick="showBuildingInfo('hospital')" style="cursor:pointer">
+        <rect x="686" y="373" width="315" height="140" rx="4" fill="#4a9de0" fill-opacity="0.18" stroke="#4a9de0" stroke-width="1.5"/>
+        <text x="843" y="443" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="sans-serif" font-weight="700" fill="#8ec8f5">HOSPITAL</text>
+      </g>
+
+      <!-- Canteen -->
+      <g class="campus-building" onclick="showBuildingInfo('canteen')" style="cursor:pointer">
+        <rect x="1050" y="438" width="114" height="45" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+        <text x="1107" y="461" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">CANTEEN</text>
+      </g>
+
+      <!-- SIM LAB -->
+      <g class="campus-building" id="bld-simlab" onclick="showBuildingInfo('simlab')" style="cursor:pointer">
+        <rect x="1050" y="500" width="116" height="70" rx="4" fill="#e05c5c" fill-opacity="0.2" stroke="#e05c5c" stroke-width="1.5"/>
+        <text x="1108" y="535" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="sans-serif" font-weight="700" fill="#f58888">SIM LAB</text>
+      </g>
+
+      <!-- Parking lower left -->
+      <g class="campus-building" onclick="showBuildingInfo('parking1')" style="cursor:pointer">
+        <rect x="200" y="519" width="154" height="90" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+        <text x="277" y="564" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">PARKING</text>
+      </g>
+
+      <!-- Silver Jubilee Hall -->
+      <g class="campus-building" id="bld-sjh" onclick="showBuildingInfo('sjh')" style="cursor:pointer">
+        <rect x="365" y="476" width="142" height="79" rx="4" fill="#e09a3e" fill-opacity="0.18" stroke="#e09a3e" stroke-width="1.5" transform="rotate(-15 436 515)"/>
+        <text x="436" y="501" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#f5c070" transform="rotate(-15 436 515)">SILVER</text>
+        <text x="436" y="515" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#f5c070" transform="rotate(-15 436 515)">JUBILEE HALL</text>
+      </g>
+
+      <!-- Parking top -->
+      <g class="campus-building" onclick="showBuildingInfo('parking2')" style="cursor:pointer">
+        <rect x="236" y="207" width="200" height="45" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+        <text x="336" y="230" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">PARKING</text>
+      </g>
+
+      <!-- 2W Parking -->
+      <g class="campus-building" onclick="showBuildingInfo('parking3')" style="cursor:pointer">
+        <rect x="883" y="538" width="140" height="55" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+        <text x="953" y="565" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#7a82a0">2W PARKING</text>
+      </g>
+
+      <!-- Hospital upper block -->
+      <g class="campus-building" id="bld-hosp2" onclick="showBuildingInfo('hospital')" style="cursor:pointer">
+        <rect x="803" y="143" width="191" height="165" rx="4" fill="#4a9de0" fill-opacity="0.18" stroke="#4a9de0" stroke-width="1.5"/>
+        <text x="898" y="226" text-anchor="middle" dominant-baseline="middle" font-size="12" font-family="sans-serif" font-weight="700" fill="#8ec8f5">HOSPITAL</text>
+      </g>
+
+      <!-- Emergency Dept -->
+      <g class="campus-building" onclick="showBuildingInfo('emergency')" style="cursor:pointer">
+        <rect x="917" y="236" width="75" height="70" rx="4" fill="#e05c5c" fill-opacity="0.15" stroke="#e05c5c" stroke-width="1.5"/>
+        <text x="955" y="264" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" font-weight="700" fill="#f58888">EMERGENCY</text>
+        <text x="955" y="278" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" font-weight="700" fill="#f58888">DEPT</text>
+      </g>
+
+      <!-- AV Hall complex -->
+      <g class="campus-building" id="bld-avhall" onclick="showBuildingInfo('avhall')" style="cursor:pointer">
+        <rect x="741" y="27" width="254" height="100" rx="4" fill="#4a9de0" fill-opacity="0.12" stroke="#4a9de0" stroke-width="1.5"/>
+        <text x="868" y="62" text-anchor="middle" dominant-baseline="middle" font-size="11" font-family="sans-serif" font-weight="600" fill="#8ec8f5">HOSPITAL COMPLEX</text>
+        <rect x="808" y="41" width="75" height="70" rx="4" fill="#4a9de0" fill-opacity="0.25" stroke="#4a9de0" stroke-width="1.5"/>
+        <text x="845" y="76" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="700" fill="#8ec8f5">AV HALL</text>
+      </g>
+
+      <!-- Museum -->
+      <g class="campus-building" onclick="showBuildingInfo('museum')" style="cursor:pointer">
+        <rect x="692" y="271" width="70" height="30" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
+        <text x="727" y="286" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" font-weight="600" fill="#7a82a0">Museum</text>
+      </g>
+
+    </svg>
+
+    <!-- Info panel (shown on click) -->
+    <div id="campus-info-panel" style="display:none;padding:14px 18px;background:var(--midnight-4);border-top:1px solid var(--gold-border)">
+      <div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px">
+        <div>
+          <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px" id="campus-info-name"></div>
+          <div style="font-size:12px;color:var(--text-muted);line-height:1.6" id="campus-info-desc"></div>
+          <div id="campus-info-workshops" style="display:flex;flex-wrap:wrap;gap:6px;margin-top:8px"></div>
+        </div>
+        <button onclick="document.getElementById('campus-info-panel').style.display='none'" style="background:none;border:none;cursor:pointer;color:var(--text-muted);font-size:18px;flex-shrink:0;padding:0;line-height:1">×</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const campusBuildingData = {
+  blockb: {
+    name: 'Block B',
+    desc: 'Main academic block housing the Dissection Hall and Anatomy Lab. Two workshop venues for EM Karnataka 2026.',
+    workshops: [
+      {label:'Workshop A — Nerve Blocks & Advanced Airway', color:'#9b7fe8', day:'Day 1'},
+      {label:'Workshop F — Virtual Anatomy', color:'#5ec97f', day:'Day 2'}
+    ]
+  },
+  hospital: {
+    name: 'Hospital',
+    desc: 'Father Muller Charitable Institution hospital complex. Houses the AV Hall and main clinical departments.',
+    workshops: [
+      {label:'Workshop B — Mechanical Ventilation (AV Hall)', color:'#3ec9c9', day:'Day 1'},
+      {label:'Workshop D — Advanced POCUS', color:'#4a9de0', day:'Day 2'}
+    ]
+  },
+  avhall: {
+    name: 'Hospital — AV Hall',
+    desc: 'Audio-Visual Hall within the hospital complex. Equipped for lectures and hands-on demonstrations.',
+    workshops: [
+      {label:'Workshop B — Mechanical Ventilation', color:'#3ec9c9', day:'Day 1'}
+    ]
+  },
+  sjh: {
+    name: 'Silver Jubilee Hall',
+    desc: 'Large multipurpose hall used for major events and conferences.',
+    workshops: [
+      {label:'Workshop C — Disaster Management', color:'#e09a3e', day:'Day 1'}
+    ]
+  },
+  simlab: {
+    name: 'SIM Lab',
+    desc: 'State-of-the-art simulation laboratory for clinical skills training.',
+    workshops: [
+      {label:'Workshop E — Maternal Resuscitation (MRP)', color:'#e05c5c', day:'Day 2'}
+    ]
+  },
+  kc: {
+    name: 'Knowledge Centre',
+    desc: 'Modern library and learning resource centre with digital facilities.',
+    workshops: []
+  },
+  nursing: {
+    name: 'Nursing College',
+    desc: 'Father Muller College of Nursing building.',
+    workshops: []
+  },
+  aud: {
+    name: 'Auditorium',
+    desc: 'Main auditorium for conferences, inaugurations, and large gatherings. Conference Days 3 & 4 venue (TBA).',
+    workshops: [
+      {label:'Days 3 & 4 — Main Conference (TBA)', color:'#d4a843', day:'Conference'}
+    ]
+  },
+  emergency: {
+    name: 'Emergency Department',
+    desc: '24-hour Emergency Department of Father Muller Medical College Hospital.',
+    workshops: []
+  },
+  blocka: { name: 'Block A', desc: 'Academic block.', workshops: [] },
+  cafe1: { name: 'Café', desc: 'Campus café near Block B.', workshops: [] },
+  cafe2: { name: 'Café', desc: 'Campus café near the main road junction.', workshops: [] },
+  ground: { name: 'Ground', desc: 'Sports and open ground area.', workshops: [] },
+  sports: { name: 'Sports Centre', desc: 'Indoor sports facilities.', workshops: [] },
+  canteen: { name: 'Canteen', desc: 'Main campus canteen near the hospital wing.', workshops: [] },
+  museum: { name: 'Museum', desc: 'Campus museum.', workshops: [] },
+  parking1: { name: 'Parking', desc: 'Car parking — lower campus.', workshops: [] },
+  parking2: { name: 'Parking', desc: 'Car parking — upper campus.', workshops: [] },
+  parking3: { name: '2-Wheeler Parking', desc: 'Two-wheeler parking near hospital.', workshops: [] }
+};
+
+function showBuildingInfo(id) {
+  const data = campusBuildingData[id];
+  if (!data) return;
+  document.getElementById('campus-info-name').textContent = data.name;
+  document.getElementById('campus-info-desc').textContent = data.desc;
+  const wEl = document.getElementById('campus-info-workshops');
+  wEl.innerHTML = '';
+  data.workshops.forEach(w => {
+    const badge = document.createElement('span');
+    badge.style.cssText = `display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:2px 9px;border-radius:100px;background:${w.color}22;color:${w.color};border:1px solid ${w.color}55`;
+    badge.innerHTML = `<span style="font-size:9px;opacity:0.7">${w.day}</span> ${w.label}`;
+    wEl.appendChild(badge);
+  });
+  document.getElementById('campus-info-panel').style.display = 'block';
+}
+</script>
     <h2 class="section-title">How to Reach</h2>
     <p class="section-sub">Mangaluru is well connected by air, rail, and road</p>
     <div class="reach-2col">
