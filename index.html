@@ -29,6 +29,26 @@
 --gold2:#f0c96e;
 --gold-dim:rgba(212,168,67,0.15);
   }
+  :root[data-theme="light"] {
+  --midnight: #F5F3EC;
+  --midnight-2: #FFFFFF;
+  --midnight-3: #FAF8F3;
+  --midnight-4: #F0EDE4;
+  --midnight-5: #E8E4D8;
+  --text: #1A1710;
+  --text-muted: #6B6550;
+  --text-dim: rgba(26,23,16,0.5);
+  --border: rgba(26,23,16,0.12);
+  --border-subtle: rgba(26,23,16,0.07);
+  --gold: #C4860A;
+  --gold-mid: #D4960E;
+  --gold-light: #FEF3DC;
+  --gold-border: rgba(196,134,10,0.25);
+  --gold-glow: rgba(196,134,10,0.09);
+  --bg: #F5F3EC;
+  --card: #FFFFFF;
+  --card2: #FAF8F3;
+}
 body{font-family:'Outfit',system-ui,sans-serif;background:var(--midnight);color:var(--text);font-size:15px;line-height:1.65;overflow-x:hidden;}
 ::-webkit-scrollbar{width:5px}::-webkit-scrollbar-track{background:var(--midnight-2)}::-webkit-scrollbar-thumb{background:var(--gold-dark);border-radius:3px}
 
@@ -469,6 +489,13 @@ footer strong{color:var(--gold)}
     </div>
      <button id="ham-btn" onclick="toggleDrawer()" aria-label="Menu">
   <i class="ti ti-menu-2"></i>
+</button>
+    <button id="theme-toggle" onclick="toggleTheme()" 
+  style="background:none;border:1px solid var(--gold-border);border-radius:6px;
+         padding:6px 12px;cursor:pointer;font-size:12px;color:var(--gold);
+         font-family:inherit;display:flex;align-items:center;gap:6px;transition:all 0.15s">
+  <i class="ti ti-sun" id="theme-icon"></i>
+  <span id="theme-label">Light</span>
 </button>
     <button class="nav-cta-btn" onclick="showPage('register')">
       <i class="ti ti-user-plus" style="font-size:15px"></i> Register Now
@@ -2125,6 +2152,24 @@ function drawerGo(page){
   toggleDrawer();
   showPage(page);
 }
+  function applyTheme(t) {
+  document.documentElement.setAttribute('data-theme', t);
+  document.getElementById('theme-icon').className = t === 'light' ? 'ti ti-moon' : 'ti ti-sun';
+  document.getElementById('theme-label').textContent = t === 'light' ? 'Dark' : 'Light';
+   applyMapTheme(dark ? DARK : LIGHT);
+   localStorage.setItem('emka_theme', dark ? 'dark' : 'light');
+}
+
+function toggleTheme() {
+  const current = document.documentElement.getAttribute('data-theme') || 'dark';
+  applyTheme(current === 'dark' ? 'light' : 'dark');
+}
+
+// On load — restore saved preference
+(function() {
+  const saved = localStorage.getItem('emka_theme') || 'dark';
+  applyTheme(saved === 'dark');
+})();
   
 </script>
   
