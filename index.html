@@ -77,8 +77,7 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
 .hi-dot{width:6px;height:6px;border-radius:50%;background:rgba(212,160,23,0.3);border:none;cursor:pointer;padding:0;transition:all 0.2s}
 .hi-dot.active{background:var(--gold);width:18px;border-radius:3px}
 
-#ham-btn{display:none;background:none;border:none;cursor:pointer;color:var(--text);font-size:26px;padding:4px;line-height:1}
-#drawer{position:fixed;top:0;right:-280px;width:280px;height:100vh;background:var(--midnight-2);z-index:300;border-left:1px solid var(--gold-border);transition:right 0.3s ease;padding-top:0;overflow-y:auto;}
+#ham-btn{display:none;background:var(--midnight-4);border:1.5px solid var(--gold-border);cursor:pointer;color:var(--gold);font-size:20px;padding:0;line-height:1;width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;}#drawer{position:fixed;top:0;right:-280px;width:280px;height:100vh;background:var(--midnight-2);z-index:300;border-left:1px solid var(--gold-border);transition:right 0.3s ease;padding-top:0;overflow-y:auto;}
 #drawer.open{right:0}
 #drawer-backdrop{display:none;position:fixed;inset:0;z-index:299;background:rgba(0,0,0,0.6)}
 #drawer-backdrop.open{display:block}
@@ -349,8 +348,8 @@ footer strong{color:var(--gold)}
   .logo{gap:8px}
   .nav-links{display:none}
   .nav-cta-btn{display:none}
-  #ham-btn{display:flex;align-items:center;justify-content:center;width:36px;height:36px;padding:0;font-size:20px;}
-
+#ham-btn{display:flex;width:36px;height:36px;font-size:18px;}
+  
   /* Fix all 2-column grids to stack */
   .comp-grid{grid-template-columns:1fr !important}
   .theme-split{grid-template-columns:1fr !important;display:flex !important;flex-direction:column !important;}
