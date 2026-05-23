@@ -1907,7 +1907,14 @@ footer strong{color:var(--gold)}
       </div>
     </div>
 
-   <script>
+  <script>
+let originalMapHTML = null;
+
+window.addEventListener('load', () => {
+  const map = document.getElementById('campus-map');
+  if (map) originalMapHTML = map.innerHTML;
+});
+
 const campusBuildingData = {
   blockb: {
     name: 'Block B',
@@ -1970,55 +1977,46 @@ const campusBuildingData = {
     workshops: [],
     route: null
   },
-  kc: { name:'Knowledge Centre', color:'#5ec97f', desc:'Modern library and learning resource centre with digital facilities.', workshops:[], route:null },
-  nursing: { name:'Nursing College', color:'#4a9de0', desc:'Father Muller College of Nursing building.', workshops:[], route:null },
-  blocka: { name:'Block A', color:'#6b7490', desc:'Academic block.', workshops:[], route:null },
-  cafe1: { name:'Café', color:'#b8996a', desc:'Campus café near Block B. Refreshments available during conference breaks.', workshops:[], route:null },
-  cafe2: { name:'Café — Junction', color:'#b8996a', desc:'Campus café near the main road junction. Refreshments available during conference breaks.', workshops:[], route:null },
-  ground: { name:'Ground', color:'#5ec97f', desc:'Sports and open ground area.', workshops:[], route:null },
-  sports: { name:'Sports Centre', color:'#6b7490', desc:'Indoor sports facilities.', workshops:[], route:null },
-  canteen: { name:'Canteen', color:'#b8996a', desc:'Main campus canteen near the hospital wing. Meals and snacks available.', workshops:[], route:null },
-  museum: { name:'Museum', color:'#6b7490', desc:'Campus museum.', workshops:[], route:null },
+  kc:       { name:'Knowledge Centre',       color:'#5ec97f', desc:'Modern library and learning resource centre with digital facilities.', workshops:[], route:null },
+  nursing:  { name:'Nursing College',        color:'#4a9de0', desc:'Father Muller College of Nursing building.', workshops:[], route:null },
+  blocka:   { name:'Block A',                color:'#6b7490', desc:'Academic block.', workshops:[], route:null },
+  cafe1:    { name:'Café',                   color:'#b8996a', desc:'Campus café near Block B. Refreshments available during conference breaks.', workshops:[], route:null },
+  cafe2:    { name:'Café — Junction',        color:'#b8996a', desc:'Campus café near the main road junction. Refreshments available during conference breaks.', workshops:[], route:null },
+  ground:   { name:'Ground',                 color:'#5ec97f', desc:'Sports and open ground area.', workshops:[], route:null },
+  sports:   { name:'Sports Centre',          color:'#6b7490', desc:'Indoor sports facilities.', workshops:[], route:null },
+  canteen:  { name:'Canteen',                color:'#b8996a', desc:'Main campus canteen near the hospital wing. Meals and snacks available.', workshops:[], route:null },
+  museum:   { name:'Museum',                 color:'#6b7490', desc:'Campus museum.', workshops:[], route:null },
   parking1: { name:'Parking — Lower Campus', color:'#6b7490', desc:'Car parking at lower campus. Click to see walking routes to all workshops from here.', workshops:[], route:null },
   parking2: { name:'Parking — Upper Campus', color:'#6b7490', desc:'Car parking near upper academic blocks. Click to see walking routes from here.', workshops:[], route:null },
-  parking3: { name:'2-Wheeler Parking', color:'#6b7490', desc:'Two-wheeler parking near the hospital wing. Click to see walking routes from here.', workshops:[], route:null }
+  parking3: { name:'2-Wheeler Parking',      color:'#6b7490', desc:'Two-wheeler parking near the hospital wing. Click to see walking routes from here.', workshops:[], route:null }
 };
 
 function showBuildingInfo(id) {
   const data = campusBuildingData[id];
   if (!data) return;
 
-  document.querySelectorAll('.campus-building rect, .campus-building text, .campus-building line, .campus-building circle, .campus-building path').forEach(el => el.style.opacity = '0.3');
+  // Dim all buildings at group level
+  document.querySelectorAll('.campus-building').forEach(b => {
+    b.style.opacity = '0.25';
+  });
+
+  // Highlight selected building
   const target = document.getElementById('bld-' + id);
   if (target) {
-    target.querySelectorAll('rect, text, line, circle, path').forEach(el => el.style.opacity = '1');
-    const existing = document.getElementById('campus-pulse');
-    if (existing) existing.remove();
-    const firstRect = target.querySelector('rect');
-    if (firstRect) {
-      const pulse = firstRect.cloneNode(false);
-      pulse.id = 'campus-pulse';
-      pulse.style.fill = 'none';
-      pulse.setAttribute('stroke', data.color);
-      pulse.setAttribute('stroke-width', '4');
-      pulse.setAttribute('opacity', '0.7');
-      pulse.innerHTML = '<animate attributeName="stroke-width" values="3;8;3" dur="1.5s" repeatCount="3"/><animate attributeName="opacity" values="0.7;0;0.7" dur="1.5s" repeatCount="3"/>';
-      firstRect.parentNode.insertBefore(pulse, firstRect.nextSibling);
-    }
+    target.style.opacity = '1';
   }
 
+  // Info panel
   document.getElementById('campus-info-name').textContent = data.name;
   document.getElementById('campus-info-desc').textContent = data.desc;
   const wEl = document.getElementById('campus-info-workshops');
   wEl.innerHTML = '';
-  if (data.workshops.length > 0) {
-    data.workshops.forEach(w => {
-      const badge = document.createElement('span');
-      badge.style.cssText = `display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:${w.color}22;color:${w.color};border:1px solid ${w.color}55`;
-      badge.innerHTML = `<span style="font-size:9px;opacity:0.7;font-weight:400">${w.day}</span> ${w.label}`;
-      wEl.appendChild(badge);
-    });
-  }
+  data.workshops.forEach(w => {
+    const badge = document.createElement('span');
+    badge.style.cssText = `display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:${w.color}22;color:${w.color};border:1px solid ${w.color}55`;
+    badge.innerHTML = `<span style="font-size:9px;opacity:0.7;font-weight:400">${w.day}</span> ${w.label}`;
+    wEl.appendChild(badge);
+  });
   document.getElementById('campus-info-panel').style.display = 'block';
 
   if (data.route) showRoutes(data.route);
@@ -2028,25 +2026,14 @@ function showBuildingInfo(id) {
 function closeCampusPanel() {
   document.getElementById('campus-info-panel').style.display = 'none';
 
-  ['campus-route-layer','campus-pulse-group','campus-pin-group','campus-banner'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.remove();
-  });
+  // Restore SVG to exactly how it was on page load
+  const map = document.getElementById('campus-map');
+  if (map && originalMapHTML) map.innerHTML = originalMapHTML;
 
-  const pulse = document.getElementById('campus-pulse');
-  if (pulse) pulse.remove();
-
-  // Strip ALL inline styles — reverts every element back to its SVG attributes (the true default)
-  document.querySelectorAll('.campus-building').forEach(b => {
-    b.removeAttribute('style');
-    b.querySelectorAll('rect, text, line, circle, path').forEach(el => {
-      el.removeAttribute('style');
-    });
-  });
-
-  document.querySelectorAll('.footpath').forEach(el => el.classList.remove('show'));
+  clearRoutes();
   currentRoute = null;
 }
+
 function showRoutes(workshopClass) {
   clearRoutes();
   document.querySelectorAll('.footpath.' + workshopClass).forEach(el => el.classList.add('show'));
@@ -2060,7 +2047,6 @@ function clearRoutes() {
 
 let currentRoute = null;
 
-// Parking areas: show all routes departing from that lot
 const parkingRouteMap = {
   parking1: ['ws-sjh', 'ws-blockb'],
   parking2: ['ws-blockb'],
@@ -2068,11 +2054,11 @@ const parkingRouteMap = {
 };
 
 const routeLabels = {
-  'ws-blockb':  { label:'Block B (WS A & F)',           color:'#9b7fe8' },
-  'ws-sjh':     { label:'Silver Jubilee Hall (WS C)',    color:'#e09a3e' },
-  'ws-simlab':  { label:'SIM Lab (WS E)',                color:'#e05c5c' },
-  'ws-hospital':{ label:'Hospital / AV Hall (WS B & D)', color:'#4a9de0' },
-  'ws-avhall':  { label:'AV Hall (WS B)',                color:'#3ec9c9' }
+  'ws-blockb':   { label:'Block B (WS A & F)',           color:'#9b7fe8' },
+  'ws-sjh':      { label:'Silver Jubilee Hall (WS C)',    color:'#e09a3e' },
+  'ws-simlab':   { label:'SIM Lab (WS E)',                color:'#e05c5c' },
+  'ws-hospital': { label:'Hospital / AV Hall (WS B & D)', color:'#4a9de0' },
+  'ws-avhall':   { label:'AV Hall (WS B)',                color:'#3ec9c9' }
 };
 
 function showParkingRoutes(parkingId) {
@@ -2082,10 +2068,12 @@ function showParkingRoutes(parkingId) {
     document.querySelectorAll('.footpath.' + cls).forEach(el => el.classList.add('show'));
   });
 
-  // Dim all buildings, highlight the parking area
-  document.querySelectorAll('.campus-building rect, .campus-building text, .campus-building line, .campus-building circle, .campus-building path').forEach(el => el.style.opacity = '0.3');
+  // Dim all, highlight parking
+  document.querySelectorAll('.campus-building').forEach(b => {
+    b.style.opacity = '0.25';
+  });
   const target = document.getElementById('bld-' + parkingId);
-  if (target) target.querySelectorAll('rect, text, line, circle, path').forEach(el => el.style.opacity = '1');
+  if (target) target.style.opacity = '1';
 
   const d = campusBuildingData[parkingId];
   document.getElementById('campus-info-name').textContent = d ? d.name : 'Parking';
@@ -2094,7 +2082,6 @@ function showParkingRoutes(parkingId) {
   const wEl = document.getElementById('campus-info-workshops');
   wEl.innerHTML = '';
 
-  // Route badges
   classes.forEach(cls => {
     const info = routeLabels[cls];
     if (!info) return;
@@ -2109,10 +2096,9 @@ function showParkingRoutes(parkingId) {
     wEl.appendChild(badge);
   });
 
-  // Clear button
   const clearBtn = document.createElement('span');
   clearBtn.style.cssText = 'display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(255,255,255,0.05);color:var(--text-muted);border:1px solid rgba(255,255,255,0.1);cursor:pointer;margin-left:4px;';
-  clearBtn.textContent = '✕ Clear routes';
+  clearBtn.textContent = '✕ Clear';
   clearBtn.onclick = closeCampusPanel;
   wEl.appendChild(clearBtn);
 
@@ -2120,15 +2106,12 @@ function showParkingRoutes(parkingId) {
   currentRoute = parkingId;
 }
 
-// Called from schedule page workshop buttons
 function navigateToVenue(buildingId, workshopLabel, venueName, color) {
   showPage('venue');
   setTimeout(() => {
     const wrap = document.getElementById('campus-map-wrap');
     if (wrap) wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    setTimeout(() => {
-      showBuildingInfo(buildingId);
-    }, 400);
+    setTimeout(() => showBuildingInfo(buildingId), 400);
   }, 80);
 }
 </script>
