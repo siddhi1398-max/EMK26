@@ -440,6 +440,12 @@ footer strong{color:var(--gold)}
 .venue-leg-dot{width:10px;height:10px;border-radius:2px;flex-shrink:0}
 .venue-leg-item strong{color:var(--text);font-weight:600}
 
+@keyframes walk { to { stroke-dashoffset: -32; } }
+.footpath { stroke-dasharray: 6 10; animation: walk 1.4s linear infinite; opacity: 0; transition: opacity .5s; }
+.footpath.show { opacity: 1; }
+#route-btn { cursor:pointer; background:var(--midnight-4); border:1px solid var(--gold-border); border-radius:6px; padding:6px 14px; font-size:12px; color:var(--text); display:inline-flex; align-items:center; gap:6px; }
+#route-btn:hover { background:var(--midnight-3); }
+  
 /* ── UPDATED TAG COLORS ── */
 .stag-ws{background:rgba(155,127,232,0.18);color:var(--violet);border:1px solid rgba(155,127,232,0.3)}
 .stag-kn{background:rgba(212,160,23,0.15);color:var(--gold);border:1px solid rgba(212,160,23,0.3)}
@@ -673,19 +679,19 @@ footer strong{color:var(--gold)}
             <div class="parallel-label">3 Simultaneous Workshops — Morning Session</div>
             <div class="parallel-grid">
 
-              <div class="ws-card-sched">
-                <div class="ws-card-sched-header">
-                  <div>
-                    <span class="stag stag-ws">Workshop A</span>
-                    <div class="ws-card-sched-title">Peripheral Nerve Blocks &amp; Advanced Airway</div>
-                    <div class="ws-card-sched-sub">Hands-on · Regional Anaesthesia + Airway Management</div>
-                  </div>
-                  <button class="venue-toggle" onclick="navigateToVenue('blockb','Workshop A — Nerve Blocks &amp; Advanced Airway','Block B, Dissection Hall','#9b7fe8')">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-                    View on Map
-                  </button>
-                </div>
-              </div>
+             <div class="ws-card-sched">
+  <div class="ws-card-sched-header">
+    <div>
+      <span class="stag stag-ws">Workshop A</span>
+      <div class="ws-card-sched-title">Peripheral Nerve Blocks &amp; Advanced Airway</div>
+      <div class="ws-card-sched-sub">Hands-on · Regional Anaesthesia + Airway Management</div>
+    </div>
+    <button class="venue-toggle" onclick="navigateToVenue('blockb','Workshop A — Nerve Blocks &amp; Advanced Airway','Block B, Dissection Hall','#9b7fe8'); setTimeout(()=>showRoutes('ws-blockb'), 300)">
+      <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+      View on Map
+    </button>
+  </div>
+</div>
 
               <div class="ws-card-sched">
                 <div class="ws-card-sched-header">
@@ -694,10 +700,10 @@ footer strong{color:var(--gold)}
                     <div class="ws-card-sched-title">Mechanical Ventilation</div>
                     <div class="ws-card-sched-sub">Hands-on · Ventilator setup, modes &amp; troubleshooting</div>
                   </div>
-                  <button class="venue-toggle" onclick="navigateToVenue('avhall','Workshop B — Mechanical Ventilation','Hospital, AV Hall','#3ec9c9')">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-                    View on Map
-                  </button>
+                  <button class="venue-toggle" onclick="navigateToVenue('avhall','Workshop B — Mechanical Ventilation','AV Hall, Hospital Complex','#3ec9c9'); setTimeout(()=>showRoutes('ws-avhall'), 300)">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+  View on Map
+</button>
                 </div>
               </div>
 
@@ -708,10 +714,10 @@ footer strong{color:var(--gold)}
                     <div class="ws-card-sched-title">Disaster Management</div>
                     <div class="ws-card-sched-sub">Table-top + practical · Mass casualty &amp; climate scenarios</div>
                   </div>
-                  <button class="venue-toggle" onclick="navigateToVenue('sjh','Workshop C — Disaster Management','Silver Jubilee Hall','#e09a3e')">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-                    View on Map
-                  </button>
+                  <button class="venue-toggle" onclick="navigateToVenue('sjh','Workshop C — Disaster Management','Silver Jubilee Hall','#e09a3e'); setTimeout(()=>showRoutes('ws-sjh'), 300)">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+  View on Map
+</button>
                 </div>
               </div>
 
@@ -801,10 +807,10 @@ footer strong{color:var(--gold)}
                     <div class="ws-card-sched-title">Advanced POCUS</div>
                     <div class="ws-card-sched-sub">Point-of-care Ultrasound · Extended FAST, cardiac, lung, haemodynamic</div>
                   </div>
-            <button class="venue-toggle" onclick="navigateToVenue('avhall','Workshop D — Advanced POCUS','Hospital — AV Hall','#4a9de0')">
-          <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-           View on Map
-           </button>
+            <button class="venue-toggle" onclick="navigateToVenue('hospital','Workshop D — Advanced POCUS','Hospital Complex','#4a9de0'); setTimeout(()=>showRoutes('ws-hospital'), 300)">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+  View on Map
+</button>
                 </div>
               </div>
 
@@ -815,10 +821,10 @@ footer strong{color:var(--gold)}
                     <div class="ws-card-sched-title">Maternal Resuscitation Program (MRP)</div>
                     <div class="ws-card-sched-sub">Simulation-based · Obstetric emergencies &amp; team resuscitation</div>
                   </div>
-                  <button class="venue-toggle" onclick="navigateToVenue('simlab','Workshop E — Maternal Resuscitation','SIM Lab','#e05c5c')">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-                    View on Map
-                  </button>
+                  <button class="venue-toggle" onclick="navigateToVenue('simlab','Workshop E — Maternal Resuscitation Program','SIM Lab','#e05c5c'); setTimeout(()=>showRoutes('ws-simlab'), 300)">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+  View on Map
+</button>
                 </div>
               </div>
 
@@ -829,10 +835,10 @@ footer strong{color:var(--gold)}
                     <div class="ws-card-sched-title">Virtual Anatomy</div>
                     <div class="ws-card-sched-sub">Technology-assisted · Immersive 3D anatomy exploration</div>
                   </div>
-                  <button class="venue-toggle" onclick="navigateToVenue('blockb','Workshop F — Virtual Anatomy','Block B, Anatomy Lab','#5ec97f')">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
-                    View on Map
-                  </button>
+<button class="venue-toggle" onclick="navigateToVenue('blockb','Workshop F — Virtual Anatomy','Block B, Anatomy Lab','#5ec97f'); setTimeout(()=>showRoutes('ws-blockb'), 300)">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+  View on Map
+</button>
                 </div>
               </div>
 
@@ -916,6 +922,10 @@ footer strong{color:var(--gold)}
               <span class="stag stag-br">Registration</span>
               <div class="tl-card-title">Conference Registration &amp; Morning Tea</div>
               <div class="tl-card-sub">Badge collection · Exhibition open · <strong style="color:var(--gold)">Main Auditorium foyer</strong></div>
+            <button class="venue-toggle" onclick="navigateToVenue('aud','Main Conference','Auditorium','#e09a3e')">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+  View on Map
+</button>
             </div>
           </div>
         </div>
@@ -962,6 +972,10 @@ footer strong{color:var(--gold)}
             <div class="tl-card">
               <span class="stag stag-se">Papers</span>
               <div class="tl-card-title">Paper Presentations — Session 1</div>
+            <button class="venue-toggle" onclick="navigateToVenue('aud','Main Conference','Auditorium','#e09a3e')">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+  View on Map
+</button>
             </div>
           </div>
         </div>
@@ -984,6 +998,10 @@ footer strong{color:var(--gold)}
             <div class="tl-card">
               <span class="stag stag-se">Papers</span>
               <div class="tl-card-title">Paper Presentations — Session 2</div>
+           <button class="venue-toggle" onclick="navigateToVenue('aud','Main Conference','Auditorium','#e09a3e')">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+  View on Map
+</button>
             </div>
           </div>
         </div>
@@ -1042,6 +1060,10 @@ footer strong{color:var(--gold)}
               <span class="stag stag-se">CPC</span>
               <div class="tl-card-title">CPC Competition</div>
               <div class="tl-card-sub">Clinical problem case presentations · Main Auditorium</div>
+           <button class="venue-toggle" onclick="navigateToVenue('aud','Main Conference','Auditorium','#e09a3e')">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+  View on Map
+</button>
             </div>
           </div>
         </div>
@@ -1065,6 +1087,10 @@ footer strong{color:var(--gold)}
               <span class="stag stag-ws">Quiz</span>
               <div class="tl-card-title">Emergency Medicine Quiz Finals</div>
               <div class="tl-card-sub">Main Auditorium</div>
+            <button class="venue-toggle" onclick="navigateToVenue('aud','Main Conference','Auditorium','#e09a3e')">
+  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="venue-pin-icon"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"/><circle cx="12" cy="10" r="3"/></svg>
+  View on Map
+</button>
             </div>
           </div>
         </div>
@@ -1666,6 +1692,41 @@ footer strong{color:var(--gold)}
   <path d="M 1021.2 321.2 L 1019.5 156.3" stroke="#1e2a40" stroke-width="31" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
   <path d="M 1021.2 321.2 L 1019.5 156.3" stroke="#243050" stroke-width="25" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
 
+  <!-- ── WALKING ROUTES ── -->
+<!-- Back gate → Block B (WS A, WS F) -->
+<path class="footpath ws-blockb" d="M 30 337 L 161 278 L 229 175 L 287 147" stroke="#66ccaa" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+<!-- Upper parking → Block B (WS A, WS F) -->
+<path class="footpath ws-blockb" d="M 336 207 L 350 175 L 287 147" stroke="#66ccaa" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+<!-- Back gate → AV Hall (WS B) -->
+<path class="footpath ws-avhall" d="M 30 337 L 161 278 L 229 175 L 580 175 L 621 248 L 784 249 L 845 127" stroke="#3ec9c9" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+<!-- Back gate → Silver Jubilee Hall (WS C) -->
+<path class="footpath ws-sjh" d="M 30 337 L 161 278 L 229 175 L 470 272 L 495 337 L 495 427 L 436 515" stroke="#e09a3e" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+<!-- Lower parking → Silver Jubilee Hall (WS C) -->
+<path class="footpath ws-sjh" d="M 277 564 L 267 489 L 436 515" stroke="#e09a3e" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+<!-- 2W parking → Hospital upper (WS D, WS B) -->
+<path class="footpath ws-hospital" d="M 953 565 L 953 520 L 1023 516 L 1023 340 L 900 340 L 900 225" stroke="#4a9de0" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+<!-- Back gate → Hospital upper (WS D, WS B) -->
+<path class="footpath ws-hospital" d="M 30 337 L 161 278 L 229 175 L 580 175 L 621 248 L 784 249 L 785 225 L 900 225" stroke="#4a9de0" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+<!-- Back gate → SIM Lab (WS E) -->
+<path class="footpath ws-simlab" d="M 1147 337 L 1023 340 L 1023 516 L 1107 516" stroke="#e05c5c" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+<!-- 2W parking → SIM Lab (WS E) -->
+<path class="footpath ws-simlab" d="M 953 565 L 953 520 L 1023 516 L 1107 516" stroke="#e05c5c" stroke-width="3" fill="none" stroke-linecap="round"/>
+
+<!-- Destination markers -->
+<circle id="dest-blockb" class="footpath ws-blockb" cx="287" cy="86" r="10" fill="#66ccaa" fill-opacity="0.35" stroke="#66ccaa" stroke-width="3"/>
+<circle id="dest-avhall" class="footpath ws-avhall" cx="845" cy="77" r="10" fill="#3ec9c9" fill-opacity="0.35" stroke="#3ec9c9" stroke-width="3"/>
+<circle id="dest-sjh" class="footpath ws-sjh" cx="436" cy="515" r="10" fill="#e09a3e" fill-opacity="0.35" stroke="#e09a3e" stroke-width="3"/>
+<circle id="dest-hospital" class="footpath ws-hospital" cx="900" cy="215" r="10" fill="#4a9de0" fill-opacity="0.35" stroke="#4a9de0" stroke-width="3"/>
+<circle id="dest-simlab" class="footpath ws-simlab" cx="1107" cy="516" r="10" fill="#e05c5c" fill-opacity="0.35" stroke="#e05c5c" stroke-width="3"/>
+   
   <!-- ── ROAD JUNCTIONS ── -->
   <circle cx="161.4" cy="278.1" r="28" fill="#1e2a40" stroke="#d4a843" stroke-width="2"/>
   <circle cx="1022.2" cy="340.1" r="28" fill="#1e2a40" stroke="#d4a843" stroke-width="2"/>
@@ -1842,7 +1903,8 @@ const campusBuildingData = {
     workshops: [
       {label:'Workshop A — Peripheral Nerve Blocks & Advanced Airway', color:'#9b7fe8', day:'Day 1'},
       {label:'Workshop F — Virtual Anatomy', color:'#5ec97f', day:'Day 2'}
-    ]
+    ],
+    route: 'ws-blockb'
   },
   hospital: {
     name: 'Hospital',
@@ -1851,7 +1913,8 @@ const campusBuildingData = {
     workshops: [
       {label:'Workshop B — Mechanical Ventilation (AV Hall)', color:'#3ec9c9', day:'Day 1'},
       {label:'Workshop D — Advanced POCUS', color:'#4a9de0', day:'Day 2'}
-    ]
+    ],
+    route: 'ws-hospital'
   },
   avhall: {
     name: 'Hospital Complex — AV Hall',
@@ -1859,7 +1922,8 @@ const campusBuildingData = {
     desc: 'Audio-Visual Hall within the hospital complex. Equipped for lectures and hands-on demonstrations.',
     workshops: [
       {label:'Workshop B — Mechanical Ventilation', color:'#3ec9c9', day:'Day 1'}
-    ]
+    ],
+    route: 'ws-avhall'
   },
   sjh: {
     name: 'Silver Jubilee Hall',
@@ -1867,7 +1931,8 @@ const campusBuildingData = {
     desc: 'Large multipurpose hall used for major events and conferences.',
     workshops: [
       {label:'Workshop C — Disaster Management', color:'#e09a3e', day:'Day 1'}
-    ]
+    ],
+    route: 'ws-sjh'
   },
   simlab: {
     name: 'SIM Lab',
@@ -1875,43 +1940,35 @@ const campusBuildingData = {
     desc: 'State-of-the-art simulation laboratory for clinical skills training.',
     workshops: [
       {label:'Workshop E — Maternal Resuscitation Program (MRP)', color:'#e05c5c', day:'Day 2'}
-    ]
+    ],
+    route: 'ws-simlab'
   },
-  aud: {
-    name: 'Auditorium',
-    color: '#e09a3e',
-    desc: 'Main auditorium for conferences, inaugurations, and large gatherings.',
-    workshops: [
-      {label:'Days 3 & 4 — Main Conference Venue (TBA)', color:'#d4a843', day:'Conference'}
-    ]
-  },
-  kc: { name: 'Knowledge Centre', color: '#5ec97f', desc: 'Modern library and learning resource centre with digital facilities.', workshops: [] },
-  nursing: { name: 'Nursing College', color: '#4a9de0', desc: 'Father Muller College of Nursing building.', workshops: [] },
-  emergency: { name: 'Emergency Department', color: '#e05c5c', desc: '24-hour Emergency Department of Father Muller Medical College Hospital.', workshops: [] },
-  blocka: { name: 'Block A', color: '#6b7490', desc: 'Academic block.', workshops: [] },
-  cafe1: { name: 'Café', color: '#6b7490', desc: 'Campus café near Block B.', workshops: [] },
-  cafe2: { name: 'Café', color: '#6b7490', desc: 'Campus café near the main road junction.', workshops: [] },
-  ground: { name: 'Ground', color: '#5ec97f', desc: 'Sports and open ground area.', workshops: [] },
-  sports: { name: 'Sports Centre', color: '#6b7490', desc: 'Indoor sports facilities.', workshops: [] },
-  canteen: { name: 'Canteen', color: '#6b7490', desc: 'Main campus canteen near the hospital wing.', workshops: [] },
-  museum: { name: 'Museum', color: '#6b7490', desc: 'Campus museum.', workshops: [] },
-  parking1: { name: 'Parking', color: '#6b7490', desc: 'Car parking — lower campus.', workshops: [] },
-  parking2: { name: 'Parking', color: '#6b7490', desc: 'Car parking — upper campus.', workshops: [] },
-  parking3: { name: '2-Wheeler Parking', color: '#6b7490', desc: 'Two-wheeler parking near hospital.', workshops: [] }
+  aud: { name:'Auditorium', color:'#e09a3e', desc:'Main auditorium for conferences, inaugurations, and large gatherings.', workshops:[{label:'Days 3 & 4 — Main Conference Venue (TBA)', color:'#d4a843', day:'Conference'}], route:null },
+  kc: { name:'Knowledge Centre', color:'#5ec97f', desc:'Modern library and learning resource centre with digital facilities.', workshops:[], route:null },
+  nursing: { name:'Nursing College', color:'#4a9de0', desc:'Father Muller College of Nursing building.', workshops:[], route:null },
+  emergency: { name:'Emergency Department', color:'#e05c5c', desc:'24-hour Emergency Department of Father Muller Medical College Hospital.', workshops:[], route:null },
+  blocka: { name:'Block A', color:'#6b7490', desc:'Academic block.', workshops:[], route:null },
+  cafe1: { name:'Café', color:'#6b7490', desc:'Campus café near Block B.', workshops:[], route:null },
+  cafe2: { name:'Café', color:'#6b7490', desc:'Campus café near the main road junction.', workshops:[], route:null },
+  ground: { name:'Ground', color:'#5ec97f', desc:'Sports and open ground area.', workshops:[], route:null },
+  sports: { name:'Sports Centre', color:'#6b7490', desc:'Indoor sports facilities.', workshops:[], route:null },
+  canteen: { name:'Canteen', color:'#6b7490', desc:'Main campus canteen near the hospital wing.', workshops:[], route:null },
+  museum: { name:'Museum', color:'#6b7490', desc:'Campus museum.', workshops:[], route:null },
+  parking1: { name:'Parking', color:'#6b7490', desc:'Car parking — lower campus.', workshops:[], route:null },
+  parking2: { name:'Parking', color:'#6b7490', desc:'Car parking — upper campus.', workshops:[], route:null },
+  parking3: { name:'2-Wheeler Parking', color:'#6b7490', desc:'Two-wheeler parking near hospital.', workshops:[], route:null }
 };
 
+// Called when a building is clicked on the map
 function showBuildingInfo(id) {
   const data = campusBuildingData[id];
   if (!data) return;
 
-  // Dim all buildings, highlight selected
-  document.querySelectorAll('.campus-building rect, .campus-building text').forEach(el => {
-    el.style.opacity = '0.35';
-  });
+  // Dim all, highlight selected
+  document.querySelectorAll('.campus-building rect, .campus-building text').forEach(el => el.style.opacity = '0.35');
   const target = document.getElementById('bld-' + id);
   if (target) {
-    target.querySelectorAll('rect, text').forEach(el => { el.style.opacity = '1'; });
-    // Pulse ring
+    target.querySelectorAll('rect, text').forEach(el => el.style.opacity = '1');
     const existing = document.getElementById('campus-pulse');
     if (existing) existing.remove();
     const firstRect = target.querySelector('rect');
@@ -1930,7 +1987,7 @@ function showBuildingInfo(id) {
   document.getElementById('campus-info-name').textContent = data.name;
   document.getElementById('campus-info-desc').textContent = data.desc;
   const wEl = document.getElementById('campus-info-workshops');
- wEl.innerHTML = '';
+  wEl.innerHTML = '';
   if (data.workshops.length > 0) {
     data.workshops.forEach(w => {
       const badge = document.createElement('span');
@@ -1940,17 +1997,50 @@ function showBuildingInfo(id) {
     });
   }
   document.getElementById('campus-info-panel').style.display = 'block';
+
+  // Auto-show relevant route if building has one
+  if (data.route) showRoutes(data.route);
+  else clearRoutes();
 }
 
 function closeCampusPanel() {
   document.getElementById('campus-info-panel').style.display = 'none';
-  // Restore all buildings
-  document.querySelectorAll('.campus-building rect, .campus-building text').forEach(el => {
-    el.style.opacity = '';
-  });
+  document.querySelectorAll('.campus-building rect, .campus-building text').forEach(el => el.style.opacity = '');
   const pulse = document.getElementById('campus-pulse');
   if (pulse) pulse.remove();
+  clearRoutes();
 }
+
+// Show routes for a specific workshop class, e.g. 'ws-blockb'
+// Call this from your schedule page: showRoutes('ws-simlab')
+function showRoutes(workshopClass) {
+  clearRoutes();
+  document.querySelectorAll('.footpath.' + workshopClass).forEach(el => el.classList.add('show'));
+  const btn = document.getElementById('route-btn');
+  if (btn) btn.textContent = '✕ Hide route';
+  currentRoute = workshopClass;
+}
+
+// Show ALL routes (toggle button)
+function toggleAllRoutes() {
+  const allPaths = document.querySelectorAll('.footpath');
+  const anyShown = [...allPaths].some(p => p.classList.contains('show'));
+  if (anyShown) {
+    clearRoutes();
+  } else {
+    allPaths.forEach(p => p.classList.add('show'));
+    document.getElementById('route-btn').textContent = '✕ Hide routes';
+  }
+}
+
+function clearRoutes() {
+  document.querySelectorAll('.footpath').forEach(el => el.classList.remove('show'));
+  const btn = document.getElementById('route-btn');
+  if (btn) btn.textContent = '👣 Show walking routes';
+  currentRoute = null;
+}
+
+let currentRoute = null;
 </script>
 
     
