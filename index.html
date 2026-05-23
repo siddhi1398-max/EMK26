@@ -1988,7 +1988,7 @@ function showBuildingInfo(id) {
   const data = campusBuildingData[id];
   if (!data) return;
 
-  document.querySelectorAll('.campus-building').forEach(el => el.style.opacity = '0.3');
+  document.querySelectorAll('.campus-building rect, .campus-building text, .campus-building line, .campus-building circle, .campus-building path').forEach(el => el.style.opacity = '0.3');
   const target = document.getElementById('bld-' + id);
   if (target) {
     target.querySelectorAll('rect, text, line, circle, path').forEach(el => el.style.opacity = '1');
