@@ -445,6 +445,18 @@ footer strong{color:var(--gold)}
 .footpath.show { opacity: 1; }
 #route-btn { cursor:pointer; background:var(--midnight-4); border:1px solid var(--gold-border); border-radius:6px; padding:6px 14px; font-size:12px; color:var(--text); display:inline-flex; align-items:center; gap:6px; }
 #route-btn:hover { background:var(--midnight-3); }
+ .footpath { opacity:0; transition:opacity .35s; pointer-events:none; }
+  .footpath.show { opacity:1; }
+ 
+  /* Parking highlight */
+  .parking-zone .parking-bg { transition:fill .3s, stroke .3s, stroke-width .3s; }
+  .parking-zone.active .parking-bg {
+    fill:#d4a84322 !important;
+    stroke:#d4a843 !important;
+    stroke-width:2 !important;
+    filter:drop-shadow(0 0 6px #d4a84388);
+  } 
+  .campus-building { transition:opacity .25s; }
   
 /* ── UPDATED TAG COLORS ── */
 .stag-ws{background:rgba(155,127,232,0.18);color:var(--violet);border:1px solid rgba(155,127,232,0.3)}
@@ -1665,7 +1677,8 @@ footer strong{color:var(--gold)}
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#66ccaa;opacity:.7"></span>Walking route</span>
           </div>
         </div>
-
+        
+<!-- ── CAMPUS MAP ── -->
         <svg id="campus-map" viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#0d1219;cursor:default">
 
           <!-- ── ROADS ── -->
@@ -1876,7 +1889,7 @@ footer strong{color:var(--gold)}
             <circle cx="900" cy="565" r="8" fill="none" stroke="#6b7490" stroke-width="1.5" opacity="0.6"/>
             <circle cx="916" cy="565" r="8" fill="none" stroke="#6b7490" stroke-width="1.5" opacity="0.6"/>
             <path d="M900 565 L908 557 L916 565" fill="none" stroke="#6b7490" stroke-width="1.5" stroke-linecap="round" opacity="0.6"/>
-            <text x="990" y="565" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#6b7490">2W PARKING</text>
+            <text x="900" y="565" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#6b7490">2W PARKING</text>
           </g>
 
           <!-- ── HOSPITAL (upper block) ── WS B AV Hall (Day1) + WS D (Day2) -->
@@ -1888,11 +1901,11 @@ footer strong{color:var(--gold)}
           <!-- ── EMERGENCY DEPT ── vivid red highlight -->
           <g class="campus-building" id="bld-emergency" onclick="showBuildingInfo('emergency')" style="cursor:pointer">
             <rect x="912" y="231" width="85" height="80" rx="6" fill="#e05c5c" fill-opacity="0.08" stroke="#e05c5c" stroke-width="3.5"/>
-            <rect x="917.1" y="236" width="75" height="70" rx="4" fill="#e05c5c" fill-opacity="0.22" stroke="#ff6b6b" stroke-width="2"/>
-            <rect x="946" y="250" width="12" height="36" rx="2" fill="#e05c5c" fill-opacity="0.7"/>
-            <rect x="936" y="260" width="32" height="12" rx="2" fill="#e05c5c" fill-opacity="0.7"/>
-            <text x="954.6" y="293" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" font-weight="700" fill="#ff9090">EMERGENCY</text>
-            <text x="954.6" y="304" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" font-weight="700" fill="#ff9090">DEPT</text>
+            <rect x="917.1" y="236" width="75" height="70" rx="4" fill="#e05c5c" fill-opacity="0.22" stroke="#ff6b6b" stroke-width="1"/>
+            <rect x="956" y="240" width="12" height="30" rx="2" fill="#e05c5c" fill-opacity="0.3"/>
+            <rect x="946" y="250" width="32" height="15" rx="2" fill="#e05c5c" fill-opacity="0.3"/>
+            <text x="954.6" y="273" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" font-weight="700" fill="#ff9090">EMERGENCY</text>
+            <text x="954.6" y="284" text-anchor="middle" dominant-baseline="middle" font-size="9" font-family="sans-serif" font-weight="700" fill="#ff9090">DEPT</text>
           </g>
 
           <!-- ── HOSPITAL COMPLEX (top) with AV HALL ── -->
