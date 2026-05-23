@@ -1931,10 +1931,8 @@ function showBuildingInfo(id) {
   document.getElementById('campus-info-name').textContent = data.name;
   document.getElementById('campus-info-desc').textContent = data.desc;
   const wEl = document.getElementById('campus-info-workshops');
-  wEl.innerHTML = '';
-  if (data.workshops.length === 0) {
-    wEl.innerHTML = '<span style="font-size:11px;color:var(--text-muted)">No workshops assigned to this building.</span>';
-  } else {
+ wEl.innerHTML = '';
+  if (data.workshops.length > 0) {
     data.workshops.forEach(w => {
       const badge = document.createElement('span');
       badge.style.cssText = `display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:${w.color}22;color:${w.color};border:1px solid ${w.color}55`;
