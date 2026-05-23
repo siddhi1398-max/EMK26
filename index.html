@@ -2001,10 +2001,18 @@ function showBuildingInfo(id) {
   });
 
   // Highlight selected building
-  const target = document.getElementById('bld-' + id);
-  if (target) {
-    target.style.opacity = '1';
-  }
+const target = document.getElementById('bld-' + id);
+if (target) {
+  target.style.opacity = '1';
+}
+
+// Special case: hospital has two blocks
+if (id === 'hospital') {
+  const hosp2 = document.getElementById('bld-hosp2');
+  if (hosp2) hosp2.style.opacity = '1';
+  const avhall = document.getElementById('bld-avhall');
+  if (avhall) avhall.style.opacity = '1';
+}
 
   // Info panel
   document.getElementById('campus-info-name').textContent = data.name;
