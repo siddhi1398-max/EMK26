@@ -127,7 +127,7 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
 
 .img-card{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:var(--midnight-3);transition:transform 0.2s,box-shadow 0.2s}
 .img-card:hover{transform:translateY(-3px);box-shadow:0 8px 28px rgba(212,160,23,0.12)}
-.img-card-img{width:100%;height:160px;object-fit:cover;display:block}
+.img-card-img{width:100%;height:160px;object-fit:contain;padding:16px;background:rgba(255,255,255,0.05)}
 .img-card-tag{display:inline-block;background:var(--gold-glow);color:var(--gold);font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;border:1px solid var(--gold-border);}
 
 .partners-section{background:var(--midnight-2);padding:48px 24px;text-align:center;border-top:1px solid var(--border)}
@@ -530,15 +530,43 @@ footer strong{color:var(--gold)}
     <div class="stat-item"><span class="stat-num">CME points</span><span class="stat-lbl">Accredited</span></div>
   </div>
 
- <div class="section">
-    <h2 class="section-title">What to Expect</h2>
-    <p class="section-sub">Four days built around clinical learning, hands-on skills, and meaningful connections</p>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
-      <div class="img-card"><img class="img-card-img" src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?w=600&q=75" alt="Workshops" /><div style="padding:14px 16px"><span class="img-card-tag">Days 1–2</span><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Hands-on Workshops</div><div style="font-size:12px;color:var(--text-muted)">Simulation &amp; skills stations. Limited seats per workshop for maximum hands-on time.</div></div></div>
-      <div class="img-card"><img class="img-card-img" src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=600&q=75" alt="Conference" /><div style="padding:14px 16px"><span class="img-card-tag">Days 3–4</span><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Keynotes &amp; Sessions</div><div style="font-size:12px;color:var(--text-muted)">Plenary lectures, panel debates, and abstract presentations on climate &amp; EM.</div></div></div>
-      <div class="img-card"><img class="img-card-img" src="https://images.unsplash.com/photo-1594824476967-48c8b964273f?w=600&q=75" alt="Research" /><div style="padding:14px 16px"><span class="img-card-tag">Research</span><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Paper Presentations</div><div style="font-size:12px;color:var(--text-muted)">Oral &amp; e-poster slots. Awards for best paper, best e-poster, young investigator.</div></div></div>
-      <div class="img-card"><img class="img-card-img" src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=600&q=75" alt="Networking" /><div style="padding:14px 16px"><span class="img-card-tag">Networking</span><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Connect &amp; Collaborate</div><div style="font-size:12px;color:var(--text-muted)">Welcome dinner, conference gala, and structured networking with peers across Karnataka.</div></div></div>
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px">
+  <div class="img-card">
+    <img class="img-card-img" src="https://undraw.co/api/illustrations/undraw_medicine_b-1-ol.svg" alt="Workshops" />
+    <div style="padding:14px 16px">
+      <span class="img-card-tag">Days 1-2</span>
+      <div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Hands-on Workshops</div>
+      <div style="font-size:12px;color:var(--text-muted)">Simulation &amp; skills stations. Limited seats per workshop for maximum hands-on time.</div>
     </div>
+  </div>
+
+  <div class="img-card">
+    <img class="img-card-img" src="https://undraw.co/api/illustrations/undraw_presentation_re_sxof.svg" alt="Conference" />
+    <div style="padding:14px 16px">
+      <span class="img-card-tag">Days 3-4</span>
+      <div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Keynotes &amp; Sessions</div>
+      <div style="font-size:12px;color:var(--text-muted)">Plenary lectures, panel debates, and abstract presentations on climate &amp; EM.</div>
+    </div>
+  </div>
+
+  <div class="img-card">
+    <img class="img-card-img" src="https://undraw.co/api/illustrations/undraw_research_re_gvjj.svg" alt="Research" />
+    <div style="padding:14px 16px">
+      <span class="img-card-tag">Research</span>
+      <div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Paper Presentations</div>
+      <div style="font-size:12px;color:var(--text-muted)">Oral &amp; e-poster slots. Awards for best paper, best e-poster, young investigator.</div>
+    </div>
+  </div>
+
+  <div class="img-card">
+    <img class="img-card-img" src="https://undraw.co/api/illustrations/undraw_team_collaboration_re_ow29.svg" alt="Networking" />
+    <div style="padding:14px 16px">
+      <span class="img-card-tag">Networking</span>
+      <div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Connect &amp; Collaborate</div>
+      <div style="font-size:12px;color:var(--text-muted)">Welcome dinner, conference gala, and structured networking with peers across Karnataka.</div>
+    </div>
+  </div>
+</div>
 
     <div class="theme-split" style="margin-top:48px;border-radius:var(--radius);overflow:hidden;display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--border)">
       <div style="padding:36px 32px;background:var(--midnight-3)">
