@@ -1973,33 +1973,123 @@ function closeCampusPanel() {
 <div id="page-contact" class="page">
   <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Contact Us</h2><p>Reach the right team for your query</p></div></div>
   <div class="section" style="padding-top:36px">
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-bottom:36px">
-      <div class="contact-card"><div class="contact-icon"><i class="ti ti-pencil"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Registrations</p><p style="font-size:12px;color:var(--text-muted)"></p></div></div>
-      <div class="contact-card"><div class="contact-icon"><i class="ti ti-file-text"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Abstracts</p><p style="font-size:12px;color:var(--text-muted)"></p></div></div>
-      <div class="contact-card"><div class="contact-icon"><i class="ti ti-building"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Accommodation</p><p style="font-size:12px;color:var(--text-muted)"></p></div></div>
-      <div class="contact-card"><div class="contact-icon"><i class="ti ti-briefcase"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Sponsorships</p><p style="font-size:12px;color:var(--text-muted)"></p></div></div>
-      <div class="contact-card"><div class="contact-icon"><i class="ti ti-phone"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Secretariat</p><p style="font-size:12px;color:var(--text-muted)"></p></div></div>
-      <div class="contact-card"><div class="contact-icon" style="background:rgba(46,125,50,0.15);border-color:rgba(46,125,50,0.3)"><i class="ti ti-brand-whatsapp" style="color:#4CAF50"></i></div><div><p style="font-size:13px;font-weight:700;margin-bottom:3px;color:#fff">Helpdesk</p><p style="font-size:12px;color:var(--text-muted)"></p></div></div>
+
+    <!-- CONTACT CATEGORY CARDS -->
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:40px">
+
+      <div class="contact-card" style="flex-direction:column;gap:0">
+        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
+          <div class="contact-icon"><i class="ti ti-pencil"></i></div>
+          <p style="font-size:13px;font-weight:700;color:#fff">Registrations</p>
+        </div>
+        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:'+this.value);this.selectedIndex=0">
+          <option value="">— Select committee member —</option>
+          <option value="reg@emkarnataka2026.in">Dr. Name TBA · Registration Chair</option>
+          <option value="reg2@emkarnataka2026.in">Dr. Name TBA · Co-ordinator</option>
+        </select>
+      </div>
+
+      <div class="contact-card" style="flex-direction:column;gap:0">
+        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
+          <div class="contact-icon"><i class="ti ti-file-text"></i></div>
+          <p style="font-size:13px;font-weight:700;color:#fff">Abstracts &amp; Competitions</p>
+        </div>
+        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:'+this.value);this.selectedIndex=0">
+          <option value="">— Select committee member —</option>
+          <option value="abstracts@emkarnataka2026.in">Dr. Name TBA · Scientific Chair</option>
+          <option value="abstracts2@emkarnataka2026.in">Dr. Name TBA · Co-ordinator</option>
+        </select>
+      </div>
+
+      <div class="contact-card" style="flex-direction:column;gap:0">
+        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
+          <div class="contact-icon"><i class="ti ti-building"></i></div>
+          <p style="font-size:13px;font-weight:700;color:#fff">Accommodation</p>
+        </div>
+        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:'+this.value);this.selectedIndex=0">
+          <option value="">— Select committee member —</option>
+          <option value="stay@emkarnataka2026.in">Dr. Name TBA · Hospitality Chair</option>
+          <option value="stay2@emkarnataka2026.in">Dr. Name TBA · Co-ordinator</option>
+        </select>
+      </div>
+
+      <div class="contact-card" style="flex-direction:column;gap:0">
+        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
+          <div class="contact-icon"><i class="ti ti-briefcase"></i></div>
+          <p style="font-size:13px;font-weight:700;color:#fff">Sponsorships &amp; Exhibition</p>
+        </div>
+        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:'+this.value);this.selectedIndex=0">
+          <option value="">— Select committee member —</option>
+          <option value="sponsors@emkarnataka2026.in">Dr. Name TBA · Sponsorship Chair</option>
+          <option value="sponsors2@emkarnataka2026.in">Dr. Name TBA · Co-ordinator</option>
+        </select>
+      </div>
+
+      <div class="contact-card" style="flex-direction:column;gap:0">
+        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
+          <div class="contact-icon"><i class="ti ti-phone"></i></div>
+          <p style="font-size:13px;font-weight:700;color:#fff">Secretariat</p>
+        </div>
+        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:'+this.value);this.selectedIndex=0">
+          <option value="">— Select committee member —</option>
+          <option value="secretary@emkarnataka2026.in">Dr. Name TBA · Secretary</option>
+          <option value="secretary2@emkarnataka2026.in">Dr. Name TBA · Joint Secretary</option>
+        </select>
+      </div>
+
+      <div class="contact-card" style="flex-direction:column;gap:0">
+        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
+          <div class="contact-icon" style="background:rgba(46,125,50,0.15);border-color:rgba(46,125,50,0.3)"><i class="ti ti-brand-whatsapp" style="color:#4CAF50"></i></div>
+          <p style="font-size:13px;font-weight:700;color:#fff">WhatsApp Helpdesk</p>
+        </div>
+        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&window.open('https://wa.me/'+this.value,'_blank');this.selectedIndex=0">
+          <option value="">— Select helpdesk —</option>
+          <option value="91XXXXXXXXXX">General Queries · +91 XXXXX XXXXX</option>
+          <option value="91XXXXXXXXXX">Workshop Queries · +91 XXXXX XXXXX</option>
+        </select>
+      </div>
+
     </div>
-    <div class="form-card" style="max-width:620px">
-      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;color:#fff">Send a Message</h3>
+
+    <!-- DIVIDER -->
+    <div style="display:flex;align-items:center;gap:14px;margin-bottom:32px">
+      <div style="flex:1;height:1px;background:var(--border)"></div>
+      <span style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px">or send a message directly</span>
+      <div style="flex:1;height:1px;background:var(--border)"></div>
+    </div>
+
+    <!-- CONTACT FORM -->
+    <div class="form-card" style="max-width:680px">
+      <h3 style="font-size:16px;font-weight:700;margin-bottom:20px;color:#fff;display:flex;align-items:center;gap:8px"><i class="ti ti-send" style="color:var(--gold)"></i> Send a Message</h3>
       <div class="form-grid">
         <div class="fg"><label>Name *</label><input type="text" placeholder="Your name" /></div>
         <div class="fg"><label>Email *</label><input type="email" placeholder="your@email.com" /></div>
-        <div class="fg full"><label>Subject</label><select><option>Registration query</option><option>Abstract submission</option><option>Accommodation</option><option>Sponsorship / exhibition</option><option>Other</option></select></div>
+        <div class="fg full"><label>Department</label>
+          <select>
+            <option value="">— Select who you're contacting —</option>
+            <option>Registrations</option>
+            <option>Abstracts &amp; Competitions</option>
+            <option>Accommodation</option>
+            <option>Sponsorship / Exhibition</option>
+            <option>Secretariat</option>
+            <option>General Query</option>
+          </select>
+        </div>
+        <div class="fg full"><label>Subject</label><input type="text" placeholder="Brief subject line" /></div>
         <div class="fg full"><label>Message *</label><textarea placeholder="Your message..."></textarea></div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;margin-top:20px;flex-wrap:wrap;gap:12px">
-        <p style="font-size:12px;color:var(--text-muted)">We respond within 1–2 working days</p>
+        <p style="font-size:11px;color:var(--text-muted)"><i class="ti ti-clock" style="font-size:12px;vertical-align:-1px"></i> We respond within 1–2 working days</p>
         <button class="btn btn-gold" onclick="doContact()"><i class="ti ti-send"></i> Send Message</button>
       </div>
       <div id="ctc-ok" class="success-msg hidden"><i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i>Message sent! We'll respond within 1–2 working days.</div>
     </div>
+
   </div>
-   <footer>
-  <strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026<br/>
-  <span style="font-size:10px;display:block;opacity:0.4">developed by the Organizing Committee · Dept of Emergency Medicine, Father Muller Medical College</span>
-</footer>
+  <footer>
+    <strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026<br/>
+    <span style="font-size:10px;display:block;opacity:0.4">developed by the Organizing Committee · Dept of Emergency Medicine, Father Muller Medical College</span>
+  </footer>
 </div>
 
 <script>
