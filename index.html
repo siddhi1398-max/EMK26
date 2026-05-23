@@ -2034,14 +2034,15 @@ function closeCampusPanel() {
   const pulse = document.getElementById('campus-pulse');
   if (pulse) pulse.remove();
   document.querySelectorAll('.campus-building').forEach(b => {
-    b.style.opacity = '';
-    b.style.transition = '';
-    b.querySelectorAll('rect, path, circle, line, text').forEach(el => {
-      el.style.opacity = '';
-      el.style.stroke = '';
-      el.style.fill = '';
-    });
+  b.style.opacity = '';
+  b.style.transition = '';
+  b.querySelectorAll('rect, path, circle, line, text').forEach(el => {
+    el.style.opacity = '';
+    el.style.stroke = el._origStroke || '';
+    el.style.fill = '';
+    delete el._origStroke;
   });
+});
   document.querySelectorAll('.footpath').forEach(el => el.classList.remove('show'));
   currentRoute = null;
 }
@@ -2844,15 +2845,19 @@ function animateRoute(buildingId, workshopLabel, venueName, color) {
     }
   }, animDur * 850);
 
-  // ── HIGHLIGHT BUILDING, DIM OTHERS ───────────────────────────────────
-  document.querySelectorAll('.campus-building').forEach(b => {
-    b.style.opacity = '0.3';
-    b.style.transition = 'opacity 0.4s';
+ // ── HIGHLIGHT BUILDING, DIM OTHERS ───────────────────────────────────
+document.querySelectorAll('.campus-building').forEach(b => {
+  b.style.opacity = '0.3';
+  b.style.transition = 'opacity 0.4s';
+  b.querySelectorAll('rect').forEach(r => {
+    r._origStroke = r.style.stroke;
+    r.style.stroke = '';
   });
-  const target = document.getElementById('bld-' + buildingId);
-  if (target) {
-    target.style.opacity = '1';
-  }
+});
+const target = document.getElementById('bld-' + buildingId);
+if (target) {
+  target.style.opacity = '1';
+}
 }
 
 // ── CLOSE PANEL: also clear route ────────────────────────────────────────
