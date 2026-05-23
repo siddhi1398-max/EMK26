@@ -2027,10 +2027,23 @@ function showBuildingInfo(id) {
 
 function closeCampusPanel() {
   document.getElementById('campus-info-panel').style.display = 'none';
-  document.querySelectorAll('.campus-building rect, .campus-building text, .campus-building line, .campus-building circle, .campus-building path').forEach(el => el.style.opacity = '');
+  ['campus-route-layer','campus-pulse-group','campus-pin-group','campus-banner'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.remove();
+  });
   const pulse = document.getElementById('campus-pulse');
   if (pulse) pulse.remove();
-  clearRoutes();
+  document.querySelectorAll('.campus-building').forEach(b => {
+    b.style.opacity = '';
+    b.style.transition = '';
+    b.querySelectorAll('rect, path, circle, line, text').forEach(el => {
+      el.style.opacity = '';
+      el.style.stroke = '';
+      el.style.fill = '';
+    });
+  });
+  document.querySelectorAll('.footpath').forEach(el => el.classList.remove('show'));
+  currentRoute = null;
 }
 
 function showRoutes(workshopClass) {
