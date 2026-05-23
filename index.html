@@ -1638,7 +1638,7 @@ footer strong{color:var(--gold)}
     </div>
 
     
-   <svg id="campus-map" viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#0d1219;cursor:default">
+ <svg id="campus-map" viewBox="0 0 1200 640" xmlns="http://www.w3.org/2000/svg" style="width:100%;display:block;background:#0d1219;cursor:default">
 
   <!-- ── ROADS ── -->
   <path d="M 507.6 337 L 1146.5 340.3" stroke="#1e2a40" stroke-width="50" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
@@ -1799,7 +1799,7 @@ footer strong{color:var(--gold)}
 
   <!-- ── EMERGENCY DEPT ── -->
   <g class="campus-building" onclick="showBuildingInfo('emergency')" style="cursor:pointer">
-    <rect x="917.1" y="236" width="75" height="70" rx="4" fill="#e05c5c" fill-opacity="0.20" stroke="#e05c5c" stroke-width="1.5"/>
+    <rect x="917.1" y="236" width="75" height="70" rx="4" fill="#e05c5c" fill-opacity="0.12" stroke="#e05c5c" stroke-width="1.5"/>
     <text x="954.6" y="264" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#f58888">EMERGENCY</text>
     <text x="954.6" y="278" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#f58888">DEPT</text>
   </g>
@@ -1839,7 +1839,7 @@ const campusBuildingData = {
   blockb: {
     name: 'Block B',
     color: '#9b7fe8',
-    desc: 'Main academic block housing the Dissection Hall and Anatomy Lab.'
+    desc: 'Main academic block housing the Dissection Hall and Anatomy Lab.',
     workshops: [
       {label:'Workshop A — Peripheral Nerve Blocks & Advanced Airway', color:'#9b7fe8', day:'Day 1'},
       {label:'Workshop F — Virtual Anatomy', color:'#5ec97f', day:'Day 2'}
@@ -1848,18 +1848,18 @@ const campusBuildingData = {
   hospital: {
     name: 'Hospital',
     color: '#4a9de0',
-    desc: 'Father Muller Charitable Institution hospital complex. Main clinical departments including the Emergency Department, and other clinical services.',
+    desc: 'Father Muller Charitable Institution hospital complex. Houses the AV Hall, main clinical departments, Emergency Dept, and workshop spaces.',
     workshops: [
-      {label:'Workshop B — Mechanical Ventilation (AV Hall)', color:'#3ec9c9', day:'Day 1'}
+      {label:'Workshop B — Mechanical Ventilation (AV Hall)', color:'#3ec9c9', day:'Day 1'},
+      {label:'Workshop D — Advanced POCUS', color:'#4a9de0', day:'Day 2'}
     ]
   },
   avhall: {
     name: 'Hospital Complex — AV Hall',
     color: '#3ec9c9',
-    desc: 'THIRD FLOOR. Audio-Visual Hall. Equipped for lectures and hands-on demonstrations.',
+    desc: 'Audio-Visual Hall within the hospital complex. Equipped for lectures and hands-on demonstrations.',
     workshops: [
-      {label:'Workshop B — Mechanical Ventilation', color:'#3ec9c9', day:'Day 1'},
-      {label:'Workshop D — Advanced POCUS', color:'#4a9de0', day:'Day 2'}
+      {label:'Workshop B — Mechanical Ventilation', color:'#3ec9c9', day:'Day 1'}
     ]
   },
   sjh: {
@@ -1881,24 +1881,24 @@ const campusBuildingData = {
   aud: {
     name: 'Auditorium',
     color: '#e09a3e',
-    desc: 'Main auditorium for conferences', 
+    desc: 'Main auditorium for conferences, inaugurations, and large gatherings.',
     workshops: [
       {label:'Days 3 & 4 — Main Conference Venue (TBA)', color:'#d4a843', day:'Conference'}
     ]
   },
-  kc: { name: 'Knowledge Centre', color: '#5ec97f', desc: 'Modern library and learning resource centre with digital facilities.'},
-  nursing: { name: 'Nursing College', color: '#4a9de0', desc: 'Father Muller College of Nursing building.'},
-  emergency: { name: 'Emergency Department', color: '#e05c5c', desc: '24-hour Emergency Department of Father Muller Medical College Hospital.'},
-  blocka: { name: 'Block A', color: '#6b7490', desc: 'Academic block.'},
-  cafe1: { name: 'Café', color: '#6b7490', desc: 'Campus café near Block B.'},
-  cafe2: { name: 'Café', color: '#6b7490', desc: 'Campus café near the main road junction.'},
-  ground: { name: 'Ground', color: '#5ec97f', desc: 'Sporting Ground'},
-  sports: { name: 'Sports Centre', color: '#6b7490', desc: 'Indoor sports facilities.'},
-  canteen: { name: 'Canteen', color: '#6b7490', desc: 'Main campus canteen near the hospital wing.'},
-  museum: { name: 'Museum', color: '#6b7490', desc: 'Campus museum.'},
-  parking1: { name: 'Parking', color: '#6b7490', desc: 'Car parking — lower campus.'},
-  parking2: { name: 'Parking', color: '#6b7490', desc: 'Car parking — upper campus.'},
-  parking3: { name: '2-Wheeler Parking', color: '#6b7490', desc: 'Two-wheeler parking near hospital.'}
+  kc: { name: 'Knowledge Centre', color: '#5ec97f', desc: 'Modern library and learning resource centre with digital facilities.', workshops: [] },
+  nursing: { name: 'Nursing College', color: '#4a9de0', desc: 'Father Muller College of Nursing building.', workshops: [] },
+  emergency: { name: 'Emergency Department', color: '#e05c5c', desc: '24-hour Emergency Department of Father Muller Medical College Hospital.', workshops: [] },
+  blocka: { name: 'Block A', color: '#6b7490', desc: 'Academic block.', workshops: [] },
+  cafe1: { name: 'Café', color: '#6b7490', desc: 'Campus café near Block B.', workshops: [] },
+  cafe2: { name: 'Café', color: '#6b7490', desc: 'Campus café near the main road junction.', workshops: [] },
+  ground: { name: 'Ground', color: '#5ec97f', desc: 'Sports and open ground area.', workshops: [] },
+  sports: { name: 'Sports Centre', color: '#6b7490', desc: 'Indoor sports facilities.', workshops: [] },
+  canteen: { name: 'Canteen', color: '#6b7490', desc: 'Main campus canteen near the hospital wing.', workshops: [] },
+  museum: { name: 'Museum', color: '#6b7490', desc: 'Campus museum.', workshops: [] },
+  parking1: { name: 'Parking', color: '#6b7490', desc: 'Car parking — lower campus.', workshops: [] },
+  parking2: { name: 'Parking', color: '#6b7490', desc: 'Car parking — upper campus.', workshops: [] },
+  parking3: { name: '2-Wheeler Parking', color: '#6b7490', desc: 'Two-wheeler parking near hospital.', workshops: [] }
 };
 
 function showBuildingInfo(id) {
@@ -1955,6 +1955,7 @@ function closeCampusPanel() {
   if (pulse) pulse.remove();
 }
 </script>
+
     
     <h2 class="section-title">How to Reach</h2>
     <p class="section-sub">Mangaluru is well connected by air, rail, and road</p>
