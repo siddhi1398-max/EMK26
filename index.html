@@ -1184,59 +1184,89 @@ footer strong{color:var(--gold)}
 
 <!-- ═══════════ REGISTER PAGE ═══════════ -->
 <div id="page-register" class="page">
-  <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Registration</h2><p>Includes conference kit, meals, and CME certificate · Secure payment</p></div></div>
-  <div class="section" style="padding-top:36px">
-
-    <!-- TIER CARDS -->
-  <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
-
- <div class="tier selected" id="tier-1" onclick="selectTier('Delegate',4500,2,this)">
-  <div class="tier-name">Delegate</div>
-  <div class="tier-price">₹4,500 <span>+ workshops</span></div>
-  <div class="tier-note">+₹1,000 for 1 workshop · +₹1,500 for 2 workshops</div>
-  <ul class="tier-features">
-    <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
-    <li><i class="ti ti-check"></i>All meals during conference days</li>
-    <li><i class="ti ti-check"></i>CME points</li>
-    <li><i class="ti ti-check"></i>Conference dinner</li>
-    <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>1 workshop: +₹1,000</li>
-    <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>2 workshops: +₹1,500</li>
-  </ul>
-  <button class="btn btn-gold" style="width:100%;justify-content:center">Selected</button>
-</div>
-    
-  <div class="tier" id="tier-2" onclick="selectTier('Faculty',7500,99,this)">
-  <div class="tier-badge">Most Inclusive</div>
-  <div class="tier-name">Faculty / Consultant</div>
-  <div class="tier-price">₹7,500 <span>early bird</span></div>
-  <div class="tier-note">Includes 2 workshops</div>
-  <ul class="tier-features">
-    <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
-    <li><i class="ti ti-check"></i>2 workshops included</li>
-    <li><i class="ti ti-check"></i>All meals across all 4 days</li>
-    <li><i class="ti ti-check"></i>CME points</li>
-   </ul>
-  <button class="btn btn-outline-gold" style="width:100%;justify-content:center">Select</button>
-</div>
-
-</div>
-
+  <div class="page-header">
+    <div class="page-header-bg"></div>
+    <div class="page-header-content">
+      <div class="page-header-accent"></div>
+      <h2>Registration</h2>
+      <p>Includes conference kit, meals, and CME certificate · Instant confirmation after payment</p>
     </div>
-
-    <!-- FORM -->
+  </div>
+ 
+  <div class="section" style="padding-top:36px">
+ 
+    <!-- HOW IT WORKS -->
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:0;margin-bottom:36px;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;max-width:720px;margin-left:auto;margin-right:auto">
+      <div style="padding:14px 10px;background:var(--midnight-3);text-align:center;border-right:1px solid var(--border)">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--midnight);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 6px">1</div>
+        <div style="font-size:11px;font-weight:600;color:#fff">Fill Form</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Your details</div>
+      </div>
+      <div style="padding:14px 10px;background:var(--midnight-3);text-align:center;border-right:1px solid var(--border)">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--midnight);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 6px">2</div>
+        <div style="font-size:11px;font-weight:600;color:#fff">Pay via UPI</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Cashfree window</div>
+      </div>
+      <div style="padding:14px 10px;background:var(--midnight-3);text-align:center;border-right:1px solid var(--border)">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--midnight);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 6px">3</div>
+        <div style="font-size:11px;font-weight:600;color:#fff">Auto Confirmed</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Instant webhook</div>
+      </div>
+      <div style="padding:14px 10px;background:var(--midnight-3);text-align:center">
+        <div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--midnight);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 6px">4</div>
+        <div style="font-size:11px;font-weight:600;color:#fff">Email + Reg ID</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:2px">EMKA2026-XXXX</div>
+      </div>
+    </div>
+ 
+    <!-- TIER CARDS -->
+    <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
+ 
+      <div class="tier selected" id="tier-1" onclick="selectTier('Delegate',4500,2,this)">
+        <div class="tier-name">Delegate</div>
+        <div class="tier-price">&#8377;4,500 <span>+ workshops</span></div>
+        <div class="tier-note">+&#8377;1,000 for 1 workshop &middot; +&#8377;1,500 for 2 workshops</div>
+        <ul class="tier-features">
+          <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
+          <li><i class="ti ti-check"></i>All meals during conference days</li>
+          <li><i class="ti ti-check"></i>CME points</li>
+          <li><i class="ti ti-check"></i>Conference dinner</li>
+          <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>1 workshop: +&#8377;1,000</li>
+          <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>2 workshops: +&#8377;1,500</li>
+        </ul>
+        <button class="btn btn-gold" style="width:100%;justify-content:center">Selected</button>
+      </div>
+ 
+      <div class="tier" id="tier-2" onclick="selectTier('Faculty',7500,99,this)">
+        <div class="tier-badge">Most Inclusive</div>
+        <div class="tier-name">Faculty / Consultant</div>
+        <div class="tier-price">&#8377;7,500 <span>early bird</span></div>
+        <div class="tier-note">Includes all workshops</div>
+        <ul class="tier-features">
+          <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
+          <li><i class="ti ti-check"></i>All 6 workshops included</li>
+          <li><i class="ti ti-check"></i>All meals across all 4 days</li>
+          <li><i class="ti ti-check"></i>CME points</li>
+        </ul>
+        <button class="btn btn-outline-gold" style="width:100%;justify-content:center">Select</button>
+      </div>
+ 
+    </div>
+ 
+    <!-- FORM CARD -->
     <div class="form-card" id="reg-form-wrap">
-
+ 
       <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--gold-border);display:flex;align-items:center;gap:8px">
         <i class="ti ti-user"></i> Personal Details
       </div>
-
+ 
       <div class="form-grid">
         <div class="fg"><label>Full Name *</label><input id="r-name" type="text" placeholder="Dr. Peter Safar" /></div>
         <div class="fg"><label>Email *</label><input id="r-email" type="email" placeholder="dr@hospital.in" /></div>
-        <div class="fg"><label>Mobile *</label><input id="r-phone" type="tel" placeholder="+91 xxxxx xxxxx" /></div>
+        <div class="fg"><label>Mobile *</label><input id="r-phone" type="tel" placeholder="10-digit number" /></div>
         <div class="fg"><label>Designation *</label><input id="r-desig" type="text" placeholder="Emergency Medicine Consultant" /></div>
         <div class="fg full"><label>Institution / Hospital *</label><input id="r-inst" type="text" placeholder="Father Muller Medical College, Mangaluru" /></div>
-        <div class="fg"><label>Registration Number</label><input id="r-regno" type="text" placeholder="KMC-XXXXX" /></div>
+        <div class="fg"><label>Medical Registration Number</label><input id="r-regno" type="text" placeholder="KMC-XXXXX" /></div>
         <div class="fg"><label>Dietary Preference</label>
           <select id="r-diet">
             <option value="Vegetarian">Vegetarian</option>
@@ -1245,15 +1275,17 @@ footer strong{color:var(--gold)}
           </select>
         </div>
       </div>
-
-      <!-- WORKSHOPS -->
-<div class="section" style="padding-top:36px;padding-bottom:20px">       
-  <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid var(--gold-border);display:flex;align-items:center;gap:8px">
+ 
+      <!-- WORKSHOP PREFERENCE -->
+      <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border)">
+        <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;display:flex;align-items:center;gap:8px">
           <i class="ti ti-tool"></i> Workshop Preference
-          <span id="ws-limit-note" style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);font-size:11px">— select 1</span>
+          <span id="ws-limit-note" style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);font-size:11px">— select up to 2 (1 per day)</span>
         </div>
-        <div style="margin-bottom:10px">
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px"><i class="ti ti-calendar-event" style="font-size:11px;color:var(--gold)"></i> Day 1 — Thursday, 12 November</div>
+        <div style="margin-bottom:12px">
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px">
+            <i class="ti ti-calendar-event" style="font-size:11px;color:var(--gold)"></i> Day 1 — Thursday, 12 November
+          </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" id="ws-d1">
             <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Peripheral Nerve Blocks & Advanced Airway" onchange="wsChange(this)"> Nerve Blocks &amp; Advanced Airway</label>
             <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Mechanical Ventilation" onchange="wsChange(this)"> Mechanical Ventilation</label>
@@ -1261,90 +1293,68 @@ footer strong{color:var(--gold)}
           </div>
         </div>
         <div>
-          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px"><i class="ti ti-calendar-event" style="font-size:11px;color:var(--gold)"></i> Day 2 — Friday, 13 November</div>
+          <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px">
+            <i class="ti ti-calendar-event" style="font-size:11px;color:var(--gold)"></i> Day 2 — Friday, 13 November
+          </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" id="ws-d2">
             <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Advanced POCUS" onchange="wsChange(this)"> Advanced POCUS</label>
             <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Maternal Resuscitation Program (MRP)" onchange="wsChange(this)"> Maternal Resuscitation (MRP)</label>
             <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Virtual Anatomy" onchange="wsChange(this)"> Virtual Anatomy</label>
           </div>
         </div>
-<div id="ws-warn" style="display:none;font-size:12px;color:var(--gold);margin-top:8px;align-items:center;gap:6px;background:rgba(212,160,23,0.08);padding:8px 12px;border-radius:8px;border:1px solid var(--gold-border)"><i class="ti ti-info-circle"></i> 2 workshops selected — <strong>+₹1,500 added</strong> to your total</div>
+        <div id="ws-warn" style="display:none;font-size:12px;color:var(--gold);margin-top:8px;align-items:center;gap:6px;background:rgba(212,160,23,0.08);padding:8px 12px;border-radius:8px;border:1px solid var(--gold-border)">
+          <i class="ti ti-info-circle"></i> 2 workshops selected &mdash; <strong>+&#8377;1,500 added</strong> to your total
+        </div>
       </div>
-      
-      <!-- SUMMARY + PAY -->
-      <!--PAYMENT_BOX_START-->
-<div style="margin-bottom:16px">
  
-  <!-- UPI -->
-  <div style="background:var(--midnight-4);border:1.5px solid var(--gold-border);border-radius:var(--radius);padding:16px 20px;margin-bottom:12px;display:flex;align-items:flex-start;gap:14px">
-    <div style="width:40px;height:40px;border-radius:10px;background:var(--gold-glow);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-      <i class="ti ti-qrcode" style="font-size:20px;color:var(--gold)"></i>
-    </div>
-    <div style="flex:1">
-      <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:3px">Pay via UPI</div>
-      <div style="font-size:12px;color:var(--text-muted);margin-bottom:9px">GPay · PhonePe · Paytm · Any UPI app</div>
-      <div onclick="copyUPI()" title="Click to copy"
-           style="background:var(--midnight-3);border:1px solid var(--border);border-radius:8px;padding:9px 14px;display:inline-flex;align-items:center;gap:10px;cursor:pointer;user-select:none">
-        <span id="upi-id-text" style="font-family:monospace;font-size:14px;font-weight:700;color:var(--gold)">
-          XXXXXXXXXX@ybl <!-- ← FILL IN real UPI ID -->
-        </span>
-        <i id="upi-copy-icon" class="ti ti-copy" style="font-size:14px;color:var(--text-muted)"></i>
+      <!-- PRICE SUMMARY -->
+      <div style="margin-top:24px;background:var(--midnight-4);border:1.5px solid var(--gold-border);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+        <div>
+          <div style="font-size:10px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Total Payable</div>
+          <div style="font-size:13px;color:var(--text);font-weight:600" id="sum-tier">Delegate &mdash; Conference Only</div>
+        </div>
+        <div style="font-size:28px;font-weight:800;color:var(--gold)" id="sum-price">&#8377;4,500</div>
       </div>
-      <div id="upi-copied" style="display:none;font-size:11px;color:#5ec97f;margin-top:6px;align-items:center;gap:4px">
-        <i class="ti ti-check" style="font-size:12px"></i> Copied!
+ 
+      <!-- PAYMENT INFO -->
+      <div style="margin-top:12px;background:rgba(212,160,23,0.06);border:1px solid var(--gold-border);border-radius:var(--radius-sm);padding:12px 14px;font-size:12px;color:var(--text-muted);display:flex;gap:9px;align-items:flex-start">
+        <i class="ti ti-info-circle" style="font-size:15px;color:var(--gold);flex-shrink:0;margin-top:1px"></i>
+        <span>Clicking <strong style="color:var(--text)">Submit &amp; Pay</strong> saves your details and opens a secure Cashfree payment window. Pay via UPI (GPay &middot; PhonePe &middot; Paytm), Net Banking, or Card. Your <strong style="color:var(--gold)">Registration ID (EMKA2026-XXXX)</strong> is emailed automatically once payment is confirmed.</span>
       </div>
-    </div>
-  </div>
  
-  <!-- Bank Transfer -->
-  <div style="background:var(--midnight-4);border:1px solid var(--border);border-radius:var(--radius);padding:16px 20px;margin-bottom:12px;display:flex;align-items:flex-start;gap:14px">
-    <div style="width:40px;height:40px;border-radius:10px;background:rgba(74,157,224,0.1);border:1px solid rgba(74,157,224,0.2);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-      <i class="ti ti-building-bank" style="font-size:20px;color:#4a9de0"></i>
-    </div>
-    <div style="flex:1">
-      <div style="font-size:13px;font-weight:700;color:#fff;margin-bottom:9px">Bank Transfer (NEFT / RTGS / IMPS)</div>
-      <div style="display:grid;grid-template-columns:auto 1fr;gap:5px 18px;font-size:12px;line-height:1.5">
-        <span style="color:var(--text-muted)">Account Name</span>
-        <span style="color:#fff;font-weight:600">Father Muller Charitable Institution</span>
- 
-        <span style="color:var(--text-muted)">Account No.</span>
-        <span style="color:#fff;font-weight:600;font-family:monospace">XXXXXXXXXXXXXXXX <!-- ← FILL IN --></span>
- 
-        <span style="color:var(--text-muted)">IFSC</span>
-        <span style="color:#fff;font-weight:600;font-family:monospace">XXXXXXXXX <!-- ← FILL IN --></span>
- 
-        <span style="color:var(--text-muted)">Bank &amp; Branch</span>
-        <span style="color:#fff;font-weight:600">TBA · Kankanady, Mangaluru</span>
+      <!-- SUBMIT BUTTON -->
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:18px">
+        <p style="font-size:11px;color:var(--text-muted)">
+          <i class="ti ti-lock" style="font-size:12px;vertical-align:-1px"></i> Secured by Cashfree Payments
+        </p>
+        <button class="btn btn-gold" id="reg-submit-btn" style="font-size:15px;padding:13px 32px" onclick="submitRegistration()">
+          <i class="ti ti-send"></i> Submit &amp; Pay <span id="btn-price">&#8377;4,500</span>
+        </button>
       </div>
+ 
+      <!-- ERROR -->
+      <div id="reg-error" style="display:none;background:rgba(224,92,92,0.08);border:1px solid rgba(224,92,92,0.25);border-radius:var(--radius-sm);padding:12px 14px;font-size:13px;color:#e05c5c;margin-top:12px;align-items:center;gap:10px"></div>
+ 
+      <!-- SUCCESS -->
+      <div id="reg-ok" class="success-msg hidden" style="margin-top:16px;flex-direction:column;align-items:flex-start;gap:10px">
+        <div style="display:flex;align-items:center;gap:10px">
+          <i class="ti ti-circle-check" style="font-size:24px;flex-shrink:0"></i>
+          <strong>Payment confirmed! Your registration is complete.</strong>
+        </div>
+        <div style="font-size:13px;color:var(--text-muted);line-height:1.7" id="reg-success-detail">
+          A confirmation email with your <strong style="color:var(--gold)">Registration ID</strong> has been sent. You will need it to submit abstracts and at the conference venue.
+        </div>
+      </div>
+ 
     </div>
   </div>
  
-  <!-- Note -->
-  <div style="background:rgba(212,160,23,0.07);border:1px solid var(--gold-border);border-radius:var(--radius-sm);padding:11px 14px;font-size:12px;color:var(--text-muted);display:flex;gap:9px;align-items:flex-start">
-    <i class="ti ti-alert-circle" style="font-size:15px;color:var(--gold);flex-shrink:0;margin-top:1px"></i>
-    <span>After payment, <strong style="color:var(--gold)">upload your screenshot / UTR number</strong> in the form that opens. Registration confirmed within 1–2 working days via email.</span>
-  </div>
- 
-</div>
-<!--PAYMENT_BOX_END-->
-
-      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px">
-        <p style="font-size:11px;color:var(--text-muted)"><i class="ti ti-lock" style="font-size:12px;vertical-align:-1px"></i> PCI DSS compliant</p>
-       <button class="btn btn-gold" style="font-size:15px;padding:13px 32px" onclick="submitRegistration()">
-      <i class="ti ti-send"></i> Submit &amp; Pay <span id="btn-price">₹4,500</span>
-    </button>
-      </div>
-
-      <div id="reg-ok" class="success-msg hidden" style="margin-top:16px">
-        <i class="ti ti-circle-check" style="font-size:22px;flex-shrink:0"></i>
-        <div><strong>Registration confirmed!</strong> Payment ID: <span id="reg-payment-id"></span>. Confirmation sent to your email.</div>
-      </div>
-    </div>
   <footer>
-  <strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026<br/>
-  <span style="font-size:10px;display:block;opacity:0.4">developed by the Organizing Committee · Dept of Emergency Medicine, Father Muller Medical College</span>
-</footer>
-   </div>
+    <strong>EM Karnataka 2026</strong> &middot; 6th Annual State Conference &middot; November 2026<br/>
+    <span style="font-size:10px;display:block;opacity:0.4">developed by the Organizing Committee &middot; Dept of Emergency Medicine, Father Muller Medical College</span>
+  </footer>
+</div>
+<!-- END REGISTER PAGE -->
   
 
  <!-- ══════════════════════════════════════════
