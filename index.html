@@ -2600,71 +2600,285 @@ function submitToGoogleForm(data){
   }).catch(err=>console.error('Registration save failed:',err));
 }
 
-<!--NEW_JS_START-->
+ 
+<!-- ═══ REGISTRATION + PAYMENT JS ═══ -->
+<!-- Replace the existing payment/registration script block with this entire block -->
+<!-- Keep all other JS (showPage, tick, ecScroll, campus map etc.) unchanged        -->
 <script>
-function copyUPI() {
-  const text = document.getElementById('upi-id-text').textContent.trim();
-  navigator.clipboard.writeText(text).then(() => {
-    const icon = document.getElementById('upi-copy-icon');
-    const msg  = document.getElementById('upi-copied');
-    if (icon) { icon.className = 'ti ti-check'; icon.style.color = '#5ec97f'; }
-    if (msg)  { msg.style.display = 'flex'; }
-    setTimeout(() => {
-      if (icon) { icon.className = 'ti ti-copy'; icon.style.color = ''; }
-      if (msg)  { msg.style.display = 'none'; }
-    }, 2200);
-  }).catch(() => { alert('UPI ID: ' + text); });
+// ── FILL THESE IN BEFORE GOING LIVE ─────────────────────────────────
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
+const CASHFREE_LINK   = 'https://payments.cashfree.com/forms/YOUR_LINK_ID';
+// ────────────────────────────────────────────────────────────────────
+ 
+var _regTier = { name:'Delegate', price:4500, wsMax:2, finalPrice:4500 };
+ 
+// Spinner CSS
+(function(){
+  const s = document.createElement('style');
+  s.textContent = '@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}';
+  document.head.appendChild(s);
+})();
+ 
+// ── Tier selector ────────────────────────────────────────────────────
+function selectTier(name, price, wsMax, card) {
+  document.querySelectorAll('.tier').forEach(c => {
+    c.classList.remove('selected');
+    const b = c.querySelector('button');
+    b.className = 'btn btn-outline-gold';
+    b.style.cssText = 'width:100%;justify-content:center';
+    b.textContent = 'Select';
+  });
+  card.classList.add('selected');
+  const b = card.querySelector('button');
+  b.className = 'btn btn-gold';
+  b.style.cssText = 'width:100%;justify-content:center';
+  b.textContent = 'Selected';
+  _regTier = { name, price, wsMax, finalPrice: price };
+  const note = document.getElementById('ws-limit-note');
+  if (note) note.textContent = wsMax >= 99 ? '— all workshops included' : '— select up to 2 (1 per day)';
+  document.querySelectorAll('.ws-chk').forEach(c => { c.checked=false; c.disabled=false; });
+  document.querySelectorAll('.ws-chk-label').forEach(l => l.classList.remove('checked'));
+  const warn = document.getElementById('ws-warn');
+  if (warn) warn.style.display = 'none';
+  updatePriceSummary();
 }
  
-function submitRegistration() {
-  const name  = document.getElementById('r-name').value.trim();
-  const email = document.getElementById('r-email').value.trim();
-  const phone = document.getElementById('r-phone').value.trim();
-  const desig = document.getElementById('r-desig').value.trim();
-  const inst  = document.getElementById('r-inst').value.trim();
+// ── Workshop checkboxes ──────────────────────────────────────────────
+function wsChange(cb) {
+  document.querySelectorAll('.ws-chk-label').forEach(l =>
+    l.classList.toggle('checked', l.querySelector('input').checked)
+  );
+  if (_regTier.wsMax < 99) {
+    ['ws-d1','ws-d2'].forEach(id => {
+      const day = document.getElementById(id); if (!day) return;
+      const n   = day.querySelectorAll('.ws-chk:checked').length;
+      day.querySelectorAll('.ws-chk').forEach(c => { if (!c.checked) c.disabled = n >= 1; });
+    });
+  }
+  const total = document.querySelectorAll('.ws-chk:checked').length;
+  const warn  = document.getElementById('ws-warn');
+  if (warn) warn.style.display = (total===2 && _regTier.wsMax<99) ? 'flex' : 'none';
+  updatePriceSummary();
+}
  
-  if (!name || !email || !phone || !desig || !inst) {
-    alert('Please fill in all required fields.');
+// ── Price summary ────────────────────────────────────────────────────
+function updatePriceSummary() {
+  const n = document.querySelectorAll('.ws-chk:checked').length;
+  let total = _regTier.price;
+  if (_regTier.wsMax < 99) { if (n===1) total+=1000; if (n>=2) total+=1500; }
+  _regTier.finalPrice = total;
+  const fmt = '\u20B9' + total.toLocaleString('en-IN');
+  const sp = document.getElementById('sum-price'); if (sp) sp.textContent = fmt;
+  const bp = document.getElementById('btn-price'); if (bp) bp.textContent = fmt;
+  let lbl = _regTier.name;
+  if (n===1) lbl += ' + 1 Workshop'; else if (n>=2) lbl += ' + 2 Workshops';
+  const st = document.getElementById('sum-tier'); if (st) st.textContent = lbl;
+}
+ 
+// ── Helpers ──────────────────────────────────────────────────────────
+function generateOrderId() {
+  return 'EMKA2026-' + Date.now() + '-' + Math.random().toString(36).slice(2,6).toUpperCase();
+}
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+ 
+function setRegBtn(text, loading) {
+  const btn = document.getElementById('reg-submit-btn'); if (!btn) return;
+  btn.disabled = loading;
+  btn.innerHTML = loading
+    ? '<span style="display:inline-flex;align-items:center;gap:8px"><i class="ti ti-loader-2" style="animation:spin 1s linear infinite;font-size:16px"></i>' + text + '</span>'
+    : '<i class="ti ti-send"></i> Submit &amp; Pay <span id="btn-price">\u20B9' + _regTier.finalPrice.toLocaleString('en-IN') + '</span>';
+}
+ 
+function showRegError(msg) {
+  const el = document.getElementById('reg-error'); if (!el) return;
+  el.innerHTML = '<i class="ti ti-alert-circle" style="font-size:16px;flex-shrink:0"></i> ' + msg;
+  el.style.display = 'flex';
+  setRegBtn('Submit &amp; Pay', false);
+}
+function hideRegError() { const el=document.getElementById('reg-error'); if(el) el.style.display='none'; }
+ 
+// ── MAIN: submit + open Cashfree ─────────────────────────────────────
+async function submitRegistration() {
+  hideRegError();
+ 
+  const name  = (document.getElementById('r-name').value  ||'').trim();
+  const email = (document.getElementById('r-email').value ||'').trim();
+  const phone = (document.getElementById('r-phone').value ||'').trim().replace(/\D/g,'');
+  const desig = (document.getElementById('r-desig').value ||'').trim();
+  const inst  = (document.getElementById('r-inst').value  ||'').trim();
+ 
+  if (!name)  { showRegError('Please enter your full name.'); return; }
+  if (!email || !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))
+              { showRegError('Please enter a valid email address.'); return; }
+  if (!/^\d{10}$/.test(phone))
+              { showRegError('Please enter a valid 10-digit mobile number (digits only, no spaces or dashes).'); return; }
+  if (!desig) { showRegError('Please enter your designation.'); return; }
+  if (!inst)  { showRegError('Please enter your institution / hospital name.'); return; }
+ 
+  const ws      = [...document.querySelectorAll('.ws-chk:checked')].map(c => c.value);
+  const orderId = generateOrderId();
+ 
+  // Step 1 — save to Pending sheet via Apps Script
+  setRegBtn('Saving details\u2026', true);
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method:  'POST', mode: 'no-cors',
+      headers: {'Content-Type':'application/json'},
+      body: JSON.stringify({
+        action:'pending', orderId, name, email, phone,
+        designation: desig, institution: inst,
+        regno:  (document.getElementById('r-regno').value||'').trim(),
+        diet:    document.getElementById('r-diet').value,
+        tier:    _regTier.name, workshops: ws,
+        amount: '\u20B9' + _regTier.finalPrice.toLocaleString('en-IN'),
+      }),
+    });
+  } catch(e) { console.warn('Pending save (no-cors, likely OK):', e); }
+ 
+  // Step 2 — open Cashfree payment popup
+  setRegBtn('Opening payment window\u2026', true);
+  const cfUrl = CASHFREE_LINK + '?' + new URLSearchParams({
+    order_id: orderId, customer_name: name,
+    customer_email: email, customer_phone: phone,
+    amount: _regTier.finalPrice,
+  }).toString();
+ 
+  const popup = window.open(cfUrl, 'emk_payment',
+    'width=540,height=700,scrollbars=yes,resizable=yes,top=80,left=200');
+ 
+  if (!popup) {
+    showRegError('Popup was blocked by your browser. <a href="' + cfUrl + '" target="_blank" style="color:var(--gold);font-weight:600">Click here to open the payment page</a>, then return here after paying.');
     return;
   }
  
-  const ws = [];
-  document.querySelectorAll('.ws-chk:checked').forEach(c => ws.push(c.value));
- 
-  const tierLabel = _regTier.name +
-    (ws.length === 2 && _regTier.wsMax < 99 ? ' + 2nd Workshop' : '');
- 
-  const formData = {
-    name, email, phone,
-    designation : desig,
-    institution : inst,
-    regno       : document.getElementById('r-regno').value.trim(),
-    diet        : document.getElementById('r-diet').value,
-    tier        : tierLabel,
-    workshops   : ws,
-    amount      : '₹' + (_regTier.finalPrice || _regTier.price).toLocaleString('en-IN'),
-    paymentMethod: 'UPI / Bank Transfer — pending screenshot upload'
-  };
- 
-  // Save to Google Sheet (existing function)
-  submitToGoogleForm(formData);
- 
-  // Open payment-proof upload form in new tab
-  // ← REPLACE the URL below with your payment-proof Google Form link
-  window.open(
-    'https://docs.google.com/forms/d/e/1FAIpQLSfIttBidRRURWCX9KwtiWMUJ5pdIw0MOqjTLvgbo8ocYpOFhA/viewform',
-    '_blank'
-  );
- 
-  // Show confirmation banner
-  document.getElementById('reg-payment-id').textContent =
-    'Pending — please upload your payment screenshot in the form that just opened.';
-  const ok = document.getElementById('reg-ok');
-  ok.classList.remove('hidden');
-  ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  setRegBtn('Waiting for payment\u2026', true);
+  await waitForPopup(popup);
+  await verifyPayment(orderId, name, email);
 }
+ 
+function waitForPopup(popup) {
+  return new Promise(resolve => {
+    const iv = setInterval(() => { if (popup.closed) { clearInterval(iv); resolve(); } }, 800);
+    setTimeout(() => { clearInterval(iv); resolve(); }, 600000); // 10 min timeout
+  });
+}
+ 
+async function verifyPayment(orderId, name, email) {
+  setRegBtn('Verifying payment\u2026', true);
+ 
+  // Check if Cashfree return URL set success param
+  if (new URLSearchParams(window.location.search).get('payment') === 'success') {
+    showRegSuccess(name, email); return;
+  }
+ 
+  // Poll Apps Script — webhook usually arrives within a few seconds
+  for (let i = 0; i < 6; i++) {
+    await sleep(4000);
+    try {
+      const res  = await fetch(APPS_SCRIPT_URL + '?action=checkorder&orderId=' + encodeURIComponent(orderId));
+      const data = await res.json();
+      if (data.confirmed) { showRegSuccess(name, email); return; }
+    } catch(_) {}
+  }
+ 
+  // Payment not confirmed yet — show pending message
+  setRegBtn('Submit &amp; Pay', false);
+  const ok = document.getElementById('reg-ok');
+  if (ok) {
+    ok.classList.remove('hidden');
+    ok.style.display = 'flex';
+    document.getElementById('reg-success-detail').innerHTML =
+      'Payment is being verified. If you completed the payment, your confirmation email with Registration ID will arrive within a few minutes. <strong style="color:var(--gold)">Check your spam folder too.</strong><br><br>' +
+      '<span style="font-size:12px">If payment did not go through, you can submit the form again.</span>';
+    ok.scrollIntoView({ behavior:'smooth', block:'center' });
+  }
+}
+ 
+function showRegSuccess(name, email) {
+  setRegBtn('Registered \u2713', true);
+  const ok = document.getElementById('reg-ok'); if (!ok) return;
+  ok.classList.remove('hidden');
+  ok.style.display = 'flex';
+  document.getElementById('reg-success-detail').innerHTML =
+    'Payment confirmed! A confirmation email with your <strong style="color:var(--gold)">Registration ID (EMKA2026-XXXX)</strong> ' +
+    'has been sent to <strong>' + email + '</strong>.<br><br>' +
+    '<span style="font-size:12px">Keep your Registration ID safe \u2014 you\'ll need it to submit abstracts and at the conference venue.</span>';
+  ok.scrollIntoView({ behavior:'smooth', block:'center' });
+}
+ 
+function submitToGoogleForm(data) {
+  fetch(APPS_SCRIPT_URL, {
+    method:'POST', mode:'no-cors',
+    headers:{'Content-Type':'application/json'},
+    body: JSON.stringify(data),
+  }).catch(e => console.error('Sheet save:', e));
+}
+ 
+ 
+// ── Abstract gate validation ─────────────────────────────────────────
+async function validateAndOpenAbstractForm() {
+  const input  = document.getElementById('abstract-reg-id');
+  const btn    = document.getElementById('abstract-validate-btn');
+  const errEl  = document.getElementById('abstract-error');
+  const okEl   = document.getElementById('abstract-ok');
+ 
+  if (errEl) errEl.style.display = 'none';
+  if (okEl)  okEl.style.display  = 'none';
+ 
+  const regId = (input ? input.value : '').trim().toUpperCase();
+ 
+  if (!regId) { showAbstractError('Please enter your Registration ID.'); return; }
+  if (!regId.startsWith('EMKA2026')) {
+    showAbstractError('Invalid format \u2014 Registration IDs start with EMKA2026 (e.g. EMKA2026-0042).');
+    return;
+  }
+ 
+  btn.disabled  = true;
+  btn.innerHTML = '<i class="ti ti-loader-2" style="animation:spin 1s linear infinite"></i> Verifying\u2026';
+ 
+  try {
+    const res  = await fetch(APPS_SCRIPT_URL + '?action=validate&id=' + encodeURIComponent(regId));
+    const data = await res.json();
+ 
+    if (data.valid) {
+      if (okEl) {
+        okEl.innerHTML =
+          '<i class="ti ti-circle-check" style="font-size:20px;flex-shrink:0"></i>' +
+          '<div>Verified: <strong>' + data.name + '</strong> &middot; ' + data.tier + '.<br>' +
+          '<span style="font-size:12px;color:var(--text-muted)">Opening submission form\u2026</span></div>';
+        okEl.style.display = 'flex';
+      }
+      // Open Google Form pre-filled — replace entry IDs with real ones from your form
+      const formBase = 'https://docs.google.com/forms/d/e/1FAIpQLSfIttBidRRURWCX9KwtiWMUJ5pdIw0MOqjTLvgbo8ocYpOFhA/viewform';
+      const formUrl  = formBase
+        + '?usp=pp_url'
+        + '&entry.REPLACE_REGID_ENTRY='  + encodeURIComponent(regId)
+        + '&entry.REPLACE_NAME_ENTRY='   + encodeURIComponent(data.name  || '')
+        + '&entry.REPLACE_EMAIL_ENTRY='  + encodeURIComponent(data.email || '');
+      setTimeout(() => window.open(formUrl, '_blank'), 1000);
+    } else {
+      showAbstractError(data.error || 'Registration ID not found. Check your confirmation email.');
+    }
+  } catch(e) {
+    showAbstractError('Could not verify \u2014 check your connection and try again.');
+    console.error('Abstract validation:', e);
+  }
+ 
+  btn.disabled  = false;
+  btn.innerHTML = '<i class="ti ti-shield-check"></i> Verify &amp; Open';
+}
+ 
+function showAbstractError(msg) {
+  const el = document.getElementById('abstract-error'); if (!el) return;
+  el.innerHTML = '<i class="ti ti-alert-circle" style="font-size:15px;flex-shrink:0"></i> ' + msg;
+  el.style.display = 'flex';
+}
+ 
+// doSub and doContact (keep existing)
+function doSub()     { document.getElementById('sub-ok').classList.remove('hidden'); }
+function doContact() { document.getElementById('ctc-ok').classList.remove('hidden'); }
 </script>
-<!--NEW_JS_END-->
+<!-- END REGISTRATION + PAYMENT JS -->
 
   <script>
 // ── VENUE ROUTE DEFINITIONS ──────────────────────────────────────────────
