@@ -3074,7 +3074,20 @@ function animateRoute(buildingId, workshopLabel, venueName, color) {
 
   setTimeout(() => {
     if (buildingId !== 'tba') {
-      showBuildingInfo(buildingId);
+      const data = campusBuildingData[buildingId];
+      if (data) {
+        document.getElementById('campus-info-name').textContent = data.name;
+        document.getElementById('campus-info-desc').textContent = data.desc;
+        const wEl = document.getElementById('campus-info-workshops');
+        wEl.innerHTML = '';
+        data.workshops.forEach(w => {
+          const badge = document.createElement('span');
+          badge.style.cssText = `display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:${w.color}22;color:${w.color};border:1px solid ${w.color}55`;
+          badge.innerHTML = `<span style="font-size:9px;opacity:0.7;font-weight:400">${w.day}</span> ${w.label}`;
+          wEl.appendChild(badge);
+        });
+        document.getElementById('campus-info-panel').style.display = 'block';
+      }
     } else {
       document.getElementById('campus-info-name').textContent = 'Venue to be announced';
       document.getElementById('campus-info-desc').textContent = 'Venue details for Days 3 & 4 will be confirmed closer to the conference.';
