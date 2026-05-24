@@ -1777,8 +1777,10 @@ footer strong{color:var(--gold)}
           <circle cx="601.7" cy="247.8" r="28" fill="#1e2a40" stroke="#d4a843" stroke-width="2"/>
 
           <!-- ── GATES ── -->
-          <rect x="18" y="316" width="12" height="52" fill="#d4a843" rx="2"/>
-          <text x="10" y="342" text-anchor="middle" font-size="11" font-family="sans-serif" font-weight="700" fill="#d4a843" transform="rotate(-90 10 342)" letter-spacing="1">BACK GATE</text>
+          <g class="campus-building" id="bld-backgate" onclick="showParkingRoutes('backgate')" style="cursor:pointer">
+  <rect x="18" y="316" width="12" height="52" fill="#d4a843" rx="2"/>
+  <text x="10" y="342" text-anchor="middle" font-size="11" font-family="sans-serif" font-weight="700" fill="#d4a843" transform="rotate(-90 10 342)" letter-spacing="1">BACK GATE</text>
+</g>
           <rect x="1170" y="316" width="12" height="52" fill="#d4a843" rx="2"/>
           <text x="1190" y="342" text-anchor="middle" font-size="11" font-family="sans-serif" font-weight="700" fill="#d4a843" transform="rotate(90 1190 342)" letter-spacing="1">MAIN GATE</text>
 
@@ -2050,6 +2052,7 @@ const campusBuildingData = {
   parking1: { name:'Parking — Lower Campus', color:'#6b7490', desc:'Car parking at lower campus. Click to see walking routes to all workshops from here.', workshops:[], route:null },
   parking2: { name:'Parking — Upper Campus', color:'#6b7490', desc:'Car parking near upper academic blocks. Click to see walking routes from here.', workshops:[], route:null },
   parking3: { name:'2-Wheeler Parking',      color:'#6b7490', desc:'Two-wheeler parking near the hospital wing. Click to see walking routes from here.', workshops:[], route:null }
+  backgate: { name:'Back Gate',              color:'#d4a843', desc:'Western entry. Direct access to Auditorium, Silver Jubilee Hall, and Block B. Recommended if arriving from city centre or Mangaluru Central station.', workshops:[], route:null },
 };
 
 function showBuildingInfo(id) {
@@ -2833,43 +2836,61 @@ function doContact() { document.getElementById('ctc-ok').classList.remove('hidde
 // Junction points from SVG: Gate(1176,338), J1(1022,340), J2(621,335), J3(503,337), J4(602,248), J5(161,278)
 
 const venueRoutes = {
-  // Block B: Gate → J1 → J2 → J3 → top road → Block B centre
   blockb: {
     color: '#9b7fe8',
-    points: [[1176,338],[1022,340],[621,335],[601,247],[580,170], [300,170], [287, 86]],
+    points: [[1176,338],[1022,340],[621,335],[601,247],[580,170],[300,170],[287,86]],
     dest: [287, 86]
   },
-  // AV Hall: Gate → J1 → AV Hall (top road right side)
   avhall: {
     color: '#3ec9c9',
     points: [[1176,338],[1022,340],[1022,156],[845,75]],
     dest: [845, 75]
   },
-  // Hospital (main blocks): Gate → J1 → Hospital AV hall 
   hospital: {
-    color: '#5ec97f',
-    points: [[1176,338],[1022,340],[1022,156],[845,75]],
-    dest: [845, 75]
+    color: '#4a9de0',
+    points: [[1176,338],[1022,340],[843,443]],
+    dest: [843, 443]
   },
-  // Silver Jubilee Hall: Gate → J1 → J2 → J3 → lower branch → SJH
   sjh: {
     color: '#e09a3e',
     points: [[1176,338],[1022,340],[621,335],[503,337],[495,427],[436,515]],
     dest: [436, 515]
   },
-  // SIM Lab: Gate → J1 → SIM Lab
   simlab: {
     color: '#e05c5c',
     points: [[1176,338],[1022,340],[1022,516],[1108,535]],
     dest: [1108, 535]
   },
-   // Block B: Gate → J1 → J2 → J3 → top road → Block B centre
-  blockb: {
+  aud: {
+    color: '#e09a3e',
+    points: [[1176,338],[1022,340],[621,335],[503,337],[128,434]],
+    dest: [128, 434]
+  },
+  backgate_blockb: {
     color: '#9b7fe8',
-    points: [[1176,338],[1022,340],[621,335],[601,247],[580,170], [300,170], [287, 86]],
+    points: [[44,341],[161,278],[229,175],[300,170],[287,86]],
     dest: [287, 86]
   },
-  // TBA — just pulse the gate
+  backgate_sjh: {
+    color: '#e09a3e',
+    points: [[44,341],[161,278],[503,337],[495,427],[436,515]],
+    dest: [436, 515]
+  },
+  backgate_aud: {
+    color: '#e09a3e',
+    points: [[44,341],[161,278],[128,434]],
+    dest: [128, 434]
+  },
+  backgate_simlab: {
+    color: '#e05c5c',
+    points: [[44,341],[161,278],[229,175],[580,175],[621,335],[1022,340],[1022,516],[1108,535]],
+    dest: [1108, 535]
+  },
+  backgate_hospital: {
+    color: '#4a9de0',
+    points: [[44,341],[161,278],[229,175],[580,175],[621,335],[843,443]],
+    dest: [843, 443]
+  },
   tba: {
     color: '#d4a843',
     points: [[1176,338]],
@@ -2877,20 +2898,32 @@ const venueRoutes = {
   }
 };
 
-// ── NAVIGATE + ANIMATE ────────────────────────────────────────────────────
-function navigateToVenue(buildingId, workshopLabel, venueName, color) {
-  // 1. Switch to venue page
-  showPage('venue');
+const parkingRouteMap = {
+  parking1: ['ws-sjh','ws-blockb','ws-backgate-sjh','ws-backgate-aud'],
+  parking2: ['ws-blockb','ws-avhall'],
+  parking3: ['ws-simlab','ws-hospital'],
+  backgate: ['ws-backgate-blockb','ws-backgate-sjh','ws-backgate-aud']
+};
 
-  // 2. Small delay to let the page render, then scroll + animate
+const routeLabels = {
+  'ws-blockb':            { label:'Block B (WS A & F)',                color:'#9b7fe8', routeKey:'blockb' },
+  'ws-sjh':               { label:'Silver Jubilee Hall (WS C)',         color:'#e09a3e', routeKey:'sjh' },
+  'ws-simlab':            { label:'SIM Lab (WS E)',                     color:'#e05c5c', routeKey:'simlab' },
+  'ws-hospital':          { label:'Hospital / AV Hall (WS B & D)',      color:'#4a9de0', routeKey:'hospital' },
+  'ws-avhall':            { label:'AV Hall (WS B)',                     color:'#3ec9c9', routeKey:'avhall' },
+  'ws-backgate-blockb':   { label:'Block B via Back Gate',              color:'#9b7fe8', routeKey:'backgate_blockb' },
+  'ws-backgate-sjh':      { label:'Silver Jubilee Hall via Back Gate',  color:'#e09a3e', routeKey:'backgate_sjh' },
+  'ws-backgate-aud':      { label:'Auditorium via Back Gate',           color:'#e09a3e', routeKey:'backgate_aud' },
+  'ws-backgate-simlab':   { label:'SIM Lab via Back Gate',              color:'#e05c5c', routeKey:'backgate_simlab' },
+  'ws-backgate-hospital': { label:'Hospital via Back Gate',             color:'#4a9de0', routeKey:'backgate_hospital' },
+};
+
+function navigateToVenue(buildingId, workshopLabel, venueName, color) {
+  showPage('venue');
   setTimeout(() => {
     const wrap = document.getElementById('campus-map-wrap');
-    if (wrap) {
-      wrap.scrollIntoView({ behavior: 'smooth', block: 'center' });
-    }
-    setTimeout(() => {
-      animateRoute(buildingId, workshopLabel, venueName, color);
-    }, 600);
+    if (wrap) wrap.scrollIntoView({ behavior:'smooth', block:'center' });
+    setTimeout(() => animateRoute(buildingId, workshopLabel, venueName, color), 600);
   }, 80);
 }
 
@@ -2901,214 +2934,197 @@ function animateRoute(buildingId, workshopLabel, venueName, color) {
   const route = venueRoutes[buildingId] || venueRoutes['tba'];
   const routeColor = color || route.color;
 
-  // Clear any previous animation layers
   ['campus-route-layer','campus-pulse-group','campus-pin-group','campus-banner'].forEach(id => {
     const el = document.getElementById(id);
     if (el) el.remove();
   });
 
-  // ── BUILD POLYLINE PATH STRING ─────────────────────────────────────────
   const pts = route.points;
-  const pathD = 'M ' + pts.map(p => p[0] + ' ' + p[1]).join(' L ');
+  const pathD = 'M ' + pts.map(p => p[0]+' '+p[1]).join(' L ');
 
-  // Total length approximation for dash animation
   let totalLen = 0;
   for (let i = 1; i < pts.length; i++) {
-    const dx = pts[i][0] - pts[i-1][0];
-    const dy = pts[i][1] - pts[i-1][1];
-    totalLen += Math.sqrt(dx*dx + dy*dy);
+    const dx = pts[i][0]-pts[i-1][0], dy = pts[i][1]-pts[i-1][1];
+    totalLen += Math.sqrt(dx*dx+dy*dy);
   }
 
   const NS = 'http://www.w3.org/2000/svg';
-
-  // ── ROUTE LAYER GROUP ─────────────────────────────────────────────────
-  const layer = document.createElementNS(NS, 'g');
+  const layer = document.createElementNS(NS,'g');
   layer.id = 'campus-route-layer';
 
-  // Shadow glow line (thick, low opacity)
-  const glow = document.createElementNS(NS, 'path');
-  glow.setAttribute('d', pathD);
-  glow.setAttribute('fill', 'none');
-  glow.setAttribute('stroke', routeColor);
-  glow.setAttribute('stroke-width', '18');
-  glow.setAttribute('stroke-linecap', 'round');
-  glow.setAttribute('stroke-linejoin', 'round');
-  glow.setAttribute('opacity', '0.12');
+  const glow = document.createElementNS(NS,'path');
+  glow.setAttribute('d',pathD); glow.setAttribute('fill','none');
+  glow.setAttribute('stroke',routeColor); glow.setAttribute('stroke-width','18');
+  glow.setAttribute('stroke-linecap','round'); glow.setAttribute('stroke-linejoin','round');
+  glow.setAttribute('opacity','0.12');
   layer.appendChild(glow);
 
-  // Solid base line (drawn first, then revealed by dash animation)
-  const base = document.createElementNS(NS, 'path');
-  base.setAttribute('d', pathD);
-  base.setAttribute('fill', 'none');
-  base.setAttribute('stroke', routeColor);
-  base.setAttribute('stroke-width', '4');
-  base.setAttribute('stroke-linecap', 'round');
-  base.setAttribute('stroke-linejoin', 'round');
-  base.setAttribute('opacity', '0.35');
+  const base = document.createElementNS(NS,'path');
+  base.setAttribute('d',pathD); base.setAttribute('fill','none');
+  base.setAttribute('stroke',routeColor); base.setAttribute('stroke-width','4');
+  base.setAttribute('stroke-linecap','round'); base.setAttribute('stroke-linejoin','round');
+  base.setAttribute('opacity','0.35');
   layer.appendChild(base);
 
-  // Animated dotted line on top
-  const dash = document.createElementNS(NS, 'path');
-  dash.setAttribute('d', pathD);
-  dash.setAttribute('fill', 'none');
-  dash.setAttribute('stroke', routeColor);
-  dash.setAttribute('stroke-width', '4');
-  dash.setAttribute('stroke-linecap', 'round');
-  dash.setAttribute('stroke-linejoin', 'round');
-  dash.setAttribute('stroke-dasharray', '14 10');
-  dash.setAttribute('stroke-dashoffset', totalLen);
-  dash.setAttribute('opacity', '0.95');
-  // Animate dashoffset to 0 = draws the line
-  const animDash = document.createElementNS(NS, 'animate');
-  animDash.setAttribute('attributeName', 'stroke-dashoffset');
-  animDash.setAttribute('from', totalLen);
-  animDash.setAttribute('to', '0');
-  animDash.setAttribute('dur', Math.max(1.2, totalLen / 320) + 's');
-  animDash.setAttribute('fill', 'freeze');
-  animDash.setAttribute('calcMode', 'spline');
-  animDash.setAttribute('keySplines', '0.4 0 0.2 1');
+  const dash = document.createElementNS(NS,'path');
+  dash.setAttribute('d',pathD); dash.setAttribute('fill','none');
+  dash.setAttribute('stroke',routeColor); dash.setAttribute('stroke-width','4');
+  dash.setAttribute('stroke-linecap','round'); dash.setAttribute('stroke-linejoin','round');
+  dash.setAttribute('stroke-dasharray','14 10');
+  dash.setAttribute('stroke-dashoffset',totalLen); dash.setAttribute('opacity','0.95');
+  const animDash = document.createElementNS(NS,'animate');
+  animDash.setAttribute('attributeName','stroke-dashoffset');
+  animDash.setAttribute('from',totalLen); animDash.setAttribute('to','0');
+  const dur = Math.max(1.2, totalLen/320)+'s';
+  animDash.setAttribute('dur',dur); animDash.setAttribute('fill','freeze');
+  animDash.setAttribute('calcMode','spline'); animDash.setAttribute('keySplines','0.4 0 0.2 1');
   dash.appendChild(animDash);
   layer.appendChild(dash);
 
-  // Moving dot (traveller) along path
-  const traveller = document.createElementNS(NS, 'circle');
-  traveller.setAttribute('r', '7');
-  traveller.setAttribute('fill', routeColor);
-  traveller.setAttribute('opacity', '0.95');
-  const animTX = document.createElementNS(NS, 'animate');
-  animTX.setAttribute('attributeName', 'cx');
-  animTX.setAttribute('values', pts.map(p=>p[0]).join(';'));
-  animTX.setAttribute('keyTimes', pts.map((_,i)=>(i/(pts.length-1)).toFixed(3)).join(';'));
-  animTX.setAttribute('dur', Math.max(1.2, totalLen / 320) + 's');
-  animTX.setAttribute('fill', 'freeze');
-  animTX.setAttribute('calcMode', 'spline');
-  animTX.setAttribute('keySplines', Array(pts.length-1).fill('0.4 0 0.2 1').join(';'));
-  const animTY = document.createElementNS(NS, 'animate');
-  animTY.setAttribute('attributeName', 'cy');
-  animTY.setAttribute('values', pts.map(p=>p[1]).join(';'));
-  animTY.setAttribute('keyTimes', pts.map((_,i)=>(i/(pts.length-1)).toFixed(3)).join(';'));
-  animTY.setAttribute('dur', Math.max(1.2, totalLen / 320) + 's');
-  animTY.setAttribute('fill', 'freeze');
-  animTY.setAttribute('calcMode', 'spline');
-  animTY.setAttribute('keySplines', Array(pts.length-1).fill('0.4 0 0.2 1').join(';'));
-  traveller.setAttribute('cx', pts[0][0]);
-  traveller.setAttribute('cy', pts[0][1]);
-  traveller.appendChild(animTX);
-  traveller.appendChild(animTY);
+  const traveller = document.createElementNS(NS,'circle');
+  traveller.setAttribute('r','7'); traveller.setAttribute('fill',routeColor);
+  traveller.setAttribute('opacity','0.95');
+  const animTX = document.createElementNS(NS,'animate');
+  animTX.setAttribute('attributeName','cx');
+  animTX.setAttribute('values',pts.map(p=>p[0]).join(';'));
+  animTX.setAttribute('keyTimes',pts.map((_,i)=>(i/(pts.length-1)).toFixed(3)).join(';'));
+  animTX.setAttribute('dur',dur); animTX.setAttribute('fill','freeze');
+  animTX.setAttribute('calcMode','spline');
+  animTX.setAttribute('keySplines',Array(pts.length-1).fill('0.4 0 0.2 1').join(';'));
+  const animTY = document.createElementNS(NS,'animate');
+  animTY.setAttribute('attributeName','cy');
+  animTY.setAttribute('values',pts.map(p=>p[1]).join(';'));
+  animTY.setAttribute('keyTimes',pts.map((_,i)=>(i/(pts.length-1)).toFixed(3)).join(';'));
+  animTY.setAttribute('dur',dur); animTY.setAttribute('fill','freeze');
+  animTY.setAttribute('calcMode','spline');
+  animTY.setAttribute('keySplines',Array(pts.length-1).fill('0.4 0 0.2 1').join(';'));
+  traveller.setAttribute('cx',pts[0][0]); traveller.setAttribute('cy',pts[0][1]);
+  traveller.appendChild(animTX); traveller.appendChild(animTY);
   layer.appendChild(traveller);
 
-  // Waypoint dots at each junction
-  pts.slice(1, -1).forEach(p => {
-    const dot = document.createElementNS(NS, 'circle');
-    dot.setAttribute('cx', p[0]);
-    dot.setAttribute('cy', p[1]);
-    dot.setAttribute('r', '5');
-    dot.setAttribute('fill', routeColor);
-    dot.setAttribute('opacity', '0.5');
+  pts.slice(1,-1).forEach(p => {
+    const dot = document.createElementNS(NS,'circle');
+    dot.setAttribute('cx',p[0]); dot.setAttribute('cy',p[1]);
+    dot.setAttribute('r','5'); dot.setAttribute('fill',routeColor);
+    dot.setAttribute('opacity','0.5');
     layer.appendChild(dot);
   });
 
   svg.appendChild(layer);
 
-  // ── DESTINATION PIN + PULSE ───────────────────────────────────────────
   const dest = route.dest;
-  const animDur = Math.max(1.2, totalLen / 320);
-
-  const pinGroup = document.createElementNS(NS, 'g');
+  const animDur = Math.max(1.2, totalLen/320);
+  const pinGroup = document.createElementNS(NS,'g');
   pinGroup.id = 'campus-pin-group';
-  pinGroup.setAttribute('opacity', '0');
+  pinGroup.setAttribute('opacity','0');
 
-  // Outer pulse ring
-  const ring = document.createElementNS(NS, 'circle');
-  ring.setAttribute('cx', dest[0]);
-  ring.setAttribute('cy', dest[1]);
-  ring.setAttribute('r', '28');
-  ring.setAttribute('fill', routeColor);
-  ring.setAttribute('fill-opacity', '0.15');
-  ring.setAttribute('stroke', routeColor);
-  ring.setAttribute('stroke-width', '2');
-  const ringAnim1 = document.createElementNS(NS, 'animate');
-  ringAnim1.setAttribute('attributeName', 'r');
-  ringAnim1.setAttribute('values', '18;38;18');
-  ringAnim1.setAttribute('dur', '2s');
-  ringAnim1.setAttribute('repeatCount', 'indefinite');
-  const ringAnim2 = document.createElementNS(NS, 'animate');
-  ringAnim2.setAttribute('attributeName', 'opacity');
-  ringAnim2.setAttribute('values', '0.6;0;0.6');
-  ringAnim2.setAttribute('dur', '2s');
-  ringAnim2.setAttribute('repeatCount', 'indefinite');
-  ring.appendChild(ringAnim1);
-  ring.appendChild(ringAnim2);
+  const ring = document.createElementNS(NS,'circle');
+  ring.setAttribute('cx',dest[0]); ring.setAttribute('cy',dest[1]);
+  ring.setAttribute('r','28'); ring.setAttribute('fill',routeColor);
+  ring.setAttribute('fill-opacity','0.15'); ring.setAttribute('stroke',routeColor);
+  ring.setAttribute('stroke-width','2');
+  const ringAnim1 = document.createElementNS(NS,'animate');
+  ringAnim1.setAttribute('attributeName','r'); ringAnim1.setAttribute('values','18;38;18');
+  ringAnim1.setAttribute('dur','2s'); ringAnim1.setAttribute('repeatCount','indefinite');
+  const ringAnim2 = document.createElementNS(NS,'animate');
+  ringAnim2.setAttribute('attributeName','opacity'); ringAnim2.setAttribute('values','0.6;0;0.6');
+  ringAnim2.setAttribute('dur','2s'); ringAnim2.setAttribute('repeatCount','indefinite');
+  ring.appendChild(ringAnim1); ring.appendChild(ringAnim2);
   pinGroup.appendChild(ring);
 
-  // Solid centre dot
-  const centre = document.createElementNS(NS, 'circle');
-  centre.setAttribute('cx', dest[0]);
-  centre.setAttribute('cy', dest[1]);
-  centre.setAttribute('r', '12');
-  centre.setAttribute('fill', routeColor);
-  centre.setAttribute('opacity', '1');
+  const centre = document.createElementNS(NS,'circle');
+  centre.setAttribute('cx',dest[0]); centre.setAttribute('cy',dest[1]);
+  centre.setAttribute('r','12'); centre.setAttribute('fill',routeColor);
+  centre.setAttribute('opacity','1');
   pinGroup.appendChild(centre);
 
-  // Pin icon (map pin shape)
-  const pinPath = document.createElementNS(NS, 'path');
-  const px = dest[0], py = dest[1];
-  pinPath.setAttribute('d', `M${px} ${py-6} m-4,0 a4,4 0 1,1 8,0 Q${px+4} ${py} ${px} ${py+7} Q${px-4} ${py} ${px-4} ${py-6}`);
-  pinPath.setAttribute('fill', '#fff');
-  pinPath.setAttribute('opacity', '0.9');
+  const pinPath = document.createElementNS(NS,'path');
+  const px=dest[0], py=dest[1];
+  pinPath.setAttribute('d',`M${px} ${py-6} m-4,0 a4,4 0 1,1 8,0 Q${px+4} ${py} ${px} ${py+7} Q${px-4} ${py} ${px-4} ${py-6}`);
+  pinPath.setAttribute('fill','#fff'); pinPath.setAttribute('opacity','0.9');
   pinGroup.appendChild(pinPath);
 
-  // Reveal pin after route finishes
-  const pinReveal = document.createElementNS(NS, 'animate');
-  pinReveal.setAttribute('attributeName', 'opacity');
-  pinReveal.setAttribute('from', '0');
-  pinReveal.setAttribute('to', '1');
-  pinReveal.setAttribute('begin', animDur * 0.85 + 's');
-  pinReveal.setAttribute('dur', '0.4s');
-  pinReveal.setAttribute('fill', 'freeze');
+  const pinReveal = document.createElementNS(NS,'animate');
+  pinReveal.setAttribute('attributeName','opacity'); pinReveal.setAttribute('from','0');
+  pinReveal.setAttribute('to','1'); pinReveal.setAttribute('begin',animDur*0.85+'s');
+  pinReveal.setAttribute('dur','0.4s'); pinReveal.setAttribute('fill','freeze');
   pinGroup.appendChild(pinReveal);
-
   svg.appendChild(pinGroup);
 
-  // ── INFO BANNER BELOW SVG ─────────────────────────────────────────────
-  // Trigger the existing info panel
   setTimeout(() => {
     if (buildingId !== 'tba') {
       showBuildingInfo(buildingId);
     } else {
-      // Show TBA panel
       document.getElementById('campus-info-name').textContent = 'Venue to be announced';
-      document.getElementById('campus-info-desc').textContent = 'Venue details for Days 3 & 4 will be confirmed and updated here closer to the conference. Subscribe to updates to be notified.';
-      document.getElementById('campus-info-workshops').innerHTML = '<a href="#" onclick="showPage(\'updates\');return false" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(212,160,23,0.15);color:var(--gold);border:1px solid rgba(212,160,23,0.3);text-decoration:none"><i class=\"ti ti-bell\" style=\"font-size:11px\"></i> Subscribe to updates</a>';
+      document.getElementById('campus-info-desc').textContent = 'Venue details for Days 3 & 4 will be confirmed closer to the conference.';
+      document.getElementById('campus-info-workshops').innerHTML = '';
       document.getElementById('campus-info-panel').style.display = 'block';
     }
-  }, animDur * 850);
+  }, animDur*850);
 
- // ── HIGHLIGHT BUILDING, DIM OTHERS ───────────────────────────────────
-document.querySelectorAll('.campus-building').forEach(b => {
-  b.style.opacity = '0.3';
-  b.style.transition = 'opacity 0.4s';
-  b.querySelectorAll('rect').forEach(r => {
-    r._origStroke = r.style.stroke;
-    r.style.stroke = '';
+  document.querySelectorAll('.campus-building').forEach(b => {
+    b.style.opacity = '0.3'; b.style.transition = 'opacity 0.4s';
   });
-});
-const target = document.getElementById('bld-' + buildingId);
-if (target) {
-  target.style.opacity = '1';
-}
+  const target = document.getElementById('bld-'+buildingId);
+  if (target) target.style.opacity = '1';
 }
 
-// ── CLOSE PANEL: also clear route ────────────────────────────────────────
+function showParkingRoutes(parkingId) {
+  const d = campusBuildingData[parkingId];
+
+  document.querySelectorAll('.campus-building').forEach(b => {
+    b.style.opacity = '0.25'; b.style.transition = 'opacity 0.4s';
+  });
+  const target = document.getElementById('bld-'+parkingId);
+  if (target) target.style.opacity = '1';
+
+  document.getElementById('campus-info-name').textContent = d ? d.name : parkingId;
+  document.getElementById('campus-info-desc').textContent = d ? d.desc : '';
+
+  const wEl = document.getElementById('campus-info-workshops');
+  wEl.innerHTML = '';
+
+  const classes = parkingRouteMap[parkingId] || [];
+
+  if (classes.length > 0) {
+    const heading = document.createElement('div');
+    heading.style.cssText = 'font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:8px;width:100%';
+    heading.textContent = 'Click a route to animate it:';
+    wEl.appendChild(heading);
+  }
+
+  classes.forEach(cls => {
+    const info = routeLabels[cls];
+    if (!info) return;
+    const badge = document.createElement('span');
+    const isBackGate = cls.includes('backgate');
+    badge.style.cssText = `display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;background:${info.color}22;color:${info.color};border:1px solid ${info.color}55;cursor:pointer;margin:0 4px 6px 0;`;
+    badge.innerHTML = `<span style="font-size:9px;opacity:0.6;font-weight:400">${isBackGate ? 'Back Gate →' : 'Main Gate →'}</span> ${info.label}`;
+    badge.onclick = () => {
+      ['campus-route-layer','campus-pulse-group','campus-pin-group'].forEach(id => {
+        const el = document.getElementById(id); if (el) el.remove();
+      });
+      animateRoute(info.routeKey, info.label, '', info.color);
+    };
+    wEl.appendChild(badge);
+  });
+
+  const clearBtn = document.createElement('span');
+  clearBtn.style.cssText = 'display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:4px 11px;border-radius:100px;background:rgba(255,255,255,0.05);color:var(--text-muted);border:1px solid rgba(255,255,255,0.1);cursor:pointer;margin-top:4px;';
+  clearBtn.textContent = '✕ Clear';
+  clearBtn.onclick = closeCampusPanel;
+  wEl.appendChild(clearBtn);
+
+  document.getElementById('campus-info-panel').style.display = 'block';
+}
+
 function closeCampusPanel() {
   document.getElementById('campus-info-panel').style.display = 'none';
   ['campus-route-layer','campus-pulse-group','campus-pin-group','campus-banner'].forEach(id => {
-    const el = document.getElementById(id);
-    if (el) el.remove();
+    const el = document.getElementById(id); if (el) el.remove();
   });
   document.querySelectorAll('.campus-building').forEach(b => {
-    b.style.opacity = '';
-    b.style.transition = '';
+    b.style.opacity = ''; b.style.transition = '';
   });
 }
 </script>
