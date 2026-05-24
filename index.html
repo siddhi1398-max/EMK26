@@ -2091,7 +2091,7 @@ if (id === 'hospital') {
   });
   document.getElementById('campus-info-panel').style.display = 'block';
 
-  if (data.route) showRoutes(data.route);
+  if (data.route) animateRoute(id, data.name, '', data.color);
   else clearRoutes();
 }
 
@@ -2106,15 +2106,24 @@ function closeCampusPanel() {
   currentRoute = null;
 }
 
-function showRoutes(workshopClass) {
-  clearRoutes();
-  document.querySelectorAll('.footpath.' + workshopClass).forEach(el => el.classList.add('show'));
-  currentRoute = workshopClass;
+function showRoutes(routeKey) {
+  // routeKey is e.g. 'ws-blockb' — map it to animateRoute key
+  const keyMap = {
+    'ws-blockb':   'blockb',
+    'ws-avhall':   'avhall',
+    'ws-hospital': 'hospital',
+    'ws-sjh':      'sjh',
+    'ws-simlab':   'simlab',
+    'ws-aud':      'aud',
+  };
+  const mapped = keyMap[routeKey];
+  if (mapped) animateRoute(mapped, '', '', '');
 }
 
 function clearRoutes() {
-  document.querySelectorAll('.footpath').forEach(el => el.classList.remove('show'));
-  currentRoute = null;
+  ['campus-route-layer','campus-pulse-group','campus-pin-group','campus-banner'].forEach(id => {
+    const el = document.getElementById(id); if (el) el.remove();
+  });
 }
 
 let currentRoute = null;
