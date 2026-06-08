@@ -466,6 +466,129 @@ footer strong{color:var(--gold)}
 .stag-aw{background:rgba(224,156,62,0.15);color:var(--orange);border:1px solid rgba(224,156,62,0.3)}
   
 </style>
+
+  <!-- ═══ COMING SOON OVERLAYS ═══════════════════════════════════════
+     Trial launch: remove a page ID when its content is ready to go live.
+     Delete this entire block to disable all overlays.
+═══════════════════════════════════════════════════════════════════ -->
+<style>
+.tba-overlay-target { position: relative; }
+
+.tba-overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 50;
+  background: rgba(8, 9, 13, 0.72);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: clamp(80px, 18vh, 160px);
+  min-height: 100%;
+}
+
+.tba-card {
+  background: var(--midnight-3);
+  border: 1px solid var(--gold-border);
+  border-radius: var(--radius);
+  padding: 40px 44px;
+  text-align: center;
+  max-width: 440px;
+  width: calc(100% - 48px);
+  position: relative;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55);
+}
+
+.tba-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 3px;
+  background: var(--gold);
+  border-radius: var(--radius) var(--radius) 0 0;
+}
+
+.tba-icon-wrap {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  background: var(--gold-glow);
+  border: 1px solid var(--gold-border);
+  display: flex; align-items: center; justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.tba-badge {
+  display: inline-block;
+  background: var(--gold-glow);
+  color: var(--gold);
+  border: 1px solid var(--gold-border);
+  font-size: 10px; font-weight: 700;
+  padding: 3px 14px;
+  border-radius: 100px;
+  letter-spacing: 1.4px;
+  text-transform: uppercase;
+  margin-bottom: 16px;
+}
+
+.tba-title {
+  font-size: 22px; font-weight: 800;
+  color: #fff;
+  margin-bottom: 10px;
+  line-height: 1.2;
+}
+
+.tba-sub {
+  font-size: 13px;
+  color: var(--text-muted);
+  line-height: 1.75;
+  margin-bottom: 28px;
+}
+
+.tba-btn {
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--gold);
+  color: var(--midnight);
+  border: none;
+  padding: 11px 26px;
+  border-radius: var(--radius-sm);
+  font-size: 13px; font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+.tba-btn:hover {
+  background: var(--gold-mid);
+  transform: translateY(-1px);
+  box-shadow: 0 4px 16px rgba(212, 160, 23, 0.3);
+}
+
+.tba-divider {
+  width: 40px; height: 1px;
+  background: var(--gold-border);
+  margin: 22px auto 18px;
+}
+
+.tba-coming-list {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.tba-pill {
+  font-size: 10px; font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 100px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--text-muted);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+@media (max-width: 480px) {
+  .tba-card { padding: 32px 24px; }
+  .tba-title { font-size: 19px; }
+}
+</style>
 </head>
 <body>
 
@@ -3240,5 +3363,68 @@ function closeCampusPanel() {
   });
 }
 </script>
+
+  <script>
+(function () {
+  /* ── EDIT HERE ──────────────────────────────────────────────────────
+     Remove a page ID from this array when its content is ready.
+     Valid IDs: 'schedule', 'workshops', 'competitions', 'register'    */
+  const TBA_PAGES = ['schedule', 'workshops', 'competitions', 'register'];
+  /* ─────────────────────────────────────────────────────────────────── */
+
+  const META = {
+    schedule:     { icon: 'ti-layout-list', label: 'Programme Schedule'   },
+    workshops:    { icon: 'ti-tool',        label: 'Workshops'             },
+    competitions: { icon: 'ti-file-text',   label: 'Competitions'          },
+    register:     { icon: 'ti-user-plus',   label: 'Registration'          },
+  };
+
+  function buildOverlay(pageId) {
+    const page = document.getElementById('page-' + pageId);
+    if (!page) return;
+
+    page.classList.add('tba-overlay-target');
+
+    const m = META[pageId] || { icon: 'ti-clock', label: pageId };
+
+    const pillsHTML = TBA_PAGES
+      .map(id => `<span class="tba-pill">${(META[id] || {}).label || id}</span>`)
+      .join('');
+
+    const div = document.createElement('div');
+    div.className = 'tba-overlay';
+    div.innerHTML = `
+      <div class="tba-card">
+        <div class="tba-icon-wrap">
+          <i class="ti ${m.icon}" style="font-size:26px;color:var(--gold)"></i>
+        </div>
+        <div class="tba-badge">&#8987; Coming Soon</div>
+        <div class="tba-title">${m.label}</div>
+        <p class="tba-sub">
+          We're still finalising the details for this section.<br>
+          Subscribe below and we'll notify you the moment it goes live.
+        </p>
+        <button class="tba-btn" onclick="showPage('updates')">
+          <i class="ti ti-bell"></i> Notify Me When Live
+        </button>
+        <div class="tba-divider"></div>
+        <p style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Sections being prepared</p>
+        <div class="tba-coming-list">${pillsHTML}</div>
+        <p style="font-size:11px;color:var(--text-muted);opacity:0.5;margin-top:6px">
+          EM Karnataka 2026 · Trial Launch Preview
+        </p>
+      </div>`;
+
+    page.appendChild(div);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', () => TBA_PAGES.forEach(buildOverlay));
+  } else {
+    TBA_PAGES.forEach(buildOverlay);
+  }
+})();
+</script>
+  
 </body>
 </html>
