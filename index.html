@@ -2331,12 +2331,6 @@ if (id === 'hospital') {
   document.getElementById('campus-info-desc').textContent = data.desc;
   const wEl = document.getElementById('campus-info-workshops');
   wEl.innerHTML = '';
-  data.workshops.forEach(w => {
-    const badge = document.createElement('span');
-    badge.style.cssText = `display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:${w.color}22;color:${w.color};border:1px solid ${w.color}55`;
-    badge.innerHTML = `<span style="font-size:9px;opacity:0.7;font-weight:400">${w.day}</span> ${w.label}`;
-    wEl.appendChild(badge);
-  });
   document.getElementById('campus-info-panel').style.display = 'block';
 
   if (data.route) showRoutes(data.route);
@@ -3369,14 +3363,15 @@ function closeCampusPanel() {
   /* ── EDIT HERE ──────────────────────────────────────────────────────
      Remove a page ID from this array when its content is ready.
      Valid IDs: 'schedule', 'workshops', 'competitions', 'register'    */
-  const TBA_PAGES = ['schedule', 'workshops', 'competitions', 'register'];
+  const TBA_PAGES = ['schedule', 'workshops', 'competitions', 'register', 'stay'];
   /* ─────────────────────────────────────────────────────────────────── */
 
   const META = {
-    schedule:     { icon: 'ti-layout-list', label: 'Programme Schedule'   },
+  schedule:     { icon: 'ti-layout-list', label: 'Programme Schedule'   },
     workshops:    { icon: 'ti-tool',        label: 'Workshops'             },
     competitions: { icon: 'ti-file-text',   label: 'Competitions'          },
     register:     { icon: 'ti-user-plus',   label: 'Registration'          },
+    stay:         { icon: 'ti-bed',         label: 'Stay & Explore'        },
   };
 
   function buildOverlay(pageId) {
@@ -3387,9 +3382,6 @@ function closeCampusPanel() {
 
     const m = META[pageId] || { icon: 'ti-clock', label: pageId };
 
-    const pillsHTML = TBA_PAGES
-      .map(id => `<span class="tba-pill">${(META[id] || {}).label || id}</span>`)
-      .join('');
 
     const div = document.createElement('div');
     div.className = 'tba-overlay';
@@ -3407,9 +3399,7 @@ function closeCampusPanel() {
         <button class="tba-btn" onclick="showPage('updates')">
           <i class="ti ti-bell"></i> Notify Me When Live
         </button>
-        <div class="tba-divider"></div>
-        <p style="font-size:10px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Sections being prepared</p>
-        <div class="tba-coming-list">${pillsHTML}</div>
+       
         <p style="font-size:11px;color:var(--text-muted);opacity:0.5;margin-top:6px">
           EM Karnataka 2026 · Trial Launch Preview
         </p>
