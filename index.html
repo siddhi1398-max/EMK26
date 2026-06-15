@@ -2461,11 +2461,12 @@ function navigateToVenue(buildingId, workshopLabel, venueName, color) {
           <div class="contact-icon"><i class="ti ti-pencil"></i></div>
           <p style="font-size:13px;font-weight:700;color:#fff">Registrations</p>
         </div>
-        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:'+this.value);this.selectedIndex=0">
-          <option value="">— Select committee member —</option>
-          <option value="reg@emkarnataka2026.in">Dr. Niveditha TG · Registration Chair</option>
-          <option value="reg2@emkarnataka2026.in">Dr. Name TBA · Co-ordinator</option>
-        </select>
+    <!-- Registrations -->
+<select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:cmeemergencymedicine@fathermuller.in?subject=[EMK2026] Registration — '+encodeURIComponent(this.options[this.selectedIndex].text));this.selectedIndex=0">
+  <option value="">— Select committee member —</option>
+  <option value="1">Dr. Niveditha TG · Registration Chair</option>
+  <option value="2">Dr. Name TBA · Co-ordinator</option>
+</select>
       </div>
 
       <div class="contact-card" style="flex-direction:column;gap:0">
@@ -2681,6 +2682,31 @@ function scrollCarousel(trackId,dir){const t=document.getElementById(trackId);t.
 function doReg(){const f=document.getElementById('rf').value,e=document.getElementById('re').value,t=document.getElementById('rt').value;if(!f||!e||!t){alert('Please fill all required fields.');return;}const el=document.getElementById('reg-ok');el.classList.remove('hidden');el.scrollIntoView({behavior:'smooth',block:'center'});}
 function doSub(){document.getElementById('sub-ok').classList.remove('hidden');}
 function doContact(){document.getElementById('ctc-ok').classList.remove('hidden');}
+function doContact() {
+  const fields  = document.querySelectorAll('#page-contact input, #page-contact textarea, #page-contact select');
+  const name    = fields[0]?.value.trim() || '';
+  const email   = fields[1]?.value.trim() || '';
+  const dept    = fields[2]?.value        || 'General Query';
+  const subject = fields[3]?.value.trim() || '';
+  const msg     = fields[4]?.value.trim() || '';
+
+  if (!name || !email || !msg) {
+    alert('Please fill in your name, email, and message.'); return;
+  }
+
+  const subjectLine = '[EMK2026] ' + dept + (subject ? ' — ' + subject : '');
+  const body = 'From: ' + name + '\nEmail: ' + email + '\nDepartment: ' + dept
+             + '\n\n' + msg;
+
+  window.open(
+    'mailto:cmeemergencymedicine@fathermuller.in'
+    + '?subject=' + encodeURIComponent(subjectLine)
+    + '&body='    + encodeURIComponent(body),
+    '_blank'
+  );
+
+  document.getElementById('ctc-ok').classList.remove('hidden');
+}
 
 function tick(){const diff=new Date('2026-09-15T23:59:59')-new Date();if(diff<=0)return;document.getElementById('cd-d').textContent=Math.floor(diff/86400000);document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
 tick();setInterval(tick,1000);
