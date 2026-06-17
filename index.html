@@ -43,8 +43,20 @@ body{font-family:'Outfit',system-ui,sans-serif;background:var(--midnight);color:
 }
 /* ── NAV — increased height ── */
 nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--gold-border);backdrop-filter:blur(12px);}
-.nav-inner{max-width:100%;margin:auto;padding:0 1.5rem;display:grid;grid-template-columns:auto 1fr auto auto;align-items:center;gap:12px;height:76px;}
-.logo{font-size:30px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:12px;flex-shrink:0}
+.nav-inner{max-width:100%;margin:auto;padding:0 1.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;height:76px;}
+
+/* ── NAV RIGHT GROUP (partner logos + CTA) ── */
+.nav-right{display:flex;align-items:center;gap:10px;flex-shrink:0;}
+.nav-partner-logos{display:flex;align-items:center;gap:8px;padding-right:10px;border-right:1px solid var(--gold-border);}
+.nav-partner-logo{height:42px;width:42px;object-fit:contain;border-radius:6px;background:#fff;padding:3px;flex-shrink:0;border:1px solid rgba(255,255,255,0.12);}
+
+@media(max-width:768px){
+  .nav-inner{grid-template-columns:auto 1fr auto;gap:8px;padding:0 1rem;}
+  .nav-partner-logos{gap:5px;padding-right:6px;}
+  .nav-partner-logo{height:30px;width:30px;padding:2px;border-radius:4px;}
+  .nav-right{gap:6px;}
+}
+  .logo{font-size:30px;font-weight:700;color:#fff;cursor:pointer;display:flex;align-items:center;gap:12px;flex-shrink:0}
 .logo-img{height:60px;width:60px;object-fit:cover;border-radius:8px;flex-shrink:0;border:auto solid var(--gold-border)}
 .logo-text{display:flex;flex-direction:column}
 .logo-main{font-size:20px;font-weight:800;color:#fff;line-height:1.1;text-shadow:0 0 12px rgba(212,160,23,0.35),0 0 30px rgba(212,160,23,0.12);}
@@ -603,6 +615,7 @@ footer strong{color:var(--gold)}
 
 <nav>
   <div class="nav-inner">
+
   <div class="logo" onclick="showPage('home')">
     <img class="logo-img" src="logos/Emk.png" alt="EM Karnataka logo" onerror="this.style.display='none'" />
     <div class="logo-text">
@@ -610,16 +623,35 @@ footer strong{color:var(--gold)}
       <span class="logo-sub">6th Annual State Conference</span>
     </div>
   </div>
+
   <div class="nav-links">
-    <!-- existing nav buttons unchanged -->
+    <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
+    <button onclick="showPage('schedule')" id="nav-schedule">Schedule</button>
+    <button onclick="showPage('workshops')" id="nav-workshops">Workshops</button>
+    <button onclick="showPage('competitions')" id="nav-competitions">Competitions</button>
+    <button onclick="showPage('stay')" id="nav-stay">Stay</button>
+    <button onclick="showPage('updates')" id="nav-updates">Updates</button>
+    <button onclick="showPage('venue')" id="nav-venue">Venue</button>
+    <button onclick="showPage('contact')" id="nav-contact">Contact</button>
   </div>
-  <div class="nav-partner-logos">
-    <img class="nav-partner-logo" src="logos/LAPS.jpg" alt="FMCI" title="Father Muller Charitable Institutions" onerror="this.style.display='none'" />
-    <img class="nav-partner-logo" src="logos/founder.png" alt="Founder" title="Founder" onerror="this.style.display='none'" />
+
+  <div class="nav-right">
+    <div class="nav-partner-logos">
+      <img class="nav-partner-logo" src="logos/LAPS.jpg" alt="FMCI"
+           title="Father Muller Charitable Institutions"
+           onerror="this.style.display='none'" />
+      <img class="nav-partner-logo" src="logos/founder.png" alt="Founder"
+           title="Founder" onerror="this.style.display='none'" />
+    </div>
+    <button class="nav-cta-btn" onclick="showPage('register')">
+      <i class="ti ti-user-plus" style="font-size:15px"></i> Register Now
+    </button>
   </div>
-  <button class="nav-cta-btn" onclick="showPage('register')">
-    <i class="ti ti-user-plus" style="font-size:15px"></i> Register Now
+
+  <button id="ham-btn" onclick="toggleDrawer()" aria-label="Menu">
+    <i class="ti ti-menu-2"></i>
   </button>
+
 </div>
     <div class="nav-links">
       <button onclick="showPage('home')" id="nav-home" class="active">Home</button>
