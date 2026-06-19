@@ -2788,7 +2788,31 @@ function navigateToVenue(buildingId, workshopLabel, venueName, color) {
     <span style="font-size:10px;display:block;opacity:0.4">developed by the Organizing Committee · Dept of Emergency Medicine, Father Muller Medical College</span>
   </footer>
 </div>
+  
+<script>
+(function(){
+  if(sessionStorage.getItem('emk26-welcomed')){
+    var ov=document.getElementById('welcome-overlay');
+    if(ov) ov.remove();
+    return;
+  }
+  document.getElementById('welcome-overlay').addEventListener('keydown',function(e){
+    if(e.key==='Escape') dismissWelcome();
+  });
+  var btn=document.getElementById('wov-enter-btn');
+  if(btn) btn.focus();
+})();
 
+function dismissWelcome(){
+  var ov=document.getElementById('welcome-overlay');
+  if(!ov) return;
+  ov.style.transition='opacity 0.3s ease';
+  ov.style.opacity='0';
+  setTimeout(function(){ ov.remove(); },300);
+  sessionStorage.setItem('emk26-welcomed','1');
+}
+</script>
+<!-- ═══════════ END WELCOME OVERLAY ═══════════ -->
 <script>
 const heroImgs=['images/mlr_9_kambala.webp','images/mlr_8_yk.png','images/mlr_7_tigerdance.jpg','images/mlr_6_lighthouse.jpg','images/mlr_5_ullal.jpg','images/mlr_4_tnrbeach.webp'];
 let hIdx=0;
@@ -3662,29 +3686,6 @@ function closeCampusPanel() {
 })();
 </script>
 
-<script>
-(function(){
-  if(sessionStorage.getItem('emk26-welcomed')){
-    var ov=document.getElementById('welcome-overlay');
-    if(ov) ov.remove();
-    return;
-  }
-  document.getElementById('welcome-overlay').addEventListener('keydown',function(e){
-    if(e.key==='Escape') dismissWelcome();
-  });
-  var btn=document.getElementById('wov-enter-btn');
-  if(btn) btn.focus();
-})();
 
-function dismissWelcome(){
-  var ov=document.getElementById('welcome-overlay');
-  if(!ov) return;
-  ov.style.transition='opacity 0.3s ease';
-  ov.style.opacity='0';
-  setTimeout(function(){ ov.remove(); },300);
-  sessionStorage.setItem('emk26-welcomed','1');
-}
-</script>
-<!-- ═══════════ END WELCOME OVERLAY ═══════════ -->
 </body>
 </html>
