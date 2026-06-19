@@ -610,222 +610,9 @@ footer strong{color:var(--gold)}
   .tba-title { font-size: 19px; }
 }
 </style>
-    <!-- ═══════════ WELCOME OVERLAY ═══════════ -->
-<style>
-#welcome-overlay{
-  position:fixed;inset:0;z-index:9999;
-  background:rgba(8,9,13,0.88);
-  display:flex;align-items:center;justify-content:center;
-  padding:20px;
-  backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
-  animation:wov-in 0.4s ease both;
-}
-@keyframes wov-in{from{opacity:0}to{opacity:1}}
-#welcome-card{
-  background:var(--midnight-3);
-  border:1px solid var(--gold-border);
-  border-radius:var(--radius);
-  max-width:520px;width:100%;
-  position:relative;overflow:hidden;
-  animation:wov-up 0.45s cubic-bezier(.22,.68,0,1.2) 0.1s both;
-  max-height:90vh;overflow-y:auto;
-}
-@keyframes wov-up{from{opacity:0;transform:translateY(28px) scale(0.97)}to{opacity:1;transform:translateY(0) scale(1)}}
-
-/* Beach hero strip */
-#wov-hero{
-  position:relative;
-  height:140px;
-  overflow:hidden;
-  background:linear-gradient(180deg,rgba(8,9,13,0) 0%,rgba(8,9,13,0.7) 100%),
-             url('images/mlr_6_lighthouse.jpg') center/cover no-repeat;
-  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
-  padding:0 0 14px;
-}
-#wov-hero-overlay{
-  position:absolute;inset:0;
-  background:linear-gradient(180deg,rgba(8,9,13,0.15) 0%,rgba(8,9,13,0.72) 100%);
-}
-#wov-logos{
-  position:absolute;top:14px;left:0;right:0;
-  display:flex;align-items:center;justify-content:center;gap:12px;
-  z-index:2;
-}
-.wov-logo-box{
-  width:44px;height:44px;background:#fff;border-radius:8px;
-  display:flex;align-items:center;justify-content:center;
-  border:1.5px solid rgba(255,255,255,0.3);
-  overflow:hidden;flex-shrink:0;
-}
-.wov-logo-box img{max-width:40px;max-height:40px;object-fit:contain;display:block;}
-#wov-hero-text{position:relative;z-index:2;text-align:center;}
-#wov-hero-label{
-  font-size:9px;font-weight:700;letter-spacing:1.6px;text-transform:uppercase;
-  color:rgba(212,160,23,0.9);display:block;margin-bottom:3px;
-}
-#wov-hero-conf{font-size:11px;color:rgba(255,255,255,0.6);}
-
-/* Letter body */
-.wov-body{padding:28px 32px 20px;}
-
-.wov-letter-head{
-  display:grid;grid-template-columns:1fr auto;gap:8px;
-  align-items:start;margin-bottom:18px;
-  padding-bottom:14px;border-bottom:1px solid var(--gold-border);
-}
-.wov-conf-name{font-size:14px;font-weight:800;color:var(--gold);line-height:1.2;}
-.wov-conf-sub{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.8px;color:var(--text-muted);margin-top:2px;}
-.wov-date-loc{text-align:right;}
-.wov-date{font-size:13px;font-weight:700;color:#fff;}
-.wov-loc{font-size:11px;color:var(--text-muted);margin-top:2px;}
-
-.wov-tag{
-  display:inline-block;
-  background:rgba(212,160,23,0.08);border:1px solid rgba(212,160,23,0.25);
-  border-radius:100px;padding:3px 14px;
-  font-size:10px;font-weight:700;letter-spacing:0.8px;text-transform:uppercase;
-  color:var(--gold);margin-bottom:16px;
-}
-
-.wov-title{font-size:24px;font-weight:900;color:#fff;line-height:1.15;margin:0 0 4px;}
-.wov-title em{color:var(--gold);font-style:normal;}
-.wov-theme-line{font-size:12px;font-style:italic;color:var(--text-dim);margin:0 0 20px;}
-.wov-rule{width:36px;height:2px;background:var(--gold);border-radius:1px;margin-bottom:18px;}
-
-.wov-salute{font-size:13.5px;font-weight:700;color:var(--text);margin-bottom:12px;}
-.wov-body p{font-size:13px;color:rgba(240,238,216,0.7);line-height:1.85;margin:0 0 12px;}
-.wov-body p strong{color:var(--text);}
-.wov-body p em{color:var(--gold);font-style:normal;}
-
-.wov-closing{margin-top:6px;}
-.wov-closing-line{
-  font-size:14px;font-weight:800;color:#fff;
-  margin-bottom:3px;line-height:1.4;
-}
-
-.wov-sig{margin-top:16px;padding-top:14px;border-top:1px solid var(--border-subtle);}
-.wov-sig-label{font-size:12px;font-weight:700;color:var(--text);margin-bottom:2px;}
-.wov-sig-sub{font-size:11px;color:var(--text-muted);line-height:1.5;}
-
-/* Footer */
-.wov-footer{
-  border-top:1px solid var(--gold-border);
-  padding:16px 32px;
-  display:flex;align-items:center;justify-content:space-between;
-  gap:12px;flex-wrap:wrap;
-  background:rgba(8,9,13,0.3);
-}
-.wov-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;}
-.wov-meta-item{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--text-dim);}
-.wov-meta-item i{color:var(--gold);font-size:13px;}
-#wov-enter-btn{
-  background:var(--gold);color:var(--midnight);
-  border:none;border-radius:var(--radius-sm);
-  padding:11px 26px;font-size:14px;font-weight:700;
-  font-family:inherit;cursor:pointer;
-  display:flex;align-items:center;gap:7px;
-  transition:all 0.18s;flex-shrink:0;
-}
-#wov-enter-btn:hover{background:var(--gold-mid);transform:translateY(-1px);box-shadow:0 4px 18px rgba(212,160,23,0.35);}
-@media(max-width:520px){
-  .wov-body{padding:22px 20px 16px;}
-  .wov-footer{padding:14px 20px;}
-  .wov-title{font-size:20px;}
-  #wov-hero{height:120px;}
-  .wov-logo-box{width:36px;height:36px;}
-  .wov-logo-box img{max-width:32px;max-height:32px;}
-}
-</style>
-
 </head>
 <body>
 
-  <script>
-// Safety shim — replaced by full definition when main script loads
-if (typeof toggleDrawer === 'undefined') {
-  window.toggleDrawer = function() {
-    var d = document.getElementById('drawer');
-    var b = document.getElementById('drawer-backdrop');
-    if (d) d.classList.toggle('open');
-    if (b) b.classList.toggle('open');
-  };
-}
-</script>
-<!-- ═══════════ WELCOME OVERLAY ═══════════ -->
-<div id="welcome-overlay" role="dialog" aria-modal="true" aria-labelledby="wov-title">
-  <div id="welcome-card">
-
-    <!-- Hero strip with beach image + logos -->
-    <div id="wov-hero">
-      <div id="wov-hero-overlay"></div>
-      <div id="wov-logos">
-        <div class="wov-logo-box"><img src="logos/LAPS.jpg" alt="Father Muller Charitable Institutions" /></div>
-        <div class="wov-logo-box"><img src="logos/KEPA.jpg" alt="KEPA" /></div>
-        <div class="wov-logo-box"><img src="logos/Emk.png" alt="EM Karnataka" /></div>
-      </div>
-      <div id="wov-hero-text">
-        <span id="wov-hero-label">A Letter of Welcome</span>
-        <span id="wov-hero-conf">EM Karnataka 2026 · 6th Annual State Conference</span>
-      </div>
-    </div>
-
-    <!-- Letter body -->
-    <div class="wov-body">
-
-      <!-- Letter head: name + date/location -->
-      <div class="wov-letter-head">
-        <div>
-          <div class="wov-conf-name">EM Karnataka 2026</div>
-          <div class="wov-conf-sub">6th Annual State Conference</div>
-        </div>
-        <div class="wov-date-loc">
-          <div class="wov-date">12–15 November 2026</div>
-          <div class="wov-loc">Father Muller Medical College · Mangaluru</div>
-        </div>
-      </div>
-
-      <div class="wov-tag">A Letter of Welcome</div>
-
-      <h2 class="wov-title" id="wov-title">Welcome to<br/><em>EM Karnataka 2026</em></h2>
-      <p class="wov-theme-line">Climate Change &amp; Emergency Medicine — Preparing for the Health Crises of Tomorrow</p>
-      <div class="wov-rule"></div>
-
-      <div class="wov-salute">Dear Delegates, Colleagues, and Friends,</div>
-
-      <p>It is our pleasure to welcome you to <strong>EM Karnataka 2026</strong>, the 6th Annual State Conference of Emergency Medicine Karnataka, hosted by Father Muller Medical College, Mangalore, from <strong>12th–15th November 2026</strong>.</p>
-
-      <p>Founded in 1880, Father Muller Medical College is renowned for its commitment to compassionate healthcare, quality medical education, and service to society. We are honoured to host Emergency Medicine professionals from across the state and beyond for this academic gathering.</p>
-
-      <p>Nestled between the Arabian Sea and the Western Ghats, Mangalore is known for its beautiful beaches, rich cultural heritage, warm hospitality, and the iconic <em>Pabbas Ice Cream</em> — a treat no visitor should miss!</p>
-
-      <p>We look forward to an exciting program of learning, collaboration, innovation, and friendship.</p>
-
-      <div class="wov-closing">
-        <div class="wov-closing-line">Welcome to EM Karnataka 2026.</div>
-        <div class="wov-closing-line">Welcome to Father Muller Medical College.</div>
-        <div class="wov-closing-line">Welcome to Mangalore.</div>
-      </div>
-
-      <div class="wov-sig">
-        <div class="wov-sig-label">Organising Committee</div>
-        <div class="wov-sig-sub">EM Karnataka 2026 · Father Muller Medical College, Mangalore<br/>Department of Emergency Medicine · Father Muller Medical College</div>
-      </div>
-    </div>
-
-    <!-- Footer -->
-    <div class="wov-footer">
-      <div class="wov-meta">
-        <div class="wov-meta-item"><i class="ti ti-map-pin"></i> Kankanady, Mangaluru</div>
-        <div class="wov-meta-item"><i class="ti ti-calendar"></i> 12–15 Nov 2026</div>
-      </div>
-      <button id="wov-enter-btn" onclick="dismissWelcome()">
-        <i class="ti ti-arrow-right" style="font-size:15px"></i> Enter Conference
-      </button>
-    </div>
-
-  </div>
-</div>
-  <!-- ═══════════ NAV BAR ═══════════ -->
 <nav>
   <div class="nav-inner">
 
@@ -2800,31 +2587,7 @@ function navigateToVenue(buildingId, workshopLabel, venueName, color) {
     <span style="font-size:10px;display:block;opacity:0.4">developed by the Organizing Committee · Dept of Emergency Medicine, Father Muller Medical College</span>
   </footer>
 </div>
-  
-<script>
-(function(){
-  if(sessionStorage.getItem('emk26-welcomed')){
-    var ov=document.getElementById('welcome-overlay');
-    if(ov) ov.remove();
-    return;
-  }
-  document.getElementById('welcome-overlay').addEventListener('keydown',function(e){
-    if(e.key==='Escape') dismissWelcome();
-  });
-  var btn=document.getElementById('wov-enter-btn');
-  if(btn) btn.focus();
-})();
 
-function dismissWelcome(){
-  var ov=document.getElementById('welcome-overlay');
-  if(!ov) return;
-  ov.style.transition='opacity 0.3s ease';
-  ov.style.opacity='0';
-  setTimeout(function(){ ov.remove(); },300);
-  sessionStorage.setItem('emk26-welcomed','1');
-}
-</script>
-<!-- ═══════════ END WELCOME OVERLAY ═══════════ -->
 <script>
 const heroImgs=['images/mlr_9_kambala.webp','images/mlr_8_yk.png','images/mlr_7_tigerdance.jpg','images/mlr_6_lighthouse.jpg','images/mlr_5_ullal.jpg','images/mlr_4_tnrbeach.webp'];
 let hIdx=0;
@@ -2841,7 +2604,19 @@ function showPage(p){
 
 function showDay(d,btn){document.querySelectorAll('.sched-day').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));document.getElementById('sd'+d).classList.add('active');btn.classList.add('active');}
 
-
+function selectTier(t,card){
+  document.querySelectorAll('.tier').forEach(c=>c.classList.remove('selected'));
+  card.classList.add('selected');
+  const s=document.getElementById('rt');
+  for(let i=0;i<s.options.length;i++)if(s.options[i].value===t){s.selectedIndex=i;break;}
+  resetWorkshops();
+}
+function onRegTypeChange(){resetWorkshops();}
+function resetWorkshops(){
+  document.querySelectorAll('.ws-chk').forEach(c=>{c.checked=false;c.disabled=false;});
+  document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.remove('checked'));
+  const warn=document.getElementById('ws-warn');if(warn)warn.style.display='none';
+}
   function selectTier(name, price, wsMax, card){
   document.querySelectorAll('.tier').forEach(c=>{
     c.classList.remove('selected');
@@ -2993,39 +2768,37 @@ function drawerGo(page){
   
 </script>
   
- <!-- ═══════════ PALM FOOTER — fixed overlay, all pages ═══════════ -->
-<div id="palm-footer" style="position:fixed;bottom:0;left:0;width:100%;pointer-events:none;z-index:98;display:flex;justify-content:space-between;align-items:flex-end;">
-  <div id="palm-left"  style="width:160px;height:160px;opacity:0.85;transform:scaleX(-1);margin-left:-18px;flex-shrink:0;"></div>
-  <div id="palm-right" style="width:160px;height:160px;opacity:0.85;margin-right:-18px;flex-shrink:0;"></div>
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+
+<div id="palm-footer">
+  <div id="palm-left"></div>
+  <div id="palm-right"></div>
 </div>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
+<style>
+ #palm-footer {
+  position: fixed; bottom: 0; left: 0;
+  width: 100%; pointer-events: none; z-index: 99;
+  display: flex; justify-content: space-between; align-items: flex-end;
+}
+#palm-left, #palm-right { width: 180px; height: 180px; opacity: 0.9; }
+#palm-left { transform: scaleX(-1); margin-left: -20px; }
+#palm-right { margin-right: -20px; }
+@media (max-width: 768px) {
+  #palm-left, #palm-right { width: 80px; height: 80px; }
+  #palm-left { margin-left: -10px; }
+  #palm-right { margin-right: -10px; }
+}
+</style>
+
 <script>
-(function tryLottie() {
-  // Try local file first; fall back to a public palm CDN animation
-  const LOCAL = '/Palm_Tree_Leaf_Animation.json';
-  const FALLBACK = 'https://assets9.lottiefiles.com/packages/lf20_jbb8kuix.json'; // palm tree
-
-  function loadAnim(data) {
-    const cfg = { renderer:'svg', loop:true, autoplay:true, animationData:data };
-    lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left')  });
-    lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
-  }
-
-  fetch(LOCAL)
-    .then(r => { if (!r.ok) throw new Error('local missing'); return r.json(); })
-    .then(loadAnim)
-    .catch(() => {
-      fetch(FALLBACK)
-        .then(r => r.json())
-        .then(loadAnim)
-        .catch(() => {
-          // hide gracefully if both fail (no crash)
-          const pf = document.getElementById('palm-footer');
-          if (pf) pf.style.display = 'none';
-        });
-    });
-})();
+  fetch('/Palm_Tree_Leaf_Animation.json')
+    .then(r => r.json())
+    .then(animData => {
+  const cfg = { renderer: 'svg', loop: true, autoplay: true, animationData: animData };
+  lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left') });
+  lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
+});
 </script>
 
   <!-- Hamburger button — add inside .nav-inner in your HTML -->
@@ -3687,7 +3460,6 @@ function closeCampusPanel() {
   }
 })();
 </script>
-
-
+  
 </body>
 </html>
