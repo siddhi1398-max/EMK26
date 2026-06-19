@@ -739,6 +739,18 @@ footer strong{color:var(--gold)}
 
 </head>
 <body>
+
+  <script>
+// Safety shim — replaced by full definition when main script loads
+if (typeof toggleDrawer === 'undefined') {
+  window.toggleDrawer = function() {
+    var d = document.getElementById('drawer');
+    var b = document.getElementById('drawer-backdrop');
+    if (d) d.classList.toggle('open');
+    if (b) b.classList.toggle('open');
+  };
+}
+</script>
 <!-- ═══════════ WELCOME OVERLAY ═══════════ -->
 <div id="welcome-overlay" role="dialog" aria-modal="true" aria-labelledby="wov-title">
   <div id="welcome-card">
@@ -2829,19 +2841,7 @@ function showPage(p){
 
 function showDay(d,btn){document.querySelectorAll('.sched-day').forEach(x=>x.classList.remove('active'));document.querySelectorAll('.tab-btn').forEach(x=>x.classList.remove('active'));document.getElementById('sd'+d).classList.add('active');btn.classList.add('active');}
 
-function selectTier(t,card){
-  document.querySelectorAll('.tier').forEach(c=>c.classList.remove('selected'));
-  card.classList.add('selected');
-  const s=document.getElementById('rt');
-  for(let i=0;i<s.options.length;i++)if(s.options[i].value===t){s.selectedIndex=i;break;}
-  resetWorkshops();
-}
-function onRegTypeChange(){resetWorkshops();}
-function resetWorkshops(){
-  document.querySelectorAll('.ws-chk').forEach(c=>{c.checked=false;c.disabled=false;});
-  document.querySelectorAll('.ws-chk-label').forEach(l=>l.classList.remove('checked'));
-  const warn=document.getElementById('ws-warn');if(warn)warn.style.display='none';
-}
+
   function selectTier(name, price, wsMax, card){
   document.querySelectorAll('.tier').forEach(c=>{
     c.classList.remove('selected');
@@ -2993,37 +2993,39 @@ function drawerGo(page){
   
 </script>
   
- <script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
-
-<div id="palm-footer">
-  <div id="palm-left"></div>
-  <div id="palm-right"></div>
+ <!-- ═══════════ PALM FOOTER — fixed overlay, all pages ═══════════ -->
+<div id="palm-footer" style="position:fixed;bottom:0;left:0;width:100%;pointer-events:none;z-index:98;display:flex;justify-content:space-between;align-items:flex-end;">
+  <div id="palm-left"  style="width:160px;height:160px;opacity:0.85;transform:scaleX(-1);margin-left:-18px;flex-shrink:0;"></div>
+  <div id="palm-right" style="width:160px;height:160px;opacity:0.85;margin-right:-18px;flex-shrink:0;"></div>
 </div>
 
-<style>
- #palm-footer {
-  position: fixed; bottom: 0; left: 0;
-  width: 100%; pointer-events: none; z-index: 99;
-  display: flex; justify-content: space-between; align-items: flex-end;
-}
-#palm-left, #palm-right { width: 180px; height: 180px; opacity: 0.9; }
-#palm-left { transform: scaleX(-1); margin-left: -20px; }
-#palm-right { margin-right: -20px; }
-@media (max-width: 768px) {
-  #palm-left, #palm-right { width: 80px; height: 80px; }
-  #palm-left { margin-left: -10px; }
-  #palm-right { margin-right: -10px; }
-}
-</style>
-
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lottie-web/5.12.2/lottie.min.js"></script>
 <script>
-  fetch('/Palm_Tree_Leaf_Animation.json')
-    .then(r => r.json())
-    .then(animData => {
-  const cfg = { renderer: 'svg', loop: true, autoplay: true, animationData: animData };
-  lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left') });
-  lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
-});
+(function tryLottie() {
+  // Try local file first; fall back to a public palm CDN animation
+  const LOCAL = '/Palm_Tree_Leaf_Animation.json';
+  const FALLBACK = 'https://assets9.lottiefiles.com/packages/lf20_jbb8kuix.json'; // palm tree
+
+  function loadAnim(data) {
+    const cfg = { renderer:'svg', loop:true, autoplay:true, animationData:data };
+    lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left')  });
+    lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
+  }
+
+  fetch(LOCAL)
+    .then(r => { if (!r.ok) throw new Error('local missing'); return r.json(); })
+    .then(loadAnim)
+    .catch(() => {
+      fetch(FALLBACK)
+        .then(r => r.json())
+        .then(loadAnim)
+        .catch(() => {
+          // hide gracefully if both fail (no crash)
+          const pf = document.getElementById('palm-footer');
+          if (pf) pf.style.display = 'none';
+        });
+    });
+})();
 </script>
 
   <!-- Hamburger button — add inside .nav-inner in your HTML -->
