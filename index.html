@@ -1720,20 +1720,29 @@ footer strong{color:var(--gold)}
             <i class="ti ti-calendar-event" style="font-size:11px;color:var(--gold)"></i> Day 1 — Thursday, 12 November
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" id="ws-d1">
-            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Peripheral Nerve Blocks & Advanced Airway" onchange="wsChange(this)"> Nerve Blocks &amp; Advanced Airway</label>
-            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Mechanical Ventilation" onchange="wsChange(this)"> Mechanical Ventilation</label>
-            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Disaster Management" onchange="wsChange(this)"> Disaster Management</label>
-          </div>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Advanced Airway" onchange="wsChange(this)"> Advanced Airway</label>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="ToxSim" onchange="wsChange(this)"> ToxSim</label>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Maternal Resuscitation Programme" onchange="wsChange(this)"> Maternal Resuscitation Programme</label>
+</div>
         </div>
         <div>
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px">
             <i class="ti ti-calendar-event" style="font-size:11px;color:var(--gold)"></i> Day 2 — Friday, 13 November
           </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" id="ws-d2">
-            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Advanced POCUS" onchange="wsChange(this)"> Advanced POCUS</label>
-            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Maternal Resuscitation Program (MRP)" onchange="wsChange(this)"> Maternal Resuscitation (MRP)</label>
-            <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Virtual Anatomy" onchange="wsChange(this)"> Virtual Anatomy</label>
-          </div>
+         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" id="ws-d2">
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Hidden Curriculum in ED" onchange="wsChange(this)"> Hidden Curriculum in ED</label>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Resuscitatology" onchange="wsChange(this)"> Resuscitatology</label>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="EM Radiology" onchange="wsChange(this)"> EM Radiology</label>
+</div>
+          <div style="margin-top:16px">
+  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px">
+    <i class="ti ti-map-pin" style="font-size:11px;color:var(--gold)"></i> Pre-Conference — 11 November (Manipal, separate venue)
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px">
+    <label class="ws-chk-label"><input type="checkbox" class="ws-chk-manipal"> El Niño &amp; Emergency Medicine</label>
+  </div>
+  <div style="font-size:11px;color:var(--text-muted);margin-top:6px">These run a day earlier at Manipal and are registered/priced separately — selecting here just notes your interest.</div>
+</div>
         </div>
         <div id="ws-warn" style="display:none;font-size:12px;color:var(--gold);margin-top:8px;align-items:center;gap:6px;background:rgba(212,160,23,0.08);padding:8px 12px;border-radius:8px;border:1px solid var(--gold-border)">
           <i class="ti ti-info-circle"></i> 2 workshops selected &mdash; <strong>+&#8377;1,500 added</strong> to your total
@@ -2416,53 +2425,52 @@ window.addEventListener('load', () => {
 });
 
 const campusBuildingData = {
-  blockb: {
-    name: 'Block B',
-    color: '#9b7fe8',
-    desc: 'Main academic block housing the Dissection Hall and Anatomy Lab.',
-    workshops: [
-      {label:'Workshop A — Peripheral Nerve Blocks & Advanced Airway', color:'#9b7fe8', day:'Day 1'},
-      {label:'Workshop F — Virtual Anatomy', color:'#5ec97f', day:'Day 2'}
-    ],
-    route: 'ws-blockb'
-  },
+ blockb: {
+  name: 'Block B',
+  color: '#9b7fe8',
+  desc: 'Main academic block housing the Anatomy Lab.',
+  workshops: [
+    {label:'Workshop F — EM Radiology', color:'#9b7fe8', day:'Day 2'}
+  ],
+  route: 'ws-blockb'
+},
   hospital: {
     name: 'Hospital',
     color: '#4a9de0',
     desc: 'Father Muller Charitable Institution hospital complex. Houses the AV Hall, main clinical departments, Emergency Dept, and workshop spaces.',
     workshops: [
-      {label:'Workshop B — Mechanical Ventilation (AV Hall)', color:'#3ec9c9', day:'Day 1'},
-      {label:'Workshop D — Advanced POCUS', color:'#4a9de0', day:'Day 2'}
-    ],
+          ],
     route: 'ws-hospital'
   },
-  avhall: {
-    name: 'Hospital Complex — AV Hall',
-    color: '#3ec9c9',
-    desc: 'Audio-Visual Hall within the hospital complex. Equipped for lectures and hands-on demonstrations.',
-    workshops: [
-      {label:'Workshop B — Mechanical Ventilation', color:'#3ec9c9', day:'Day 1'}
-    ],
-    route: 'ws-avhall'
-  },
+ avhall: {
+  name: 'AV Hall — Decennial Memorial Hall',
+  color: '#3ec9c9',
+  desc: 'Decennial Memorial Hall within the hospital complex. Equipped for lectures and hands-on demonstrations.',
+  workshops: [
+    {label:'Workshop C — Maternal Resuscitation Programme', color:'#3ec9c9', day:'Day 1'},
+    {label:'Workshop D — Hidden Curriculum in ED', color:'#3ec9c9', day:'Day 2'}
+  ],
+  route: 'ws-avhall'
+},
   sjh: {
     name: 'Silver Jubilee Hall',
     color: '#e09a3e',
     desc: 'Large multipurpose hall used for major events and conferences.',
     workshops: [
-      {label:'Workshop C — Disaster Management', color:'#e09a3e', day:'Day 1'}
-    ],
+          ],
     route: 'ws-sjh'
   },
-  simlab: {
-    name: 'SIM Lab',
-    color: '#e05c5c',
-    desc: 'State-of-the-art simulation laboratory for clinical skills training.',
-    workshops: [
-      {label:'Workshop E — Maternal Resuscitation Program (MRP)', color:'#e05c5c', day:'Day 2'}
-    ],
-    route: 'ws-simlab'
-  },
+simlab: {
+  name: 'SIM Lab',
+  color: '#e05c5c',
+  desc: 'State-of-the-art simulation laboratory for clinical skills training.',
+  workshops: [
+    {label:'Workshop A — Advanced Airway', color:'#e05c5c', day:'Day 1'},
+    {label:'Workshop B — ToxSim', color:'#e05c5c', day:'Day 1'},
+    {label:'Workshop E — Resuscitatology', color:'#e05c5c', day:'Day 2'}
+  ],
+  route: 'ws-simlab'
+},
   aud: {
     name: 'Auditorium',
     color: '#e09a3e',
