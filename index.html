@@ -260,13 +260,17 @@ textarea{resize:vertical;min-height:90px}
 .subm-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin-bottom:10px;display:flex;align-items:center;gap:6px}
 .subm-label i{font-size:13px}
 .subm-stage{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.07);border-radius:10px;padding:10px 12px;margin-bottom:8px}
-.subm-stage-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:7px;gap:8px}
+.subm-stage-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px}
 .subm-stage-tag{font-size:10px;font-weight:700;padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:0.4px;white-space:nowrap}
 .subm-tag-abstract{background:rgba(74,157,224,0.15);color:#8ec8f5;border:1px solid rgba(74,157,224,0.3)}
 .subm-tag-final{background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-border)}
 .subm-deadline{font-size:10.5px;font-weight:700;color:#fff;background:rgba(255,255,255,0.07);padding:2px 9px;border-radius:100px;white-space:nowrap}
-.subm-email{display:inline-flex;align-items:center;gap:5px;font-size:12px;font-weight:700;color:var(--gold);text-decoration:none;margin-bottom:6px}
-.subm-email i{font-size:12px}
+.subm-submit-btn{display:flex;align-items:center;justify-content:space-between;gap:8px;background:rgba(212,160,23,0.08);border:1px solid var(--gold-border);border-radius:8px;padding:9px 12px;text-decoration:none;margin-bottom:8px;transition:background 0.15s}
+.subm-submit-btn:hover{background:rgba(212,160,23,0.16)}
+.subm-submit-left{display:flex;flex-direction:column;gap:2px;min-width:0}
+.subm-submit-cta{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.5px;color:var(--text-muted)}
+.subm-submit-email{font-size:13px;font-weight:800;color:var(--gold);word-break:break-all}
+.subm-submit-btn i.ti-arrow-up-right{font-size:15px;color:var(--gold);flex-shrink:0}
 .subm-meta{font-size:11px;color:var(--text-muted);margin-bottom:6px;line-height:1.5}
 .subm-meta em{font-style:normal;color:rgba(255,255,255,0.75)}
 .subm-code{display:block;font-family:monospace;font-size:10px;color:var(--text-dim);background:rgba(0,0,0,0.25);padding:5px 8px;border-radius:6px;word-break:break-all;line-height:1.5}
@@ -1975,89 +1979,129 @@ footer strong{color:var(--gold)}
     </div>
 
     <!-- FILE FORMAT INSTRUCTIONS -->
-    <div style="background:var(--midnight-3);border-radius:var(--radius);padding:32px;margin-bottom:36px;border:1px solid var(--border);position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)"></div>
-      <div style="font-size:18px;font-weight:800;color:#fff;margin-bottom:4px;display:flex;align-items:center;gap:10px">
-        <i class="ti ti-paperclip" style="color:var(--gold);font-size:20px"></i>
-        Submission File Format Instructions
+<div style="background:var(--midnight-3);border-radius:var(--radius);padding:32px;margin-bottom:36px;border:1px solid var(--border);position:relative;overflow:hidden">
+  <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)"></div>
+  <div style="font-size:18px;font-weight:800;color:#fff;margin-bottom:4px;display:flex;align-items:center;gap:10px">
+    <i class="ti ti-paperclip" style="color:var(--gold);font-size:20px"></i>
+    Submission File Format Instructions
+  </div>
+  <p style="font-size:13px;color:var(--text-muted);margin-bottom:28px">Read carefully before uploading — incorrect formats will be returned for revision</p>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+
+    <!-- ══ PAPER MANUSCRIPT FILE FORMAT ══ -->
+    <div class="file-fmt-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div class="file-fmt-icon-wrap" style="background:rgba(44,62,80,0.6)"><i class="ti ti-file-type-doc" style="font-size:20px;color:#9FD1FF"></i></div>
+        <div><div style="font-size:14px;font-weight:700;color:#fff">Paper Manuscript</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px">Oral presentation</div></div>
       </div>
-      <p style="font-size:13px;color:var(--text-muted);margin-bottom:28px">Read carefully before uploading — incorrect formats will be returned for revision</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px">
+      <span class="file-fmt-tag" style="background:rgba(44,62,80,0.5);color:#9FD1FF;border:1px solid rgba(100,140,200,0.2)">.doc / .docx — Microsoft Word</span>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px">
+        <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Times New Roman 12pt, 1.5 line spacing</li>
+        <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Sections: Title · Abstract · Intro · Methods · Results · Discussion · Conclusion · References</li>
+        <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Vancouver references. Tables &amp; figures embedded</li>
+        <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>No author names in body (blind review). Max 5 MB</li>
+      </ul>
 
-        <!-- ══ PAPER MANUSCRIPT FILE FORMAT ══ -->
-        <div class="subm-section">
-  <div class="subm-label"><i class="ti ti-send"></i> Submission Details</div>
+      <div class="subm-section">
+        <div class="subm-label"><i class="ti ti-send"></i> Submission Details</div>
 
-  <div class="subm-stage">
-    <div class="subm-stage-top">
-      <span class="subm-stage-tag subm-tag-abstract">Abstract</span>
-      <span class="subm-deadline">Due 30 Sep 2026</span>
-    </div>
-    <a href="mailto:paperemk2026@gmail.com" class="subm-email"><i class="ti ti-mail"></i> paperemk2026@gmail.com</a>
-    <div class="subm-meta">Subject: <em>"ABSTRACT PAPER EMK 26"</em> · Word format, ≤300 words</div>
-    <code class="subm-code" style="color:#9FD1FF">EMK2026_PAPERAbstract_Lastname_Institute.docx</code>
-  </div>
-
-  <div class="subm-stage">
-    <div class="subm-stage-top">
-      <span class="subm-stage-tag subm-tag-final">Final PPT</span>
-      <span class="subm-deadline">Due 8 Nov 2026</span>
-    </div>
-    <div class="subm-meta">Subject: <em>"FINAL PAPER PRESENTATION EMK 26"</em></div>
-    <code class="subm-code" style="color:#9FD1FF">EMK2026_PAPERFinal_Lastname_Institute.docx</code>
-  </div>
-
-  <div class="subm-note">Earlier submissions may receive selection priority. Late submissions will <strong style="color:#e05c5c">NOT</strong> be accepted.</div>
-
-  <a href="tel:+918073254990" class="subm-contact"><i class="ti ti-phone"></i> Dr. Vijaya Kumar · 8073 254 990</a>
-</div>
-
-        <!-- ══ E-POSTER FILE FORMAT ══ -->
-       <div class="subm-section">
-  <div class="subm-label"><i class="ti ti-send"></i> Submission Details</div>
-
-  <div class="subm-stage">
-    <div class="subm-stage-top">
-      <span class="subm-stage-tag subm-tag-abstract">Abstract</span>
-      <span class="subm-deadline">Due 30 Sep 2026</span>
-    </div>
-    <a href="mailto:posteremk2026@gmail.com" class="subm-email"><i class="ti ti-mail"></i> posteremk2026@gmail.com</a>
-    <div class="subm-meta">Subject: <em>"ABSTRACT POSTER EMK 26"</em> · Word format, ≤300 words</div>
-    <code class="subm-code" style="color:var(--gold)">EMK2026_POSTERAbstract_Lastname_Institute.docx</code>
-  </div>
-
-  <div class="subm-stage">
-    <div class="subm-stage-top">
-      <span class="subm-stage-tag subm-tag-final">Final e-Poster</span>
-      <span class="subm-deadline">Due 8 Nov 2026</span>
-    </div>
-    <div class="subm-meta">Subject: <em>"FINAL POSTER EMK 26"</em> · .pptx + .jpg</div>
-    <code class="subm-code" style="color:var(--gold)">EMK2026_POSTERFinal_Lastname_Institute</code>
-  </div>
-
-  <div class="subm-note">Earlier submissions may receive selection priority. Late submissions will <strong style="color:#e05c5c">NOT</strong> be accepted.</div>
-
-  <a href="tel:+919844724266" class="subm-contact"><i class="ti ti-phone"></i> Dr. Rohith Y · 98447 24266</a>
-</div>
-
-        <!-- ══ CPC FILE FORMAT ══ -->
-        <div class="file-fmt-card">
-          <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
-            <div class="file-fmt-icon-wrap" style="background:rgba(125,102,8,0.3)"><i class="ti ti-stethoscope" style="font-size:20px;color:#FFE08A"></i></div>
-            <div><div style="font-size:14px;font-weight:700;color:#fff">CPC Presentation</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px">CPC competition</div></div>
+        <div class="subm-stage">
+          <div class="subm-stage-top">
+            <span class="subm-stage-tag subm-tag-abstract">Abstract</span>
+            <span class="subm-deadline">Due 30 Sep 2026</span>
           </div>
-          <span class="file-fmt-tag" style="background:rgba(125,102,8,0.3);color:#FFE08A;border:1px solid rgba(200,165,50,0.2)">.ppt / .pptx — PowerPoint</span>
-          <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px">
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Widescreen 16:9, max 20 slides</li>
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Order: Case History → Investigations → Differentials → Diagnosis → Learning Points</li>
-            <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Patient fully anonymised</li>
-            <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>Do NOT include final diagnosis in file. Max 30 MB</li>
-          </ul>
+          <a href="mailto:paperemk2026@gmail.com?subject=ABSTRACT%20PAPER%20EMK%2026" class="subm-submit-btn">
+            <span class="subm-submit-left">
+              <span class="subm-submit-cta">Click to submit abstract</span>
+              <span class="subm-submit-email">paperemk2026@gmail.com</span>
+            </span>
+            <i class="ti ti-arrow-up-right"></i>
+          </a>
+          <div class="subm-meta">Subject: <em>"ABSTRACT PAPER EMK 26"</em> · Word format, ≤300 words</div>
+          <code class="subm-code" style="color:#9FD1FF">EMK2026_PAPERAbstract_Lastname_Institute.docx</code>
         </div>
 
+        <div class="subm-stage">
+          <div class="subm-stage-top">
+            <span class="subm-stage-tag subm-tag-final">Final PPT</span>
+            <span class="subm-deadline">Due 8 Nov 2026</span>
+          </div>
+          <div class="subm-meta">Subject: <em>"FINAL PAPER PRESENTATION EMK 26"</em></div>
+          <code class="subm-code" style="color:#9FD1FF">EMK2026_PAPERFinal_Lastname_Institute.docx</code>
+        </div>
+
+        <div class="subm-note">Earlier submissions may receive selection priority. Late submissions will <strong style="color:#e05c5c">NOT</strong> be accepted.</div>
+
+        <a href="tel:+918073254990" class="subm-contact"><i class="ti ti-phone"></i> Dr. Vijaya Kumar · 8073 254 990</a>
       </div>
     </div>
 
+    <!-- ══ E-POSTER FILE FORMAT ══ -->
+    <div class="file-fmt-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div class="file-fmt-icon-wrap" style="background:rgba(212,160,23,0.15)"><i class="ti ti-layout-board" style="font-size:20px;color:var(--gold)"></i></div>
+        <div><div style="font-size:14px;font-weight:700;color:#fff">e-Poster File</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px">e-Poster competition</div></div>
+      </div>
+      <span class="file-fmt-tag" style="background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-border)">.pptx — PowerPoint (+ .jpg copy)</span>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px">
+        <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>1 slide only — 40.97 in × 23.04 in, 16:9 aspect ratio</li>
+        <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Minimum font size: 30pt throughout</li>
+        <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Submit a .jpg version alongside the .pptx file</li>
+        <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Include funding sources, conflicts of interest, references &amp; ethics approval</li>
+        <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>No patient-identifying images, copyrighted content, or advertisements</li>
+      </ul>
+
+      <div class="subm-section">
+        <div class="subm-label"><i class="ti ti-send"></i> Submission Details</div>
+
+        <div class="subm-stage">
+          <div class="subm-stage-top">
+            <span class="subm-stage-tag subm-tag-abstract">Abstract</span>
+            <span class="subm-deadline">Due 30 Sep 2026</span>
+          </div>
+          <a href="mailto:posteremk2026@gmail.com?subject=ABSTRACT%20POSTER%20EMK%2026" class="subm-submit-btn">
+            <span class="subm-submit-left">
+              <span class="subm-submit-cta">Click to submit abstract</span>
+              <span class="subm-submit-email">posteremk2026@gmail.com</span>
+            </span>
+            <i class="ti ti-arrow-up-right"></i>
+          </a>
+          <div class="subm-meta">Subject: <em>"ABSTRACT POSTER EMK 26"</em> · Word format, ≤300 words</div>
+          <code class="subm-code" style="color:var(--gold)">EMK2026_POSTERAbstract_Lastname_Institute.docx</code>
+        </div>
+
+        <div class="subm-stage">
+          <div class="subm-stage-top">
+            <span class="subm-stage-tag subm-tag-final">Final e-Poster</span>
+            <span class="subm-deadline">Due 8 Nov 2026</span>
+          </div>
+          <div class="subm-meta">Subject: <em>"FINAL POSTER EMK 26"</em> · .pptx + .jpg</div>
+          <code class="subm-code" style="color:var(--gold)">EMK2026_POSTERFinal_Lastname_Institute</code>
+        </div>
+
+        <div class="subm-note">Earlier submissions may receive selection priority. Late submissions will <strong style="color:#e05c5c">NOT</strong> be accepted.</div>
+
+        <a href="tel:+919844724266" class="subm-contact"><i class="ti ti-phone"></i> Dr. Rohith Y · 98447 24266</a>
+      </div>
+    </div>
+
+    <!-- ══ CPC FILE FORMAT ══ -->
+    <div class="file-fmt-card">
+      <div style="display:flex;align-items:center;gap:10px;margin-bottom:14px">
+        <div class="file-fmt-icon-wrap" style="background:rgba(125,102,8,0.3)"><i class="ti ti-stethoscope" style="font-size:20px;color:#FFE08A"></i></div>
+        <div><div style="font-size:14px;font-weight:700;color:#fff">CPC Presentation</div><div style="font-size:10px;color:rgba(255,255,255,0.4);text-transform:uppercase;letter-spacing:0.5px">CPC competition</div></div>
+      </div>
+      <span class="file-fmt-tag" style="background:rgba(125,102,8,0.3);color:#FFE08A;border:1px solid rgba(200,165,50,0.2)">.ppt / .pptx — PowerPoint</span>
+      <ul style="list-style:none;display:flex;flex-direction:column;gap:6px;margin-top:10px">
+        <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Widescreen 16:9, max 20 slides</li>
+        <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Order: Case History → Investigations → Differentials → Diagnosis → Learning Points</li>
+        <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Patient fully anonymised</li>
+        <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>Do NOT include final diagnosis in file. Max 30 MB</li>
+      </ul>
+    </div>
+
+  </div>
+</div>
   
     <!-- IMPORTANT NOTES -->
     <div class="info-box" style="margin-bottom:36px">
@@ -2071,25 +2115,8 @@ footer strong{color:var(--gold)}
         · Shortlisted candidates notified by <strong>30 September 2026</strong>. Organising committee's decision is <strong>final</strong>.
       </div>
     </div>
-
-    <!-- GOOGLE FORM -->
-    <div style="background:var(--midnight-3);border:1px solid var(--gold-border);border-radius:var(--radius);padding:40px;text-align:center;position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)"></div>
-      <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(212,160,23,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,160,23,0.03) 1px,transparent 1px);background-size:40px 40px;"></div>
-      <div style="position:relative;z-index:1">
-        <div style="width:56px;height:56px;border-radius:50%;background:var(--gold-glow);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
-          <i class="ti ti-file-text" style="font-size:24px;color:var(--gold)"></i>
-        </div>
-        <h3 style="font-size:20px;font-weight:800;color:#fff;margin-bottom:8px">Submit Your Abstract</h3>
-        <p style="font-size:13px;color:var(--text-muted);margin-bottom:24px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.7">Fill in your details, select your competition category, and upload your manuscript or poster file. Deadline: <strong style="color:var(--gold)">15 September 2026</strong>.</p>
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSfIttBidRRURWCX9KwtiWMUJ5pdIw0MOqjTLvgbo8ocYpOFhA/viewform" target="_blank" class="btn btn-gold" style="display:inline-flex;text-decoration:none;font-size:15px;padding:13px 32px">
-          <i class="ti ti-external-link"></i> Open Submission Form
-        </a>
-        <p style="margin-top:16px;font-size:11px;color:var(--text-muted)"><i class="ti ti-lock" style="font-size:12px;vertical-align:-1px"></i> Responses saved securely via Google Forms</p>
-      </div>
-    </div>
-
-  </div>
+ </div>
+ </div>
 
   <footer>
     <strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026<br/>
