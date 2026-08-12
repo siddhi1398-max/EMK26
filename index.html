@@ -1831,13 +1831,21 @@ footer strong{color:var(--gold)}
         <i class="ti ti-user"></i> Personal Details
       </div>
  
-      <div class="form-grid">
-        <div class="fg"><label>Full Name *</label><input id="r-name" type="text" placeholder="Dr. Peter Safar" /></div>
+           <div class="form-grid">
+        <div class="fg full"><label>Full Name (as needed on certificate / medical council) *</label><input id="r-name" type="text" placeholder="Dr. Peter Safar" /></div>
         <div class="fg"><label>Email *</label><input id="r-email" type="email" placeholder="dr@hospital.in" /></div>
         <div class="fg"><label>Mobile *</label><input id="r-phone" type="tel" placeholder="10-digit number" /></div>
         <div class="fg"><label>Designation *</label><input id="r-desig" type="text" placeholder="Emergency Medicine Consultant" /></div>
         <div class="fg full"><label>Institution / Hospital *</label><input id="r-inst" type="text" placeholder="Father Muller Medical College, Mangaluru" /></div>
-        <div class="fg"><label>Medical Registration Number</label><input id="r-regno" type="text" placeholder="KMC-XXXXX" /></div>
+        <div class="fg"><label>Medical Council Registration Number *</label><input id="r-regno" type="text" placeholder="e.g. 12345" /></div>
+        <div class="fg"><label>Name of Medical Council *</label><input id="r-council" type="text" placeholder="e.g. Karnataka Medical Council" /></div>
+        <div class="fg"><label>Category *</label>
+          <select id="r-category">
+            <option value="">— Select —</option>
+            <option value="PG Student">PG Student</option>
+            <option value="Consultant">Consultant</option>
+          </select>
+        </div>
         <div class="fg"><label>Dietary Preference</label>
           <select id="r-diet">
             <option value="Vegetarian">Vegetarian</option>
@@ -1882,10 +1890,27 @@ footer strong{color:var(--gold)}
   <div style="font-size:11px;color:var(--text-muted);margin-top:6px">These run a day earlier at Manipal and are registered/priced separately — selecting here just notes your interest.</div>
 </div>
         </div>
-        <div id="ws-warn" style="display:none;font-size:12px;color:var(--gold);margin-top:8px;align-items:center;gap:6px;background:rgba(212,160,23,0.08);padding:8px 12px;border-radius:8px;border:1px solid var(--gold-border)">
+         <div id="ws-warn" style="display:none;font-size:12px;color:var(--gold);margin-top:8px;align-items:center;gap:6px;background:rgba(212,160,23,0.08);padding:8px 12px;border-radius:8px;border:1px solid var(--gold-border)">
           <i class="ti ti-info-circle"></i> 2 workshops selected &mdash; <strong>+&#8377;1,500 added</strong> to your total
         </div>
       </div>
+
+      <!-- COMPETITIONS -->
+      <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border)">
+        <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;display:flex;align-items:center;gap:8px">
+          <i class="ti ti-trophy"></i> Competitions
+          <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);font-size:11px">— select all that apply</span>
+        </div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:8px">
+          <label class="ws-chk-label"><input type="checkbox" class="comp-chk" value="CPC"> CPC</label>
+          <label class="ws-chk-label"><input type="checkbox" class="comp-chk" value="Quiz"> Quiz</label>
+          <label class="ws-chk-label"><input type="checkbox" class="comp-chk" value="Paper"> Paper Presentation</label>
+          <label class="ws-chk-label"><input type="checkbox" class="comp-chk" value="Poster"> e-Poster</label>
+        </div>
+        <div style="font-size:11px;color:var(--text-muted);margin-top:8px">Abstract submission is separate — see the Competitions page for deadlines and format.</div>
+      </div>
+
+      <!-- PRICE SUMMARY -->
  
       <!-- PRICE SUMMARY -->
       <div style="margin-top:24px;background:var(--midnight-4);border:1.5px solid var(--gold-border);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
@@ -1897,10 +1922,19 @@ footer strong{color:var(--gold)}
       </div>
  
       <!-- PAYMENT INFO -->
-      <div style="margin-top:12px;background:rgba(212,160,23,0.06);border:1px solid var(--gold-border);border-radius:var(--radius-sm);padding:12px 14px;font-size:12px;color:var(--text-muted);display:flex;gap:9px;align-items:flex-start">
-        <i class="ti ti-info-circle" style="font-size:15px;color:var(--gold);flex-shrink:0;margin-top:1px"></i>
-        <span>Clicking <strong style="color:var(--text)">Submit &amp; Pay</strong> saves your details and opens a secure Cashfree payment window. Pay via UPI (GPay &middot; PhonePe &middot; Paytm), Net Banking, or Card. Your <strong style="color:var(--gold)">Registration ID (EMKA2026-XXXX)</strong> is emailed automatically once payment is confirmed.</span>
+      <!-- PAYMENT SCREENSHOT -->
+      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
+        <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
+          <i class="ti ti-receipt"></i> Payment Screenshot
+        </div>
+        <div class="fg full">
+          <label>Upload payment screenshot (backup — used only if auto-confirmation is delayed)</label>
+          <input id="r-payss" type="file" accept="image/*,.pdf" style="padding:8px 12px" />
+        </div>
       </div>
+
+      <!-- PAYMENT INFO -->
+      <div style="margin-top:12px;background:rgba(212,160,23,0.06);border:1px solid var(--gold-border);border-radius:var(--radius-sm);padding:12px 14px;font-size:12px;color:var(--text-muted);display:flex;gap:9px;align-items:flex-start">
  
       <!-- SUBMIT BUTTON -->
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:18px">
@@ -3358,7 +3392,7 @@ async function submitRegistration() {
       method:  'POST',
       mode:    'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
+     body: JSON.stringify({
         action:      'pending',
         orderId:     orderId,
         name:        name,
@@ -3367,9 +3401,12 @@ async function submitRegistration() {
         designation: desig,
         institution: inst,
         regno:       (document.getElementById('r-regno').value || '').trim(),
+        council:     (document.getElementById('r-council').value || '').trim(),
+        category:    document.getElementById('r-category').value,
         diet:        document.getElementById('r-diet').value,
         tier:        _regTier.name,
         workshops:   ws,
+        competitions: Array.from(document.querySelectorAll('.comp-chk:checked')).map(function(c){return c.value;}),
         amount:      '\u20B9' + _regTier.finalPrice.toLocaleString('en-IN'),
       }),
     });
