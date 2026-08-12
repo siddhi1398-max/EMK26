@@ -229,6 +229,17 @@ textarea{resize:vertical;min-height:90px}
 .success-msg{background:rgba(212,160,23,0.1);border:1px solid var(--gold-border);border-radius:var(--radius-sm);padding:13px 16px;font-size:14px;color:var(--gold);display:flex;align-items:center;gap:10px;margin-top:16px;font-weight:500;}
 .hidden{display:none}
 
+.ws-details-btn{width:100%;justify-content:center;margin-top:10px;font-size:11.5px;padding:8px;gap:6px}
+.ws-extra{display:none;margin-top:14px;padding-top:14px;border-top:1px solid rgba(255,255,255,0.08)}
+.ws-extra.open{display:block;animation:slideDown 0.25s ease}
+.ws-extra h4{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin:0 0 6px;display:flex;align-items:center;gap:5px}
+.ws-extra ul{list-style:none;margin-bottom:14px}
+.ws-extra li{font-size:11.5px;color:var(--text-muted);padding:3px 0;display:flex;gap:6px;align-items:flex-start;line-height:1.5}
+.ws-extra li i{color:var(--gold);font-size:12px;margin-top:2px;flex-shrink:0}
+.ws-sched-row{display:flex;justify-content:space-between;gap:10px;font-size:11px;color:var(--text-muted);padding:5px 0;border-bottom:1px dashed rgba(255,255,255,0.06)}
+.ws-sched-row:last-child{border-bottom:none}
+.ws-sched-row span:first-child{color:var(--text);font-weight:600;min-width:120px}
+  
 .speaker-card{background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;text-align:center;transition:transform 0.2s,border-color 0.2s;}
 .speaker-card:hover{transform:translateY(-3px);border-color:var(--gold-border)}
 
@@ -1615,24 +1626,120 @@ footer strong{color:var(--gold)}
     <div class="info-box" style="margin-bottom:28px"><i class="ti ti-info-circle"></i><span>Workshops run on <strong>Days 1 &amp; 2 (12–13 Nov)</strong>. Delegates may select <strong>up to 2 workshops</strong>; Faculty/Consultant registration includes access to all. Seats are limited — preference noted at registration.</span></div>
     <h2 class="section-title">Day 1 Workshops <span style="font-size:15px;font-weight:400;color:var(--text-muted)">— Thursday, 12 November</span></h2>
     <p class="section-sub">3 simultaneous workshops running 09:00 – 17:00</p>
+ <!-- REPLACE WITH -->
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:48px">
-  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(50,10,8,0.8),rgba(70,15,12,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-lungs" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Advanced Airway</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">SIM Lab</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Hands-on</span><span class="ws-badge ws-badge-dim">Day 1</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">RSI, video laryngoscopy, surgical airway, and difficult airway algorithms for the emergency department.</p><div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div></div></div>
-  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(30,8,50,0.8),rgba(45,12,70,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-flask" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">ToxSim</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">SIM Lab</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Simulation</span><span class="ws-badge ws-badge-dim">Day 1</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Simulated toxicology emergencies — recognition, antidote selection, and critical decision-making under time pressure.</p><div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div></div></div>
-  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(8,40,20,0.8),rgba(12,55,28,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-heart-rate-monitor" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Maternal Resuscitation Programme</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">AV Hall — Decennial Memorial Hall</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Simulation</span><span class="ws-badge ws-badge-dim">Day 1</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">High-fidelity simulation covering obstetric emergencies, perimortem caesarean, and team-based resuscitation.</p><div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div></div></div>
+
+  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(50,10,8,0.8),rgba(70,15,12,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-lungs" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Advanced Airway</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">Simulation &amp; Skill Centre, FMMC</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Hands-on</span><span class="ws-badge ws-badge-dim">Day 1</span><span class="ws-badge ws-badge-dim">24 seats</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Rapidly assess the difficult airway, perform target-specific topical anaesthesia, and use Video Laryngoscopy (VL) and Flexible Fibreoptic Bronchoscopy (FOB).</p><div class="ws-meta"><span><i class="ti ti-clock"></i> 1:30 PM – 4:30 PM</span><span><i class="ti ti-user"></i> Dr Shailaja S · Dr John Benny · Dr Ruban Dsouza</span></div>
+    <button class="btn btn-outline-gold ws-details-btn" onclick="toggleWsExtra('ws-extra-airway',this)"><i class="ti ti-chevron-down"></i> Full Details</button>
+    <div class="ws-extra" id="ws-extra-airway">
+      <h4><i class="ti ti-target-arrow"></i> Objectives</h4>
+      <ul>
+        <li><i class="ti ti-check"></i>Rapidly assess the difficult airway</li>
+        <li><i class="ti ti-check"></i>Perform target-specific topical anaesthesia</li>
+        <li><i class="ti ti-check"></i>Utilise Video Laryngoscopy (VL) and Flexible Fibreoptic Bronchoscopy (FOB)</li>
+      </ul>
+      <h4><i class="ti ti-calendar-time"></i> Schedule</h4>
+      <div class="ws-sched-row"><span>1:30 – 2:00 PM</span><span>Ice-breaking &amp; introduction to airway assessment — Dr Shailaja S</span></div>
+      <div class="ws-sched-row"><span>2:00 – 2:30 PM</span><span>Anaesthetizing the airway — drugs &amp; steps — Dr John Benny</span></div>
+      <div class="ws-sched-row"><span>2:30 – 4:30 PM</span><span>Hands-on rotation, 3 stations: Video Laryngoscope (Dr Ruban Dsouza) · Fibreoptic Bronchoscope (Dr Shailaja S) · Difficult Airway Manikin (Dr John Benny)</span></div>
+    </div>
+  </div></div>
+
+  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(30,8,50,0.8),rgba(45,12,70,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-flask" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">ToxSim</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">SIM Lab</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Simulation</span><span class="ws-badge ws-badge-dim">Day 1</span><span class="ws-badge ws-badge-dim">20 seats</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Meti-Man simulation-based toxicology workshop — toxidrome recognition, antidote selection, and critical decision-making under time pressure.</p><div class="ws-meta"><span><i class="ti ti-clock"></i> ~3.5 hours</span><span><i class="ti ti-user"></i> Dr Niveditha T G · Dr Deeksha Poojary · Dr Siddhi Naik · Dr Pranav Prakash</span></div>
+    <button class="btn btn-outline-gold ws-details-btn" onclick="toggleWsExtra('ws-extra-toxsim',this)"><i class="ti ti-chevron-down"></i> Full Details</button>
+    <div class="ws-extra" id="ws-extra-toxsim">
+      <h4><i class="ti ti-target-arrow"></i> Objectives</h4>
+      <ul>
+        <li><i class="ti ti-check"></i>Systematically recognise common toxidromes — opioid/sedative-hypnotic, cholinergic (organophosphate), cardiac toxin overdose — before lab confirmation</li>
+        <li><i class="ti ti-check"></i>Build confidence and accuracy in antidote selection and dosing</li>
+        <li><i class="ti ti-check"></i>Safely manage real-time physiological deterioration on a high-fidelity mannequin</li>
+        <li><i class="ti ti-check"></i>Apply structured pattern recognition to an undifferentiated "mystery toxidrome" case</li>
+        <li><i class="ti ti-check"></i>Build clinical frameworks grounded in India-relevant poisoning epidemiology</li>
+      </ul>
+      <h4><i class="ti ti-calendar-time"></i> Schedule</h4>
+      <div class="ws-sched-row"><span>30 min</span><span>Toxidrome recognition — the poisoned patient approach (didactic)</span></div>
+      <div class="ws-sched-row"><span>30 min</span><span>Sim: Opioid &amp; sedative-hypnotic toxidrome</span></div>
+      <div class="ws-sched-row"><span>30 min</span><span>Sim: Cholinergic crisis (organophosphate)</span></div>
+      <div class="ws-sched-row"><span>30 min</span><span>Sim: Cardiac toxins (TCA / digoxin / beta-blocker OD)</span></div>
+      <div class="ws-sched-row"><span>30 min</span><span>Sim: Mystery toxidrome — unknown poisoning</span></div>
+      <div class="ws-sched-row"><span>20 min</span><span>Antidote hands-on — identification &amp; dosing</span></div>
+      <div class="ws-sched-row"><span>20 min</span><span>Faculty debrief &amp; key pearls</span></div>
+    </div>
+  </div></div>
+
+  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(8,40,20,0.8),rgba(12,55,28,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-heart-rate-monitor" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Maternal Resuscitation Programme</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">AV Hall — Decennial Memorial Hall</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Simulation</span><span class="ws-badge ws-badge-dim">Day 1</span><span class="ws-badge ws-badge-dim">27 seats</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">High-fidelity simulation covering maternal deterioration, cardiac arrest with resuscitative hysterotomy, neonatal resuscitation, PPH and eclampsia.</p><div class="ws-meta"><span><i class="ti ti-clock"></i> 9:00 AM – 4:00 PM</span><span><i class="ti ti-user"></i> Dr Prithvishree Ravindra · Dr Rachana Bhat · Dr Savan Kumar Nagesh</span></div>
+    <button class="btn btn-outline-gold ws-details-btn" onclick="toggleWsExtra('ws-extra-mrp',this)"><i class="ti ti-chevron-down"></i> Full Details</button>
+    <div class="ws-extra" id="ws-extra-mrp">
+      <h4><i class="ti ti-target-arrow"></i> Objectives</h4>
+      <ul>
+        <li><i class="ti ti-check"></i>Recognise early signs of maternal deterioration using early warning scores</li>
+        <li><i class="ti ti-check"></i>Lead structured, team-based resuscitation applying ACLS principles and team dynamics</li>
+        <li><i class="ti ti-check"></i>Manage maternal cardiac arrest, including timely resuscitative hysterotomy</li>
+        <li><i class="ti ti-check"></i>Perform neonatal resuscitation confidently in the peripartum setting</li>
+        <li><i class="ti ti-check"></i>Diagnose and manage postpartum haemorrhage and eclampsia via simulation</li>
+      </ul>
+      <h4><i class="ti ti-calendar-time"></i> Schedule (6 hours)</h4>
+      <div class="ws-sched-row"><span>30 min</span><span>Early Warning Scores</span></div>
+      <div class="ws-sched-row"><span>60 min</span><span>ACLS &amp; Team Dynamics</span></div>
+      <div class="ws-sched-row"><span>30 min</span><span>Maternal Resuscitation Theory</span></div>
+      <div class="ws-sched-row"><span>60 min</span><span>Maternal Cardiac Arrest Simulation with Resuscitative Hysterotomy — demo &amp; debrief</span></div>
+      <div class="ws-sched-row"><span>60 min</span><span>Neonatal Resuscitation — theory &amp; hands-on</span></div>
+      <div class="ws-sched-row"><span>60 min</span><span>Postpartum Haemorrhage Module — hands-on</span></div>
+      <div class="ws-sched-row"><span>60 min</span><span>Eclampsia Module — hands-on</span></div>
+    </div>
+  </div></div>
+
 </div>
     <h2 class="section-title">Day 2 Workshops <span style="font-size:15px;font-weight:400;color:var(--text-muted)">— Friday, 13 November</span></h2>
     <p class="section-sub">3 simultaneous workshops running 09:00 – 17:00</p>
-   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:36px">
-  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(20,20,50,0.8),rgba(30,30,70,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-school" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Hidden Curriculum in ED</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">AV Hall — Decennial Memorial Hall</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Interactive</span><span class="ws-badge ws-badge-dim">Day 2</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Exploring the unwritten rules of EM training — mentorship, professionalism, and navigating the informal curriculum of residency.</p><div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div></div></div>
-  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(50,10,8,0.8),rgba(70,15,12,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-heartbeat" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Resuscitatology</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">SIM Lab</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Hands-on</span><span class="ws-badge ws-badge-dim">Day 2</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Deep dive into cardiac arrest and peri-arrest resuscitation science, with hands-on scenario practice.</p><div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div></div></div>
-  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-x-ray" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">EM Radiology</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">Block B, Anatomy Lab</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Case-based</span><span class="ws-badge ws-badge-dim">Day 2</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Systematic approach to X-ray and CT interpretation for common emergency presentations.</p><div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Faculty TBA</span></div></div></div>
-</div>
-    <h2 class="section-title">Pre-Conference Workshops <span style="font-size:15px;font-weight:400;color:var(--text-muted)">— Wednesday, 11 November</span></h2>
-<p class="section-sub">Held a day earlier at a separate venue in Manipal</p>
-<div class="info-box" style="margin-bottom:20px"><i class="ti ti-info-circle"></i><span>This workshop will be conducted at <strong>Manipal</strong>, not on the Father Muller campus, and are arranged as a separate pre-conference track with its own logistics.</span></div>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-bottom:36px">
-  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(30,45,15,0.8),rgba(40,60,20,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-tent" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">El Niño &amp; Emergency Medicine</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">Manipal</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Pre-Conference</span><span class="ws-badge ws-badge-dim">11 Nov</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">Critical thinking in wilderness medicine — improvised care, evacuation decisions, and resource-limited management. Learning survival in the Wild with skills, courage and situation awareness</p><div class="ws-meta"><span><i class="ti ti-map-pin"></i> Manipal · venue TBA</span><span><i class="ti ti-user"></i> Faculty TBA</span></div></div></div>
-</div>
+   <!-- REPLACE WITH -->
+  <div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(20,20,50,0.8),rgba(30,30,70,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-school" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">Hidden Curriculum: Grey Zone in EM</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">AV Hall — Decennial Memorial Hall</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Interactive</span><span class="ws-badge ws-badge-dim">Day 2</span><span class="ws-badge ws-badge-dim">Max 30 seats</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">The unwritten rules of EM training — medicolegal documentation, the legal system, and navigating difficult conversations.</p><div class="ws-meta"><span><i class="ti ti-clock"></i> 09:00 – 17:00</span><span><i class="ti ti-user"></i> Dr Sahana G · Dr Priyanka · Dr Lipika T + 2 more</span></div>
+    <button class="btn btn-outline-gold ws-details-btn" onclick="toggleWsExtra('ws-extra-hidden',this)"><i class="ti ti-chevron-down"></i> Full Details</button>
+    <div class="ws-extra" id="ws-extra-hidden">
+      <h4><i class="ti ti-target-arrow"></i> Objectives</h4>
+      <ul>
+        <li><i class="ti ti-check"></i>Secure the evidence — medicolegal examinations</li>
+        <li><i class="ti ti-check"></i>Navigate the legal system</li>
+        <li><i class="ti ti-check"></i>Command difficult conversations</li>
+        <li><i class="ti ti-check"></i>Standardise critical documentation</li>
+      </ul>
+      <h4><i class="ti ti-users"></i> Faculty</h4>
+      <ul>
+        <li><i class="ti ti-user"></i>Dr Sahana G, Associate Professor, Dept of EM, Vydehi Institute of Medical Sciences</li>
+        <li><i class="ti ti-user"></i>Dr Priyanka, Associate Professor, East Point Medical College</li>
+        <li><i class="ti ti-user"></i>Dr Lipika T, Senior Resident, Dept of EM, ESIC Medical College &amp; Hospital, Hyderabad</li>
+        <li><i class="ti ti-user"></i>Faculty from Dept of Forensic Medicine (TBA) + 1 more faculty TBA</li>
+      </ul>
+      <h4><i class="ti ti-calendar-time"></i> Schedule — 5 stations, 1 hour each</h4>
+      <div class="ws-sched-row"><span>Station 1</span><span>The Forensic ER — Evidence &amp; Empathy</span></div>
+      <div class="ws-sched-row"><span>Station 2</span><span>Decoded — The POCSO Act</span></div>
+      <div class="ws-sched-row"><span>Station 3</span><span>The Stand — Moot Court Simulation</span></div>
+      <div class="ws-sched-row"><span>Station 4</span><span>Verbal Judo — Difficult Conversations</span></div>
+      <div class="ws-sched-row"><span>Station 5</span><span>The Paper Shield — Documentation Masterclass</span></div>
+    </div>
+  </div>
+  </div>
+ <h2 class="section-title">Pre-Conference Workshops <span style="font-size:15px;font-weight:400;color:var(--text-muted)">— 11–12 November</span></h2>
+    <p class="section-sub">Held a day earlier at a separate venue in Manipal</p>
+<div class="ws-card"><div class="ws-card-header" style="background:linear-gradient(135deg,rgba(30,45,15,0.8),rgba(40,60,20,0.9))"><div style="width:40px;height:40px;background:var(--gold-glow);border-radius:var(--radius-sm);display:flex;align-items:center;justify-content:center;margin-bottom:12px;border:1px solid var(--gold-border)"><i class="ti ti-tent" style="font-size:20px;color:var(--gold)"></i></div><div style="font-size:16px;font-weight:700;margin-bottom:4px">El Niño &amp; Medicine in the Wilderness</div><div style="font-size:11px;opacity:0.5;text-transform:uppercase;letter-spacing:0.5px">MWMCRC, Manipal</div></div><div class="ws-card-body"><div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:12px"><span class="ws-badge ws-badge-gold">Pre-Conference</span><span class="ws-badge ws-badge-dim">11–12 Nov</span><span class="ws-badge ws-badge-dim">15 seats</span></div><p style="font-size:12px;color:var(--text-muted);margin-bottom:12px;line-height:1.6">An overnight wilderness camp — critical thinking, expedition planning, survival skills, and wellness in nature.</p><div class="ws-meta"><span><i class="ti ti-map-pin"></i> MWMCRC, Manipal</span><span><i class="ti ti-user"></i> Dr Freston Marc Sirur · Dr Vrinda Lath · Ms Usha · Ms Bianca</span></div>
+    <button class="btn btn-outline-gold ws-details-btn" onclick="toggleWsExtra('ws-extra-elnino',this)"><i class="ti ti-chevron-down"></i> Full Details</button>
+    <div class="ws-extra" id="ws-extra-elnino">
+      <h4><i class="ti ti-target-arrow"></i> Objectives</h4>
+      <ul>
+        <li><i class="ti ti-check"></i>Critical thinking in wilderness medicine for remote and wilderness settings</li>
+        <li><i class="ti ti-check"></i>Preparation, planning and expedition kits for the wild</li>
+        <li><i class="ti ti-check"></i>Surviving the wild — skills, courage and situational awareness</li>
+        <li><i class="ti ti-check"></i>Finding ourselves — wellness and coexistence in nature</li>
+      </ul>
+      <h4><i class="ti ti-calendar-time"></i> Schedule</h4>
+      <div class="ws-sched-row"><span>Day 1 · 7 AM</span><span>Arrival at MWMCRC, camp set-up, introductions</span></div>
+      <div class="ws-sched-row"><span>Day 1</span><span>Preparation, planning &amp; expedition kits for the wild</span></div>
+      <div class="ws-sched-row"><span>Day 1</span><span>Skills &amp; wilderness medical simulation</span></div>
+      <div class="ws-sched-row"><span>Day 1 evening</span><span>Survival skills &amp; wellness session by the fireside; camp overnight</span></div>
+      <div class="ws-sched-row"><span>Day 2 morning</span><span>Birding, breakfast &amp; nature walk</span></div>
+      <div class="ws-sched-row"><span>Day 2</span><span>Debrief, feedback, lunch &amp; exit</span></div>
+    </div>
+  </div></div>
     <div style="background:var(--midnight-3);border-radius:var(--radius);padding:32px;text-align:center;border:1px solid var(--gold-border)">
       <h3 style="font-size:20px;font-weight:800;color:#fff;margin-bottom:8px">Secure Your Workshop Seat</h3>
       <p style="font-size:13px;color:var(--text-muted);margin-bottom:20px">Workshop seats are limited. Select your preference during registration.</p>
@@ -3354,6 +3461,14 @@ function showRegSuccess(name, email) {
   ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
+  function toggleWsExtra(id, btn){
+  const el = document.getElementById(id);
+  if(!el) return;
+  const open = el.classList.toggle('open');
+  btn.innerHTML = open
+    ? '<i class="ti ti-chevron-up"></i> Hide Full Details'
+    : '<i class="ti ti-chevron-down"></i> Full Details';
+}
 // ── Utility functions used by other pages ────────────────────────────────
 function doSub()     { document.getElementById('sub-ok').classList.remove('hidden'); }
 function doContact() { document.getElementById('ctc-ok').classList.remove('hidden'); }
