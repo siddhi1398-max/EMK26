@@ -1793,22 +1793,21 @@ footer strong{color:var(--gold)}
     <!-- TIER CARDS -->
     <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
  
-      <div class="tier selected" id="tier-1" onclick="selectTier('Delegate',4500,2,this)">
+      <div class="tier selected" id="tier-1" onclick="selectTier('Delegate',4000,2,this)">
         <div class="tier-name">Delegate</div>
         <div class="tier-price">&#8377;4,000 <span>+ workshops</span></div>
-        <div class="tier-note">+&#8377;1,000 for 1 workshop &middot; +&#8377;1,500 for 2 workshops</div>
+        <div class="tier-note">Workshop price varies · see below</div>
         <ul class="tier-features">
           <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
           <li><i class="ti ti-check"></i>All meals during conference days</li>
           <li><i class="ti ti-check"></i>CME points</li>
           <li><i class="ti ti-check"></i>Conference dinner</li>
-          <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>1 workshop: +&#8377;1,000</li>
-          <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>2 workshops: +&#8377;1,500</li>
+          <li><i class="ti ti-plus" style="color:var(--gold-mid)"></i>Up to 2 workshops, priced individually</li>
         </ul>
         <button class="btn btn-gold" style="width:100%;justify-content:center">Selected</button>
       </div>
  
-      <div class="tier" id="tier-2" onclick="selectTier('Faculty',7500,99,this)">
+      <div class="tier" id="tier-2" onclick="selectTier('Faculty',7000,99,this)">
         <div class="tier-badge">Most Inclusive</div>
         <div class="tier-name">Faculty / Consultant</div>
         <div class="tier-price">&#8377;7,000 <span>early bird</span></div>
@@ -1859,7 +1858,7 @@ footer strong{color:var(--gold)}
       <div style="margin-top:28px;padding-top:20px;border-top:1px solid var(--border)">
         <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:14px;display:flex;align-items:center;gap:8px">
           <i class="ti ti-tool"></i> Workshop Preference
-          <span id="ws-limit-note" style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);font-size:11px">— select up to 2 (1 per day)</span>
+          <span id="ws-limit-note" style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--text-muted);font-size:11px">— select up to 2 (1 per day); price varies by workshop and early/late bird</span>
         </div>
         <div style="margin-bottom:12px">
           <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px">
@@ -1885,13 +1884,13 @@ footer strong{color:var(--gold)}
     <i class="ti ti-map-pin" style="font-size:11px;color:var(--gold)"></i> Pre-Conference — 11-12 November (Manipal, separate venue)
   </div>
   <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px">
-    <label class="ws-chk-label"><input type="checkbox" class="ws-chk-manipal"> El Niño &amp; Emergency Medicine</label>
+    <label class="ws-chk-label"><input type="checkbox" class="ws-chk-manipal" onchange="wsChange(this)"> El Niño &amp; Emergency Medicine</label>
   </div>
-  <div style="font-size:11px;color:var(--text-muted);margin-top:6px">These run a day earlier at Manipal and are registered/priced separately — selecting here just notes your interest.</div>
+  <div style="font-size:11px;color:var(--text-muted);margin-top:6px">Runs a day earlier at Manipal. Price included in your total below.</div>
 </div>
         </div>
          <div id="ws-warn" style="display:none;font-size:12px;color:var(--gold);margin-top:8px;align-items:center;gap:6px;background:rgba(212,160,23,0.08);padding:8px 12px;border-radius:8px;border:1px solid var(--gold-border)">
-          <i class="ti ti-info-circle"></i> 2 workshops selected &mdash; <strong>+&#8377;1,500 added</strong> to your total
+          <i class="ti ti-info-circle"></i> 2 workshops selected &mdash; total updated below
         </div>
       </div>
 
@@ -1911,17 +1910,14 @@ footer strong{color:var(--gold)}
       </div>
 
       <!-- PRICE SUMMARY -->
- 
-      <!-- PRICE SUMMARY -->
       <div style="margin-top:24px;background:var(--midnight-4);border:1.5px solid var(--gold-border);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
         <div>
           <div style="font-size:10px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Total Payable</div>
-          <div style="font-size:13px;color:var(--text);font-weight:600" id="sum-tier">Delegate &mdash; Conference Only</div>
+          <div style="font-size:13px;color:var(--text);font-weight:600" id="sum-tier">Delegate (Early Bird)</div>
         </div>
         <div style="font-size:28px;font-weight:800;color:var(--gold)" id="sum-price">&#8377;4,000</div>
       </div>
  
-      <!-- PAYMENT INFO -->
       <!-- PAYMENT SCREENSHOT -->
       <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
         <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
@@ -1933,16 +1929,13 @@ footer strong{color:var(--gold)}
         </div>
       </div>
 
-      <!-- PAYMENT INFO -->
-      <div style="margin-top:12px;background:rgba(212,160,23,0.06);border:1px solid var(--gold-border);border-radius:var(--radius-sm);padding:12px 14px;font-size:12px;color:var(--text-muted);display:flex;gap:9px;align-items:flex-start">
- 
       <!-- SUBMIT BUTTON -->
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:18px">
         <p style="font-size:11px;color:var(--text-muted)">
           <i class="ti ti-lock" style="font-size:12px;vertical-align:-1px"></i> Secured by Cashfree Payments
         </p>
         <button class="btn btn-gold" id="reg-submit-btn" style="font-size:15px;padding:13px 32px" onclick="submitRegistration()">
-          <i class="ti ti-send"></i> Submit &amp; Pay <span id="btn-price">&#8377;4,500</span>
+          <i class="ti ti-send"></i> Submit &amp; Pay <span id="btn-price">&#8377;4,000</span>
         </button>
       </div>
  
@@ -1970,7 +1963,6 @@ footer strong{color:var(--gold)}
   </footer>
 </div>
 <!-- END REGISTER PAGE -->
-  
 
 <!-- ══════════════════════════════════════════
      COMPETITIONS PAGE
@@ -3224,7 +3216,7 @@ const CASHFREE_LINK   = 'https://payments.cashfree.com/forms/YOUR_LINK_ID';
 })();
 
 // ── State ─────────────────────────────────────────────────────────────────
-var _regTier = { name: 'Delegate', price: 4500, wsMax: 2, finalPrice: 4500 };
+var _regTier = { name: 'Delegate', price: 4000, wsMax: 2, finalPrice: 4500 };
 
 // ── Tier selector ─────────────────────────────────────────────────────────
 function selectTier(name, price, wsMax, card) {
@@ -3857,6 +3849,88 @@ function closeCampusPanel() {
     TBA_PAGES.forEach(buildOverlay);
   }
 })();
+
+    // ── Early/Late Bird cutoff (matches your homepage countdown) ─────────────
+const EARLY_BIRD_CUTOFF = new Date('2026-09-15T23:59:59');
+function isEarlyBird() { return new Date() <= EARLY_BIRD_CUTOFF; }
+
+// ── Per-workshop pricing: { early, late } ─────────────────────────────────
+const wsPriceMap = {
+  'Advanced Airway':                  { early: 1000, late: 1500 },
+  'ToxSim':                           { early: 1000, late: 1500 },
+  'Maternal Resuscitation Programme': { early: 1000, late: 1500 }, // TODO: confirm — placeholder
+  'Hidden Curriculum in ED':          { early: 1500, late: 2000 },
+  'Resuscitatology':                  { early: 1000, late: 1500 }, // TODO: confirm — placeholder
+  'EM Radiology':                     { early: 1500, late: 2000 }
+};
+const manipalPrice = { early: 1500, late: 1500 }; // TODO: confirm — placeholder (Wilderness Medicine)
+
+function wsPriceFor(name) {
+  const p = wsPriceMap[name];
+  if (!p) return isEarlyBird() ? 1000 : 1500;
+  return isEarlyBird() ? p.early : p.late;
+}
+
+function wsChange(cb) {
+  document.querySelectorAll('.ws-chk-label').forEach(function (l) {
+    l.classList.toggle('checked', l.querySelector('input').checked);
+  });
+
+  if (_regTier.wsMax < 99) {
+    ['ws-d1', 'ws-d2'].forEach(function (dayId) {
+      var day = document.getElementById(dayId);
+      if (!day) return;
+      var checkedInDay = day.querySelectorAll('.ws-chk:checked').length;
+      day.querySelectorAll('.ws-chk').forEach(function (c) {
+        if (!c.checked) c.disabled = checkedInDay >= 1;
+      });
+    });
+  } else {
+    document.querySelectorAll('.ws-chk').forEach(function (c) {
+      if (!c.checked) c.disabled = false;
+    });
+  }
+
+  var total = document.querySelectorAll('.ws-chk:checked').length;
+  var warn  = document.getElementById('ws-warn');
+  if (warn) warn.style.display = (total === 2 && _regTier.wsMax < 99) ? 'flex' : 'none';
+
+  updatePriceSummary();
+}
+
+function updatePriceSummary() {
+  var checked = Array.from(document.querySelectorAll('.ws-chk:checked'));
+  var n = checked.length;
+  var total = _regTier.price;
+
+  if (_regTier.wsMax < 99) {
+    checked.forEach(function (c) {
+      total += wsPriceFor(c.value);
+    });
+  }
+  // Faculty/Consultant (wsMax >= 99): all workshops included, no add-on
+
+  var manipal = document.querySelector('.ws-chk-manipal');
+  var manipalChecked = manipal && manipal.checked;
+  if (manipalChecked) total += (isEarlyBird() ? manipalPrice.early : manipalPrice.late);
+
+  _regTier.finalPrice = total;
+  var fmt = '\u20B9' + total.toLocaleString('en-IN');
+
+  var sp = document.getElementById('sum-price');
+  if (sp) sp.textContent = fmt;
+
+  var bp = document.getElementById('btn-price');
+  if (bp) bp.textContent = fmt;
+
+  var lbl = _regTier.name + (isEarlyBird() ? ' (Early Bird)' : ' (Standard)');
+  if (n === 1)  lbl += ' + 1 Workshop';
+  else if (n >= 2) lbl += ' + 2 Workshops';
+  if (manipalChecked) lbl += ' + Wilderness Pre-Conf';
+
+  var st = document.getElementById('sum-tier');
+  if (st) st.textContent = lbl;
+}
 </script>
 
 
