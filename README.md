@@ -2,6 +2,49 @@
 
 Live site: [your GitHub Pages URL here]
 
+## Cashfree registration payments
+
+The registration page now creates a Cashfree Payment Link and gives the delegate two choices: scan Cashfree's QR code or open/copy the secure payment link. Payment status is verified server-side before a registration ID is issued.
+
+1. Rotate any Cashfree secret that has been shared in chat or source code.
+2. Copy `.env.example` to `.env`.
+3. Add the new sandbox App ID and Secret Key to `.env`; set `APP_URL` to the URL where this folder is served.
+4. Serve the project through Apache/PHP (for example, `http://localhost/EMK26/`), not as a `file://` page.
+5. In production, set `CASHFREE_ENV=production`, use production credentials, enable HTTPS, and ensure the public domain is configured in Cashfree.
+
+Pending and paid registration records are stored in `data/registrations.json`. That file and `.env` are ignored by Git; the `data` directory is denied over Apache HTTP.
+
+### Gmail email notifications
+
+After Cashfree confirms full payment, the backend sends:
+
+- a purchase acknowledgment and Registration ID to the delegate;
+- a detailed paid-registration notification to the configured administrator.
+
+Add the `SMTP_*`, `MAIL_*`, and `ADMIN_*` values from `.env.example` to `.env`. For Gmail, enable 2-Step Verification and create a 16-character Google App Password; put that App Password in `SMTP_APP_PASSWORD`. Do not use or commit the normal Gmail password. Failed deliveries are logged and retried during subsequent payment-status checks, up to five attempts per recipient.
+
+The generated Cashfree Payment Link includes a signed webhook URL at `api/payment.php?action=webhook`. This allows notifications to run even when the payer closes the browser after payment. Cashfree webhook signatures and timestamps are verified before a registration is marked paid. In production, `APP_URL` must be the public HTTPS site URL so Cashfree can reach the endpoint.
+
+### Google Sheets registration tracking
+
+Every confirmed registration can be appended to a `Registrations` sheet with the Registration ID, payment status, amount paid, registration tier, workshops, competitions, attendee details, Cashfree reference, and timestamps. Registration IDs are checked before appending, and sync failures retry up to five times.
+
+1. Create a Google Cloud project and enable the Google Sheets API.
+2. Create a service account and download its JSON key.
+3. Save the key as `config/google-service-account.json`.
+4. Create a Google Sheet with a tab named `Registrations`.
+5. Share that Sheet as **Editor** with the `client_email` found inside the service-account JSON.
+6. Copy the spreadsheet ID from the Sheet URL and configure `.env`:
+
+```env
+GOOGLE_SHEETS_ENABLED=true
+GOOGLE_SHEETS_SPREADSHEET_ID=your_spreadsheet_id
+GOOGLE_SHEETS_RANGE=Registrations!A:U
+GOOGLE_SERVICE_ACCOUNT_FILE=config/google-service-account.json
+```
+
+The first successful sync creates the column headers automatically. The service-account JSON is ignored by Git and the `config` directory is denied over Apache HTTP.
+
 ## 🚀 Quick Deploy (GitHub Pages)
 
 ```bash

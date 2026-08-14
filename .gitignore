@@ -1,0 +1,6 @@
+.env
+data/registrations.json
+data/*.tmp
+data/payment-proofs/
+# Service-account downloads use project-specific filenames; never track JSON keys here.
+config/*.json
