@@ -2856,91 +2856,138 @@ function navigateToVenue(buildingId, workshopLabel, venueName, color) {
   <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Contact Us</h2><p>Reach the right team for your query</p></div></div>
   <div class="section" style="padding-top:36px">
 
-    <!-- CONTACT CATEGORY CARDS -->
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin-bottom:40px">
+   <!-- ═══════════ COMMITTEES ═══════════ -->
+    <div style="margin-bottom:40px">
+      <h2 class="section-title">Committees</h2>
+      <p class="section-sub">EM Karnataka 2026 — Organising Team</p>
 
-      <div class="contact-card" style="flex-direction:column;gap:0">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
-          <div class="contact-icon"><i class="ti ti-pencil"></i></div>
-          <p style="font-size:13px;font-weight:700;color:#fff">Registrations</p>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px">
+
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Patrons</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Rev Fr Faustine Lucas Lobo <span style="color:var(--text-dim);font-size:11px">(Director)</span></li>
+            <li>Rev Dr. Michael Santhumayor <span style="color:var(--text-dim);font-size:11px">(Administrator FMMC)</span></li>
+            <li>Rev Fr George Jeevan Sequeira <span style="color:var(--text-dim);font-size:11px">(Administrator FMMCH)</span></li>
+            <li>Fr Rohan Michael Dias <span style="color:var(--text-dim);font-size:11px">(Administrator, FMMH Thumbay)</span></li>
+            <li>Fr William D Souza <span style="color:var(--text-dim);font-size:11px">(Asst. Administrator FMMCH)</span></li>
+          </ul>
         </div>
-    <!-- Registrations -->
-<select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:cmeemergencymedicine@fathermuller.in?subject=[EMK2026] Registration — '+encodeURIComponent(this.options[this.selectedIndex].text));this.selectedIndex=0">
-  <option value="">— Select committee member —</option>
-  <option value="1">Dr. Niveditha TG · Registration Chair</option>
-  <option value="2">Dr. Name TBA · Co-ordinator</option>
-</select>
-      </div>
 
-      <div class="contact-card" style="flex-direction:column;gap:0">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
-          <div class="contact-icon"><i class="ti ti-file-text"></i></div>
-          <p style="font-size:13px;font-weight:700;color:#fff">Abstracts &amp; Competitions</p>
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">KEPA Committee</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Dr Udaykumar</li>
+            <li>Dr Bharat Kempanna</li>
+            <li>Dr Harshit Mundra</li>
+            <li>Dr Arpita Loganathan</li>
+            <li>Dr Hariprasad K V</li>
+            <li>Dr Ashray V</li>
+            <li>Dr Abhishek K B</li>
+            <li>Dr Kallesh Shamnur</li>
+            <li>Dr Ganesh B S</li>
+          </ul>
         </div>
-        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:'+this.value);this.selectedIndex=0">
-          <option value="">— Select committee member —</option>
-          <option value="abstracts@emkarnataka2026.in">Dr. Name TBA · Scientific Chair</option>
-          <option value="abstracts2@emkarnataka2026.in">Dr. Siddhi Naik · Co-ordinator</option>
-        </select>
-      </div>
 
-      <div class="contact-card" style="flex-direction:column;gap:0">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
-          <div class="contact-icon"><i class="ti ti-building"></i></div>
-          <p style="font-size:13px;font-weight:700;color:#fff">Workshops</p>
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Organising Committee</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Dr Kiran Shetty <span style="color:var(--text-dim);font-size:11px">(Chairman)</span></li>
+            <li>Dr Shailaja S <span style="color:var(--text-dim);font-size:11px">(Secretary)</span></li>
+            <li>Dr Niveditha T G</li>
+            <li>Dr Akshatha Dayananda</li>
+            <li>Dr Siddhi Naik</li>
+            <li>Dr John Benny</li>
+            <li>Dr Ruben Shaun Dsouza</li>
+            <li>Dr Deeksha Poojary</li>
+          </ul>
         </div>
-        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:'+this.value);this.selectedIndex=0">
-          <option value="">— Select committee member —</option>
-          <option value="stay@emkarnataka2026.in">Dr. Name TBA · Hospitality Chair</option>
-          <option value="stay2@emkarnataka2026.in">Dr. John Benny · Co-ordinator</option>
-        </select>
-      </div>
 
-      <div class="contact-card" style="flex-direction:column;gap:0">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
-          <div class="contact-icon"><i class="ti ti-briefcase"></i></div>
-          <p style="font-size:13px;font-weight:700;color:#fff">Sponsorships &amp; Exhibition</p>
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Registration Committee</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Dr Niveditha T G</li>
+            <li>Dr Salfi P</li>
+            <li>Dr Madhu S</li>
+            <li>Dr Nisarga Karanth</li>
+            <li>Dr Rohith Y</li>
+            <li>Dr Pranav Prakash</li>
+          </ul>
         </div>
-        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:'+this.value);this.selectedIndex=0">
-          <option value="">— Select committee member —</option>
-          <option value="sponsors@emkarnataka2026.in">Dr. Name TBA · Sponsorship Chair</option>
-          <option value="sponsors2@emkarnataka2026.in">Dr. Name TBA · Co-ordinator</option>
-        </select>
-      </div>
 
-      <div class="contact-card" style="flex-direction:column;gap:0">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
-          <div class="contact-icon"><i class="ti ti-phone"></i></div>
-          <p style="font-size:13px;font-weight:700;color:#fff">Secretariat</p>
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Scientific Committee</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Dr Prithvishree Ravindra <span style="color:var(--text-dim);font-size:11px">(Chair)</span></li>
+            <li>Dr Rachana <span style="color:var(--text-dim);font-size:11px">(Co-Chair)</span></li>
+            <li>Dr Naureen Naik</li>
+            <li>Dr Akshatha Dayananda</li>
+          </ul>
         </div>
-        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&(window.location='mailto:'+this.value);this.selectedIndex=0">
-          <option value="">— Select committee member —</option>
-          <option value="secretary@emkarnataka2026.in">Dr. Name TBA · Secretary</option>
-          <option value="secretary2@emkarnataka2026.in">Dr. Name TBA · Joint Secretary</option>
-        </select>
-      </div>
 
-      <div class="contact-card" style="flex-direction:column;gap:0">
-        <div style="display:flex;gap:12px;align-items:center;margin-bottom:10px">
-          <div class="contact-icon"><i class="ti ti-briefcase"></i></div>
-          <p style="font-size:13px;font-weight:700;color:#fff">Accomodation</p>
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Workshop Committee</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Dr Ganesha B S</li>
+            <li>Dr Freston Marc Shirur</li>
+            <li>Dr John Benny</li>
+          </ul>
         </div>
-        <select style="width:100%;font-size:12px" onchange="this.selectedIndex&&window.open('https://wa.me/'+this.value,'_blank');this.selectedIndex=0">
-          <option value="">— Select committee member —</option>
-          <option value="91XXXXXXXXXX">General Queries · +91 XXXXX XXXXX</option>
-          <option value="91XXXXXXXXXX">Workshop Queries · +91 XXXXX XXXXX</option>
-        </select>
-      </div>
 
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Competitions Committee</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Dr Girish Narayan</li>
+            <li>Dr Harshit Mundra</li>
+            <li>Dr Hariprasad K V</li>
+            <li>Dr Vijaya Kumara</li>
+            <li>Dr Rohith Y</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Social Media &amp; IT Committee</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Dr Siddhi Naik</li>
+            <li>Dr Deeksha Poojary</li>
+            <li>Dr Udit Umrani</li>
+            <li>Dr Pranav Prakash</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Sponsorship Committee</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Dr Kiran Shetty</li>
+            <li>Dr Salfi P</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Banquet Committee</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Dr Udaykumar</li>
+            <li>Dr Augustine</li>
+            <li>Dr Shamna</li>
+          </ul>
+        </div>
+
+        <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:20px">
+          <div style="font-size:13px;font-weight:800;color:var(--gold);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:10px">Logistics &amp; Hospitality Committee</div>
+          <ul style="list-style:none;font-size:13px;color:var(--text-muted);line-height:1.9">
+            <li>Dr Ruban Shaun Dsouza</li>
+            <li>Dr Augustine</li>
+            <li>Dr Salfi</li>
+            <li>Dr Sebastian Mathias</li>
+            <li>Dr Martin Palathra</li>
+          </ul>
+        </div>
+
+      </div>
     </div>
-
-    <div style="background:var(--midnight-3);border:1px solid var(--gold-border);border-radius:var(--radius);padding:14px 20px;display:flex;align-items:center;gap:12px;margin-bottom:24px">
-  <div style="width:38px;height:38px;border-radius:var(--radius-sm);background:var(--gold-glow);border:1px solid var(--gold-border);display:flex;align-items:center;justify-content:center;flex-shrink:0">
-    <i class="ti ti-mail" style="font-size:18px;color:var(--gold)"></i>
-  </div>
   <div>
     <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:2px">General Contact</div>
-    <a href="mailto:cmeemergencymedicine@fathermuller.in" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none">emkfmmc26@gmail.com</a>
+    <a href="mailto:emkfmmc26@gmail.com" style="color:var(--gold);font-size:14px;font-weight:600;text-decoration:none">emkfmmc26@gmail.com</a>
   </div>
 </div>
     <!-- DIVIDER -->
