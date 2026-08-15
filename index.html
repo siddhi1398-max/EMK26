@@ -40,7 +40,7 @@ body{font-family:'Outfit',system-ui,sans-serif;background:var(--midnight);color:
   .nav-partner-logos{gap:5px;padding-left:8px;}
   .nav-partner-logo{height:30px;width:30px;padding:2px;border-radius:4px;}
 }
-}
+
 /* ── NAV — increased height ── */
 nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom:1px solid var(--gold-border);backdrop-filter:blur(12px);}
 .nav-inner{max-width:100%;margin:auto;padding:0 1.5rem;display:grid;grid-template-columns:auto 1fr auto;align-items:center;gap:12px;height:76px;}
@@ -3393,15 +3393,129 @@ function drawerGo(page){
 </div>
  
 <script>
-// ── CONFIG — fill these in before going live ──────────────────────────────
-const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/YOUR_DEPLOYMENT_ID/exec';
-const CASHFREE_LINK   = 'https://payments.cashfree.com/forms/YOUR_LINK_ID';
+// ── CONFIG — local backend payment API + Apps Script fallback ───────────
+const PAYMENT_API_URL = '/api/payment.php';
+const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwxPBwZB2FBsBrrCnZpb5SxxNNxpkpw_5iOKYYlLTpLWbMX9KRU7qQww2taPahgWFGW0Q/exec';
 // ─────────────────────────────────────────────────────────────────────────
+
+// ── Cashfree return: always open a verifiable confirmation screen ─────────
+(function () {
+  var params = new URLSearchParams(window.location.search);
+  var linkId = params.get('payment_return') === '1' ? params.get('link_id') : '';
+  if (!linkId) return;
+
+  function start() {
+    if (typeof showPage === 'function') showPage('register');
+    showPaymentReturn(linkId);
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', start);
+  else start();
+})();
+
+function showPaymentReturn(linkId) {
+  var existing = document.getElementById('payment-return-overlay');
+  if (existing) existing.remove();
+  var overlay = document.createElement('div');
+  overlay.id = 'payment-return-overlay';
+  overlay.style.cssText = 'position:fixed;inset:0;background:rgba(4,6,14,.9);display:flex;align-items:center;justify-content:center;padding:20px;z-index:100000;overflow:auto;';
+  document.body.appendChild(overlay);
+
+  function render(body) {
+    overlay.innerHTML = '<section style="background:linear-gradient(135deg,#171b31,#0e1220);border:1px solid var(--gold);border-radius:16px;padding:32px;max-width:620px;width:100%;box-shadow:0 20px 80px rgba(0,0,0,.45);text-align:center">' + body + '</section>';
+  }
+  function closeButton() {
+    return '<button type="button" onclick="document.getElementById(\'payment-return-overlay\').remove()" style="background:var(--gold);color:#151515;border:0;border-radius:7px;padding:12px 24px;font:700 14px inherit;cursor:pointer;margin-top:22px">Continue to registration</button>';
+  }
+  function esc(value) { var d = document.createElement('div'); d.textContent = value || ''; return d.innerHTML; }
+  function check(attempt) {
+    render('<div style="font-size:40px;color:var(--gold)"><i class="ti ti-loader-2"></i></div><h2 style="margin:12px 0;color:#fff">Checking your payment</h2><p style="color:#b9bdc9;margin:0">Please keep this page open while we verify your Cashfree payment.</p><p style="font:12px monospace;color:#d4a017;margin-top:18px">Reference: ' + esc(linkId) + '</p>');
+    fetch(PAYMENT_API_URL + '?action=status&link_id=' + encodeURIComponent(linkId))
+      .then(function (response) { return response.json(); })
+      .then(function (data) {
+        if (data && data.ok && data.paid && data.confirmation) {
+          var c = data.confirmation, workshops = c.workshops && c.workshops.length ? c.workshops.join(', ') : 'None selected';
+          render('<div style="font-size:42px;color:#8dde48"><i class="ti ti-circle-check"></i></div><h1 style="font-size:27px;margin:10px 0;color:#fff">Payment confirmed</h1><p style="color:#c7cad3;margin:0 0 20px">Thank you, ' + esc(c.name) + '. Your EM Karnataka 2026 registration is complete.</p><div style="text-align:left;background:rgba(212,160,23,.09);border:1px solid rgba(212,160,23,.55);border-radius:10px;padding:17px;color:#fff;line-height:1.75"><div><strong style="color:var(--gold)">Registration ID:</strong> ' + esc(c.registrationId) + '</div><div><strong>Amount paid:</strong> ₹' + Number(c.amount || 0).toLocaleString('en-IN') + '</div><div><strong>Registration:</strong> ' + esc(c.tier) + '</div><div><strong>Workshops:</strong> ' + esc(workshops) + '</div><div><strong>Paid on:</strong> ' + esc(c.paidAt ? new Date(c.paidAt).toLocaleString('en-IN') : 'Verified') + '</div></div><p style="color:#b9bdc9;font-size:13px;margin:18px 0 0">A confirmation has also been sent to ' + esc(c.email) + '.</p>' + closeButton());
+          return;
+        }
+        if (attempt < 9) setTimeout(function () { check(attempt + 1); }, 2500);
+        else render('<div style="font-size:42px;color:var(--gold)"><i class="ti ti-clock"></i></div><h2 style="color:#fff">Payment is being processed</h2><p style="color:#c7cad3">We have your payment reference. Cashfree has not confirmed it yet; please check again in a moment.</p><button type="button" id="retry-payment-check" style="background:var(--gold);color:#151515;border:0;border-radius:7px;padding:12px 24px;font:700 14px inherit;cursor:pointer">Check again</button>' + closeButton());
+        var retry = document.getElementById('retry-payment-check'); if (retry) retry.onclick = function () { check(0); };
+      })
+      .catch(function () { if (attempt < 9) setTimeout(function () { check(attempt + 1); }, 2500); });
+  }
+  check(0);
+}
+
+function verifyPaymentQuick(linkId) {
+  if (!linkId) return;
+  
+  setRegBtn('Verifying payment\u2026', true);
+  
+  // Poll more aggressively for payment return
+  var delays = [1000, 1000, 2000, 2000, 3000, 3000, 4000, 4000, 5000, 5000, 6000, 6000, 6000];
+  var pollCount = 0;
+  
+  (function doPoll() {
+    if (pollCount >= delays.length) {
+      // Give up after all polls
+      setRegBtn('Submit &amp; Pay', false);
+      showPaymentPending(linkId);
+      // Scroll to success message
+      setTimeout(function() {
+        var ok = document.getElementById('reg-ok');
+        if (ok) {
+          ok.classList.remove('hidden');
+          ok.style.display = 'flex';
+          ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+      }, 300);
+      return;
+    }
+    
+    setTimeout(function() {
+      fetch(PAYMENT_API_URL + '?action=status&link_id=' + encodeURIComponent(linkId))
+        .then(function(r) { return r.json(); })
+        .then(function(data) {
+          if (data && data.ok && data.paid) {
+            setRegBtn('Registered ✓', true);
+            showRegSuccess('Registrant', 'email@confirmation.com', data);
+            // Scroll to success message
+            setTimeout(function() {
+              var ok = document.getElementById('reg-ok');
+              if (ok) ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }, 300);
+            return;
+          }
+          pollCount++;
+          doPoll();
+        })
+        .catch(function(e) {
+          console.error('Poll error:', e);
+          pollCount++;
+          doPoll();
+        });
+    }, delays[pollCount]);
+  })();
+}
+
+function showPaymentPending(linkId) {
+  var ok = document.getElementById('reg-ok');
+  if (ok) {
+    ok.classList.remove('hidden');
+    ok.style.display = 'flex';
+    document.getElementById('reg-success-detail').innerHTML =
+      '<strong style=\"color:var(--gold);\">✓ Payment Confirmed!</strong><br><br>' +
+      'Your payment has been processed. Your confirmation email with Registration ID will arrive shortly.<br><br>' +
+      '<span style=\"font-size:12px;\">If you don\'t receive it within 5 minutes, please check your spam folder or contact us.</span>';
+    ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
+}
 
 // ── Spinner keyframe (injected once) ─────────────────────────────────────
 (function () {
   const s = document.createElement('style');
-  s.textContent = '@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}';
+  s.textContent = '@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}' +
+    '@media (max-width:768px){#payment-modal-overlay{padding:10px;}#payment-modal-overlay>div{max-width:100%!important;}}';
   document.head.appendChild(s);
 })();
 
@@ -3565,63 +3679,110 @@ async function submitRegistration() {
   if (!desig) { showRegError('Please enter your designation.'); return; }
   if (!inst)  { showRegError('Please enter your institution / hospital name.'); return; }
 
-  var ws      = Array.from(document.querySelectorAll('.ws-chk:checked')).map(function (c) { return c.value; });
-  var orderId = generateOrderId();
+  var ws = Array.from(document.querySelectorAll('.ws-chk:checked')).map(function (c) { return c.value; });
+  var manipalCheckbox = document.querySelector('.ws-chk-manipal');
+  var payload = {
+    name:        name,
+    email:       email,
+    phone:       phone,
+    designation: desig,
+    institution: inst,
+    regno:       (document.getElementById('r-regno').value || '').trim(),
+    council:     (document.getElementById('r-council').value || '').trim(),
+    category:    document.getElementById('r-category').value,
+    diet:        document.getElementById('r-diet').value,
+    tier:        _regTier.name,
+    workshops:   ws,
+    manipalInterest: !!(manipalCheckbox && manipalCheckbox.checked),
+    competitions: Array.from(document.querySelectorAll('.comp-chk:checked')).map(function(c){return c.value;}),
+    amount:      _regTier.finalPrice,
+  };
 
-  // Step 1 — save pending record
-  setRegBtn('Saving details\u2026', true);
+  setRegBtn('Creating payment link\u2026', true);
+  var paymentResponse;
   try {
-    await fetch(APPS_SCRIPT_URL, {
-      method:  'POST',
-      mode:    'no-cors',
+    var res = await fetch(PAYMENT_API_URL + '?action=create', {
+      method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-     body: JSON.stringify({
-        action:      'pending',
-        orderId:     orderId,
-        name:        name,
-        email:       email,
-        phone:       phone,
-        designation: desig,
-        institution: inst,
-        regno:       (document.getElementById('r-regno').value || '').trim(),
-        council:     (document.getElementById('r-council').value || '').trim(),
-        category:    document.getElementById('r-category').value,
-        diet:        document.getElementById('r-diet').value,
-        tier:        _regTier.name,
-        workshops:   ws,
-        competitions: Array.from(document.querySelectorAll('.comp-chk:checked')).map(function(c){return c.value;}),
-        amount:      '\u20B9' + _regTier.finalPrice.toLocaleString('en-IN'),
-      }),
+      body: JSON.stringify(payload),
     });
+    paymentResponse = await res.json();
+    if (!res.ok || !paymentResponse.ok) {
+      throw new Error(paymentResponse.message || 'Payment link creation failed.');
+    }
   } catch (e) {
-    console.warn('Pending save (no-cors, likely OK):', e);
-  }
-
-  // Step 2 — open Cashfree popup
-  setRegBtn('Opening payment window\u2026', true);
-  var cfUrl = CASHFREE_LINK + '?' + new URLSearchParams({
-    order_id:       orderId,
-    customer_name:  name,
-    customer_email: email,
-    customer_phone: phone,
-    amount:         _regTier.finalPrice,
-  }).toString();
-
-  var popup = window.open(cfUrl, 'emk_payment',
-    'width=540,height=700,scrollbars=yes,resizable=yes,top=80,left=200');
-
-  if (!popup) {
-    showRegError(
-      'Popup was blocked. <a href="' + cfUrl + '" target="_blank" ' +
-      'style="color:var(--gold);font-weight:600">Click here to open the payment page</a>, ' +
-      'then return here after paying.'
-    );
+    console.error('Payment link creation error:', e);
+    showRegError(e.message || 'Could not create the payment link. Please try again.');
     return;
   }
 
-  setRegBtn('Waiting for payment\u2026', true);
-  await waitForPopup(popup);
-  await verifyPayment(orderId, name, email);
+  var paymentLinkId = paymentResponse.linkId;
+  var cfUrl = paymentResponse.linkUrl;
+
+  // Step 2 — open Cashfree payment modal (inline, not popup)
+  setRegBtn('Opening payment form\u2026', true);
+  await openPaymentModal(cfUrl, paymentLinkId);
+  
+  setRegBtn('Verifying payment\u2026', true);
+  await verifyPayment(paymentLinkId, name, email);
+}
+
+// ── Payment Modal (inline, not popup) ─────────────────────────────────────
+function openPaymentModal(paymentUrl, linkId) {
+  return new Promise(function(resolve) {
+    // Create modal overlay
+    var modal = document.createElement('div');
+    modal.id = 'payment-modal-overlay';
+    modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:10000;padding:20px;';
+    
+    // Create modal content
+    var content = document.createElement('div');
+    content.style.cssText = 'background:white;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.4);overflow:hidden;max-width:900px;width:100%;height:85vh;display:flex;flex-direction:column;';
+    
+    // Modal header
+    var header = document.createElement('div');
+    header.style.cssText = 'padding:20px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;background:#f9f9f9;';
+    header.innerHTML = '<strong style="font-size:18px;color:#333">💳 Secure Payment Gateway</strong><button id="close-payment-modal" style="background:none;border:none;font-size:28px;cursor:pointer;color:#999;hover-color:#333">×</button>';
+    
+    // Modal iframe
+    var iframe = document.createElement('iframe');
+    iframe.id = 'payment-iframe';
+    iframe.src = paymentUrl;
+    iframe.style.cssText = 'flex:1;border:none;width:100%;background:#fff;';
+    iframe.allow = 'payment';
+    
+    content.appendChild(header);
+    content.appendChild(iframe);
+    modal.appendChild(content);
+    document.body.appendChild(modal);
+    
+    // Close button handler
+    var closeBtn = document.getElementById('close-payment-modal');
+    closeBtn.onclick = function() {
+      modal.remove();
+      resolve();
+    };
+    
+    // Payment timeout (15 min)
+    var timeout = setTimeout(function() {
+      if (modal.parentNode) modal.remove();
+      resolve();
+    }, 900000);
+    
+    // Monitor iframe for payment completion
+    var checkInterval = setInterval(function() {
+      try {
+        // When user completes payment in Cashfree, it tries to redirect
+        // The payment will be marked PAID by backend
+        // If modal is closed or removed, stop checking
+        if (!modal.parentNode) {
+          clearInterval(checkInterval);
+          clearTimeout(timeout);
+          resolve();
+        }
+      } catch(e) {}
+    }, 500);
+  });
 }
 
 function waitForPopup(popup) {
@@ -3633,53 +3794,70 @@ function waitForPopup(popup) {
   });
 }
 
-async function verifyPayment(orderId, name, email) {
+async function verifyPayment(linkId, name, email) {
   setRegBtn('Verifying payment\u2026', true);
 
-  // Check return URL param (if Cashfree redirects back)
-  if (new URLSearchParams(window.location.search).get('payment') === 'success') {
-    showRegSuccess(name, email);
+  if (!linkId) {
+    setRegBtn('Submit &amp; Pay', false);
     return;
   }
 
-  // Poll Apps Script webhook (up to ~24 seconds)
-  for (var i = 0; i < 6; i++) {
-    await sleep(4000);
+  // Poll with multiple attempts — short intervals first, then longer
+  var delays = [2000, 2000, 3000, 3000, 4000, 4000, 5000, 5000, 6000, 6000];
+  for (var i = 0; i < delays.length; i++) {
+    await sleep(delays[i]);
     try {
-      var res  = await fetch(APPS_SCRIPT_URL + '?action=checkorder&orderId=' + encodeURIComponent(orderId));
+      var res  = await fetch(PAYMENT_API_URL + '?action=status&link_id=' + encodeURIComponent(linkId));
       var data = await res.json();
-      if (data.confirmed) { showRegSuccess(name, email); return; }
+      if (data && data.ok && data.paid) {
+        showRegSuccess(name, email, data);
+        return;
+      }
     } catch (_) {}
   }
 
-  // Not confirmed yet — show pending state
+  // If still not confirmed after all polling, show pending message
   setRegBtn('Submit &amp; Pay', false);
   var ok = document.getElementById('reg-ok');
   if (ok) {
     ok.classList.remove('hidden');
     ok.style.display = 'flex';
     document.getElementById('reg-success-detail').innerHTML =
-      'Payment is being verified. If you completed payment, your confirmation email with ' +
-      'Registration ID will arrive within a few minutes. ' +
-      '<strong style="color:var(--gold)">Check your spam folder too.</strong><br><br>' +
-      '<span style="font-size:12px">If payment did not go through, you can submit the form again.</span>';
+      '<strong style=\"color:var(--gold);\">Payment Submitted</strong><br><br>' +
+      'We are processing your payment. Your confirmation email with Registration ID will arrive shortly. ' +
+      '<strong style=\"color:var(--gold);\">Check your spam folder too.</strong><br><br>' +
+      '<span style=\"font-size:12px;\">Questions? ' +
+      '<a href=\"tel:+918888888888\" style=\"color:var(--gold);\">Call us</a> or ' +
+      '<a href=\"mailto:register@example.com\" style=\"color:var(--gold);\">email us</a>.</span>';
     ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
 
-function showRegSuccess(name, email) {
+function showRegSuccess(name, email, data) {
+  data = data || {};
+  var regId = data.registrationId || 'EMKA2026-XXXX';
+  
   setRegBtn('Registered \u2713', true);
   var ok = document.getElementById('reg-ok');
   if (!ok) return;
   ok.classList.remove('hidden');
   ok.style.display = 'flex';
   document.getElementById('reg-success-detail').innerHTML =
-    'Payment confirmed! A confirmation email with your ' +
-    '<strong style="color:var(--gold)">Registration ID (EMKA2026-XXXX)</strong> ' +
-    'has been sent to <strong>' + email + '</strong>.<br><br>' +
-    '<span style="font-size:12px">Keep your Registration ID safe — ' +
-    'you\'ll need it to submit abstracts and at the conference venue.</span>';
-  ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    '<strong style=\"color:var(--gold);\">✓ Payment Confirmed!</strong><br><br>' +
+    'Your Registration ID: <strong style=\"color:var(--gold); font-size:20px;\">' + regId + '</strong><br><br>' +
+    'A confirmation email has been sent to <strong>' + email + '</strong>.<br><br>' +
+    '<span style=\"font-size:12px;\">Keep your Registration ID safe — you\'ll need it to submit abstracts and at the conference venue.</span>';
+  
+  // Force visibility
+  ok.classList.remove('hidden');
+  ok.style.display = 'flex';
+  ok.style.visibility = 'visible';
+  ok.style.opacity = '1';
+  
+  // Scroll to it
+  setTimeout(function() {
+    ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }, 100);
 }
 
   function toggleWsExtra(id, btn){

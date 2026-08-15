@@ -1,0 +1,7 @@
+# Local credentials and Google service-account keys
+.env
+config/*.json
+
+# Registration records and pre-launch backups contain personal/payment data
+data/registrations*.json
+data/payment-proofs/

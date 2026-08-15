@@ -296,7 +296,6 @@ function handleCashfreeWebhook(): void
 
 function checkPaymentStatus(): void
 {
-    requireCredentials();
     $linkId = (string) ($_GET['link_id'] ?? '');
     if (!preg_match('/^EMK26_[A-Za-z0-9_]{8,50}$/', $linkId)) {
         respond(400, ['ok' => false, 'message' => 'Invalid payment reference.']);
@@ -320,6 +319,7 @@ function checkPaymentStatus(): void
             'paid' => true,
             'status' => 'PAID',
             'registrationId' => $records[$linkId]['registrationId'] ?? null,
+            'confirmation' => paymentConfirmation($records[$linkId]),
             'receiptEmailSent' => $emailStatus['user'],
             'adminEmailSent' => $emailStatus['admin'],
             'sheetTrackingEnabled' => $sheetTrackingEnabled,
@@ -327,6 +327,8 @@ function checkPaymentStatus(): void
         ]);
     }
 
+    // Only a still-pending payment requires a live Cashfree API request.
+    requireCredentials();
     $result = cashfreeRequest('GET', '/links/' . rawurlencode($linkId));
     if ($result['status'] < 200 || $result['status'] >= 300) {
         respond(502, ['ok' => false, 'message' => 'Could not verify payment yet.']);
@@ -353,11 +355,27 @@ function checkPaymentStatus(): void
         'paid' => $paid,
         'status' => $paid ? 'PAID' : $cashfreeStatus,
         'registrationId' => $paid ? $records[$linkId]['registrationId'] : null,
+        'confirmation' => $paid ? paymentConfirmation($records[$linkId]) : null,
         'receiptEmailSent' => $emailStatus['user'],
         'adminEmailSent' => $emailStatus['admin'],
         'sheetTrackingEnabled' => $sheetTrackingEnabled,
         'sheetSynced' => $sheetSynced,
     ]);
+}
+
+/** Details displayed only to the holder of the unguessable Cashfree link reference. */
+function paymentConfirmation(array $record): array
+{
+    return [
+        'registrationId' => (string) ($record['registrationId'] ?? ''),
+        'name' => (string) ($record['name'] ?? ''),
+        'email' => (string) ($record['email'] ?? ''),
+        'tier' => (string) ($record['tier'] ?? ''),
+        'workshops' => array_values($record['workshops'] ?? []),
+        'amount' => (int) ($record['amount'] ?? 0),
+        'paidAt' => (string) ($record['paidAt'] ?? ''),
+        'status' => (string) ($record['paymentStatus'] ?? 'PENDING'),
+    ];
 }
 
 function validateRegistration(array $input): array
@@ -507,7 +525,7 @@ function markRegistrationPaid(string $linkId): void
         if (!isset($records[$linkId])) return;
         $records[$linkId]['paymentStatus'] = 'PAID';
         $records[$linkId]['paidAt'] = date(DATE_ATOM);
-        $records[$linkId]['registrationId'] = $records[$linkId]['registrationId'] ?? makeRegistrationId($linkId);
+        $records[$linkId]['registrationId'] = $records[$linkId]['registrationId'] ?? makeRegistrationId($linkId, $records);
     });
 }
 
@@ -721,9 +739,19 @@ function mutateRegistrations(callable $mutator): void
     fclose($handle);
 }
 
-function makeRegistrationId(string $linkId): string
+function makeRegistrationId(string $linkId, ?array $records = null): string
 {
-    return 'EMKA2026-' . strtoupper(substr(hash('sha256', $linkId), 0, 8));
+    $allRecords = is_array($records) ? $records : readRegistrations();
+    $maxSequence = 0;
+
+    foreach ($allRecords as $record) {
+        $existingId = trim((string) ($record['registrationId'] ?? ''));
+        if (preg_match('/^EMKA2026-(\d{3,})$/i', $existingId, $matches) === 1) {
+            $maxSequence = max($maxSequence, (int) $matches[1]);
+        }
+    }
+
+    return sprintf('EMKA2026-%03d', $maxSequence + 1);
 }
 
 function currentPageUrl(): string
