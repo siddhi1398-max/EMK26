@@ -365,6 +365,7 @@ footer strong{color:var(--gold)}
 .file-fmt-tag{display:inline-block;font-size:11px;font-weight:700;padding:3px 10px;border-radius:100px;margin-bottom:4px;letter-spacing:0.3px}
 .file-fmt-li{display:flex;align-items:flex-start;gap:7px;font-size:12px;color:var(--text-muted);padding:4px 0;line-height:1.5}
 .file-fmt-li i{font-size:13px;flex-shrink:0;margin-top:1px}
+.file-fmt-li span{flex:1;min-width:0}
 .file-fmt-li-yes i{color:#4db88a}
 .file-fmt-li-no i{color:#e24b4a}
   
@@ -2327,10 +2328,10 @@ footer strong{color:var(--gold)}
 
       <div class="file-fmt-body">
         <ul class="file-fmt-checklist" style="list-style:none">
-          <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Widescreen 16:9. Part 1: anonymized demographics, HPI, past/family/social history, exam findings, investigations shown <em>without interpretation</em>, chronological clinical course</li>
-          <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Part 1 closes with: "What is your diagnosis, and how will you confirm it?"</li>
-          <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i>Part 2: diagnosis on its own slide with supporting evidence, plus a compulsory "Why This Case Is an Ideal CPC Case" slide structured under Relevance, Solvability, Discussability</li>
-          <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i>No patient identifiers — names, DOB, MRNs, or faces in photos. One case per team.</li>
+          <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i><span>Widescreen 16:9. Part 1: anonymized demographics, HPI, past/family/social history, exam findings, investigations shown <em>without interpretation</em>, chronological clinical course</span></li>
+          <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i><span>Part 1 closes with: "What is your diagnosis, and how will you confirm it?"</span></li>
+          <li class="file-fmt-li file-fmt-li-yes"><i class="ti ti-check"></i><span>Part 2: diagnosis on its own slide with supporting evidence, plus a compulsory "Why This Case Is an Ideal CPC Case" slide structured under Relevance, Solvability, Discussability</span></li>
+          <li class="file-fmt-li file-fmt-li-no"><i class="ti ti-x"></i><span>No patient identifiers — names, DOB, MRNs, or faces in photos. One case per team.</span></li>
         </ul>
 
         <div class="subm-section">
@@ -2367,9 +2368,7 @@ footer strong{color:var(--gold)}
         </div>
       </div>
     </div>
-
-  </div>
-</div>
+    
     <!-- IMPORTANT NOTES -->
     <div class="info-box" style="margin-bottom:36px">
       <i class="ti ti-alert-triangle" style="font-size:20px;margin-top:2px"></i>
