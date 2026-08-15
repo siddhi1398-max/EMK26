@@ -1799,18 +1799,18 @@ footer strong{color:var(--gold)}
       </div>
       <div style="padding:14px 10px;background:var(--midnight-3);text-align:center;border-right:1px solid var(--border)">
         <div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--midnight);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 6px">2</div>
-        <div style="font-size:11px;font-weight:600;color:#fff">Pay via UPI</div>
-        <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Cashfree window</div>
+        <div style="font-size:11px;font-weight:600;color:#fff">Choose Payment</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:2px">QR code or link</div>
       </div>
       <div style="padding:14px 10px;background:var(--midnight-3);text-align:center;border-right:1px solid var(--border)">
         <div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--midnight);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 6px">3</div>
         <div style="font-size:11px;font-weight:600;color:#fff">Auto Confirmed</div>
-        <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Instant webhook</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Cashfree verified</div>
       </div>
       <div style="padding:14px 10px;background:var(--midnight-3);text-align:center">
         <div style="width:28px;height:28px;border-radius:50%;background:var(--gold);color:var(--midnight);font-size:12px;font-weight:800;display:flex;align-items:center;justify-content:center;margin:0 auto 6px">4</div>
-        <div style="font-size:11px;font-weight:600;color:#fff">Email + Reg ID</div>
-        <div style="font-size:10px;color:var(--text-muted);margin-top:2px">EMKA2026-XXXX</div>
+        <div style="font-size:11px;font-weight:600;color:#fff">Registration ID</div>
+        <div style="font-size:10px;color:var(--text-muted);margin-top:2px">Shown after payment</div>
       </div>
     </div>
  
@@ -1942,25 +1942,54 @@ footer strong{color:var(--gold)}
         <div style="font-size:28px;font-weight:800;color:var(--gold)" id="sum-price">&#8377;4,000</div>
       </div>
  
-      <!-- PAYMENT SCREENSHOT -->
-      <div style="margin-top:24px;padding-top:20px;border-top:1px solid var(--border)">
-        <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:0.8px;margin-bottom:10px;display:flex;align-items:center;gap:8px">
-          <i class="ti ti-receipt"></i> Payment Screenshot
-        </div>
-        <div class="fg full">
-          <label>Upload payment screenshot (backup — used only if auto-confirmation is delayed)</label>
-          <input id="r-payss" type="file" accept="image/*,.pdf" style="padding:8px 12px" />
-        </div>
-      </div>
-
       <!-- SUBMIT BUTTON -->
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:18px">
         <p style="font-size:11px;color:var(--text-muted)">
           <i class="ti ti-lock" style="font-size:12px;vertical-align:-1px"></i> Secured by Cashfree Payments
         </p>
         <button class="btn btn-gold" id="reg-submit-btn" style="font-size:15px;padding:13px 32px" onclick="submitRegistration()">
-          <i class="ti ti-send"></i> Submit &amp; Pay <span id="btn-price">&#8377;4,000</span>
+          <i class="ti ti-arrow-right"></i> Continue to Payment <span id="btn-price">&#8377;4,000</span>
         </button>
+      </div>
+
+      <!-- CASHFREE PAYMENT OPTIONS (shown after the form is validated) -->
+      <div id="payment-options" class="payment-options hidden" aria-live="polite">
+        <div class="payment-options-head">
+          <div>
+            <div class="payment-options-title">Choose how you want to pay</div>
+            <div class="payment-ref">Payment reference: <span id="payment-ref"></span></div>
+          </div>
+          <div style="font-size:18px;font-weight:800;color:var(--gold)" id="payment-amount"></div>
+        </div>
+        <div class="payment-choice-grid">
+          <div class="payment-choice">
+            <i class="ti ti-qrcode" style="font-size:28px;color:var(--gold)"></i>
+            <h4>Scan QR Code</h4>
+            <p>Scan using your phone camera or any QR scanner, then complete payment on Cashfree.</p>
+            <img id="payment-qr" class="payment-qr" alt="Cashfree payment QR code" />
+            <a id="payment-qr-open" class="btn btn-outline-gold" target="_blank" rel="noopener" style="width:100%;justify-content:center">Open on this device</a>
+            <div style="margin-top:16px;padding-top:14px;border-top:1px solid var(--border);text-align:left">
+              <div class="fg full">
+                <label for="r-payss"><i class="ti ti-receipt"></i> Upload QR payment screenshot</label>
+                <input id="r-payss" type="file" accept="image/jpeg,image/png,image/webp,application/pdf,.pdf" style="padding:8px 12px" onchange="uploadPaymentProof(this)" />
+                <div style="font-size:10px;color:var(--text-muted);margin-top:5px">After paying by QR, upload this optional backup only if auto-confirmation is delayed. JPG, PNG, WebP, or PDF; maximum 5 MB.</div>
+                <div id="payment-proof-status" style="display:none;font-size:11px;margin-top:7px;color:var(--text-muted)" aria-live="polite"></div>
+              </div>
+            </div>
+          </div>
+          <div class="payment-choice" style="display:flex;flex-direction:column;justify-content:center;align-items:center">
+            <i class="ti ti-link" style="font-size:34px;color:var(--gold)"></i>
+            <h4>Pay with Link</h4>
+            <p>Open Cashfree's secure payment page in a new tab. You can use UPI, card, or another available method.</p>
+            <a id="payment-link" class="btn btn-gold" target="_blank" rel="noopener" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Open Payment Link</a>
+            <button class="btn btn-outline-gold" type="button" onclick="copyPaymentLink()" style="width:100%;justify-content:center;margin-top:8px"><i class="ti ti-copy"></i> Copy Link</button>
+          </div>
+        </div>
+        <div id="payment-status" class="payment-status">
+          <i class="ti ti-loader-2" style="animation:spin 1s linear infinite"></i>
+          Waiting for payment confirmation&hellip;
+        </div>
+        <button class="btn btn-outline-gold" type="button" onclick="checkCurrentPayment(true)" style="width:100%;justify-content:center;margin-top:9px"><i class="ti ti-refresh"></i> Check Payment Status</button>
       </div>
  
       <!-- ERROR -->
@@ -1973,7 +2002,7 @@ footer strong{color:var(--gold)}
           <strong>Payment confirmed! Your registration is complete.</strong>
         </div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.7" id="reg-success-detail">
-          A confirmation email with your <strong style="color:var(--gold)">Registration ID</strong> has been sent. You will need it to submit abstracts and at the conference venue.
+          Your <strong style="color:var(--gold)">Registration ID</strong> is shown after Cashfree confirms payment. You will need it to submit abstracts and at the conference venue.
         </div>
       </div>
  
@@ -1983,6 +2012,7 @@ footer strong{color:var(--gold)}
   
 </div>
 <!-- END REGISTER PAGE -->
+
 
 <!-- ══════════════════════════════════════════
      COMPETITIONS PAGE
