@@ -3394,9 +3394,22 @@ function drawerGo(page){
  
 <script>
 // ── CONFIG — local backend payment API + Apps Script fallback ───────────
-const PAYMENT_API_URL = '/api/payment.php';
+// Relative path is required when the website is deployed inside a subfolder.
+const PAYMENT_API_URL = 'api/payment.php';
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbwxPBwZB2FBsBrrCnZpb5SxxNNxpkpw_5iOKYYlLTpLWbMX9KRU7qQww2taPahgWFGW0Q/exec';
 // ─────────────────────────────────────────────────────────────────────────
+
+async function paymentApiJson(response) {
+  var raw = await response.text();
+  if (!raw.trim()) {
+    throw new Error('Payment server returned an empty response. Confirm that PHP is enabled on this server and that api/payment.php is deployed.');
+  }
+  try {
+    return JSON.parse(raw);
+  } catch (_) {
+    throw new Error('Payment server returned an invalid response (HTTP ' + response.status + '). Check the PHP server error log.');
+  }
+}
 
 // ── Cashfree return: always open a verifiable confirmation screen ─────────
 (function () {
@@ -3430,7 +3443,7 @@ function showPaymentReturn(linkId) {
   function check(attempt) {
     render('<div style="font-size:40px;color:var(--gold)"><i class="ti ti-loader-2"></i></div><h2 style="margin:12px 0;color:#fff">Checking your payment</h2><p style="color:#b9bdc9;margin:0">Please keep this page open while we verify your Cashfree payment.</p><p style="font:12px monospace;color:#d4a017;margin-top:18px">Reference: ' + esc(linkId) + '</p>');
     fetch(PAYMENT_API_URL + '?action=status&link_id=' + encodeURIComponent(linkId))
-      .then(function (response) { return response.json(); })
+      .then(paymentApiJson)
       .then(function (data) {
         if (data && data.ok && data.paid && data.confirmation) {
           var c = data.confirmation, workshops = c.workshops && c.workshops.length ? c.workshops.join(', ') : 'None selected';
@@ -3474,7 +3487,7 @@ function verifyPaymentQuick(linkId) {
     
     setTimeout(function() {
       fetch(PAYMENT_API_URL + '?action=status&link_id=' + encodeURIComponent(linkId))
-        .then(function(r) { return r.json(); })
+        .then(paymentApiJson)
         .then(function(data) {
           if (data && data.ok && data.paid) {
             setRegBtn('Registered ✓', true);
@@ -3706,7 +3719,7 @@ async function submitRegistration() {
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
     });
-    paymentResponse = await res.json();
+    paymentResponse = await paymentApiJson(res);
     if (!res.ok || !paymentResponse.ok) {
       throw new Error(paymentResponse.message || 'Payment link creation failed.');
     }
@@ -3808,7 +3821,7 @@ async function verifyPayment(linkId, name, email) {
     await sleep(delays[i]);
     try {
       var res  = await fetch(PAYMENT_API_URL + '?action=status&link_id=' + encodeURIComponent(linkId));
-      var data = await res.json();
+      var data = await paymentApiJson(res);
       if (data && data.ok && data.paid) {
         showRegSuccess(name, email, data);
         return;
