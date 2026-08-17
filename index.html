@@ -234,8 +234,9 @@ textarea{resize:vertical;min-height:90px}
 .ws-extra.open{display:block;animation:slideDown 0.25s ease}
 .ws-extra h4{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--gold);margin:0 0 6px;display:flex;align-items:center;gap:5px}
 .ws-extra ul{list-style:none;margin-bottom:14px}
-.ws-extra li{font-size:11.5px;color:var(--text-muted);padding:3px 0;display:flex;gap:6px;align-items:flex-start;line-height:1.5}
+.ws-extra li{font-size:11.5px;color:var(--text-muted);padding:3px 0;display:flex;gap:6px;align-items:flex-start;line-height:1.6}
 .ws-extra li i{color:var(--gold);font-size:12px;margin-top:2px;flex-shrink:0}
+.ws-extra li span{flex:1;min-width:0;text-align:left}
 .ws-sched-row{display:flex;align-items:flex-start;gap:14px;font-size:11px;color:var(--text-muted);padding:5px 0;border-bottom:1px dashed rgba(255,255,255,0.06)}
 .ws-sched-row:last-child{border-bottom:none}
 .ws-sched-row span:first-child{color:var(--text);font-weight:600;flex:0 0 60px;text-align:left}
@@ -2098,8 +2099,7 @@ footer strong{color:var(--gold)}
     <h2 style="font-size:22px;font-weight:800;color:#fff;margin-bottom:6px">Competitions</h2>
     <p style="font-size:14px;color:var(--text-muted);margin-bottom:24px">Click any card to expand full rules and details</p>
 
-    <div style="display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-bottom:48px" class="comp-grid">
-
+<div style="display:grid;grid-template-columns:1fr;gap:20px;margin-bottom:48px" class="comp-grid">
       <!-- ══ PAPER PRESENTATION ══ -->
       <div class="comp-card" id="cc-paper">
         <div class="comp-card-header" style="background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5))" onclick="toggleComp('cc-paper')">
@@ -2185,18 +2185,18 @@ footer strong{color:var(--gold)}
         <button class="btn btn-outline-gold ws-details-btn" onclick="toggleWsExtra('ws-extra-cpc-rules',this)"><i class="ti ti-chevron-down"></i> Full Rules &amp; Guidelines</button>
           <div class="ws-extra" id="ws-extra-cpc-rules">
 
-          <h4><i class="ti ti-file-text"></i> Part 1 — The Case</h4>
+         <h4><i class="ti ti-file-text"></i> Part 1 — The Case</h4>
             <ul>
-              <li><i class="ti ti-check"></i><strong style="color:var(--text)">Title slide:</strong> concise, informative, fully anonymized — do not reveal the final diagnosis. Include presenting faculty's name and institution.</li>
-              <li><i class="ti ti-check"></i><strong style="color:var(--text)">Case presentation:</strong> anonymized demographics, history of presenting illness, relevant past/family/social history, physical exam findings, actual investigations (ECG, ABG, imaging, pathology) presented <em>without interpretation</em>, clinical course in chronological order.</li>
-              <li><i class="ti ti-check"></i>Close Part 1 with a slide posing: <em>"What is your diagnosis, and how will you confirm it?"</em></li>
+              <li><i class="ti ti-check"></i><span><strong style="color:var(--text)">Title slide:</strong> concise, informative, fully anonymized — do not reveal the final diagnosis. Include presenting faculty's name and institution.</span></li>
+              <li><i class="ti ti-check"></i><span><strong style="color:var(--text)">Case presentation:</strong> anonymized demographics, history of presenting illness, relevant past/family/social history, physical exam findings, actual investigations (ECG, ABG, imaging, pathology) presented <em>without interpretation</em>, clinical course in chronological order.</span></li>
+              <li><i class="ti ti-check"></i><span>Close Part 1 with a slide posing: <em>"What is your diagnosis, and how will you confirm it?"</em></span></li>
             </ul>
 
             <h4><i class="ti ti-file-text"></i> Part 2 — Case Resolution</h4>
             <ul>
-              <li><i class="ti ti-check"></i><strong style="color:var(--text)">Solution:</strong> diagnosis on its own slide, substantiated with supporting evidence.</li>
-              <li><i class="ti ti-check"></i><strong style="color:var(--text)">Teaching points:</strong> compulsory slide titled "Why This Case Is an Ideal CPC Case," structured under three compulsory headings — <strong style="color:var(--gold)">Relevance, Solvability, Discussability</strong>.</li>
-              <li><i class="ti ti-check"></i>Each institute/faculty may submit only <strong style="color:var(--text)">one case</strong>; each team solves only <strong style="color:var(--text)">one case</strong>. Prizes for both best case submitted (faculty) and best case solution (resident).</li>
+              <li><i class="ti ti-check"></i><span><strong style="color:var(--text)">Solution:</strong> diagnosis on its own slide, substantiated with supporting evidence.</span></li>
+              <li><i class="ti ti-check"></i><span><strong style="color:var(--text)">Teaching points:</strong> compulsory slide titled "Why This Case Is an Ideal CPC Case," structured under three compulsory headings — <strong style="color:var(--gold)">Relevance, Solvability, Discussability</strong>.</span></li>
+              <li><i class="ti ti-check"></i><span>Each institute/faculty may submit only <strong style="color:var(--text)">one case</strong>; each team solves only <strong style="color:var(--text)">one case</strong>. Prizes for both best case submitted (faculty) and best case solution (resident).</span></li>
             </ul>
 
             <h4><i class="ti ti-calendar-time"></i> Presentation Timeline (Competition Day)</h4>
