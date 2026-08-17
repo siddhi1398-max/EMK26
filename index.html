@@ -170,14 +170,14 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
 .patron-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .patron-avatar-fallback{display:none;width:100%;height:100%;align-items:center;justify-content:center;font-size:16px;font-weight:800;color:var(--gold);background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5));}
 
-.sponsors-section{background:var(--midnight-3);padding:68px 24px;text-align:center;border-top:1px solid var(--border)}
-.sponsors-section h2{font-size:24px;font-weight:800;color:#fff;margin-bottom:8px}
-.sponsors-section .sub{font-size:13px;color:var(--text-muted);margin-bottom:28px}
+.sponsors-section{background:var(--midnight-3);padding:80px 24px;text-align:center;border-top:1px solid var(--border)}
+.sponsors-section h2{font-size:24px;font-weight:800;color:#fff;margin-bottom:10px}
+.sponsors-section .sub{font-size:13px;color:var(--text-muted);margin-bottom:40px}
 .sponsors-grid{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;max-width:900px;margin:0 auto}
-.sponsor-card{background:var(--midnight-4);border-radius:14px;padding:24px 32px;border:1px solid var(--border);min-width:180px;max-width:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;box-shadow:0 2px 12px rgba(0,0,0,0.3);transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;}
+.sponsor-card{background:var(--midnight-4);border-radius:14px;padding:32px 32px;border:1px solid var(--border);min-width:180px;max-width:220px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;box-shadow:0 2px 12px rgba(0,0,0,0.3);transition:transform 0.2s,box-shadow 0.2s,border-color 0.2s;}
 .sponsor-card:hover{transform:translateY(-4px);box-shadow:0 8px 28px rgba(212,160,23,0.15);border-color:var(--gold-mid)}
 .sponsor-card img{max-height:90px;max-width:160px;object-fit:contain}
-.sponsor-card .sponsor-name{font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;text-align:center}
+.sponsor-card .sponsor-name{font-size:2px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;text-align:center}
 .sponsor-tier-badge{font-size:9px;font-weight:700;padding:2px 9px;border-radius:100px;text-transform:uppercase;letter-spacing:0.5px}
 .tier-gold{background:var(--gold-glow);color:var(--gold);border:1px solid var(--gold-border)}
 .tier-silver{background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7);border:1px solid rgba(255,255,255,0.1)}
@@ -441,9 +441,7 @@ footer strong{color:var(--gold)}
   .hero-meta{flex-direction:column;align-items:center;gap:8px}
 
   /* Sponsors */
-  .sponsors-grid{flex-direction:column;align-items:center}
-
-  body{padding-bottom:0}
+  .sponsors-grid{flex-direction:column;align-items:center} body{padding-bottom:0}
 }
 
 @media(max-width:480px){
@@ -1168,7 +1166,7 @@ footer strong{color:var(--gold)}
       <div class="sponsor-card"><span class="sponsor-tier-badge tier-silver">Silver Sponsor</span><div style="width:160px;height:90px;background:rgba(255,255,255,0.02);border-radius:8px;border:1px dashed rgba(255,255,255,0.08)"></div></div>
       <div class="sponsor-card"><span class="sponsor-tier-badge tier-silver">Silver Sponsor</span><div style="width:160px;height:90px;background:rgba(255,255,255,0.02);border-radius:8px;border:1px dashed rgba(255,255,255,0.08)"></div></div>
     </div>
-<div style="margin-top:24px">
+<div style="margin-top:40px">
   <button type="button" onclick="showPage('contact');setTimeout(function(){var el=document.getElementById('contact-sponsors');if(el)el.scrollIntoView({behavior:'smooth',block:'start'});},150)" class="btn btn-outline-gold">
     <i class="ti ti-mail"></i> Interested in sponsoring?
   </button>
@@ -1177,6 +1175,7 @@ footer strong{color:var(--gold)}
   <strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026<br/>
   <span style="font-size:10px;display:block;opacity:0.4">developed by the Organizing Committee · Dept of Emergency Medicine, Father Muller Medical College</span>
 </footer>
+</div>
 </div>
 
 <!-- ═══════════ SCHEDULE PAGE ═══════════ -->
