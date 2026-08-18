@@ -121,7 +121,8 @@ function googleServiceAccountToken(array $credentials): string
     curl_close($curl);
     $body = json_decode($raw, true);
     if ($status < 200 || $status >= 300 || !is_array($body) || empty($body['access_token'])) {
-        throw new RuntimeException('Google OAuth rejected the service-account credentials.');
+        $reason = is_array($body) ? trim(($body['error'] ?? '') . ': ' . ($body['error_description'] ?? ''), ': ') : '';
+        throw new RuntimeException('Google OAuth rejected the service-account credentials (HTTP ' . $status . ($reason !== '' ? ', ' . $reason : '') . ').');
     }
     return (string) $body['access_token'];
 }
