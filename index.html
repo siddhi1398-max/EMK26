@@ -2001,8 +2001,8 @@ footer strong{color:var(--gold)}
       <!-- SUCCESS -->
       <div id="reg-ok" class="success-msg hidden" style="margin-top:16px;flex-direction:column;align-items:flex-start;gap:10px">
         <div style="display:flex;align-items:center;gap:10px">
-          <i class="ti ti-circle-check" style="font-size:24px;flex-shrink:0"></i>
-          <strong>Payment confirmed! Your registration is complete.</strong>
+          <i id="reg-ok-icon" class="ti ti-circle-check" style="font-size:24px;flex-shrink:0"></i>
+          <strong id="reg-ok-title">Payment confirmed! Your registration is complete.</strong>
         </div>
         <div style="font-size:13px;color:var(--text-muted);line-height:1.7" id="reg-success-detail">
           Your <strong style="color:var(--gold)">Registration ID</strong> is shown after Cashfree confirms payment. You will need it to submit abstracts and at the conference venue.
@@ -3489,10 +3489,14 @@ function showPaymentPending(linkId) {
   if (ok) {
     ok.classList.remove('hidden');
     ok.style.display = 'flex';
+    var okIcon = document.getElementById('reg-ok-icon');
+    var okTitle = document.getElementById('reg-ok-title');
+    if (okIcon) okIcon.className = 'ti ti-clock';
+    if (okTitle) okTitle.textContent = 'Payment submitted — confirmation pending.';
     document.getElementById('reg-success-detail').innerHTML =
-      '<strong style=\"color:var(--gold);\">✓ Payment Confirmed!</strong><br><br>' +
-      'Your payment has been processed. Your confirmation email with Registration ID will arrive shortly.<br><br>' +
-      '<span style=\"font-size:12px;\">If you don\'t receive it within 5 minutes, please check your spam folder or contact us.</span>';
+      '<strong style=\"color:var(--gold);\">We have not received confirmation yet</strong><br><br>' +
+      'If your payment went through, your confirmation email with Registration ID will arrive shortly once Cashfree confirms it.<br><br>' +
+      '<span style=\"font-size:12px;\">If you don\'t receive it within 15 minutes, please check your spam folder or contact us — do not pay again without checking first.</span>';
     ok.scrollIntoView({ behavior: 'smooth', block: 'center' });
   }
 }
@@ -3723,7 +3727,7 @@ function openPaymentModal(paymentUrl, linkId) {
     
     // Create modal content
     var content = document.createElement('div');
-    content.style.cssText = 'background:white;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.4);overflow:hidden;max-width:900px;width:100%;height:85vh;display:flex;flex-direction:column;';
+    content.style.cssText = 'background:white;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.4);overflow:hidden;max-width:1200px;width:96%;height:94vh;display:flex;flex-direction:column;';
     
     // Modal header
     var header = document.createElement('div');
@@ -3802,15 +3806,20 @@ async function verifyPayment(linkId, name, email) {
     } catch (_) {}
   }
 
-  // If still not confirmed after all polling, show pending message
+  // If still not confirmed after all polling, be honest — we do not know if they paid or cancelled.
   setRegBtn('Submit &amp; Pay', false);
   var ok = document.getElementById('reg-ok');
   if (ok) {
     ok.classList.remove('hidden');
     ok.style.display = 'flex';
+    var okIcon = document.getElementById('reg-ok-icon');
+    var okTitle = document.getElementById('reg-ok-title');
+    if (okIcon) okIcon.className = 'ti ti-clock';
+    if (okTitle) okTitle.textContent = 'Payment not confirmed yet.';
     document.getElementById('reg-success-detail').innerHTML =
-      '<strong style=\"color:var(--gold);\">Payment Submitted</strong><br><br>' +
-      'We are processing your payment. Your confirmation email with Registration ID will arrive shortly. ' +
+      '<strong style=\"color:var(--gold);\">We have not received confirmation yet</strong><br><br>' +
+      'If you completed the payment, it is still being verified — your confirmation email with Registration ID will arrive shortly once Cashfree confirms it. ' +
+      'If you closed the payment window without paying, your registration is not complete — please try again. ' +
       '<strong style=\"color:var(--gold);\">Check your spam folder too.</strong><br><br>' +
       '<span style=\"font-size:12px;\">Questions? ' +
       '<a href=\"tel:+918888888888\" style=\"color:var(--gold);\">Call us</a> or ' +
@@ -3828,6 +3837,10 @@ function showRegSuccess(name, email, data) {
   if (!ok) return;
   ok.classList.remove('hidden');
   ok.style.display = 'flex';
+  var okIcon = document.getElementById('reg-ok-icon');
+  var okTitle = document.getElementById('reg-ok-title');
+  if (okIcon) okIcon.className = 'ti ti-circle-check';
+  if (okTitle) okTitle.textContent = 'Payment confirmed! Your registration is complete.';
   document.getElementById('reg-success-detail').innerHTML =
     '<strong style=\"color:var(--gold);\">✓ Payment Confirmed!</strong><br><br>' +
     'Your Registration ID: <strong style=\"color:var(--gold); font-size:20px;\">' + regId + '</strong><br><br>' +
@@ -4212,12 +4225,12 @@ function isEarlyBird() { return new Date() <= EARLY_BIRD_CUTOFF; }
 const wsPriceMap = {
   'Advanced Airway':                  { early: 1000, late: 1500 },
   'ToxSim':                           { early: 1000, late: 1500 },
-  'Maternal Resuscitation Programme': { early: 1500, late: 2000 }, // TODO: confirm — placeholder
+  'Maternal Resuscitation Programme': { early: 1000, late: 1500 },
   'Hidden Curriculum in ED':          { early: 1500, late: 2000 },
-  'Resuscitology':                    { early: 1500, late: 2000 }, // TODO: confirm — placeholder
+  'Resuscitology':                    { early: 1000, late: 1500 },
   'EM Radiology':                     { early: 1500, late: 2000 }
 };
-const manipalPrice = { early: 1500, late: 2000 }; // TODO: confirm — placeholder (Wilderness Medicine)
+const manipalPrice = { early: 1500, late: 1500 };
 
 function wsPriceFor(name) {
   const p = wsPriceMap[name];

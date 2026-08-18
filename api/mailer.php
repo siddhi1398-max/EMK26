@@ -9,11 +9,11 @@ function sendSmtpMail(string $toEmail, string $toName, string $subject, string $
 {
     $host = (string) env('SMTP_HOST', 'smtp.gmail.com');
     $port = (int) env('SMTP_PORT', '465');
-    $encryption = strtolower((string) env('SMTP_ENCRYPTION', 'ssl'));
+    $encryption = strtolower((string) env('SMTP_ENCRYPTION', 'tls'));
     $username = (string) env('SMTP_USERNAME', '');
-    $password = preg_replace('/\s+/', '', (string) env('SMTP_APP_PASSWORD', ''));
-    $fromEmail = (string) env('MAIL_FROM_ADDRESS', $username);
-    $fromName = (string) env('MAIL_FROM_NAME', 'EM Karnataka 2026');
+    $password = preg_replace('/\s+/', '', (string) env('SMTP_PASSWORD', ''));
+    $fromEmail = (string) env('SMTP_FROM_EMAIL', $username);
+    $fromName = (string) env('SMTP_FROM_NAME', 'EM Karnataka 2026');
 
     if (!filter_var($toEmail, FILTER_VALIDATE_EMAIL)) {
         throw new InvalidArgumentException('Invalid recipient email address.');

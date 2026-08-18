@@ -14,7 +14,7 @@ const ALLOWED_WORKSHOPS = [
     'ToxSim',
     'Maternal Resuscitation Programme',
     'Hidden Curriculum in ED',
-    'Resuscitatology',
+    'Resuscitology',
     'EM Radiology',
 ];
 const DAY_ONE_WORKSHOPS = [
@@ -24,7 +24,7 @@ const DAY_ONE_WORKSHOPS = [
 ];
 const DAY_TWO_WORKSHOPS = [
     'Hidden Curriculum in ED',
-    'Resuscitatology',
+    'Resuscitology',
     'EM Radiology',
 ];
 
@@ -453,7 +453,7 @@ function calculateRegistrationAmount(string $tier, array $workshops, bool $manip
             'ToxSim' => [1000, 1500],
             'Maternal Resuscitation Programme' => [1000, 1500],
             'Hidden Curriculum in ED' => [1500, 2000],
-            'Resuscitatology' => [1000, 1500],
+            'Resuscitology' => [1000, 1500],
             'EM Radiology' => [1500, 2000],
         ];
         foreach ($workshops as $workshop) {
