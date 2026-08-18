@@ -3383,15 +3383,16 @@ function drawerGo(page){
   #palm-right { margin-right: -10px; }
 }
 </style>
-
+  
+<script src="images/palm-animation-data.js"></script>
 <script>
-  fetch('/Palm_Tree_Leaf_Animation.json')
-    .then(r => r.json())
-    .then(animData => {
-  const cfg = { renderer: 'svg', loop: true, autoplay: true, animationData: animData };
+  if (window.palmAnimationData) {
+  const cfg = { renderer: 'svg', loop: true, autoplay: true, animationData: window.palmAnimationData };
   lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-left') });
   lottie.loadAnimation({ ...cfg, container: document.getElementById('palm-right') });
-});
+} else {
+  console.warn('Palm animation data not found — check palm-animation-data.js loaded before this script.');
+}
 </script>
 
   <!-- Hamburger button — add inside .nav-inner in your HTML -->
