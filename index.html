@@ -3555,8 +3555,7 @@ function showPaymentPending(linkId) {
 // ── Spinner keyframe (injected once) ─────────────────────────────────────
 (function () {
   const s = document.createElement('style');
-  s.textContent = '@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}' +
-    '@media (max-width:768px){#payment-modal-overlay{padding:10px;}#payment-modal-overlay>div{max-width:100%!important;}}';
+  s.textContent = '@keyframes spin{from{transform:rotate(0deg)}to{transform:rotate(360deg)}}';
   document.head.appendChild(s);
 })();
 
@@ -3739,6 +3738,8 @@ async function submitRegistration() {
     amount:      _regTier.finalPrice,
   };
 
+  var paymentWindow = window.open('', '_blank');
+
   setRegBtn('Creating payment link\u2026', true);
   var paymentResponse;
   try {
@@ -3753,6 +3754,7 @@ async function submitRegistration() {
     }
   } catch (e) {
     console.error('Payment link creation error:', e);
+    if (paymentWindow && !paymentWindow.closed) paymentWindow.close();
     showRegError(e.message || 'Could not create the payment link. Please try again.');
     return;
   }
@@ -3760,70 +3762,26 @@ async function submitRegistration() {
   var paymentLinkId = paymentResponse.linkId;
   var cfUrl = paymentResponse.linkUrl;
 
-  // Step 2 — open Cashfree payment modal (inline, not popup)
+  // Step 2 — send the already-open tab to Cashfree's hosted checkout.
+  // A real tab (not an iframe) is required: Cashfree's checkout relies on
+  // first-party cookies for its session and fraud checks, and framing it
+  // turns those into third-party cookies that browsers (Incognito, and
+  // increasingly all browsers) block, breaking the checkout entirely.
   setRegBtn('Opening payment form\u2026', true);
-  await openPaymentModal(cfUrl, paymentLinkId);
+  if (paymentWindow && !paymentWindow.closed) {
+    paymentWindow.location.href = cfUrl;
+  } else {
+    paymentWindow = window.open(cfUrl, '_blank');
+  }
+  if (!paymentWindow || paymentWindow.closed) {
+    setRegBtn('Submit &amp; Pay', false);
+    showRegError('Your browser blocked the payment window. Please allow pop-ups for this site, then use this link to pay: <a href="' + cfUrl.replace(/"/g, '&quot;') + '" target="_blank" rel="noopener" style="color:var(--gold);text-decoration:underline">Open payment page</a>');
+    return;
+  }
+  await waitForPopup(paymentWindow);
   
   setRegBtn('Verifying payment\u2026', true);
   await verifyPayment(paymentLinkId, name, email);
-}
-
-// ── Payment Modal (inline, not popup) ─────────────────────────────────────
-function openPaymentModal(paymentUrl, linkId) {
-  return new Promise(function(resolve) {
-    // Create modal overlay
-    var modal = document.createElement('div');
-    modal.id = 'payment-modal-overlay';
-    modal.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.8);display:flex;align-items:center;justify-content:center;z-index:10000;padding:20px;';
-    
-    // Create modal content
-    var content = document.createElement('div');
-    content.style.cssText = 'background:white;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,0.4);overflow:hidden;max-width:1200px;width:96%;height:94vh;display:flex;flex-direction:column;';
-    
-    // Modal header
-    var header = document.createElement('div');
-    header.style.cssText = 'padding:20px;border-bottom:1px solid #eee;display:flex;justify-content:space-between;align-items:center;background:#f9f9f9;';
-    header.innerHTML = '<strong style="font-size:18px;color:#333">💳 Secure Payment Gateway</strong><button id="close-payment-modal" style="background:none;border:none;font-size:28px;cursor:pointer;color:#999;hover-color:#333">×</button>';
-    
-    // Modal iframe
-    var iframe = document.createElement('iframe');
-    iframe.id = 'payment-iframe';
-    iframe.src = paymentUrl;
-    iframe.style.cssText = 'flex:1;border:none;width:100%;background:#fff;';
-    iframe.allow = 'payment';
-    
-    content.appendChild(header);
-    content.appendChild(iframe);
-    modal.appendChild(content);
-    document.body.appendChild(modal);
-    
-    // Close button handler
-    var closeBtn = document.getElementById('close-payment-modal');
-    closeBtn.onclick = function() {
-      modal.remove();
-      resolve();
-    };
-    
-    // Payment timeout (15 min)
-    var timeout = setTimeout(function() {
-      if (modal.parentNode) modal.remove();
-      resolve();
-    }, 900000);
-    
-    // Monitor iframe for payment completion
-    var checkInterval = setInterval(function() {
-      try {
-        // When user completes payment in Cashfree, it tries to redirect
-        // The payment will be marked PAID by backend
-        // If modal is closed or removed, stop checking
-        if (!modal.parentNode) {
-          clearInterval(checkInterval);
-          clearTimeout(timeout);
-          resolve();
-        }
-      } catch(e) {}
-    }, 500);
-  });
 }
 
 function waitForPopup(popup) {
