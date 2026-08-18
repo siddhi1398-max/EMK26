@@ -3075,21 +3075,27 @@ function navigateToVenue(buildingId, workshopLabel, venueName, color) {
       </div>
     </div>
 </div>
-  <!-- GENERAL CONTACT -->
-<div style="margin-bottom:60px;background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:40px 28px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:20px">
-  <div>
-    <div style="font-size:11px;font-weight:700;color:var(--text-muted);text-transform:uppercase;letter-spacing:0.6px;margin-bottom:4px">General Contact</div>
-    <div style="font-size:14px;color:var(--text-dim)">For all other queries not covered by a specific committee above</div>
+<!-- GENERAL CONTACT -->
+<div class="reach-card" style="margin-bottom:40px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px">
+  <div style="display:flex;gap:12px;align-items:flex-start">
+    <div class="reach-icon" style="margin-bottom:0"><i class="ti ti-mail"></i></div>
+    <div>
+      <div style="font-size:13px;font-weight:700;margin-bottom:4px;color:#fff">General Contact</div>
+      <div style="font-size:12px;color:var(--text-muted)">For all other queries not covered by a specific committee above</div>
+    </div>
   </div>
-  <a href="mailto:emkfmmc26@gmail.com" class="btn btn-gold" style="text-decoration:none">
+  <a href="mailto:emkfmmc26@gmail.com" class="btn btn-gold" style="text-decoration:none;flex-shrink:0">
     <i class="ti ti-mail"></i> emkfmmc26@gmail.com
   </a>
 </div>
-  <!-- ═══════════ SPONSORS ═══════════ -->
-<div id="contact-sponsors" style="margin:40px 0;background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:28px;text-align:center;scroll-margin-top:90px">
-  <div style="margin:40px 0;background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:28px;text-align:center">
+  
+<!-- ═══════════ SPONSORS ═══════════ -->
+<div id="contact-sponsors" style="margin-bottom:40px;background:var(--midnight-3);border:1px solid var(--gold-border);border-radius:var(--radius);padding:36px 28px;text-align:center;position:relative;overflow:hidden;scroll-margin-top:90px">
+  <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)"></div>
+
   <h2 class="section-title" style="margin-bottom:6px">Become a Sponsor</h2>
-  <p class="section-sub" style="margin-bottom:22px">Partner with EM Karnataka 2026 — reach 300+ emergency physicians, residents &amp; nurses</p>
+  <p class="section-sub" style="margin-bottom:24px">Partner with EM Karnataka 2026 — reach 300+ emergency physicians, residents &amp; nurses</p>
+
   <div style="display:flex;flex-wrap:wrap;justify-content:center;gap:14px">
     <a href="mailto:accountsofficer@fathermuller.in?subject=Sponsorship%20Enquiry%20-%20EMK%202026" class="btn btn-outline-gold" style="text-decoration:none">
       <i class="ti ti-mail"></i> accountsofficer@fathermuller.in
@@ -3098,8 +3104,15 @@ function navigateToVenue(buildingId, workshopLabel, venueName, color) {
       <i class="ti ti-credit-card"></i> Make Sponsorship Payment
     </a>
   </div>
-  <p style="margin-top:16px;font-size:12px;color:var(--gold)"><i class="ti ti-info-circle" style="font-size:13px;vertical-align:-2px"></i> Please enter <strong>"EMK-2026 EMD"</strong> in the sponsorship details field on the payment page.</p>
-  <p style="margin-top:8px;font-size:11px;color:var(--text-muted)"><i class="ti ti-lock" style="font-size:12px;vertical-align:-1px"></i> Secured by BillDesk</p>
+
+  <div class="info-box" style="margin-top:20px;text-align:left;display:inline-flex">
+    <i class="ti ti-info-circle"></i>
+    <span>Please enter <strong>"EMK-2026 EMD"</strong> in the sponsorship details field on the payment page.</span>
+  </div>
+
+  <p style="margin-top:14px;font-size:11px;color:var(--text-muted);display:flex;align-items:center;justify-content:center;gap:5px">
+    <i class="ti ti-lock" style="font-size:12px"></i> Secured by BillDesk
+  </p>
 </div>
    
 </div>
