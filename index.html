@@ -515,15 +515,22 @@ footer strong{color:var(--gold)}
  .footpath { opacity:0; transition:opacity .35s; pointer-events:none; }
   .footpath.show { opacity:1; }
 
-.footpath { opacity: 0; pointer-events: none; transition: opacity .25s ease; }
-.footpath.show { opacity: 1; }
-.footpath path {
-  animation: fp-dash 0.9s linear infinite;
-}
 @keyframes fp-dash { to { stroke-dashoffset: -28; } }
+@keyframes fp-pulse-r { 0%,100%{r:14} 50%{r:26} }
+@keyframes fp-pulse-op { 0%,100%{opacity:0.55} 50%{opacity:0} }
+
+.footpath { opacity: 0; pointer-events: none; transition: opacity .35s ease; }
+.footpath.show { opacity: 1; }
+
+.fp-glow { opacity: 0.14; }
+.fp-base { opacity: 0.35; }
+.fp-dash { animation: fp-dash 0.9s linear infinite; }
+.fp-waypoint { opacity: 0.5; }
+
 .footpath circle.walker {
-  filter: drop-shadow(0 0 3px rgba(212,168,67,.9));
+  filter: drop-shadow(0 0 4px rgba(212,168,67,.9));
 }
+.fp-pin-ring { animation: fp-pulse-r 2s ease-in-out infinite, fp-pulse-op 2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
  
   /* Parking highlight */
   .parking-zone .parking-bg { transition:fill .3s, stroke .3s, stroke-width .3s; }
@@ -2801,56 +2808,94 @@ footer strong{color:var(--gold)}
 
 <!-- Parking1 (lower) → Auditorium -->
 <g class="footpath ws-aud">
-  <path id="fp-aud-1" d="M 240 519 L 200 470 L 150 420 L 128.7 433.9"
-        fill="none" stroke="#e09a3e" stroke-width="3" stroke-dasharray="8 6" stroke-linecap="round"/>
-  <circle class="walker" r="5" fill="#f5c070">
+  <path class="fp-glow" d="M 240 519 L 200 470 L 150 420 L 128.7 433.9" fill="none" stroke="#e09a3e" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="fp-base" d="M 240 519 L 200 470 L 150 420 L 128.7 433.9" fill="none" stroke="#e09a3e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path id="fp-aud-1" class="fp-dash" d="M 240 519 L 200 470 L 150 420 L 128.7 433.9" fill="none" stroke="#e09a3e" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
+  <circle class="fp-waypoint" cx="200" cy="470" r="4" fill="#e09a3e"/>
+  <circle class="fp-waypoint" cx="150" cy="420" r="4" fill="#e09a3e"/>
+  <circle class="walker" r="6" fill="#f5c070">
     <animateMotion dur="2s" repeatCount="indefinite"><mpath href="#fp-aud-1"/></animateMotion>
   </circle>
+  <g>
+    <circle class="fp-pin-ring" cx="128.7" cy="433.9" r="14" fill="#e09a3e" fill-opacity="0.2" stroke="#e09a3e" stroke-width="2"/>
+    <circle cx="128.7" cy="433.9" r="7" fill="#e09a3e"/>
+  </g>
 </g>
 
 <!-- Parking1 (lower) → Block B -->
 <g class="footpath ws-blockb">
-  <path id="fp-blockb-1" d="M 277 519 L 267.7 489.4 L 494.7 427.1 L 498.1 332.9 L 400 250 L 287.6 180 L 287.6 147"
-        fill="none" stroke="#9b7fe8" stroke-width="3" stroke-dasharray="8 6" stroke-linecap="round"/>
-  <circle class="walker" r="5" fill="#c0aef5">
+  <path class="fp-glow" d="M 277 519 L 267.7 489.4 L 494.7 427.1 L 498.1 332.9 L 400 250 L 287.6 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="fp-base" d="M 277 519 L 267.7 489.4 L 494.7 427.1 L 498.1 332.9 L 400 250 L 287.6 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path id="fp-blockb-1" class="fp-dash" d="M 277 519 L 267.7 489.4 L 494.7 427.1 L 498.1 332.9 L 400 250 L 287.6 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
+  <circle class="fp-waypoint" cx="267.7" cy="489.4" r="4" fill="#9b7fe8"/>
+  <circle class="fp-waypoint" cx="494.7" cy="427.1" r="4" fill="#9b7fe8"/>
+  <circle class="fp-waypoint" cx="498.1" cy="332.9" r="4" fill="#9b7fe8"/>
+  <circle class="fp-waypoint" cx="400" cy="250" r="4" fill="#9b7fe8"/>
+  <circle class="fp-waypoint" cx="287.6" cy="180" r="4" fill="#9b7fe8"/>
+  <circle class="walker" r="6" fill="#c0aef5">
     <animateMotion dur="4s" repeatCount="indefinite"><mpath href="#fp-blockb-1"/></animateMotion>
   </circle>
+  <g>
+    <circle class="fp-pin-ring" cx="287.6" cy="147" r="14" fill="#9b7fe8" fill-opacity="0.2" stroke="#9b7fe8" stroke-width="2"/>
+    <circle cx="287.6" cy="147" r="7" fill="#9b7fe8"/>
+  </g>
 </g>
 
 <!-- Parking2 (upper) → Block B -->
 <g class="footpath ws-blockb">
-  <path id="fp-blockb-2" d="M 336 220 L 310 180 L 287.6 147"
-        fill="none" stroke="#9b7fe8" stroke-width="3" stroke-dasharray="8 6" stroke-linecap="round"/>
-  <circle class="walker" r="5" fill="#c0aef5">
+  <path class="fp-glow" d="M 336 220 L 310 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="fp-base" d="M 336 220 L 310 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path id="fp-blockb-2" class="fp-dash" d="M 336 220 L 310 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
+  <circle class="fp-waypoint" cx="310" cy="180" r="4" fill="#9b7fe8"/>
+  <circle class="walker" r="6" fill="#c0aef5">
     <animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#fp-blockb-2"/></animateMotion>
   </circle>
 </g>
 
 <!-- Parking2 (upper) → Knowledge Centre -->
 <g class="footpath ws-kc">
-  <path id="fp-kc-1" d="M 380 220 L 500 220 L 601.7 247.8 L 696.5 185.9"
-        fill="none" stroke="#5ec97f" stroke-width="3" stroke-dasharray="8 6" stroke-linecap="round"/>
-  <circle class="walker" r="5" fill="#90f0a8">
+  <path class="fp-glow" d="M 380 220 L 500 220 L 601.7 247.8 L 696.5 185.9" fill="none" stroke="#5ec97f" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="fp-base" d="M 380 220 L 500 220 L 601.7 247.8 L 696.5 185.9" fill="none" stroke="#5ec97f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path id="fp-kc-1" class="fp-dash" d="M 380 220 L 500 220 L 601.7 247.8 L 696.5 185.9" fill="none" stroke="#5ec97f" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
+  <circle class="fp-waypoint" cx="500" cy="220" r="4" fill="#5ec97f"/>
+  <circle class="fp-waypoint" cx="601.7" cy="247.8" r="4" fill="#5ec97f"/>
+  <circle class="walker" r="6" fill="#90f0a8">
     <animateMotion dur="3.5s" repeatCount="indefinite"><mpath href="#fp-kc-1"/></animateMotion>
   </circle>
+  <g>
+    <circle class="fp-pin-ring" cx="696.5" cy="185.9" r="14" fill="#5ec97f" fill-opacity="0.2" stroke="#5ec97f" stroke-width="2"/>
+    <circle cx="696.5" cy="185.9" r="7" fill="#5ec97f"/>
+  </g>
 </g>
 
 <!-- Parking3 (2W) → SIM Lab -->
 <g class="footpath ws-simlab">
-  <path id="fp-simlab-1" d="M 953 565 L 1010 545 L 1049.8 534"
-        fill="none" stroke="#e05c5c" stroke-width="3" stroke-dasharray="8 6" stroke-linecap="round"/>
-  <circle class="walker" r="5" fill="#f58888">
+  <path class="fp-glow" d="M 953 565 L 1010 545 L 1049.8 534" fill="none" stroke="#e05c5c" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="fp-base" d="M 953 565 L 1010 545 L 1049.8 534" fill="none" stroke="#e05c5c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path id="fp-simlab-1" class="fp-dash" d="M 953 565 L 1010 545 L 1049.8 534" fill="none" stroke="#e05c5c" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
+  <circle class="fp-waypoint" cx="1010" cy="545" r="4" fill="#e05c5c"/>
+  <circle class="walker" r="6" fill="#f58888">
     <animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#fp-simlab-1"/></animateMotion>
   </circle>
+  <g>
+    <circle class="fp-pin-ring" cx="1049.8" cy="534" r="14" fill="#e05c5c" fill-opacity="0.2" stroke="#e05c5c" stroke-width="2"/>
+    <circle cx="1049.8" cy="534" r="7" fill="#e05c5c"/>
+  </g>
 </g>
 
 <!-- Parking3 (2W) → Hospital -->
 <g class="footpath ws-hospital">
-  <path id="fp-hospital-1" d="M 953 565 L 990 480 L 843.1 443.2"
-        fill="none" stroke="#4a9de0" stroke-width="3" stroke-dasharray="8 6" stroke-linecap="round"/>
-  <circle class="walker" r="5" fill="#8ec8f5">
+  <path class="fp-glow" d="M 953 565 L 990 480 L 843.1 443.2" fill="none" stroke="#4a9de0" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+  <path class="fp-base" d="M 953 565 L 990 480 L 843.1 443.2" fill="none" stroke="#4a9de0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <path id="fp-hospital-1" class="fp-dash" d="M 953 565 L 990 480 L 843.1 443.2" fill="none" stroke="#4a9de0" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
+  <circle class="fp-waypoint" cx="990" cy="480" r="4" fill="#4a9de0"/>
+  <circle class="walker" r="6" fill="#8ec8f5">
     <animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#fp-hospital-1"/></animateMotion>
   </circle>
+  <g>
+    <circle class="fp-pin-ring" cx="843.1" cy="443.2" r="14" fill="#4a9de0" fill-opacity="0.2" stroke="#4a9de0" stroke-width="2"/>
+    <circle cx="843.1" cy="443.2" r="7" fill="#4a9de0"/>
+  </g>
 </g>
         </svg>
         
