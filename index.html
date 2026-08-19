@@ -514,23 +514,6 @@ footer strong{color:var(--gold)}
 #route-btn:hover { background:var(--midnight-3); }
  .footpath { opacity:0; transition:opacity .35s; pointer-events:none; }
   .footpath.show { opacity:1; }
-
-@keyframes fp-dash { to { stroke-dashoffset: -28; } }
-@keyframes fp-pulse-r { 0%,100%{r:14} 50%{r:26} }
-@keyframes fp-pulse-op { 0%,100%{opacity:0.55} 50%{opacity:0} }
-
-.footpath { opacity: 0; pointer-events: none; transition: opacity .35s ease; }
-.footpath.show { opacity: 1; }
-
-.fp-glow { opacity: 0.14; }
-.fp-base { opacity: 0.35; }
-.fp-dash { animation: fp-dash 0.9s linear infinite; }
-.fp-waypoint { opacity: 0.5; }
-
-.footpath circle.walker {
-  filter: drop-shadow(0 0 4px rgba(212,168,67,.9));
-}
-.fp-pin-ring { animation: fp-pulse-r 2s ease-in-out infinite, fp-pulse-op 2s ease-in-out infinite; transform-box: fill-box; transform-origin: center; }
  
   /* Parking highlight */
   .parking-zone .parking-bg { transition:fill .3s, stroke .3s, stroke-width .3s; }
@@ -2582,11 +2565,13 @@ footer strong{color:var(--gold)}
         <i class="ti ti-map-2" style="color:var(--gold);font-size:20px"></i>
         <h2 class="section-title" style="margin-bottom:0">Campus Map</h2>
       </div>
-      <p class="section-sub" style="margin-top:-28px;margin-bottom:16px">Click any building to learn more </p>
+      <p class="section-sub" style="margin-top:-28px;margin-bottom:16px">Click any building to learn more · Click parking areas to see walking routes</p>
       <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
 
         <!-- toolbar -->
         <div style="background:var(--midnight-4);padding:10px 16px;border-bottom:1px solid var(--gold-border);display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+          <i class="ti ti-info-circle" style="color:var(--gold);font-size:14px"></i>
+          <span style="font-size:12px;color:var(--text-muted)">Click a building · Click parking areas for walking routes</span>
           <div style="margin-left:auto;display:flex;flex-wrap:wrap;gap:10px">
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#9b7fe8"></span>Academic</span>
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#4a9de0"></span>Hospital</span>
@@ -2594,6 +2579,7 @@ footer strong{color:var(--gold)}
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#e09a3e"></span>Event Spaces</span>
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#e05c5c"></span>Simulation / Emergency</span>
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#6b7490;opacity:.7"></span>Parking</span>
+            <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#66ccaa;opacity:.7"></span>Walking route</span>
           </div>
         </div>
         
@@ -2804,99 +2790,7 @@ footer strong{color:var(--gold)}
             <rect x="691.7" y="271.1" width="70" height="30" rx="4" fill="#1c2238" stroke="#2a3050" stroke-width="1.5"/>
             <text x="726.7" y="286.1" text-anchor="middle" dominant-baseline="middle" font-size="10" font-family="sans-serif" font-weight="600" fill="#6b7490">Museum</text>
           </g>
-<!-- ═══════ ANIMATED FOOTPATHS ═══════ -->
 
-<!-- Parking1 (lower) → Auditorium -->
-<g class="footpath ws-aud">
-  <path class="fp-glow" d="M 240 519 L 200 470 L 150 420 L 128.7 433.9" fill="none" stroke="#e09a3e" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="fp-base" d="M 240 519 L 200 470 L 150 420 L 128.7 433.9" fill="none" stroke="#e09a3e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path id="fp-aud-1" class="fp-dash" d="M 240 519 L 200 470 L 150 420 L 128.7 433.9" fill="none" stroke="#e09a3e" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
-  <circle class="fp-waypoint" cx="200" cy="470" r="4" fill="#e09a3e"/>
-  <circle class="fp-waypoint" cx="150" cy="420" r="4" fill="#e09a3e"/>
-  <circle class="walker" r="6" fill="#f5c070">
-    <animateMotion dur="2s" repeatCount="indefinite"><mpath href="#fp-aud-1"/></animateMotion>
-  </circle>
-  <g>
-    <circle class="fp-pin-ring" cx="128.7" cy="433.9" r="14" fill="#e09a3e" fill-opacity="0.2" stroke="#e09a3e" stroke-width="2"/>
-    <circle cx="128.7" cy="433.9" r="7" fill="#e09a3e"/>
-  </g>
-</g>
-
-<!-- Parking1 (lower) → Block B -->
-<g class="footpath ws-blockb">
-  <path class="fp-glow" d="M 277 519 L 267.7 489.4 L 494.7 427.1 L 498.1 332.9 L 400 250 L 287.6 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="fp-base" d="M 277 519 L 267.7 489.4 L 494.7 427.1 L 498.1 332.9 L 400 250 L 287.6 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path id="fp-blockb-1" class="fp-dash" d="M 277 519 L 267.7 489.4 L 494.7 427.1 L 498.1 332.9 L 400 250 L 287.6 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
-  <circle class="fp-waypoint" cx="267.7" cy="489.4" r="4" fill="#9b7fe8"/>
-  <circle class="fp-waypoint" cx="494.7" cy="427.1" r="4" fill="#9b7fe8"/>
-  <circle class="fp-waypoint" cx="498.1" cy="332.9" r="4" fill="#9b7fe8"/>
-  <circle class="fp-waypoint" cx="400" cy="250" r="4" fill="#9b7fe8"/>
-  <circle class="fp-waypoint" cx="287.6" cy="180" r="4" fill="#9b7fe8"/>
-  <circle class="walker" r="6" fill="#c0aef5">
-    <animateMotion dur="4s" repeatCount="indefinite"><mpath href="#fp-blockb-1"/></animateMotion>
-  </circle>
-  <g>
-    <circle class="fp-pin-ring" cx="287.6" cy="147" r="14" fill="#9b7fe8" fill-opacity="0.2" stroke="#9b7fe8" stroke-width="2"/>
-    <circle cx="287.6" cy="147" r="7" fill="#9b7fe8"/>
-  </g>
-</g>
-
-<!-- Parking2 (upper) → Block B -->
-<g class="footpath ws-blockb">
-  <path class="fp-glow" d="M 336 220 L 310 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="fp-base" d="M 336 220 L 310 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path id="fp-blockb-2" class="fp-dash" d="M 336 220 L 310 180 L 287.6 147" fill="none" stroke="#9b7fe8" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
-  <circle class="fp-waypoint" cx="310" cy="180" r="4" fill="#9b7fe8"/>
-  <circle class="walker" r="6" fill="#c0aef5">
-    <animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#fp-blockb-2"/></animateMotion>
-  </circle>
-</g>
-
-<!-- Parking2 (upper) → Knowledge Centre -->
-<g class="footpath ws-kc">
-  <path class="fp-glow" d="M 380 220 L 500 220 L 601.7 247.8 L 696.5 185.9" fill="none" stroke="#5ec97f" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="fp-base" d="M 380 220 L 500 220 L 601.7 247.8 L 696.5 185.9" fill="none" stroke="#5ec97f" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path id="fp-kc-1" class="fp-dash" d="M 380 220 L 500 220 L 601.7 247.8 L 696.5 185.9" fill="none" stroke="#5ec97f" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
-  <circle class="fp-waypoint" cx="500" cy="220" r="4" fill="#5ec97f"/>
-  <circle class="fp-waypoint" cx="601.7" cy="247.8" r="4" fill="#5ec97f"/>
-  <circle class="walker" r="6" fill="#90f0a8">
-    <animateMotion dur="3.5s" repeatCount="indefinite"><mpath href="#fp-kc-1"/></animateMotion>
-  </circle>
-  <g>
-    <circle class="fp-pin-ring" cx="696.5" cy="185.9" r="14" fill="#5ec97f" fill-opacity="0.2" stroke="#5ec97f" stroke-width="2"/>
-    <circle cx="696.5" cy="185.9" r="7" fill="#5ec97f"/>
-  </g>
-</g>
-
-<!-- Parking3 (2W) → SIM Lab -->
-<g class="footpath ws-simlab">
-  <path class="fp-glow" d="M 953 565 L 1010 545 L 1049.8 534" fill="none" stroke="#e05c5c" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="fp-base" d="M 953 565 L 1010 545 L 1049.8 534" fill="none" stroke="#e05c5c" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path id="fp-simlab-1" class="fp-dash" d="M 953 565 L 1010 545 L 1049.8 534" fill="none" stroke="#e05c5c" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
-  <circle class="fp-waypoint" cx="1010" cy="545" r="4" fill="#e05c5c"/>
-  <circle class="walker" r="6" fill="#f58888">
-    <animateMotion dur="1.6s" repeatCount="indefinite"><mpath href="#fp-simlab-1"/></animateMotion>
-  </circle>
-  <g>
-    <circle class="fp-pin-ring" cx="1049.8" cy="534" r="14" fill="#e05c5c" fill-opacity="0.2" stroke="#e05c5c" stroke-width="2"/>
-    <circle cx="1049.8" cy="534" r="7" fill="#e05c5c"/>
-  </g>
-</g>
-
-<!-- Parking3 (2W) → Hospital -->
-<g class="footpath ws-hospital">
-  <path class="fp-glow" d="M 953 565 L 990 480 L 843.1 443.2" fill="none" stroke="#4a9de0" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
-  <path class="fp-base" d="M 953 565 L 990 480 L 843.1 443.2" fill="none" stroke="#4a9de0" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
-  <path id="fp-hospital-1" class="fp-dash" d="M 953 565 L 990 480 L 843.1 443.2" fill="none" stroke="#4a9de0" stroke-width="4" stroke-dasharray="12 9" stroke-linecap="round"/>
-  <circle class="fp-waypoint" cx="990" cy="480" r="4" fill="#4a9de0"/>
-  <circle class="walker" r="6" fill="#8ec8f5">
-    <animateMotion dur="2.2s" repeatCount="indefinite"><mpath href="#fp-hospital-1"/></animateMotion>
-  </circle>
-  <g>
-    <circle class="fp-pin-ring" cx="843.1" cy="443.2" r="14" fill="#4a9de0" fill-opacity="0.2" stroke="#4a9de0" stroke-width="2"/>
-    <circle cx="843.1" cy="443.2" r="7" fill="#4a9de0"/>
-  </g>
-</g>
         </svg>
         
         <div style="padding:8px 16px;background:var(--midnight-4);border-top:1px solid var(--border-subtle);text-align:right">
@@ -2933,7 +2827,7 @@ const campusBuildingData = {
     workshops: [
       {label:'Workshop F — EM Radiology', color:'#9b7fe8', day:'Day 2'}
     ],
-    route: 'ws-blockb'
+    route: 'blockb'
   },
   hospital: {
     name: 'Hospital',
@@ -2959,7 +2853,7 @@ const campusBuildingData = {
     desc: 'Large multipurpose hall used for major events and conferences.',
     workshops: [
           ],
-    route: null 
+    route: 'ws-sjh'
   },
 simlab: {
     name: 'SIM Lab',
@@ -2970,9 +2864,9 @@ simlab: {
       {label:'Workshop B — ToxSim', color:'#e05c5c', day:'Day 1'},
       {label:'Workshop E — Resuscitology', color:'#e05c5c', day:'Day 2'}
     ],
-    route: 'ws-simlab'
+    route: 'simlab'
   },
-  kc: {
+   kc: {
     name: 'Knowledge Centre',
     color: '#5ec97f',
     desc: 'Modern library and learning resource centre with digital facilities.',
@@ -2980,14 +2874,14 @@ simlab: {
       {label:'Workshop C — Maternal Resuscitation Programme', color:'#5ec97f', day:'Day 1'},
       {label:'Workshop D — Hidden Curriculum in ED', color:'#5ec97f', day:'Day 2'}
     ],
-    route: 'ws-kc'
+    route: 'kc'
   },
   aud: {
     name: 'Auditorium',
     color: '#e09a3e',
     desc: 'Main auditorium for conferences, inaugurations, and large gatherings.',
     workshops: [{label:'Days 3 & 4 — Main Conference Venue', color:'#d4a843', day:'Conference'}],
-    route: 'ws-aud'
+    route: null
   },
   emergency: {
     name: 'Emergency Department',
@@ -3069,17 +2963,17 @@ function clearRoutes() {
 let currentRoute = null;
 
 const parkingRouteMap = {
-  parking1: ['ws-blockb', 'ws-aud'],
-  parking2: ['ws-blockb', 'ws-kc'],
+  parking1: ['ws-sjh', 'ws-blockb'],
+  parking2: ['ws-blockb'],
   parking3: ['ws-simlab', 'ws-hospital']
 };
 
 const routeLabels = {
-  'ws-blockb':   { label:'Block B',                       color:'#9b7fe8' },
-  'ws-kc':       { label:'Knowledge Centre',              color:'#5ec97f' },
-  'ws-simlab':   { label:'SIM Lab',                       color:'#e05c5c' },
-  'ws-hospital': { label:'Hospital',                      color:'#4a9de0' },
-  'ws-aud':      { label:'Auditorium (Days 3 & 4)',       color:'#e09a3e' }
+  'ws-blockb':   { label:'Block B (WS A & F)',           color:'#9b7fe8' },
+  'ws-sjh':      { label:'Silver Jubilee Hall (WS C)',    color:'#e09a3e' },
+  'ws-simlab':   { label:'SIM Lab (WS E)',                color:'#e05c5c' },
+  'ws-hospital': { label:'Hospital / AV Hall (WS B & D)', color:'#4a9de0' },
+  'ws-avhall':   { label:'AV Hall (WS B)',                color:'#3ec9c9' }
 };
 
 function showParkingRoutes(parkingId) {
