@@ -1854,9 +1854,10 @@ footer strong{color:var(--gold)}
     <!-- TIER CARDS -->
     <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
  
-      <div class="tier selected" id="tier-1" onclick="selectTier('Delegate',4000,2,this)">
+      <div class="tier selected" id="tier-1" onclick="selectTier('Delegate',1,2,this)">
         <div class="tier-name">Delegate</div>
-        <div class="tier-price">&#8377;4,000 <span>+ workshops</span></div>
+        <div class="tier-price">&#8377;1 <span>+ workshops</span></div>
+        <!-- TEST PRICE — temporarily ₹1 for live payment testing. Revert to 4000 / &#8377;4,000 before real registrations open. -->
         <div class="tier-note">Workshop price varies · see below</div>
         <ul class="tier-features">
           <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
@@ -3561,7 +3562,7 @@ function showPaymentPending(linkId) {
 })();
 
 // ── State ─────────────────────────────────────────────────────────────────
-var _regTier = { name: 'Delegate', price: 4000, wsMax: 2, finalPrice: 4500 };
+var _regTier = { name: 'Delegate', price: 1, wsMax: 2, finalPrice: 1500 }; // TEST PRICE — revert price/finalPrice to 4000/4500 before real registrations open
 
 // ── Tier selector ─────────────────────────────────────────────────────────
 function selectTier(name, price, wsMax, card) {

@@ -445,7 +445,8 @@ function calculateRegistrationAmount(string $tier, array $workshops, bool $manip
     $now ??= new DateTimeImmutable('now', new DateTimeZone('Asia/Kolkata'));
     $cutoff = new DateTimeImmutable(EARLY_BIRD_CUTOFF, new DateTimeZone('Asia/Kolkata'));
     $earlyBird = $now <= $cutoff;
-    $amount = $tier === 'Faculty' ? 7000 : 4000;
+    // TEST PRICE — Delegate base fee temporarily set to ₹1 for live payment testing. Revert to 4000 before real registrations open.
+    $amount = $tier === 'Faculty' ? 7000 : 1;
 
     if ($tier === 'Delegate') {
         $prices = [
