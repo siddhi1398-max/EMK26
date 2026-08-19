@@ -2565,13 +2565,12 @@ footer strong{color:var(--gold)}
         <i class="ti ti-map-2" style="color:var(--gold);font-size:20px"></i>
         <h2 class="section-title" style="margin-bottom:0">Campus Map</h2>
       </div>
-      <p class="section-sub" style="margin-top:-28px;margin-bottom:16px">Click any building to learn more · Click parking areas to see walking routes</p>
       <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden">
 
         <!-- toolbar -->
         <div style="background:var(--midnight-4);padding:10px 16px;border-bottom:1px solid var(--gold-border);display:flex;align-items:center;gap:8px;flex-wrap:wrap">
           <i class="ti ti-info-circle" style="color:var(--gold);font-size:14px"></i>
-          <span style="font-size:12px;color:var(--text-muted)">Click a building · Click parking areas for walking routes</span>
+          <span style="font-size:12px;color:var(--text-muted)">Click any building to learn more</span>
           <div style="margin-left:auto;display:flex;flex-wrap:wrap;gap:10px">
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#9b7fe8"></span>Academic</span>
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#4a9de0"></span>Hospital</span>
@@ -2579,7 +2578,6 @@ footer strong{color:var(--gold)}
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#e09a3e"></span>Event Spaces</span>
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#e05c5c"></span>Simulation / Emergency</span>
             <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#6b7490;opacity:.7"></span>Parking</span>
-            <span style="font-size:11px;display:flex;align-items:center;gap:5px"><span style="display:inline-block;width:10px;height:10px;border-radius:2px;background:#66ccaa;opacity:.7"></span>Walking route</span>
           </div>
         </div>
         
@@ -2827,7 +2825,7 @@ const campusBuildingData = {
     workshops: [
       {label:'Workshop F — EM Radiology', color:'#9b7fe8', day:'Day 2'}
     ],
-    route: 'blockb'
+    route: 'ws-blockb'
   },
   hospital: {
     name: 'Hospital',
@@ -2853,7 +2851,7 @@ const campusBuildingData = {
     desc: 'Large multipurpose hall used for major events and conferences.',
     workshops: [
           ],
-    route: 'ws-sjh'
+    route: null
   },
 simlab: {
     name: 'SIM Lab',
@@ -2864,7 +2862,7 @@ simlab: {
       {label:'Workshop B — ToxSim', color:'#e05c5c', day:'Day 1'},
       {label:'Workshop E — Resuscitology', color:'#e05c5c', day:'Day 2'}
     ],
-    route: 'simlab'
+    route: 'ws-simlab'
   },
    kc: {
     name: 'Knowledge Centre',
@@ -2874,14 +2872,14 @@ simlab: {
       {label:'Workshop C — Maternal Resuscitation Programme', color:'#5ec97f', day:'Day 1'},
       {label:'Workshop D — Hidden Curriculum in ED', color:'#5ec97f', day:'Day 2'}
     ],
-    route: 'kc'
+    route: 'ws-kc'
   },
   aud: {
     name: 'Auditorium',
     color: '#e09a3e',
     desc: 'Main auditorium for conferences, inaugurations, and large gatherings.',
     workshops: [{label:'Days 3 & 4 — Main Conference Venue', color:'#d4a843', day:'Conference'}],
-    route: null
+    route: 'ws-aud'
   },
   emergency: {
     name: 'Emergency Department',
@@ -2963,18 +2961,16 @@ function clearRoutes() {
 let currentRoute = null;
 
 const parkingRouteMap = {
-  parking1: ['ws-sjh', 'ws-blockb'],
-  parking2: ['ws-blockb'],
+  parking1: ['ws-kc', 'ws-blockb'],
+  parking2: ['ws-kc', 'ws-blockb'],
   parking3: ['ws-simlab', 'ws-hospital']
 };
 
 const routeLabels = {
-  'ws-blockb':   { label:'Block B (WS A & F)',           color:'#9b7fe8' },
-  'ws-sjh':      { label:'Silver Jubilee Hall (WS C)',    color:'#e09a3e' },
-  'ws-simlab':   { label:'SIM Lab (WS E)',                color:'#e05c5c' },
-  'ws-hospital': { label:'Hospital / AV Hall (WS B & D)', color:'#4a9de0' },
-  'ws-avhall':   { label:'AV Hall (WS B)',                color:'#3ec9c9' }
-};
+  'ws-blockb':   { label:'Block B (WS F)',                   color:'#9b7fe8' },
+  'ws-kc':       { label:'Knowledge Centre (WS C & D)',      color:'#e09a3e' },
+  'ws-simlab':   { label:'SIM Lab (WS A, B & E)',            color:'#e05c5c' },
+  };
 
 function showParkingRoutes(parkingId) {
   clearRoutes();
