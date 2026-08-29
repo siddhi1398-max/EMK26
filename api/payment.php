@@ -1,6 +1,10 @@
 <?php
 declare(strict_types=1);
 
+// API endpoints must return JSON only. Keep PHP diagnostics in the server log
+// so a warning can never corrupt a successful response in the browser.
+ini_set('display_errors', '0');
+
 header('Content-Type: application/json; charset=utf-8');
 header('Cache-Control: no-store');
 header('X-Content-Type-Options: nosniff');
@@ -37,14 +41,12 @@ if (!defined('EMK_PAYMENT_SKIP_ROUTER')) {
         $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
         $action = $_GET['action'] ?? ($method === 'POST' ? 'create' : 'status');
 
-        if ($method === 'POST' && $action === 'webhook') {
-            handleCashfreeWebhook();
-        } elseif ($method === 'POST' && $action === 'create') {
-            createPaymentLink();
-        } elseif ($method === 'POST' && $action === 'upload-proof') {
-            uploadPaymentProof();
-        } elseif ($method === 'GET' && $action === 'status') {
-            checkPaymentStatus();
+        // Cashfree routes remain in this file for later re-enablement, but are
+        // intentionally not active until Cashfree approves the account.
+        if ($method === 'POST' && $action === 'register') {
+            submitManualRegistration();
+        } elseif (in_array($action, ['webhook', 'create', 'upload-proof', 'status'], true)) {
+            respond(503, ['ok' => false, 'message' => 'Cashfree payments are temporarily disabled. Please use the manual payment form.']);
         } else {
             respond(405, ['ok' => false, 'message' => 'Method not allowed.']);
         }
@@ -122,6 +124,70 @@ function createPaymentLink(): void
         'amount' => $registration['amount'],
         'uploadToken' => $uploadToken,
         'expiresAt' => $body['link_expiry_time'] ?? null,
+    ]);
+}
+
+function submitManualRegistration(): void
+{
+    $registration = validateRegistration($_POST);
+    $transactionId = cleanText($_POST['transactionId'] ?? '', 120);
+    if ($transactionId === '') {
+        respond(422, ['ok' => false, 'message' => 'Enter the payment transaction ID.']);
+    }
+
+    $file = $_FILES['payment_screenshot'] ?? null;
+    if (!is_array($file) || (int) ($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
+        respond(422, ['ok' => false, 'message' => 'Upload the payment screenshot.']);
+    }
+    $size = (int) ($file['size'] ?? 0);
+    if ($size <= 0 || $size > MAX_PAYMENT_PROOF_BYTES) {
+        respond(422, ['ok' => false, 'message' => 'The payment screenshot must be 5 MB or smaller.']);
+    }
+    if (!function_exists('finfo_open')) {
+        respond(500, ['ok' => false, 'message' => 'Secure file inspection is unavailable on the server.']);
+    }
+    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+    $mime = $finfo ? (string) finfo_file($finfo, (string) $file['tmp_name']) : '';
+    if ($finfo) finfo_close($finfo);
+    $extensions = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp', 'application/pdf' => 'pdf'];
+    if (!isset($extensions[$mime])) {
+        respond(422, ['ok' => false, 'message' => 'Only JPG, PNG, WebP, and PDF payment proofs are allowed.']);
+    }
+
+    $linkId = 'MANUAL_' . gmdate('Ymd_His') . '_' . strtoupper(bin2hex(random_bytes(3)));
+    $registrationId = makeRegistrationId($linkId);
+    if (!is_dir(PAYMENT_PROOF_DIR) && !mkdir(PAYMENT_PROOF_DIR, 0770, true) && !is_dir(PAYMENT_PROOF_DIR)) {
+        throw new RuntimeException('Could not create payment-proof storage.');
+    }
+    $storedName = $registrationId . '-' . bin2hex(random_bytes(4)) . '.' . $extensions[$mime];
+    if (!move_uploaded_file((string) $file['tmp_name'], PAYMENT_PROOF_DIR . '/' . $storedName)) {
+        throw new RuntimeException('Could not store the payment proof.');
+    }
+    @chmod(PAYMENT_PROOF_DIR . '/' . $storedName, 0660);
+
+    $registration['linkId'] = $linkId;
+    $registration['registrationId'] = $registrationId;
+    $registration['transactionId'] = $transactionId;
+    $registration['paymentStatus'] = 'PAYMENT_SUBMITTED';
+    $registration['createdAt'] = date(DATE_ATOM);
+    $registration['submittedAt'] = date(DATE_ATOM);
+    $registration['paymentProof'] = [
+        'storedName' => $storedName,
+        'originalName' => cleanText(basename((string) ($file['name'] ?? 'payment-proof')), 160),
+        'mimeType' => $mime,
+        'size' => $size,
+        'storedAt' => date(DATE_ATOM),
+    ];
+    saveRegistration($linkId, $registration);
+    $sheetTrackingEnabled = googleSheetsConfigured();
+    $sheetSynced = $sheetTrackingEnabled ? syncRegistrationToGoogleSheet($linkId) : false;
+
+    respond(201, [
+        'ok' => true,
+        'registrationId' => $registrationId,
+        'paymentStatus' => 'PAYMENT_SUBMITTED',
+        'sheetTrackingEnabled' => $sheetTrackingEnabled,
+        'sheetSynced' => $sheetSynced,
     ]);
 }
 
@@ -400,7 +466,7 @@ function validateRegistration(array $input): array
     if (!in_array($category, ['PG Student', 'Consultant'], true) || !in_array($diet, ['Vegetarian', 'Non-vegetarian', 'Jain'], true)) {
         respond(422, ['ok' => false, 'message' => 'Select a valid category and dietary preference.']);
     }
-    if (!in_array($tier, ['Delegate', 'Faculty'], true)) {
+    if (!in_array($tier, ['Early Bird', 'Faculty / Consultant'], true)) {
         respond(422, ['ok' => false, 'message' => 'Select a valid registration tier.']);
     }
 
@@ -445,10 +511,11 @@ function calculateRegistrationAmount(string $tier, array $workshops, bool $manip
     $now ??= new DateTimeImmutable('now', new DateTimeZone('Asia/Kolkata'));
     $cutoff = new DateTimeImmutable(EARLY_BIRD_CUTOFF, new DateTimeZone('Asia/Kolkata'));
     $earlyBird = $now <= $cutoff;
-    // TEST PRICE — Delegate base fee temporarily set to ₹1 for live payment testing. Revert to 4000 before real registrations open.
-    $amount = $tier === 'Faculty' ? 7000 : 1;
+    $amount = $tier === 'Faculty / Consultant' ? 7000 : 4000;
 
-    if ($tier === 'Delegate') {
+    // Faculty / Consultant registration includes workshops. Early Bird
+    // registrants pay the original per-workshop rates shown on the form.
+    if ($tier === 'Early Bird') {
         $prices = [
             'Advanced Airway' => [1000, 1500],
             'ToxSim' => [1000, 1500],

@@ -16,7 +16,7 @@ function syncRegistrationToGoogleSheet(string $linkId): bool
         $credentials = googleServiceAccountCredentials();
         $token = googleServiceAccountToken($credentials);
         $spreadsheetId = trim((string) env('GOOGLE_SHEETS_SPREADSHEET_ID', ''));
-        $range = trim((string) env('GOOGLE_SHEETS_RANGE', 'Registrations!A:U'));
+        $range = trim((string) env('GOOGLE_SHEETS_RANGE', 'Registrations!A:W'));
         $existing = googleSheetsRequest(
             'GET',
             'https://sheets.googleapis.com/v4/spreadsheets/' . rawurlencode($spreadsheetId) . '/values/' . rawurlencode(firstColumnRange($range)),
@@ -199,8 +199,8 @@ function googleSheetsHeaders(): array
     return [
         'Registration ID', 'Payment Status', 'Amount Paid (INR)', 'Registration Type', 'Workshops',
         'Competitions', 'Name', 'Email', 'Phone', 'Designation', 'Institution', 'Medical Council',
-        'Council Registration No.', 'Category', 'Diet', 'Manipal Interest', 'Cashfree Link ID',
-        'Cashfree Payment URL', 'Created At', 'Paid At', 'Sheet Synced At',
+        'Council Registration No.', 'Category', 'Diet', 'Manipal Interest', 'Payment Reference',
+        'Payment URL', 'Transaction ID', 'Payment Screenshot', 'Created At', 'Paid At', 'Sheet Synced At',
     ];
 }
 
@@ -225,6 +225,8 @@ function googleSheetsRegistrationRow(array $record): array
         !empty($record['manipalInterest']) ? 'Yes' : 'No',
         (string) ($record['linkId'] ?? ''),
         (string) ($record['linkUrl'] ?? ''),
+        (string) ($record['transactionId'] ?? ''),
+        (string) ($record['paymentProof']['originalName'] ?? ''),
         (string) ($record['createdAt'] ?? ''),
         (string) ($record['paidAt'] ?? ''),
         date(DATE_ATOM),
