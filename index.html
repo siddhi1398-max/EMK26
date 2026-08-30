@@ -2001,6 +2001,15 @@ footer strong{color:var(--gold)}
   </div>
   <div style="font-size:11px;color:var(--text-muted);margin-top:6px">Runs a day earlier at Manipal. Price included in your total below.</div>
 </div>
+<div style="margin-top:16px">
+  <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px">
+    <i class="ti ti-map-pin" style="font-size:11px;color:var(--gold)"></i> Pre-Conference — 31 October 2026 (JSS Medical College, Mysuru, separate venue)
+  </div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px">
+    <label class="ws-chk-label"><input type="checkbox" class="ws-chk-pnb" onchange="wsChange(this)"> Peripheral Nerve Block Workshop 5.0 — &#8377;4,000</label>
+  </div>
+  <div style="font-size:11px;color:var(--text-muted);margin-top:6px">28 seats · ₹4,000 incl. kit, refreshments, lunch &amp; certificate. Price included in your total below.</div>
+</div></div>
         </div>
          <div id="ws-warn" style="display:none;font-size:12px;color:var(--gold);margin-top:8px;align-items:center;gap:6px;background:rgba(212,160,23,0.08);padding:8px 12px;border-radius:8px;border:1px solid var(--gold-border)">
           <i class="ti ti-info-circle"></i> 2 workshops selected &mdash; total updated below
@@ -4378,15 +4387,18 @@ window.updatePriceSummary = function () {
   if (_regTier.name === 'Early Bird') {
     selectedWorkshops.forEach(function (workshop) { total += wsPriceFor(workshop.value); });
   }
-  var manipal = document.querySelector('.ws-chk-manipal');
+   var manipal = document.querySelector('.ws-chk-manipal');
   if (manipal && manipal.checked) total += 1500;
+  var pnb = document.querySelector('.ws-chk-pnb');
+  if (pnb && pnb.checked) total += 4000;
   _regTier.finalPrice = total;
   var amount = '\u20B9' + total.toLocaleString('en-IN');
   var price = document.getElementById('sum-price'); if (price) price.textContent = amount;
   var buttonPrice = document.getElementById('btn-price'); if (buttonPrice) buttonPrice.textContent = amount;
   var labelText = _regTier.name;
   if (_regTier.name === 'Early Bird' && selectedWorkshops.length) labelText += ' + ' + selectedWorkshops.length + (selectedWorkshops.length === 1 ? ' Workshop' : ' Workshops');
-  if (manipal && manipal.checked) labelText += ' + Manipal Pre-Conference';
+    if (manipal && manipal.checked) labelText += ' + Manipal Pre-Conference';
+  if (pnb && pnb.checked) labelText += ' + Peripheral Nerve Block';
   var label = document.getElementById('sum-tier'); if (label) label.textContent = labelText;
 };
 window.updatePriceSummary();
@@ -4415,6 +4427,7 @@ window.submitRegistration = async function () {
   document.querySelectorAll('.ws-chk:checked').forEach(function (box) { form.append('workshops[]', box.value); });
   document.querySelectorAll('.comp-chk:checked').forEach(function (box) { form.append('competitions[]', box.value); });
   if (document.querySelector('.ws-chk-manipal').checked) form.append('manipalInterest', '1');
+  if (document.querySelector('.ws-chk-pnb').checked) form.append('pnbInterest', '1');
   form.append('payment_screenshot', proof); setRegBtn('Submitting registration...', true);
   try {
     var response = await fetch(PAYMENT_API_URL + '?action=register', { method: 'POST', body: form }), data = await paymentApiJson(response);
