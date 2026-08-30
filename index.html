@@ -710,7 +710,6 @@ footer strong{color:var(--gold)}
     <button onclick="showPage('workshops')" id="nav-workshops">Workshops</button>
     <button onclick="showPage('competitions')" id="nav-competitions">Competitions</button>
     <button onclick="showPage('stay')" id="nav-stay">Stay</button>
-    <button onclick="showPage('updates')" id="nav-updates">Updates</button>
     <button onclick="showPage('venue')" id="nav-venue">Venue</button>
     <button onclick="showPage('contact')" id="nav-contact">Contact</button>
   </div>
@@ -883,8 +882,7 @@ footer strong{color:var(--gold)}
         <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,rgba(60,50,8,0.9),rgba(100,80,12,0.8));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(212,160,23,0.2)">PL</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#fff">Panelist TBA</div><div style="font-size:11px;color:var(--text-muted)">Panel Discussant</div></div></div>
         <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(212,160,23,0.2)">WL</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#fff">Faculty TBA</div><div style="font-size:11px;color:var(--text-muted)">Workshop Faculty</div></div></div>
       </div>
-      <p style="font-size:13px;color:var(--text-muted);text-align:center"><i class="ti ti-bell" style="font-size:14px;vertical-align:-2px;color:var(--gold)"></i> <a href="#" onclick="showPage('updates');return false" style="color:var(--gold);text-decoration:none;font-weight:600">Subscribe to updates</a> for faculty announcements</p>
-    </div>
+      <p style="font-size:13px;color:var(--text-muted);text-align:center"><i class="ti ti-bell" style="font-size:14px;vertical-align:-2px;color:var(--gold)"></i> <a href="#" onclick="showPage('contact');return false" style="color:var(--gold);text-decoration:none;font-weight:600">Contact us</a> for faculty announcements</p>    </div>
 
     <div style="margin-top:48px;background:var(--midnight-3);border-radius:var(--radius);padding:40px;text-align:center;position:relative;overflow:hidden;border:1px solid var(--gold-border)">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)"></div>
@@ -2553,24 +2551,6 @@ footer strong{color:var(--gold)}
 </footer>
 </div>
 
-<!-- ═══════════ UPDATES PAGE ═══════════ -->
-<div id="page-updates" class="page">
-  <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Conference Updates</h2><p>Announcements, deadlines, and programme news</p></div></div>
-  <div class="section" style="padding-top:36px">
-    <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem;margin-bottom:28px"><h3 style="font-size:15px;font-weight:700;margin-bottom:12px;color:#fff"><i class="ti ti-bell" style="color:var(--gold);vertical-align:-2px;margin-right:6px"></i>Subscribe for updates</h3><div style="display:flex;gap:10px;flex-wrap:wrap"><input type="email" placeholder="your@email.com" style="flex:1;min-width:200px" /><button class="btn btn-gold" onclick="doSub()"><i class="ti ti-bell"></i> Subscribe</button></div><div id="sub-ok" class="success-msg hidden" style="margin-top:10px"><i class="ti ti-circle-check" style="font-size:18px;flex-shrink:0"></i>You're subscribed — we'll notify you of all major updates.</div></div>
-    <div style="background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:1.5rem">
-      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div><div style="padding-bottom:16px;flex:1"><div style="display:flex;align-items:center;gap:8px;margin-bottom:4px"><span style="font-size:12px;color:var(--text-muted)">May 2026</span><span style="background:var(--gold);color:var(--midnight);font-size:10px;padding:1px 7px;border-radius:100px;font-weight:700">NEW</span></div><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Website launched</div><div style="font-size:13px;color:var(--text-muted)">The official EM Karnataka 2026 website is live. Registration and abstract submission are now open.</div></div></div>
-      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div><div style="padding-bottom:16px;flex:1"><div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">May 2026</div><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Abstract submission portal open</div><div style="font-size:13px;color:var(--text-muted)">Submit original research for oral or e-poster presentation. Deadline: 30 September 2026.</div></div></div>
-      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot"></div><div class="update-line"></div></div><div style="padding-bottom:16px;flex:1"><div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">May 2026</div><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:#fff">Early bird registration rates live</div><div style="font-size:13px;color:var(--text-muted)">Delegates ₹4,500 · Faculty ₹5,500 — valid until 30 September 2026.</div></div></div>
-      <div class="update-item"><div style="display:flex;flex-direction:column;align-items:center"><div class="update-dot" style="background:var(--border)"></div></div><div style="flex:1"><div style="font-size:12px;color:var(--text-muted);margin-bottom:4px">Coming soon</div><div style="font-size:14px;font-weight:700;margin-bottom:4px;color:var(--text-muted)">Faculty &amp; speaker announcements</div><div style="font-size:13px;color:var(--text-muted)">National and international faculty confirmations coming shortly.</div></div></div>
-    </div>
-  </div>
-  <footer>
-  <strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026<br/>
-  <span style="font-size:10px;display:block;opacity:0.4">developed by the Organizing Committee · Dept of Emergency Medicine, Father Muller Medical College</span>
-</footer>
-</div>
-
 <!-- ═══════════ VENUE PAGE ═══════════ -->
 <div id="page-venue" class="page">
   <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Venue</h2><p>Father Muller Medical College, Kankanady, Mangaluru</p></div></div>
@@ -3482,7 +3462,6 @@ function drawerGo(page){
   <button class="drawer-item" onclick="drawerGo('workshops')"><i class="ti ti-tool"></i>Workshops</button>
   <button class="drawer-item" onclick="drawerGo('competitions')"><i class="ti ti-file-text"></i>Competitions</button>
   <button class="drawer-item" onclick="drawerGo('stay')"><i class="ti ti-bed"></i>Stay</button>
-  <button class="drawer-item" onclick="drawerGo('updates')"><i class="ti ti-bell"></i>Updates</button>
   <button class="drawer-item" onclick="drawerGo('venue')"><i class="ti ti-map-pin"></i>Venue</button>
   <button class="drawer-item" onclick="drawerGo('contact')"><i class="ti ti-headset"></i>Contact</button>
   <div style="padding:16px 20px;margin-top:8px;border-top:1px solid var(--gold-border)">
@@ -4202,8 +4181,7 @@ function animateRoute(buildingId, workshopLabel, venueName, color) {
       // Show TBA panel
       document.getElementById('campus-info-name').textContent = 'Venue to be announced';
       document.getElementById('campus-info-desc').textContent = 'Venue details for Days 3 & 4 will be confirmed and updated here closer to the conference. Subscribe to updates to be notified.';
-      document.getElementById('campus-info-workshops').innerHTML = '<a href="#" onclick="showPage(\'updates\');return false" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(212,160,23,0.15);color:var(--gold);border:1px solid rgba(212,160,23,0.3);text-decoration:none"><i class=\"ti ti-bell\" style=\"font-size:11px\"></i> Subscribe to updates</a>';
-      document.getElementById('campus-info-panel').style.display = 'block';
+      document.getElementById('campus-info-workshops').innerHTML = '<a href="#" onclick="showPage(\'contact\');return false" style="display:inline-flex;align-items:center;gap:5px;font-size:11px;font-weight:600;padding:3px 10px;border-radius:100px;background:rgba(212,160,23,0.15);color:var(--gold);border:1px solid rgba(212,160,23,0.3);text-decoration:none"><i class=\"ti ti-bell\" style=\"font-size:11px\"></i> Contact Us</a>';      document.getElementById('campus-info-panel').style.display = 'block';
     }
   }, animDur * 850);
 
@@ -4274,8 +4252,8 @@ function closeCampusPanel() {
           We're still finalising the details for this section.<br>
           Subscribe below and we'll notify you the moment it goes live.
         </p>
-        <button class="tba-btn" onclick="showPage('updates')">
-          <i class="ti ti-bell"></i> Notify Me When Live
+               <button class="tba-btn" onclick="showPage('contact')">
+          <i class="ti ti-bell"></i> Contact Us
         </button>
        
         <p style="font-size:11px;color:var(--text-muted);opacity:0.5;margin-top:6px">
@@ -4301,7 +4279,7 @@ function isEarlyBird() { return new Date() <= EARLY_BIRD_CUTOFF; }
 const wsPriceMap = {
   'Advanced Airway':                  { early: 1000, late: 1500 },
   'ToxSim':                           { early: 1000, late: 1500 },
-  'Maternal Resuscitation Programme': { early: 1000, late: 1500 },
+  'Maternal Resuscitation Programme': { early: 1500, late: 2000 },
   'Hidden Curriculum in ED':          { early: 1500, late: 2000 },
   'Resuscitology':                    { early: 1500, late: 2000 },
   'EM Radiology':                     { early: 1500, late: 2000 }
