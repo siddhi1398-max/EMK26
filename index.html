@@ -1903,8 +1903,8 @@ footer strong{color:var(--gold)}
     <!-- TIER CARDS -->
     <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
  
-      <div class="tier selected" id="tier-1" onclick="selectTier('Early Bird',4000,2,this)">
-        <div class="tier-name">Early Bird</div>
+      <div class="tier selected" id="tier-1" onclick="selectTier('PG / Student',4000,2,this)">
+        <div class="tier-name">PG / Student</div>
         <div class="tier-price">&#8377;4,000</div>
         <div class="tier-note">Conference registration</div>
         <ul class="tier-features">
@@ -1917,8 +1917,7 @@ footer strong{color:var(--gold)}
         <button class="btn btn-gold" style="width:100%;justify-content:center">Selected</button>
       </div>
  
-      <div class="tier" id="tier-2" onclick="selectTier('Faculty / Consultant',7000,99,this)">
-  <div class="tier-badge">Most Inclusive</div>
+      <div class="tier" id="tier-2" onclick="selectTier('Faculty / Consultant',7000,2,this)">
   <div class="tier-name">Faculty / Consultant</div>
   <div class="tier-price">&#8377;7,000</div>
   <div class="tier-note">Conference registration</div>
@@ -1927,7 +1926,7 @@ footer strong{color:var(--gold)}
     <li><i class="ti ti-check"></i>All meals across all 4 days</li>
     <li><i class="ti ti-check"></i>CME points</li>
     <li><i class="ti ti-check"></i>Conference dinner</li>
-    <li><i class="ti ti-check" style="color:var(--gold-mid)"></i>All workshop preferences included</li>
+    <li><i class="ti ti-info-circle" style="color:var(--gold-mid)"></i>Workshop preferences may be selected below</li>
   </ul>
   <button class="btn btn-outline-gold" style="width:100%;justify-content:center">Select</button>
       </div>
@@ -2033,7 +2032,7 @@ footer strong{color:var(--gold)}
       <div style="margin-top:24px;background:var(--midnight-4);border:1.5px solid var(--gold-border);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
         <div>
           <div style="font-size:10px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Total Payable</div>
-          <div style="font-size:13px;color:var(--text);font-weight:600" id="sum-tier">Early Bird</div>
+          <div style="font-size:13px;color:var(--text);font-weight:600" id="sum-tier">PG / Student</div>
         </div>
         <div style="font-size:28px;font-weight:800;color:var(--gold)" id="sum-price">&#8377;4,000</div>
       </div>
@@ -3591,7 +3590,7 @@ function showPaymentPending(linkId) {
 })();
 
 // ── State ─────────────────────────────────────────────────────────────────
-var _regTier = { name: 'Early Bird', price: 4000, wsMax: 2, finalPrice: 4000 };
+var _regTier = { name: 'PG / Student', price: 4000, wsMax: 2, finalPrice: 4000 };
 
 // ── Tier selector ─────────────────────────────────────────────────────────
 function selectTier(name, price, wsMax, card) {
@@ -4302,12 +4301,9 @@ function updatePriceSummary() {
   var n = checked.length;
   var total = _regTier.price;
 
-  if (_regTier.wsMax < 99) {
-    checked.forEach(function (c) {
-      total += wsPriceFor(c.value);
-    });
-  }
-  // Faculty/Consultant (wsMax >= 99): all workshops included, no add-on
+  checked.forEach(function (c) {
+    total += wsPriceFor(c.value);
+  });
 
   var manipal = document.querySelector('.ws-chk-manipal');
   var manipalChecked = manipal && manipal.checked;

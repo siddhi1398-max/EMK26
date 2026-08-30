@@ -418,7 +418,7 @@ function validateRegistration(array $input): array
     if (!in_array($category, ['PG Student', 'Consultant'], true) || !in_array($diet, ['Vegetarian', 'Non-vegetarian', 'Jain'], true)) {
         respond(422, ['ok' => false, 'message' => 'Select a valid category and dietary preference.']);
     }
-    if (!in_array($tier, ['Early Bird', 'Faculty / Consultant'], true)) {
+    if (!in_array($tier, ['PG / Student', 'Faculty / Consultant'], true)) {
         respond(422, ['ok' => false, 'message' => 'Select a valid registration tier.']);
     }
 
@@ -426,10 +426,8 @@ function validateRegistration(array $input): array
         is_array($input['workshops'] ?? null) ? $input['workshops'] : [],
         fn($value) => is_string($value) && in_array($value, ALLOWED_WORKSHOPS, true)
     )));
-    if ($tier === 'Early Bird') {
-        if (count($workshops) > 2 || count(array_intersect($workshops, DAY_ONE_WORKSHOPS)) > 1 || count(array_intersect($workshops, DAY_TWO_WORKSHOPS)) > 1) {
-            respond(422, ['ok' => false, 'message' => 'Delegates may select at most one workshop per day.']);
-        }
+    if (count($workshops) > 2 || count(array_intersect($workshops, DAY_ONE_WORKSHOPS)) > 1 || count(array_intersect($workshops, DAY_TWO_WORKSHOPS)) > 1) {
+        respond(422, ['ok' => false, 'message' => 'You may select at most one workshop per day.']);
     }
 
     $manipalInterest = !empty($input['manipalInterest']);
@@ -465,20 +463,17 @@ function calculateRegistrationAmount(string $tier, array $workshops, bool $manip
     $earlyBird = $now <= $cutoff;
     $amount = $tier === 'Faculty / Consultant' ? 7000 : 4000;
 
-    // Faculty / Consultant registration includes workshops. Early Bird
-    // registrants pay the original per-workshop rates shown on the form.
-    if ($tier === 'Early Bird') {
-        $prices = [
-            'Advanced Airway' => [1000, 1500],
-            'ToxSim' => [1000, 1500],
-            'Maternal Resuscitation Programme' => [1500, 2000],
-            'Hidden Curriculum in ED' => [1500, 2000],
-            'Resuscitology' => [1500, 2000],
-            'EM Radiology' => [1500, 2000],
-        ];
-        foreach ($workshops as $workshop) {
-            if (isset($prices[$workshop])) $amount += $prices[$workshop][$earlyBird ? 0 : 1];
-        }
+    // Every tier pays per selected workshop at the early/standard rate shown on the form.
+    $prices = [
+        'Advanced Airway' => [1000, 1500],
+        'ToxSim' => [1000, 1500],
+        'Maternal Resuscitation Programme' => [1500, 2000],
+        'Hidden Curriculum in ED' => [1500, 2000],
+        'Resuscitology' => [1500, 2000],
+        'EM Radiology' => [1500, 2000],
+    ];
+    foreach ($workshops as $workshop) {
+        if (isset($prices[$workshop])) $amount += $prices[$workshop][$earlyBird ? 0 : 1];
     }
     if ($manipalInterest) $amount += 1500;
     return $amount;
