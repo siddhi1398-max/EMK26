@@ -1903,9 +1903,9 @@ footer strong{color:var(--gold)}
     <!-- TIER CARDS -->
     <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
  
-      <div class="tier selected" id="tier-1" onclick="selectTier('Early Bird',4000,2,this)">
+      <div class="tier selected" id="tier-1" onclick="selectTier('Early Bird',1,2,this)">
         <div class="tier-name">Early Bird</div>
-        <div class="tier-price">&#8377;4,000</div>
+        <div class="tier-price">&#8377;1</div>
         <div class="tier-note">Conference registration</div>
         <ul class="tier-features">
           <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
@@ -2029,44 +2029,22 @@ footer strong{color:var(--gold)}
         <div style="font-size:11px;color:var(--text-muted);margin-top:8px">Abstract submission is separate — see the Competitions page for deadlines and format.</div>
       </div>
 
-      <!-- MANUAL PAYMENT DETAILS -->
-      <div style="margin-top:24px;padding:18px;border:1px solid var(--gold-border);border-radius:var(--radius);background:rgba(212,160,23,.06)">
-        <div style="font-size:13px;font-weight:700;color:var(--gold);text-transform:uppercase;letter-spacing:.7px;margin-bottom:14px"><i class="ti ti-building-bank"></i> Manual Payment Details</div>
-        <div style="display:grid;grid-template-columns:minmax(0,1fr) 160px;gap:18px;align-items:center">
-          <div style="font-size:13px;line-height:1.85;color:var(--text)">
-            <div><strong>Account Holder:</strong> Karnataka Emergency Physicians Association</div>
-            <div><strong>Bank:</strong> ICICI Bank</div>
-            <div><strong>Account Number:</strong> 029901005518</div>
-            <div><strong>IFSC:</strong> ICIC0001662</div>
-            <div><strong>UPI ID:</strong> <span style="word-break:break-all">MSKARNATAKAEMERGENCYPHYSICIANSASSOCIATION.eazypay@icici</span></div>
-            <div style="margin-top:8px;font-size:11px;color:var(--text-muted)">Pay the selected amount, then enter the transaction ID and upload the payment screenshot below.</div>
-          </div>
-          <img src="images/kepa-payment-qr.jpeg" alt="KEPA payment QR code" style="width:160px;max-width:100%;justify-self:center;background:#fff;padding:6px;border-radius:8px" />
-        </div>
-      </div>
-
-      <div class="form-grid" style="margin-top:20px">
-        <div class="fg"><label for="r-transaction-id">Transaction ID *</label><input id="r-transaction-id" type="text" maxlength="120" placeholder="Enter your UPI / bank transaction ID" required /></div>
-        <div class="fg"><label for="r-payment-screenshot">Payment Screenshot *</label><input id="r-payment-screenshot" type="file" accept="image/jpeg,image/png,image/webp,application/pdf,.pdf" required /></div>
-        <div class="fg full" style="font-size:11px;color:var(--text-muted)">Upload a JPG, PNG, WebP, or PDF payment screenshot (maximum 5 MB).</div>
-      </div>
-
       <!-- PRICE SUMMARY -->
       <div style="margin-top:24px;background:var(--midnight-4);border:1.5px solid var(--gold-border);border-radius:var(--radius);padding:14px 18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
         <div>
           <div style="font-size:10px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Total Payable</div>
           <div style="font-size:13px;color:var(--text);font-weight:600" id="sum-tier">Early Bird</div>
         </div>
-        <div style="font-size:28px;font-weight:800;color:var(--gold)" id="sum-price">&#8377;4,000</div>
+        <div style="font-size:28px;font-weight:800;color:var(--gold)" id="sum-price">&#8377;1</div>
       </div>
  
       <!-- SUBMIT BUTTON -->
       <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-top:18px">
         <p style="font-size:11px;color:var(--text-muted)">
-          <i class="ti ti-shield-check" style="font-size:12px;vertical-align:-1px"></i> Manual payment verification
+          <i class="ti ti-shield-check" style="font-size:12px;vertical-align:-1px"></i> Secure payment via Cashfree
         </p>
         <button class="btn btn-gold" id="reg-submit-btn" style="font-size:15px;padding:13px 32px" onclick="submitRegistration()">
-          <i class="ti ti-send"></i> Submit Registration <span id="btn-price">&#8377;4,000</span>
+          <i class="ti ti-send"></i> Submit &amp; Pay <span id="btn-price">&#8377;1</span>
         </button>
       </div>
 
@@ -3613,7 +3591,8 @@ function showPaymentPending(linkId) {
 })();
 
 // ── State ─────────────────────────────────────────────────────────────────
-var _regTier = { name: 'Delegate', price: 1, wsMax: 2, finalPrice: 1500 }; // TEST PRICE — revert price/finalPrice to 4000/4500 before real registrations open
+// TEST PRICE — Early Bird base fee temporarily set to ₹1 for live Cashfree payment testing. Revert price/finalPrice to 4000 before real registrations open.
+var _regTier = { name: 'Early Bird', price: 1, wsMax: 2, finalPrice: 1 };
 
 // ── Tier selector ─────────────────────────────────────────────────────────
 function selectTier(name, price, wsMax, card) {
@@ -4335,6 +4314,10 @@ function updatePriceSummary() {
   var manipalChecked = manipal && manipal.checked;
   if (manipalChecked) total += (isEarlyBird() ? manipalPrice.early : manipalPrice.late);
 
+  var pnb = document.querySelector('.ws-chk-pnb');
+  var pnbChecked = pnb && pnb.checked;
+  if (pnbChecked) total += 4000;
+
   _regTier.finalPrice = total;
   var fmt = '\u20B9' + total.toLocaleString('en-IN');
 
@@ -4348,77 +4331,11 @@ function updatePriceSummary() {
   if (n === 1)  lbl += ' + 1 Workshop';
   else if (n >= 2) lbl += ' + 2 Workshops';
   if (manipalChecked) lbl += ' + Wilderness Pre-Conf';
+  if (pnbChecked) lbl += ' + Peripheral Nerve Block';
 
   var st = document.getElementById('sum-tier');
   if (st) st.textContent = lbl;
 }
-</script>
-
-
-<script>
-// Cashfree checkout is disabled pending approval. The active registration path
-// records a manual bank/UPI payment together with its transaction ID and proof.
-_regTier = { name: 'Early Bird', price: 4000, wsMax: 2, finalPrice: 4000 };
-window.updatePriceSummary = function () {
-  var selectedWorkshops = Array.from(document.querySelectorAll('.ws-chk:checked'));
-  var total = _regTier.price;
-  if (_regTier.name === 'Early Bird') {
-    selectedWorkshops.forEach(function (workshop) { total += wsPriceFor(workshop.value); });
-  }
-   var manipal = document.querySelector('.ws-chk-manipal');
-  if (manipal && manipal.checked) total += 1500;
-  var pnb = document.querySelector('.ws-chk-pnb');
-  if (pnb && pnb.checked) total += 4000;
-  _regTier.finalPrice = total;
-  var amount = '\u20B9' + total.toLocaleString('en-IN');
-  var price = document.getElementById('sum-price'); if (price) price.textContent = amount;
-  var buttonPrice = document.getElementById('btn-price'); if (buttonPrice) buttonPrice.textContent = amount;
-  var labelText = _regTier.name;
-  if (_regTier.name === 'Early Bird' && selectedWorkshops.length) labelText += ' + ' + selectedWorkshops.length + (selectedWorkshops.length === 1 ? ' Workshop' : ' Workshops');
-    if (manipal && manipal.checked) labelText += ' + Manipal Pre-Conference';
-  if (pnb && pnb.checked) labelText += ' + Peripheral Nerve Block';
-  var label = document.getElementById('sum-tier'); if (label) label.textContent = labelText;
-};
-window.updatePriceSummary();
-window.setRegBtn = function (text, loading) {
-  var button = document.getElementById('reg-submit-btn'); if (!button) return;
-  button.disabled = !!loading;
-  button.innerHTML = loading
-    ? '<span style="display:inline-flex;align-items:center;gap:8px"><i class="ti ti-loader-2" style="animation:spin 1s linear infinite;font-size:16px"></i>' + text + '</span>'
-    : '<i class="ti ti-send"></i> Submit Registration <span id="btn-price">' + ('\u20B9' + _regTier.finalPrice.toLocaleString('en-IN')) + '</span>';
-};
-
-window.submitRegistration = async function () {
-  hideRegError();
-  var required = [['r-name','Please enter your full name.'],['r-email','Please enter a valid email address.'],['r-phone','Please enter a valid 10-digit mobile number.'],['r-desig','Please enter your designation.'],['r-inst','Please enter your institution / hospital name.'],['r-regno','Please enter your medical council registration number.'],['r-council','Please enter the name of your medical council.'],['r-transaction-id','Please enter your payment transaction ID.']];
-  for (var i = 0; i < required.length; i++) if (!(document.getElementById(required[i][0]).value || '').trim()) { showRegError(required[i][1]); return; }
-  var email = document.getElementById('r-email').value.trim(), phone = document.getElementById('r-phone').value.replace(/\D/g, '');
-  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) { showRegError('Please enter a valid email address.'); return; }
-  if (!/^\d{10}$/.test(phone)) { showRegError('Please enter a valid 10-digit mobile number.'); return; }
-  if (!document.getElementById('r-category').value) { showRegError('Please select your category.'); return; }
-  var proof = document.getElementById('r-payment-screenshot').files[0];
-  if (!proof) { showRegError('Please upload your payment screenshot.'); return; }
-  if (proof.size > 5242880) { showRegError('The payment screenshot must be 5 MB or smaller.'); return; }
-  var form = new FormData(), fields = {name:'r-name',email:'r-email',designation:'r-desig',institution:'r-inst',regno:'r-regno',council:'r-council',category:'r-category',diet:'r-diet'};
-  Object.keys(fields).forEach(function (key) { form.append(key, document.getElementById(fields[key]).value.trim()); });
-  form.append('phone', phone); form.append('tier', _regTier.name); form.append('transactionId', document.getElementById('r-transaction-id').value.trim());
-  document.querySelectorAll('.ws-chk:checked').forEach(function (box) { form.append('workshops[]', box.value); });
-  document.querySelectorAll('.comp-chk:checked').forEach(function (box) { form.append('competitions[]', box.value); });
-  if (document.querySelector('.ws-chk-manipal').checked) form.append('manipalInterest', '1');
-  if (document.querySelector('.ws-chk-pnb').checked) form.append('pnbInterest', '1');
-  form.append('payment_screenshot', proof); setRegBtn('Submitting registration...', true);
-  try {
-    var response = await fetch(PAYMENT_API_URL + '?action=register', { method: 'POST', body: form }), data = await paymentApiJson(response);
-    if (!response.ok || !data.ok) throw new Error(data.message || 'Could not submit the registration.');
-    var esc = function (value) { var el = document.createElement('div'); el.textContent = value || ''; return el.innerHTML; }, id = data.registrationId || '';
-    setRegBtn('Registered', true); document.getElementById('reg-ok').classList.remove('hidden'); document.getElementById('reg-ok').style.display = 'flex';
-    document.getElementById('reg-ok-title').textContent = 'Registration submitted successfully.';
-    document.getElementById('reg-success-detail').innerHTML = 'Registration ID: <strong style="color:var(--gold);font-size:18px">' + esc(id) + '</strong><br>Your payment proof has been received for verification.';
-    var modal = document.createElement('div'); modal.style.cssText = 'position:fixed;inset:0;z-index:100000;background:rgba(4,6,14,.88);display:flex;align-items:center;justify-content:center;padding:20px';
-    modal.innerHTML = '<section style="width:min(560px,100%);background:var(--midnight-3);border:1px solid var(--gold);border-radius:16px;padding:30px;text-align:center"><i class="ti ti-circle-check" style="font-size:46px;color:#8dde48"></i><h2 style="color:#fff;margin:12px 0 8px">Registration Successful</h2><p style="color:var(--text-muted);margin:0 0 18px">Thank you, ' + esc(document.getElementById('r-name').value.trim()) + '. Your registration has been submitted.</p><div style="text-align:left;border:1px solid var(--gold-border);background:rgba(212,160,23,.08);border-radius:10px;padding:15px;line-height:1.8"><div><strong style="color:var(--gold)">Registration ID:</strong> ' + esc(id) + '</div><div><strong>Registration type:</strong> ' + esc(_regTier.name) + '</div><div><strong>Amount:</strong> ' + ('\u20B9' + _regTier.finalPrice.toLocaleString('en-IN')) + '</div><div><strong>Email:</strong> ' + esc(email) + '</div><div><strong>Payment status:</strong> Submitted for verification</div></div><p style="color:var(--text-muted);font-size:12px;margin:18px 0 0">Please keep your Registration ID for future reference.</p><button type="button" id="close-registration-success" class="btn btn-gold" style="margin-top:18px">Done</button></section>';
-    document.body.appendChild(modal); document.getElementById('close-registration-success').onclick = function () { modal.remove(); document.getElementById('reg-ok').scrollIntoView({ behavior: 'smooth', block: 'center' }); };
-  } catch (error) { showRegError(error.message || 'Could not submit the registration. Please try again.'); }
-};
 </script>
 </body>
 </html>

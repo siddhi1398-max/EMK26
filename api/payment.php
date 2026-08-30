@@ -41,12 +41,14 @@ if (!defined('EMK_PAYMENT_SKIP_ROUTER')) {
         $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
         $action = $_GET['action'] ?? ($method === 'POST' ? 'create' : 'status');
 
-        // Cashfree routes remain in this file for later re-enablement, but are
-        // intentionally not active until Cashfree approves the account.
-        if ($method === 'POST' && $action === 'register') {
-            submitManualRegistration();
-        } elseif (in_array($action, ['webhook', 'create', 'upload-proof', 'status'], true)) {
-            respond(503, ['ok' => false, 'message' => 'Cashfree payments are temporarily disabled. Please use the manual payment form.']);
+        if ($method === 'POST' && $action === 'webhook') {
+            handleCashfreeWebhook();
+        } elseif ($method === 'POST' && $action === 'create') {
+            createPaymentLink();
+        } elseif ($method === 'POST' && $action === 'upload-proof') {
+            uploadPaymentProof();
+        } elseif ($method === 'GET' && $action === 'status') {
+            checkPaymentStatus();
         } else {
             respond(405, ['ok' => false, 'message' => 'Method not allowed.']);
         }
@@ -127,70 +129,6 @@ function createPaymentLink(): void
     ]);
 }
 
-function submitManualRegistration(): void
-{
-    $registration = validateRegistration($_POST);
-    $transactionId = cleanText($_POST['transactionId'] ?? '', 120);
-    if ($transactionId === '') {
-        respond(422, ['ok' => false, 'message' => 'Enter the payment transaction ID.']);
-    }
-
-    $file = $_FILES['payment_screenshot'] ?? null;
-    if (!is_array($file) || (int) ($file['error'] ?? UPLOAD_ERR_NO_FILE) !== UPLOAD_ERR_OK) {
-        respond(422, ['ok' => false, 'message' => 'Upload the payment screenshot.']);
-    }
-    $size = (int) ($file['size'] ?? 0);
-    if ($size <= 0 || $size > MAX_PAYMENT_PROOF_BYTES) {
-        respond(422, ['ok' => false, 'message' => 'The payment screenshot must be 5 MB or smaller.']);
-    }
-    if (!function_exists('finfo_open')) {
-        respond(500, ['ok' => false, 'message' => 'Secure file inspection is unavailable on the server.']);
-    }
-    $finfo = finfo_open(FILEINFO_MIME_TYPE);
-    $mime = $finfo ? (string) finfo_file($finfo, (string) $file['tmp_name']) : '';
-    if ($finfo) finfo_close($finfo);
-    $extensions = ['image/jpeg' => 'jpg', 'image/png' => 'png', 'image/webp' => 'webp', 'application/pdf' => 'pdf'];
-    if (!isset($extensions[$mime])) {
-        respond(422, ['ok' => false, 'message' => 'Only JPG, PNG, WebP, and PDF payment proofs are allowed.']);
-    }
-
-    $linkId = 'MANUAL_' . gmdate('Ymd_His') . '_' . strtoupper(bin2hex(random_bytes(3)));
-    $registrationId = makeRegistrationId($linkId);
-    if (!is_dir(PAYMENT_PROOF_DIR) && !mkdir(PAYMENT_PROOF_DIR, 0770, true) && !is_dir(PAYMENT_PROOF_DIR)) {
-        throw new RuntimeException('Could not create payment-proof storage.');
-    }
-    $storedName = $registrationId . '-' . bin2hex(random_bytes(4)) . '.' . $extensions[$mime];
-    if (!move_uploaded_file((string) $file['tmp_name'], PAYMENT_PROOF_DIR . '/' . $storedName)) {
-        throw new RuntimeException('Could not store the payment proof.');
-    }
-    @chmod(PAYMENT_PROOF_DIR . '/' . $storedName, 0660);
-
-    $registration['linkId'] = $linkId;
-    $registration['registrationId'] = $registrationId;
-    $registration['transactionId'] = $transactionId;
-    $registration['paymentStatus'] = 'PAYMENT_SUBMITTED';
-    $registration['createdAt'] = date(DATE_ATOM);
-    $registration['submittedAt'] = date(DATE_ATOM);
-    $registration['paymentProof'] = [
-        'storedName' => $storedName,
-        'originalName' => cleanText(basename((string) ($file['name'] ?? 'payment-proof')), 160),
-        'mimeType' => $mime,
-        'size' => $size,
-        'storedAt' => date(DATE_ATOM),
-    ];
-    saveRegistration($linkId, $registration);
-    $sheetTrackingEnabled = googleSheetsConfigured();
-    $sheetSynced = $sheetTrackingEnabled ? syncRegistrationToGoogleSheet($linkId) : false;
-
-    respond(201, [
-        'ok' => true,
-        'registrationId' => $registrationId,
-        'paymentStatus' => 'PAYMENT_SUBMITTED',
-        'sheetTrackingEnabled' => $sheetTrackingEnabled,
-        'sheetSynced' => $sheetSynced,
-    ]);
-}
-
 function uploadPaymentProof(): void
 {
     $linkId = (string) ($_POST['link_id'] ?? '');
@@ -265,15 +203,26 @@ function uploadPaymentProof(): void
     respond(200, ['ok' => true, 'adminNotified' => $notified]);
 }
 
+/** Admin notifications may go to more than one mailbox — ADMIN_EMAIL accepts a comma-separated list. */
+function adminRecipients(): array
+{
+    $adminName = trim((string) env('ADMIN_NAME', 'Registration Admin'));
+    $emails = array_filter(array_map('trim', explode(',', (string) env('ADMIN_EMAIL', ''))));
+    $recipients = [];
+    foreach ($emails as $email) {
+        if (filter_var($email, FILTER_VALIDATE_EMAIL)) $recipients[] = ['email' => $email, 'name' => $adminName];
+    }
+    return $recipients;
+}
+
 function sendPaymentProofToAdmin(string $linkId): bool
 {
     $record = readRegistrations()[$linkId] ?? null;
     if (!is_array($record) || empty($record['paymentProof']['storedName'])) return false;
     if (($record['paymentProof']['adminEmailStatus'] ?? '') === 'SENT') return true;
 
-    $adminEmail = trim((string) env('ADMIN_EMAIL', ''));
-    $adminName = trim((string) env('ADMIN_NAME', 'Registration Admin'));
-    if (!filter_var($adminEmail, FILTER_VALIDATE_EMAIL)) return false;
+    $recipients = adminRecipients();
+    if ($recipients === []) return false;
 
     $proof = $record['paymentProof'];
     $path = PAYMENT_PROOF_DIR . '/' . basename((string) $proof['storedName']);
@@ -294,11 +243,14 @@ function sendPaymentProofToAdmin(string $linkId): bool
             . emailDetailTable($rows)
         );
         $text = "Backup payment proof received. Verify it against Cashfree before manually confirming anything.\n\n" . textDetails($rows);
-        sendSmtpMail($adminEmail, $adminName, $subject, $html, $text, [[
+        $attachments = [[
             'path' => $path,
             'name' => (string) ($proof['originalName'] ?? basename($path)),
             'mimeType' => (string) ($proof['mimeType'] ?? 'application/octet-stream'),
-        ]]);
+        ]];
+        foreach ($recipients as $recipient) {
+            sendSmtpMail($recipient['email'], $recipient['name'], $subject, $html, $text, $attachments);
+        }
         mutateRegistrations(function (array &$records) use ($linkId): void {
             if (!isset($records[$linkId]['paymentProof'])) return;
             $records[$linkId]['paymentProof']['adminEmailStatus'] = 'SENT';
@@ -474,7 +426,7 @@ function validateRegistration(array $input): array
         is_array($input['workshops'] ?? null) ? $input['workshops'] : [],
         fn($value) => is_string($value) && in_array($value, ALLOWED_WORKSHOPS, true)
     )));
-    if ($tier === 'Delegate') {
+    if ($tier === 'Early Bird') {
         if (count($workshops) > 2 || count(array_intersect($workshops, DAY_ONE_WORKSHOPS)) > 1 || count(array_intersect($workshops, DAY_TWO_WORKSHOPS)) > 1) {
             respond(422, ['ok' => false, 'message' => 'Delegates may select at most one workshop per day.']);
         }
@@ -511,7 +463,9 @@ function calculateRegistrationAmount(string $tier, array $workshops, bool $manip
     $now ??= new DateTimeImmutable('now', new DateTimeZone('Asia/Kolkata'));
     $cutoff = new DateTimeImmutable(EARLY_BIRD_CUTOFF, new DateTimeZone('Asia/Kolkata'));
     $earlyBird = $now <= $cutoff;
-    $amount = $tier === 'Faculty / Consultant' ? 7000 : 4000;
+    // TEST PRICE — Early Bird base fee temporarily set to ₹1 for live Cashfree
+    // payment testing. Revert to 4000 before real registrations open.
+    $amount = $tier === 'Faculty / Consultant' ? 7000 : 1;
 
     // Faculty / Consultant registration includes workshops. Early Bird
     // registrants pay the original per-workshop rates shown on the form.
@@ -519,7 +473,7 @@ function calculateRegistrationAmount(string $tier, array $workshops, bool $manip
         $prices = [
             'Advanced Airway' => [1000, 1500],
             'ToxSim' => [1000, 1500],
-            'Maternal Resuscitation Programme' => [1000, 1500],
+            'Maternal Resuscitation Programme' => [1500, 2000],
             'Hidden Curriculum in ED' => [1500, 2000],
             'Resuscitology' => [1500, 2000],
             'EM Radiology' => [1500, 2000],
@@ -602,8 +556,7 @@ function sendRegistrationNotifications(string $linkId): array
     $record = readRegistrations()[$linkId] ?? null;
     if (!is_array($record)) return ['user' => false, 'admin' => false];
 
-    $adminEmail = trim((string) env('ADMIN_EMAIL', ''));
-    $adminName = trim((string) env('ADMIN_NAME', 'Registration Admin'));
+    $recipients = adminRecipients();
     $userSent = notificationIsSent($record, 'user');
     $adminSent = notificationIsSent($record, 'admin');
 
@@ -619,12 +572,14 @@ function sendRegistrationNotifications(string $linkId): array
         }
     }
 
-    if (!$adminSent && !filter_var($adminEmail, FILTER_VALIDATE_EMAIL)) {
+    if (!$adminSent && $recipients === []) {
         finishNotificationConfigurationError($linkId, 'admin', 'ADMIN_EMAIL is not configured.');
     } elseif (!$adminSent && claimNotification($linkId, 'admin')) {
         try {
             $mail = buildAdminNotification($record);
-            sendSmtpMail($adminEmail, $adminName, $mail['subject'], $mail['html'], $mail['text']);
+            foreach ($recipients as $recipient) {
+                sendSmtpMail($recipient['email'], $recipient['name'], $mail['subject'], $mail['html'], $mail['text']);
+            }
             finishNotification($linkId, 'admin', true);
             $adminSent = true;
         } catch (Throwable $error) {

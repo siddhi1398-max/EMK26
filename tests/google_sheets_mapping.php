@@ -27,17 +27,15 @@ $record = [
     'manipalInterest' => false,
     'linkId' => 'EMK26_TEST',
     'linkUrl' => 'https://example.com/payment',
-    'transactionId' => 'UPI-TEST-123',
-    'paymentProof' => ['originalName' => 'payment-proof.png'],
     'createdAt' => '2026-08-13T10:00:00+05:30',
     'paidAt' => '2026-08-13T10:05:00+05:30',
 ];
 
 $headers = googleSheetsHeaders();
 $row = googleSheetsRegistrationRow($record);
-if (count($headers) !== 23 || count($row) !== 23) {
+if (count($headers) !== 21 || count($row) !== 21) {
     fwrite(STDERR, "Google Sheets column count mismatch\n");
     exit(1);
 }
 
-echo "Google Sheets mapping test passed (23 columns)\n";
+echo "Google Sheets mapping test passed (21 columns)\n";
