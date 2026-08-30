@@ -12,7 +12,7 @@ header('X-Content-Type-Options: nosniff');
 const DATA_FILE = __DIR__ . '/../data/registrations.json';
 const PAYMENT_PROOF_DIR = __DIR__ . '/../data/payment-proofs';
 const MAX_PAYMENT_PROOF_BYTES = 5242880;
-const EARLY_BIRD_CUTOFF = '2026-09-15 23:59:59';
+const EARLY_BIRD_CUTOFF = '2026-09-30 23:59:59';
 const ALLOWED_WORKSHOPS = [
     'Advanced Airway',
     'ToxSim',
@@ -463,9 +463,7 @@ function calculateRegistrationAmount(string $tier, array $workshops, bool $manip
     $now ??= new DateTimeImmutable('now', new DateTimeZone('Asia/Kolkata'));
     $cutoff = new DateTimeImmutable(EARLY_BIRD_CUTOFF, new DateTimeZone('Asia/Kolkata'));
     $earlyBird = $now <= $cutoff;
-    // TEST PRICE — Early Bird base fee temporarily set to ₹1 for live Cashfree
-    // payment testing. Revert to 4000 before real registrations open.
-    $amount = $tier === 'Faculty / Consultant' ? 7000 : 1;
+    $amount = $tier === 'Faculty / Consultant' ? 7000 : 4000;
 
     // Faculty / Consultant registration includes workshops. Early Bird
     // registrants pay the original per-workshop rates shown on the form.
