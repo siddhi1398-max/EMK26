@@ -33,9 +33,9 @@ $record = [
 
 $headers = googleSheetsHeaders();
 $row = googleSheetsRegistrationRow($record);
-if (count($headers) !== 21 || count($row) !== 21) {
+if (count($headers) !== 22 || count($row) !== 22) {
     fwrite(STDERR, "Google Sheets column count mismatch\n");
     exit(1);
 }
 
-echo "Google Sheets mapping test passed (21 columns)\n";
+echo "Google Sheets mapping test passed (22 columns)\n";

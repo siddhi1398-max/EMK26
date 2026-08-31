@@ -31,6 +31,18 @@ const DAY_TWO_WORKSHOPS = [
     'Resuscitology',
     'EM Radiology',
 ];
+// Seat caps. 'El Nino Wilderness Medicine' and 'Peripheral Nerve Block' are the
+// Manipal/JSS pre-conference add-ons, tracked as booleans rather than in ALLOWED_WORKSHOPS.
+const WORKSHOP_CAPACITY = [
+    'Advanced Airway' => 24,
+    'Resuscitology' => 18,
+    'EM Radiology' => 30,
+    'Hidden Curriculum in ED' => 30,
+    'Maternal Resuscitation Programme' => 26,
+    'ToxSim' => 20,
+    'El Nino Wilderness Medicine' => 15,
+    'Peripheral Nerve Block' => 28,
+];
 
 loadEnv(__DIR__ . '/../.env');
 require_once __DIR__ . '/mailer.php';
@@ -49,6 +61,8 @@ if (!defined('EMK_PAYMENT_SKIP_ROUTER')) {
             uploadPaymentProof();
         } elseif ($method === 'GET' && $action === 'status') {
             checkPaymentStatus();
+        } elseif ($method === 'GET' && $action === 'capacity') {
+            respond(200, ['ok' => true, 'seats' => workshopSeatsRemaining()]);
         } else {
             respond(405, ['ok' => false, 'message' => 'Method not allowed.']);
         }
@@ -431,7 +445,19 @@ function validateRegistration(array $input): array
     }
 
     $manipalInterest = !empty($input['manipalInterest']);
-    $amount = calculateRegistrationAmount($tier, $workshops, $manipalInterest);
+    $pnbInterest = !empty($input['pnbInterest']);
+
+    $selectedCapped = $workshops;
+    if ($manipalInterest) $selectedCapped[] = 'El Nino Wilderness Medicine';
+    if ($pnbInterest) $selectedCapped[] = 'Peripheral Nerve Block';
+    $seatsLeft = workshopSeatsRemaining();
+    foreach ($selectedCapped as $key) {
+        if (isset($seatsLeft[$key]) && $seatsLeft[$key] <= 0) {
+            respond(409, ['ok' => false, 'message' => "Sorry, \"$key\" is fully booked. Please choose a different workshop or continue without it."]);
+        }
+    }
+
+    $amount = calculateRegistrationAmount($tier, $workshops, $manipalInterest, $pnbInterest);
 
     $competitions = array_values(array_intersect(
         is_array($input['competitions'] ?? null) ? $input['competitions'] : [],
@@ -451,12 +477,50 @@ function validateRegistration(array $input): array
         'tier' => $tier,
         'workshops' => $workshops,
         'manipalInterest' => $manipalInterest,
+        'pnbInterest' => $pnbInterest,
         'competitions' => $competitions,
         'amount' => $amount,
     ];
 }
 
-function calculateRegistrationAmount(string $tier, array $workshops, bool $manipalInterest, ?DateTimeImmutable $now = null): int
+/** Registrations that still hold a seat: paid, or a pending Cashfree link within its 1-hour expiry. */
+function isActiveHold(array $record): bool
+{
+    $status = (string) ($record['paymentStatus'] ?? '');
+    if ($status === 'PAID') return true;
+    if ($status !== 'PENDING') return false;
+    $created = strtotime((string) ($record['createdAt'] ?? ''));
+    return $created !== false && $created >= time() - 3600;
+}
+
+function workshopSelectionKeys(array $record): array
+{
+    $keys = array_values(array_filter(
+        is_array($record['workshops'] ?? null) ? $record['workshops'] : [],
+        fn($value) => is_string($value)
+    ));
+    if (!empty($record['manipalInterest'])) $keys[] = 'El Nino Wilderness Medicine';
+    if (!empty($record['pnbInterest'])) $keys[] = 'Peripheral Nerve Block';
+    return $keys;
+}
+
+function workshopSeatsRemaining(): array
+{
+    $taken = array_fill_keys(array_keys(WORKSHOP_CAPACITY), 0);
+    foreach (readRegistrations() as $record) {
+        if (!is_array($record) || !isActiveHold($record)) continue;
+        foreach (workshopSelectionKeys($record) as $key) {
+            if (isset($taken[$key])) $taken[$key]++;
+        }
+    }
+    $remaining = [];
+    foreach (WORKSHOP_CAPACITY as $key => $capacity) {
+        $remaining[$key] = max(0, $capacity - $taken[$key]);
+    }
+    return $remaining;
+}
+
+function calculateRegistrationAmount(string $tier, array $workshops, bool $manipalInterest, bool $pnbInterest = false, ?DateTimeImmutable $now = null): int
 {
     $now ??= new DateTimeImmutable('now', new DateTimeZone('Asia/Kolkata'));
     $cutoff = new DateTimeImmutable(EARLY_BIRD_CUTOFF, new DateTimeZone('Asia/Kolkata'));
@@ -476,6 +540,7 @@ function calculateRegistrationAmount(string $tier, array $workshops, bool $manip
         if (isset($prices[$workshop])) $amount += $prices[$workshop][$earlyBird ? 0 : 1];
     }
     if ($manipalInterest) $amount += 1500;
+    if ($pnbInterest) $amount += 4000;
     return $amount;
 }
 
@@ -687,6 +752,7 @@ function buildAdminNotification(array $record): array
         'Registration type' => (string) $record['tier'],
         'Workshops' => formatList($record['workshops'] ?? [], 'Conference only'),
         'Manipal interest' => !empty($record['manipalInterest']) ? 'Yes' : 'No',
+        'Peripheral nerve block' => !empty($record['pnbInterest']) ? 'Yes' : 'No',
         'Competitions' => formatList($record['competitions'] ?? [], 'None selected'),
         'Amount paid' => '₹' . number_format((float) $record['amount'], 0, '.', ','),
         'Payment reference' => (string) $record['linkId'],

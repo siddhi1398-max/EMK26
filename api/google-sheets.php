@@ -200,7 +200,7 @@ function googleSheetsHeaders(): array
         'Registration ID', 'Payment Status', 'Amount Paid (INR)', 'Registration Type', 'Workshops',
         'Competitions', 'Name', 'Email', 'Phone', 'Designation', 'Institution', 'Medical Council',
         'Council Registration No.', 'Category', 'Diet', 'Manipal Interest', 'Cashfree Link ID',
-        'Cashfree Payment URL', 'Created At', 'Paid At', 'Sheet Synced At',
+        'Cashfree Payment URL', 'Created At', 'Paid At', 'Sheet Synced At', 'PNB Interest',
     ];
 }
 
@@ -228,6 +228,7 @@ function googleSheetsRegistrationRow(array $record): array
         (string) ($record['createdAt'] ?? ''),
         (string) ($record['paidAt'] ?? ''),
         date(DATE_ATOM),
+        !empty($record['pnbInterest']) ? 'Yes' : 'No',
     ];
 }
 
