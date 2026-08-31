@@ -1,19 +1,15 @@
 <?php
 declare(strict_types=1);
 
-function formatList(mixed $items, string $empty): string
-{
-    return is_array($items) && $items !== [] ? implode(', ', $items) : $empty;
-}
-
-require_once __DIR__ . '/../api/google-sheets.php';
+define('EMK_PAYMENT_SKIP_ROUTER', true);
+require_once __DIR__ . '/../api/payment.php';
 
 $record = [
     'registrationId' => 'EMKA2026-TEST',
     'paymentStatus' => 'PAID',
     'amount' => 4500,
     'tier' => 'Delegate',
-    'workshops' => [],
+    'workshops' => ['Advanced Airway', 'EM Radiology'],
     'competitions' => [],
     'name' => 'Test Delegate',
     'email' => 'test@example.com',
@@ -24,7 +20,7 @@ $record = [
     'regno' => '12345',
     'category' => 'Consultant',
     'diet' => 'Vegetarian',
-    'manipalInterest' => false,
+    'manipalInterest' => true,
     'linkId' => 'EMK26_TEST',
     'linkUrl' => 'https://example.com/payment',
     'createdAt' => '2026-08-13T10:00:00+05:30',
@@ -33,9 +29,17 @@ $record = [
 
 $headers = googleSheetsHeaders();
 $row = googleSheetsRegistrationRow($record);
-if (count($headers) !== 22 || count($row) !== 22) {
+if (count($headers) !== 25 || count($row) !== 25) {
     fwrite(STDERR, "Google Sheets column count mismatch\n");
     exit(1);
 }
 
-echo "Google Sheets mapping test passed (22 columns)\n";
+$day1Col = array_search('Workshop Day 1', $headers, true);
+$day2Col = array_search('Workshop Day 2', $headers, true);
+$wildernessCol = array_search('Wilderness Interest', $headers, true);
+if ($row[$day1Col] !== 'Advanced Airway' || $row[$day2Col] !== 'EM Radiology' || $row[$wildernessCol] !== 'Yes') {
+    fwrite(STDERR, "Workshop day/wilderness split is wrong: Day1='{$row[$day1Col]}' Day2='{$row[$day2Col]}' Wilderness='{$row[$wildernessCol]}'\n");
+    exit(1);
+}
+
+echo "Google Sheets mapping test passed (25 columns)\n";

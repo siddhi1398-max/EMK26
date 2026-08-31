@@ -201,6 +201,7 @@ function googleSheetsHeaders(): array
         'Competitions', 'Name', 'Email', 'Phone', 'Designation', 'Institution', 'Medical Council',
         'Council Registration No.', 'Category', 'Diet', 'Manipal Interest', 'Cashfree Link ID',
         'Cashfree Payment URL', 'Created At', 'Paid At', 'Sheet Synced At', 'PNB Interest',
+        'Workshop Day 1', 'Workshop Day 2', 'Wilderness Interest',
     ];
 }
 
@@ -229,6 +230,9 @@ function googleSheetsRegistrationRow(array $record): array
         (string) ($record['paidAt'] ?? ''),
         date(DATE_ATOM),
         !empty($record['pnbInterest']) ? 'Yes' : 'No',
+        formatList(array_intersect($record['workshops'] ?? [], DAY_ONE_WORKSHOPS), '-'),
+        formatList(array_intersect($record['workshops'] ?? [], DAY_TWO_WORKSHOPS), '-'),
+        !empty($record['manipalInterest']) ? 'Yes' : 'No',
     ];
 }
 
