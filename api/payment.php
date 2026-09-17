@@ -36,12 +36,12 @@ const DAY_TWO_WORKSHOPS = [
 const WORKSHOP_CAPACITY = [
     'Advanced Airway' => 24,
     'Resuscitology' => 18,
-    'EM Radiology' => 30,
+    'EM Radiology' => 29,
     'Hidden Curriculum in ED' => 30,
     'Maternal Resuscitation Programme' => 26,
     'ToxSim' => 20,
     'El Nino Wilderness Medicine' => 15,
-    'Peripheral Nerve Block' => 28,
+    'Peripheral Nerve Block' => 0,
 ];
 
 loadEnv(__DIR__ . '/../.env');
