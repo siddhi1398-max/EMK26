@@ -709,7 +709,6 @@ footer strong{color:var(--gold)}
     <button onclick="showPage('schedule')" id="nav-schedule">Schedule</button>
     <button onclick="showPage('workshops')" id="nav-workshops">Workshops</button>
     <button onclick="showPage('competitions')" id="nav-competitions">Competitions</button>
-    <button onclick="showPage('stay')" id="nav-stay">Stay</button>
     <button onclick="showPage('venue')" id="nav-venue">Venue</button>
     <button onclick="showPage('contact')" id="nav-contact">Contact</button>
   </div>
@@ -753,6 +752,7 @@ footer strong{color:var(--gold)}
         <button class="btn btn-outline" onclick="showPage('schedule')"><i class="ti ti-layout-list"></i> Schedule</button>
         <button class="btn btn-outline" onclick="showPage('competitions')"><i class="ti ti-file-text"></i> Submit Abstract</button>
       </div>
+      <div style="margin-top:16px;color:#fff;font-size:13px;font-weight:700;text-align:center">Please book your accommodations at the earliest as places are filling fast.</div>
     </div>
     <div style="position:relative;z-index:2;display:flex;gap:6px;justify-content:center;margin-top:20px">
       <button class="hi-dot active" onclick="switchHero(0)"></button>
@@ -2483,52 +2483,6 @@ footer strong{color:var(--gold)}
 </footer>
 </div>
   
-<!-- ═══════════ STAY PAGE ═══════════ -->
-<div id="page-stay" class="page">
-  <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Stay &amp; Explore</h2><p>Accommodation · Getting around · Things to do in Mangaluru</p></div></div>
-  <div class="section" style="padding-top:36px">
-    <div class="info-box" style="margin-bottom:28px"><i class="ti ti-info-circle"></i><span>Use booking code <strong>EMKA2026</strong> to avail the conference rate. Block valid until <strong>15 October 2026</strong> or until sold out.</span></div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-bottom:0">
-      <div class="hotel-card"><div class="hotel-img-wrap"><img class="hotel-img" src="https://images.unsplash.com/photo-1566073771259-6a8506099945?w=600&q=75" alt="5-star hotel" /><div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.6);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★★</div><div style="position:absolute;top:12px;right:12px;background:var(--gold);color:var(--midnight);font-size:10px;padding:3px 10px;border-radius:100px;font-weight:700">Partner Hotel</div><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:16px;color:#fff"><div style="font-size:16px;font-weight:700">Conference partner hotel (5★)</div><div style="font-size:12px;opacity:0.8"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> Adjacent to venue (TBA)</div></div></div><div style="padding:1.25rem"><div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">₹5,500 <span style="font-size:13px;font-weight:400;color:var(--text-muted)">/ night incl. breakfast</span></div><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px"><span class="ws-badge ws-badge-gold">Shuttle to venue</span><span class="ws-badge ws-badge-gold">Pool &amp; spa</span><span class="ws-badge ws-badge-gold">High-speed WiFi</span></div><button class="btn btn-dark" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button></div></div>
-      <div class="hotel-card"><div class="hotel-img-wrap"><img class="hotel-img" src="https://images.unsplash.com/photo-1551882547-ff40c63fe5fa?w=600&q=75" alt="4-star hotel" /><div style="position:absolute;top:12px;left:12px;background:rgba(0,0,0,0.6);color:#FFD700;font-size:13px;padding:3px 10px;border-radius:100px">★★★★</div><div style="position:absolute;bottom:0;left:0;right:0;background:linear-gradient(transparent,rgba(0,0,0,0.75));padding:16px;color:#fff"><div style="font-size:16px;font-weight:700">Budget partner hotel (4★)</div><div style="font-size:12px;opacity:0.8"><i class="ti ti-map-pin" style="font-size:12px;vertical-align:-1px"></i> 10 min from venue (TBA)</div></div></div><div style="padding:1.25rem"><div style="font-size:26px;font-weight:800;color:#fff;margin-bottom:4px">₹3,200 <span style="font-size:13px;font-weight:400;color:var(--text-muted)">/ night incl. breakfast</span></div><div style="display:flex;flex-wrap:wrap;gap:6px;margin:12px 0 14px"><span class="ws-badge ws-badge-dim">WiFi</span><span class="ws-badge ws-badge-dim">Gym</span><span class="ws-badge ws-badge-dim">Shuttle available</span></div><button class="btn btn-dark" style="width:100%;justify-content:center"><i class="ti ti-external-link"></i> Book with code EMKA2026</button></div></div>
-    </div>
-
-    <div class="explore-carousel-wrap">
-  <div class="explore-carousel-header">
-    <div class="explore-carousel-title">
-      <i class="ti ti-compass"></i>
-      Explore Mangaluru
-    </div>
-      </div>
-  <div class="explore-carousel-stage">
-<button class="ec-nav-btn" id="ecPrev" aria-label="Previous" onclick="ecScroll(-1)">&#8249;</button>
-    
-    <div class="explore-carousel-track-wrap">
-      <div class="explore-carousel-track" id="ec-track">
-       <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_9_kambala.webp" alt="Kambala" /><div class="ec-cat"><i class="ti ti-run" style="font-size:10px;vertical-align:-1px"></i> Sport</div></div><div class="ec-body"><div class="ec-title">Kambala — Buffalo Racing</div><div class="ec-desc">A centuries-old traditional buffalo race in flooded paddy fields. One of the most electrifying folk sports in India.</div><div class="ec-tags"><span class="ec-tag">Tulu Nadu</span><span class="ec-tag">Nov–Feb season</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_8_yk.png" alt="Yakshagana" /><div class="ec-cat"><i class="ti ti-theater" style="font-size:10px;vertical-align:-1px"></i> Performing Art</div></div><div class="ec-body"><div class="ec-title">Yakshagana</div><div class="ec-desc">Classical overnight theatre blending dance, music, elaborate costume, and mythology.</div><div class="ec-tags"><span class="ec-tag">Classical theatre</span><span class="ec-tag">Overnight show</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_7_tigerdance.jpg" alt="Tiger Dance" /><div class="ec-cat"><i class="ti ti-masks-theater" style="font-size:10px;vertical-align:-1px"></i> Folk Dance</div></div><div class="ec-body"><div class="ec-title">Pili Vesha — Tiger Dance</div><div class="ec-desc">Performers paint their entire bodies as tigers and dance through streets during festivals.</div><div class="ec-tags"><span class="ec-tag">Festival</span><span class="ec-tag">Body art</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_6_lighthouse.jpg" alt="Lighthouse Beach" /><div class="ec-cat"><i class="ti ti-beach" style="font-size:10px;vertical-align:-1px"></i> Landmark</div></div><div class="ec-body"><div class="ec-title">Lighthouse Beach</div><div class="ec-desc">Iconic red-and-white lighthouse perched above the Arabian Sea. The city's favourite sunset spot.</div><div class="ec-tags"><span class="ec-tag">Sunset</span><span class="ec-tag">~4 km from venue</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_4_tnrbeach.webp" alt="Tannirbhavi Beach" /><div class="ec-cat"><i class="ti ti-beach" style="font-size:10px;vertical-align:-1px"></i> Beach</div></div><div class="ec-body"><div class="ec-title">Tannirbhavi Beach</div><div class="ec-desc">Raw, unspoiled coastline with dramatic tetrapods bracing heavy Arabian Sea waves.</div><div class="ec-tags"><span class="ec-tag">Unspoiled</span><span class="ec-tag">~10 km</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_5_ullal.jpg" alt="Ullal Beach" /><div class="ec-cat"><i class="ti ti-beach" style="font-size:10px;vertical-align:-1px"></i> Beach</div></div><div class="ec-body"><div class="ec-title">Ullal Beach &amp; Viewpoint</div><div class="ec-desc">One of the most photographed viewpoints on the Karnataka coast.</div><div class="ec-tags"><span class="ec-tag">Viewpoint</span><span class="ec-tag">~14 km</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_1_pabbas.jpg" alt="Pabbas" /><div class="ec-cat"><i class="ti ti-ice-cream" style="font-size:10px;vertical-align:-1px"></i> Food</div></div><div class="ec-body"><div class="ec-title">Pabbas Ice Cream</div><div class="ec-desc">A Mangaluru institution since 1948. Legendary local flavours — sitaphal, tender coconut, chikoo.</div><div class="ec-tags"><span class="ec-tag">Since 1948</span><span class="ec-tag">Must visit</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_2_sundae.webp" alt="Sundae" /><div class="ec-cat"><i class="ti ti-ice-cream-2" style="font-size:10px;vertical-align:-1px"></i> Food</div></div><div class="ec-body"><div class="ec-title">Sundaes &amp; Faloodas</div><div class="ec-desc">Gorgeous layered sundaes, passion-fruit faloodas, and mango parfaits from the buzzing cafe scene.</div><div class="ec-tags"><span class="ec-tag">Desserts</span><span class="ec-tag">Cafe culture</span></div></div></div>
-          <div class="ec-slide"><div class="ec-img-wrap"><img src="images/mlr_3_fishfood.avif" alt="Seafood" /><div class="ec-cat"><i class="ti ti-fish" style="font-size:10px;vertical-align:-1px"></i> Cuisine</div></div><div class="ec-body"><div class="ec-title">Tulu Nadu Seafood</div><div class="ec-desc">Kane fry, prawn gassi, crab sukka, neer dosa. Among the finest coastal cuisines in India.</div><div class="ec-tags"><span class="ec-tag">Seafood</span><span class="ec-tag">Coastal cuisine</span></div></div></div>
-      </div>
-    </div>
-
-<button class="ec-nav-btn" id="ecNext" aria-label="Next" onclick="ecScroll(1)">&#8250;</button>
-  </div>
-
-  <div class="ec-dots" id="ecDots"></div>
-</div>
-  </div>
-   <footer>
-  <strong>EM Karnataka 2026</strong> · 6th Annual State Conference · November 2026<br/>
-  <span style="font-size:10px;display:block;opacity:0.4">developed by the Organizing Committee · Dept of Emergency Medicine, Father Muller Medical College</span>
-</footer>
-</div>
-
 <!-- ═══════════ VENUE PAGE ═══════════ -->
 <div id="page-venue" class="page">
   <div class="page-header"><div class="page-header-bg"></div><div class="page-header-content"><div class="page-header-accent"></div><h2>Venue</h2><p>Father Muller Medical College, Kankanady, Mangaluru</p></div></div>
@@ -3444,7 +3398,6 @@ function drawerGo(page){
   <button class="drawer-item" onclick="drawerGo('schedule')"><i class="ti ti-layout-list"></i>Schedule</button>
   <button class="drawer-item" onclick="drawerGo('workshops')"><i class="ti ti-tool"></i>Workshops</button>
   <button class="drawer-item" onclick="drawerGo('competitions')"><i class="ti ti-file-text"></i>Competitions</button>
-  <button class="drawer-item" onclick="drawerGo('stay')"><i class="ti ti-bed"></i>Stay</button>
   <button class="drawer-item" onclick="drawerGo('venue')"><i class="ti ti-map-pin"></i>Venue</button>
   <button class="drawer-item" onclick="drawerGo('contact')"><i class="ti ti-headset"></i>Contact</button>
   <div style="padding:16px 20px;margin-top:8px;border-top:1px solid var(--gold-border)">
@@ -4204,7 +4157,7 @@ function closeCampusPanel() {
   /* ── EDIT HERE ──────────────────────────────────────────────────────
      Remove a page ID from this array when its content is ready.
      Valid IDs: 'schedule', 'workshops', 'competitions', 'register'    */
-  const TBA_PAGES = ['schedule', 'stay'];
+  const TBA_PAGES = ['schedule'];
   /* ─────────────────────────────────────────────────────────────────── */
 
   const META = {
@@ -4212,7 +4165,6 @@ function closeCampusPanel() {
     workshops:    { icon: 'ti-tool',        label: 'Workshops'             },
     competitions: { icon: 'ti-file-text',   label: 'Competitions'          },
     register:     { icon: 'ti-user-plus',   label: 'Registration'          },
-    stay:         { icon: 'ti-bed',         label: 'Stay & Explore'        },
   };
 
   function buildOverlay(pageId) {
