@@ -25,4 +25,20 @@ foreach ($cases as [$label, $expected, $actual]) {
     }
 }
 
+$acknowledgement = buildUserAcknowledgement([
+    'registrationId' => 'EMK26-TEST',
+    'name' => 'Test Delegate',
+    'tier' => 'PG / Student',
+    'amount' => 5500,
+    'linkId' => 'test-link',
+    'workshops' => [],
+    'manipalInterest' => true,
+    'competitions' => [],
+]);
+if (!str_contains($acknowledgement['text'], 'Workshops: Medicine in the Wilderness')
+    || !str_contains($acknowledgement['html'], 'Medicine in the Wilderness')) {
+    fwrite(STDERR, "User acknowledgement omitted the Medicine in the Wilderness selection\n");
+    exit(1);
+}
+
 echo "Payment pricing tests passed (" . count($cases) . " cases)\n";

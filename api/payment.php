@@ -403,7 +403,7 @@ function paymentConfirmation(array $record): array
         'name' => (string) ($record['name'] ?? ''),
         'email' => (string) ($record['email'] ?? ''),
         'tier' => (string) ($record['tier'] ?? ''),
-        'workshops' => array_values($record['workshops'] ?? []),
+        'workshops' => registrationWorkshopNames($record),
         'amount' => (int) ($record['amount'] ?? 0),
         'paidAt' => (string) ($record['paidAt'] ?? ''),
         'status' => (string) ($record['paymentStatus'] ?? 'PENDING'),
@@ -502,6 +502,14 @@ function workshopSelectionKeys(array $record): array
     if (!empty($record['manipalInterest'])) $keys[] = 'El Nino Wilderness Medicine';
     if (!empty($record['pnbInterest'])) $keys[] = 'Peripheral Nerve Block';
     return $keys;
+}
+
+function registrationWorkshopNames(array $record): array
+{
+    return array_map(
+        fn(string $name): string => $name === 'El Nino Wilderness Medicine' ? 'Medicine in the Wilderness' : $name,
+        workshopSelectionKeys($record)
+    );
 }
 
 function workshopSeatsRemaining(): array
@@ -711,7 +719,7 @@ function buildUserAcknowledgement(array $record): array
 {
     $registrationId = (string) $record['registrationId'];
     $amount = '₹' . number_format((float) $record['amount'], 0, '.', ',');
-    $workshops = formatList($record['workshops'] ?? [], 'Conference only');
+    $workshops = formatList(registrationWorkshopNames($record), 'Conference only');
     $competitions = formatList($record['competitions'] ?? [], 'None selected');
     $subject = 'Registration confirmed — ' . $registrationId . ' | EM Karnataka 2026';
     $rows = [
@@ -750,7 +758,7 @@ function buildAdminNotification(array $record): array
         'Category' => (string) $record['category'],
         'Diet' => (string) $record['diet'],
         'Registration type' => (string) $record['tier'],
-        'Workshops' => formatList($record['workshops'] ?? [], 'Conference only'),
+        'Workshops' => formatList(registrationWorkshopNames($record), 'Conference only'),
         'Manipal interest' => !empty($record['manipalInterest']) ? 'Yes' : 'No',
         'Peripheral nerve block' => !empty($record['pnbInterest']) ? 'Yes' : 'No',
         'Competitions' => formatList($record['competitions'] ?? [], 'None selected'),
