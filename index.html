@@ -151,6 +151,22 @@ nav{background:var(--midnight-2);position:sticky;top:0;z-index:100;border-bottom
 .img-card-img{width:100%;height:160px;object-fit:cover;display:block}
 .img-card-tag{display:inline-block;background:var(--gold-glow);color:var(--gold);font-size:10px;font-weight:700;padding:2px 8px;border-radius:100px;margin-bottom:6px;text-transform:uppercase;letter-spacing:0.5px;border:1px solid var(--gold-border);}
 .img-card-icon {height: 160px;display: flex;align-items: center;justify-content: center;font-size: 64px;color: var(--gold);background: rgba(255,255,255,0.05);}
+
+/* ── HOME: FACULTY SESSIONS ── */
+.fs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:14px;margin-bottom:24px}
+.fs-card{background:var(--midnight-3);border:1px solid var(--border);border-radius:var(--radius);padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:transform .2s,border-color .2s,box-shadow .2s}
+.fs-card:hover{transform:translateY(-3px);border-color:var(--gold-border);box-shadow:0 8px 24px rgba(212,160,23,0.1)}
+.fs-avatar{width:48px;height:48px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:15px;font-weight:800;color:var(--gold);background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5));border:2px solid var(--gold-border)}
+.fs-body{min-width:0;flex:1}
+.fs-time{font-size:11px;font-weight:700;color:var(--gold);letter-spacing:.3px;margin-bottom:4px;display:flex;align-items:center;gap:5px;flex-wrap:wrap}
+.fs-title{font-size:13.5px;font-weight:600;color:var(--text);line-height:1.4;margin:6px 0 6px}
+.fs-name{font-size:12px;color:var(--text-muted)}
+.fs-name strong{color:#fff;font-weight:700}
+.fs-featured{grid-column:1/-1;border-color:var(--gold-border);background:linear-gradient(135deg,var(--midnight-3),rgba(30,22,5,0.7));position:relative;overflow:hidden}
+.fs-featured::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)}
+.fs-featured .fs-avatar{width:56px;height:56px;font-size:17px}
+.fs-featured .fs-title{font-size:15.5px}
+@media(max-width:560px){.fs-grid{grid-template-columns:1fr}.fs-card{padding:14px}}
   
 .partners-section{background:var(--midnight-2);padding:48px 24px;text-align:center;border-top:1px solid var(--border)}
 .partners-section h2{font-size:24px;font-weight:800;color:#fff;margin-bottom:8px}
@@ -875,16 +891,137 @@ footer strong{color:var(--gold)}
     </div>
 
     <div style="margin-top:48px">
-      <h2 class="section-title">Faculty <span style="font-size:15px;font-weight:400;color:var(--text-muted)">— Announcements coming soon</span></h2>
-      <p class="section-sub">Leading voices in emergency medicine and climate health from across India</p>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:14px;margin-bottom:28px">
-        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(212,160,23,0.2)">SK</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#fff">Speaker TBA</div><div style="font-size:11px;color:var(--text-muted)">Keynote Faculty</div></div></div>
-        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,rgba(30,22,5,0.8),rgba(60,44,10,0.9));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(212,160,23,0.2)">FK</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#fff">Faculty TBA</div><div style="font-size:11px;color:var(--text-muted)">Workshop Lead</div></div></div>
-        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,rgba(60,50,8,0.9),rgba(100,80,12,0.8));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(212,160,23,0.2)">PL</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#fff">Panelist TBA</div><div style="font-size:11px;color:var(--text-muted)">Panel Discussant</div></div></div>
-        <div class="speaker-card"><div style="width:100%;height:110px;background:linear-gradient(135deg,var(--midnight-4),var(--midnight-5));display:flex;align-items:center;justify-content:center;font-size:28px;font-weight:800;color:rgba(212,160,23,0.2)">WL</div><div style="padding:10px 8px"><div style="font-size:13px;font-weight:700;margin-bottom:2px;color:#fff">Faculty TBA</div><div style="font-size:11px;color:var(--text-muted)">Workshop Faculty</div></div></div>
-      </div>
-      <p style="font-size:13px;color:var(--text-muted);text-align:center"><i class="ti ti-bell" style="font-size:14px;vertical-align:-2px;color:var(--gold)"></i> <a href="#" onclick="showPage('contact');return false" style="color:var(--gold);text-decoration:none;font-weight:600">Contact us</a> for faculty announcements</p>    </div>
+  <h2 class="section-title">Faculty Sessions <span style="font-size:15px;font-weight:400;color:var(--text-muted)">— Saturday, 14 November · Decennial Hall</span></h2>
+  <p class="section-sub">Leading voices in emergency medicine and climate health from across India</p>
 
+  <div class="fs-grid">
+
+    <!-- KEYNOTE -->
+    <div class="fs-card fs-featured">
+      <div class="fs-avatar">CT</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-kn" style="margin:0">Keynote</span> 12:30 – 13:00</div>
+        <div class="fs-title">Rediscovering the Purpose in Emergency Medicine</div>
+        <div class="fs-name"><strong>Dr Claudia Tuffanelli-Bouvier</strong> · Facilitators: Casey Odell &amp; Dr RK Nair</div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">NH</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-kn" style="margin:0">Talk</span> 09:00 – 09:30</div>
+        <div class="fs-title">Recent Updates in EM</div>
+        <div class="fs-name"><strong>Dr Nayan H B</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">MV</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-se" style="margin:0">Talk</span> 09:30 – 09:45</div>
+        <div class="fs-title">Medical Negligence in Emergency Medicine: Practising with Confidence in the Era of Litigation</div>
+        <div class="fs-name"><strong>Dr Madhushri V D</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">UU</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-se" style="margin:0">Talk</span> 09:45 – 10:00</div>
+        <div class="fs-title">The Emergency Physician's Blind Spot: Recognizing When Conventional Resuscitation Is No Longer Enough</div>
+        <div class="fs-name"><strong>Dr Udit Umrani</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">HK</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-kn" style="margin:0">Talk</span> 10:00 – 10:30</div>
+        <div class="fs-title">Changing Trends in Stroke and Impact on ED Stroke Workflow</div>
+        <div class="fs-name"><strong>Dr Hariprasad K V</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">NN</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-se" style="margin:0">Talk</span> 10:30 – 10:45</div>
+        <div class="fs-title">BlockED: Changing the Pain Paradigm</div>
+        <div class="fs-name"><strong>Dr Naureen Naik</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">SN</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-se" style="margin:0">Talk</span> 10:45 – 11:00</div>
+        <div class="fs-title">Vein Before Vision: Scoring Portal Hemodynamics at the Bedside</div>
+        <div class="fs-name"><strong>Dr Siddhi Naik</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">SNa</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-se" style="margin:0">Talk</span> 12:00 – 12:30</div>
+        <div class="fs-title">EMS / ICATT / Air Ambulance Services</div>
+        <div class="fs-name"><strong>Dr Shalini Nalwad</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">HM</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-se" style="margin:0">Talk</span> 13:30 – 14:00</div>
+        <div class="fs-title">End of Life and Palliative Care in EM</div>
+        <div class="fs-name"><strong>Dr Harshit Mundra</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">RB</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-se" style="margin:0">Panel</span> 14:00 – 15:00</div>
+        <div class="fs-title">Green ED Initiative: Discussing Planetary Sustainability in Resuscitation</div>
+        <div class="fs-name">Moderator: <strong>Dr Rachana Bhat</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">MS</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-kn" style="margin:0">Talk</span> 15:00 – 15:30</div>
+        <div class="fs-title">AI in Emergency</div>
+        <div class="fs-name"><strong>Dr Manu Sudhi</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">SS</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-se" style="margin:0">Talk</span> 15:30 – 15:45</div>
+        <div class="fs-title">Silent Crisis: The Weakest Link in Indian Emergency Care Infrastructure</div>
+        <div class="fs-name"><strong>Dr Shivaprasad S A</strong></div>
+      </div>
+    </div>
+
+    <div class="fs-card">
+      <div class="fs-avatar">HR</div>
+      <div class="fs-body">
+        <div class="fs-time"><span class="stag stag-se" style="margin:0">Talk</span> 15:45 – 16:00</div>
+        <div class="fs-title">Date Night with Violence: The Relationship Healthcare Never Chose</div>
+        <div class="fs-name"><strong>Dr Hareeth Reddy</strong></div>
+      </div>
+    </div>
+
+  </div>
+
+  <div style="text-align:center">
+    <button class="btn btn-outline-gold" onclick="showPage('schedule');setTimeout(function(){var b=document.querySelectorAll('.tab-btn')[2];if(b)showDay('3',b);},50)">
+      <i class="ti ti-layout-list"></i> View Full Programme Schedule
+    </button>
+  </div>
+</div>
     <div style="margin-top:48px;background:var(--midnight-3);border-radius:var(--radius);padding:40px;text-align:center;position:relative;overflow:hidden;border:1px solid var(--gold-border)">
       <div style="position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold)"></div>
       <div style="position:absolute;inset:0;background-image:linear-gradient(rgba(212,160,23,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(212,160,23,0.03) 1px,transparent 1px);background-size:40px 40px;"></div>
