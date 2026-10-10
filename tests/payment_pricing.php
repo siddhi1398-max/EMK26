@@ -45,8 +45,8 @@ for ($index = 0; $index < 4; $index++) {
     ];
 }
 $remainingSeats = workshopSeatsRemaining($capacityRecords)['Resuscitology'];
-if ($remainingSeats !== 3) {
-    fwrite(STDERR, "Expected 3 Resuscitology seats after 14 paid attendees and duplicate pending links, got {$remainingSeats}\n");
+if ($remainingSeats !== 0) {
+    fwrite(STDERR, "Expected 0 Resuscitology seats after 14 paid attendees and one attendee with duplicate pending links, got {$remainingSeats}\n");
     exit(1);
 }
 
