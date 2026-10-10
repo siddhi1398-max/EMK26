@@ -513,18 +513,23 @@ function registrationWorkshopNames(array $record): array
     );
 }
 
-function workshopSeatsRemaining(): array
+function workshopSeatsRemaining(?array $records = null): array
 {
-    $taken = array_fill_keys(array_keys(WORKSHOP_CAPACITY), 0);
-    foreach (readRegistrations() as $record) {
+    $taken = array_fill_keys(array_keys(WORKSHOP_CAPACITY), []);
+    foreach ($records ?? readRegistrations() as $record) {
         if (!is_array($record) || !isActiveHold($record)) continue;
+        $email = strtolower(trim((string) ($record['email'] ?? '')));
+        $phone = preg_replace('/\D+/', '', (string) ($record['phone'] ?? ''));
+        $identity = $email !== '' || $phone !== ''
+            ? hash('sha256', $email . '|' . $phone)
+            : 'link:' . (string) ($record['linkId'] ?? hash('sha256', serialize($record)));
         foreach (workshopSelectionKeys($record) as $key) {
-            if (isset($taken[$key])) $taken[$key]++;
+            if (isset($taken[$key])) $taken[$key][$identity] = true;
         }
     }
     $remaining = [];
     foreach (WORKSHOP_CAPACITY as $key => $capacity) {
-        $remaining[$key] = max(0, $capacity - $taken[$key]);
+        $remaining[$key] = max(0, $capacity - count($taken[$key]));
     }
     return $remaining;
 }

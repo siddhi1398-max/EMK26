@@ -25,6 +25,31 @@ if ($duplicateWorkshopKeys !== ['Resuscitology']) {
     exit(1);
 }
 
+$capacityRecords = [];
+for ($index = 1; $index <= 14; $index++) {
+    $capacityRecords[] = [
+        'paymentStatus' => 'PAID',
+        'email' => 'paid-' . $index . '@example.test',
+        'phone' => '900000' . str_pad((string) $index, 4, '0', STR_PAD_LEFT),
+        'workshops' => ['Resuscitology'],
+    ];
+}
+for ($index = 0; $index < 4; $index++) {
+    $capacityRecords[] = [
+        'paymentStatus' => 'PENDING',
+        'createdAt' => date(DATE_ATOM),
+        'email' => 'retry@example.test',
+        'phone' => '9876543210',
+        'linkId' => 'retry-' . $index,
+        'workshops' => ['Resuscitology'],
+    ];
+}
+$remainingSeats = workshopSeatsRemaining($capacityRecords)['Resuscitology'];
+if ($remainingSeats !== 3) {
+    fwrite(STDERR, "Expected 3 Resuscitology seats after 14 paid attendees and duplicate pending links, got {$remainingSeats}\n");
+    exit(1);
+}
+
 foreach ($cases as [$label, $expected, $actual]) {
     if ($actual !== $expected) {
         fwrite(STDERR, $label . ': expected ' . $expected . ', got ' . $actual . "\n");
