@@ -838,7 +838,8 @@ function mutateRegistrations(callable $mutator): void
 function makeRegistrationId(string $linkId, ?array $records = null): string
 {
     $allRecords = is_array($records) ? $records : readRegistrations();
-    $maxSequence = 0;
+    // IDs 125–131 are reserved; new registrations must start at 132 or later.
+    $maxSequence = 131;
 
     foreach ($allRecords as $record) {
         $existingId = trim((string) ($record['registrationId'] ?? ''));

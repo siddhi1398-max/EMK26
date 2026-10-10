@@ -25,6 +25,15 @@ if ($duplicateWorkshopKeys !== ['Resuscitology']) {
     exit(1);
 }
 
+$firstAvailableId = makeRegistrationId('test-link', []);
+$nextAvailableId = makeRegistrationId('test-link-2', [
+    ['registrationId' => $firstAvailableId],
+]);
+if ($firstAvailableId !== 'EMKA2026-132' || $nextAvailableId !== 'EMKA2026-133') {
+    fwrite(STDERR, "Registration IDs should resume at EMKA2026-132 and continue sequentially\n");
+    exit(1);
+}
+
 $capacityRecords = [];
 for ($index = 1; $index <= 14; $index++) {
     $capacityRecords[] = [
