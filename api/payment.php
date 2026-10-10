@@ -12,7 +12,7 @@ header('X-Content-Type-Options: nosniff');
 const DATA_FILE = __DIR__ . '/../data/registrations.json';
 const PAYMENT_PROOF_DIR = __DIR__ . '/../data/payment-proofs';
 const MAX_PAYMENT_PROOF_BYTES = 5242880;
-const EARLY_BIRD_CUTOFF = '2026-09-30 23:59:59';
+const EARLY_BIRD_CUTOFF = '2026-10-15 23:59:59';
 const ALLOWED_WORKSHOPS = [
     'Advanced Airway',
     'ToxSim',
@@ -501,7 +501,8 @@ function workshopSelectionKeys(array $record): array
     ));
     if (!empty($record['manipalInterest'])) $keys[] = 'El Nino Wilderness Medicine';
     if (!empty($record['pnbInterest'])) $keys[] = 'Peripheral Nerve Block';
-    return $keys;
+    // One registration can reserve at most one seat in each workshop.
+    return array_values(array_unique($keys));
 }
 
 function registrationWorkshopNames(array $record): array
