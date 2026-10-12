@@ -25,6 +25,11 @@ if ($duplicateWorkshopKeys !== ['Resuscitology']) {
     exit(1);
 }
 
+if (WORKSHOP_CAPACITY['Resuscitology'] !== 14) {
+    fwrite(STDERR, "Resuscitology cap should be 14 seats\n");
+    exit(1);
+}
+
 $firstAvailableId = makeRegistrationId('test-link', []);
 $nextAvailableId = makeRegistrationId('test-link-2', [
     ['registrationId' => $firstAvailableId],
