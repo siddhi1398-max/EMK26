@@ -35,7 +35,7 @@ const DAY_TWO_WORKSHOPS = [
 // Manipal/JSS pre-conference add-ons, tracked as booleans rather than in ALLOWED_WORKSHOPS.
 const WORKSHOP_CAPACITY = [
     'Advanced Airway' => 24,
-    'Resuscitology' => 16,
+    'Resuscitology' => 18,
     'EM Radiology' => 29,
     'Hidden Curriculum in ED' => 30,
     'Maternal Resuscitation Programme' => 26,

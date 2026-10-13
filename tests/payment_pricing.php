@@ -25,8 +25,8 @@ if ($duplicateWorkshopKeys !== ['Resuscitology']) {
     exit(1);
 }
 
-if (WORKSHOP_CAPACITY['Resuscitology'] !== 16) {
-    fwrite(STDERR, "Resuscitology cap should be 16 seats\n");
+if (WORKSHOP_CAPACITY['Resuscitology'] !== 18) {
+    fwrite(STDERR, "Resuscitology cap should be 18 seats\n");
     exit(1);
 }
 
@@ -40,7 +40,7 @@ if ($firstAvailableId !== 'EMKA2026-132' || $nextAvailableId !== 'EMKA2026-133')
 }
 
 $capacityRecords = [];
-for ($index = 1; $index <= 16; $index++) {
+for ($index = 1; $index <= 18; $index++) {
     $capacityRecords[] = [
         'paymentStatus' => 'PAID',
         'email' => 'paid-' . $index . '@example.test',
@@ -58,9 +58,14 @@ for ($index = 0; $index < 4; $index++) {
         'workshops' => ['Resuscitology'],
     ];
 }
+$remainingAfterSixteenPaid = workshopSeatsRemaining(array_slice($capacityRecords, 0, 16))['Resuscitology'];
+if ($remainingAfterSixteenPaid !== 2) {
+    fwrite(STDERR, "Expected 2 Resuscitology seats after 16 paid attendees, got {$remainingAfterSixteenPaid}\n");
+    exit(1);
+}
 $remainingSeats = workshopSeatsRemaining($capacityRecords)['Resuscitology'];
 if ($remainingSeats !== 0) {
-    fwrite(STDERR, "Expected 0 Resuscitology seats after 16 paid attendees and one attendee with duplicate pending links, got {$remainingSeats}\n");
+    fwrite(STDERR, "Expected 0 Resuscitology seats after 18 paid attendees and one attendee with duplicate pending links, got {$remainingSeats}\n");
     exit(1);
 }
 
