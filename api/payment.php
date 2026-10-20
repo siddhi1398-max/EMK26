@@ -20,8 +20,8 @@ const REGISTRATION_TIER_CATEGORIES = [
     'BSc EMT / Nursing Student' => 'BSc EMT / Nursing Student',
 ];
 const REGISTRATION_BASE_PRICES = [
-    'PG / Student' => 4000,
-    'Faculty / Consultant' => 7000,
+    'PG / Student' => 4500,
+    'Faculty / Consultant' => 7500,
     'MBBS UG Student / Intern' => 1500,
     'BSc EMT / Nursing Student' => 1500,
 ];

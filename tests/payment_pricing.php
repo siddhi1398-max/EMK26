@@ -7,18 +7,18 @@ require_once __DIR__ . '/../api/payment.php';
 $early = new DateTimeImmutable('2026-10-15 23:59:59', new DateTimeZone('Asia/Kolkata'));
 $standard = new DateTimeImmutable('2026-10-16 00:00:00', new DateTimeZone('Asia/Kolkata'));
 $cases = [
-    ['PG / Student conference', 4000, calculateRegistrationAmount('PG / Student', [], false, false, $early)],
-    ['PG / Student airway', 5000, calculateRegistrationAmount('PG / Student', ['Advanced Airway'], false, false, $early)],
-    ['PG / Student radiology', 5500, calculateRegistrationAmount('PG / Student', ['EM Radiology'], false, false, $early)],
-    ['Standard airway', 5500, calculateRegistrationAmount('PG / Student', ['Advanced Airway'], false, false, $standard)],
-    ['Standard two workshops', 7500, calculateRegistrationAmount('PG / Student', ['Advanced Airway', 'EM Radiology'], false, false, $standard)],
-    ['PG / Student plus Manipal', 5500, calculateRegistrationAmount('PG / Student', [], true, false, $early)],
-    ['PG / Student plus airway, EM radiology, and Manipal (early)', 8000, calculateRegistrationAmount('PG / Student', ['Advanced Airway', 'EM Radiology'], true, false, new DateTimeImmutable('2026-10-10 17:00:00', new DateTimeZone('Asia/Kolkata')))],
-    ['Faculty all workshops (early)', 15000, calculateRegistrationAmount('Faculty / Consultant', ALLOWED_WORKSHOPS, false, false, $early)],
-    ['Faculty all workshops plus Manipal (standard)', 19500, calculateRegistrationAmount('Faculty / Consultant', ALLOWED_WORKSHOPS, true, false, $standard)],
+    ['PG / Student conference', 4500, calculateRegistrationAmount('PG / Student', [], false, false, $early)],
+    ['PG / Student airway', 5500, calculateRegistrationAmount('PG / Student', ['Advanced Airway'], false, false, $early)],
+    ['PG / Student radiology', 6000, calculateRegistrationAmount('PG / Student', ['EM Radiology'], false, false, $early)],
+    ['Standard airway', 6000, calculateRegistrationAmount('PG / Student', ['Advanced Airway'], false, false, $standard)],
+    ['Standard two workshops', 8000, calculateRegistrationAmount('PG / Student', ['Advanced Airway', 'EM Radiology'], false, false, $standard)],
+    ['PG / Student plus Manipal', 6000, calculateRegistrationAmount('PG / Student', [], true, false, $early)],
+    ['PG / Student plus airway, EM radiology, and Manipal (early)', 8500, calculateRegistrationAmount('PG / Student', ['Advanced Airway', 'EM Radiology'], true, false, new DateTimeImmutable('2026-10-10 17:00:00', new DateTimeZone('Asia/Kolkata')))],
+    ['Faculty all workshops (early)', 15500, calculateRegistrationAmount('Faculty / Consultant', ALLOWED_WORKSHOPS, false, false, $early)],
+    ['Faculty all workshops plus Manipal (standard)', 20000, calculateRegistrationAmount('Faculty / Consultant', ALLOWED_WORKSHOPS, true, false, $standard)],
     ['MBBS UG Student / Intern conference', 1500, calculateRegistrationAmount('MBBS UG Student / Intern', [], false, false, $early)],
     ['BSc EMT / Nursing Student conference', 1500, calculateRegistrationAmount('BSc EMT / Nursing Student', [], false, false, $early)],
-    ['PG / Student plus PNB', 8000, calculateRegistrationAmount('PG / Student', [], false, true, $early)],
+    ['PG / Student plus PNB', 8500, calculateRegistrationAmount('PG / Student', [], false, true, $early)],
 ];
 
 $duplicateWorkshopKeys = workshopSelectionKeys(['workshops' => ['Resuscitology', 'Resuscitology']]);

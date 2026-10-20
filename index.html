@@ -2089,9 +2089,9 @@ footer strong{color:var(--gold)}
     <!-- TIER CARDS -->
 <div class="tier-grid" style="max-width:620px;margin:0 auto 16px;grid-template-columns:1fr 1fr">
   
-      <div class="tier selected" id="tier-1" onclick="selectTier('PG / Student',4000,2,this)">
+      <div class="tier selected" id="tier-1" onclick="selectTier('PG / Student',4500,2,this)">
         <div class="tier-name">PG / Student</div>
-        <div class="tier-price">&#8377;4,000</div>
+        <div class="tier-price">&#8377;4,500</div>
         <div class="tier-note">Conference registration</div>
         <ul class="tier-features">
           <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
@@ -2103,9 +2103,9 @@ footer strong{color:var(--gold)}
         <button class="btn btn-gold" style="width:100%;justify-content:center">Selected</button>
       </div>
  
-      <div class="tier" id="tier-2" onclick="selectTier('Faculty / Consultant',7000,2,this)">
+      <div class="tier" id="tier-2" onclick="selectTier('Faculty / Consultant',7500,2,this)">
   <div class="tier-name">Faculty / Consultant</div>
-  <div class="tier-price">&#8377;7,000</div>
+  <div class="tier-price">&#8377;7,500</div>
   <div class="tier-note">Conference registration</div>
   <ul class="tier-features">
     <li><i class="ti ti-check"></i>All conference sessions (Days 3 &amp; 4)</li>
@@ -2253,7 +2253,7 @@ footer strong{color:var(--gold)}
           <div style="font-size:10px;color:var(--text-muted);font-weight:700;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:3px">Total Payable</div>
           <div style="font-size:13px;color:var(--text);font-weight:600" id="sum-tier">PG / Student</div>
         </div>
-        <div style="font-size:28px;font-weight:800;color:var(--gold)" id="sum-price">&#8377;4,000</div>
+        <div style="font-size:28px;font-weight:800;color:var(--gold)" id="sum-price">&#8377;4,500</div>
       </div>
  
       <!-- SUBMIT BUTTON -->
@@ -2262,7 +2262,7 @@ footer strong{color:var(--gold)}
           <i class="ti ti-shield-check" style="font-size:12px;vertical-align:-1px"></i> Secure payment via Cashfree
         </p>
         <button class="btn btn-gold" id="reg-submit-btn" style="font-size:15px;padding:13px 32px" onclick="submitRegistration()">
-          <i class="ti ti-send"></i> Submit &amp; Pay <span id="btn-price">&#8377;4,000</span>
+          <i class="ti ti-send"></i> Submit &amp; Pay <span id="btn-price">&#8377;4,500</span>
         </button>
       </div>
 
@@ -3805,7 +3805,7 @@ function showPaymentPending(linkId) {
 })();
 
 // ── State ─────────────────────────────────────────────────────────────────
-var _regTier = { name: 'PG / Student', price: 4000, wsMax: 2, finalPrice: 4000 };
+var _regTier = { name: 'PG / Student', price: 4500, wsMax: 2, finalPrice: 4500 };
 
 // ── Tier selector ─────────────────────────────────────────────────────────
 function selectTier(name, price, wsMax, card) {
