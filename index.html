@@ -2087,8 +2087,8 @@ footer strong{color:var(--gold)}
     </div>
  
     <!-- TIER CARDS -->
-    <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
- 
+<div class="tier-grid" style="max-width:620px;margin:0 auto 16px;grid-template-columns:1fr 1fr">
+  
       <div class="tier selected" id="tier-1" onclick="selectTier('PG / Student',4000,2,this)">
         <div class="tier-name">PG / Student</div>
         <div class="tier-price">&#8377;4,000</div>
@@ -2118,7 +2118,36 @@ footer strong{color:var(--gold)}
       </div>
  
     </div>
- 
+
+        <!-- TIER CARDS: STUDENTS -->
+    <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
+
+      <div class="tier" id="tier-3" onclick="selectTier('UG Student / Intern',1000,2,this,['Hidden Curriculum in ED','ToxSim'])">
+        <div class="tier-name">UG Student / Intern</div>
+        <div class="tier-price">&#8377;1,000</div>
+        <div class="tier-note">Undergraduate students &amp; interns</div>
+        <ul class="tier-features">
+          <li><i class="ti ti-check"></i>Present posters &amp; paper presentations</li>
+          <li><i class="ti ti-check"></i>Eligible workshops: Hidden Curriculum, ToxSim &amp; Wilderness Medicine</li>
+          <li><i class="ti ti-info-circle" style="color:var(--gold-mid)"></i>Workshops at the standard workshop fee</li>
+        </ul>
+        <button class="btn btn-outline-gold" style="width:100%;justify-content:center">Select</button>
+      </div>
+
+      <div class="tier" id="tier-4" onclick="selectTier('BSc EMT / Nursing Student',1000,2,this,['Hidden Curriculum in ED','ToxSim'])">
+        <div class="tier-name">BSc EMT / Nursing Student</div>
+        <div class="tier-price">&#8377;1,000</div>
+        <div class="tier-note">BSc EMT &amp; BSc Nursing students</div>
+        <ul class="tier-features">
+          <li><i class="ti ti-check"></i>Present posters &amp; paper presentations</li>
+          <li><i class="ti ti-check"></i>Eligible workshops: Hidden Curriculum, ToxSim &amp; Wilderness Medicine</li>
+          <li><i class="ti ti-info-circle" style="color:var(--gold-mid)"></i>Workshops at the standard workshop fee</li>
+        </ul>
+        <button class="btn btn-outline-gold" style="width:100%;justify-content:center">Select</button>
+      </div>
+
+    </div>
+
     <!-- FORM CARD -->
     <div class="form-card" id="reg-form-wrap">
  
@@ -2139,6 +2168,8 @@ footer strong{color:var(--gold)}
             <option value="">— Select —</option>
             <option value="PG Student">PG Student</option>
             <option value="Consultant">Consultant</option>
+            <option value="UG Student / Intern">UG Student / Intern</option>
+            <option value="BSc EMT / Nursing Student">BSc EMT / Nursing Student</option>
           </select>
         </div>
         <div class="fg"><label>Dietary Preference</label>
@@ -4549,6 +4580,51 @@ function updatePriceSummary() {
     });
     if (typeof updatePriceSummary === 'function') updatePriceSummary();
   }).catch(function () { /* capacity check is a nice-to-have; submission is still enforced server-side */ });
+})();
+</script>
+<script>
+// ── Student tiers: workshop restriction + category auto-sync ─────────────
+// Wilderness Medicine is .ws-chk-manipal, so it stays open to everyone.
+(function () {
+  var CATEGORY_BY_TIER = {
+    'PG / Student': 'PG Student',
+    'Faculty / Consultant': 'Consultant',
+    'UG Student / Intern': 'UG Student / Intern',
+    'BSc EMT / Nursing Student': 'BSc EMT / Nursing Student'
+  };
+
+  window.applyWsRestrictions = function () {
+    var allowed = _regTier.allowed;
+    document.querySelectorAll('.ws-chk').forEach(function (c) {
+      var blocked = !!allowed && allowed.indexOf(c.value) === -1;
+      c.dataset.restricted = blocked ? '1' : '';
+      if (blocked) { c.checked = false; c.disabled = true; }
+      var l = c.closest('.ws-chk-label');
+      if (l) { l.style.opacity = blocked ? '0.4' : ''; l.classList.toggle('checked', c.checked); }
+    });
+  };
+
+  var baseSelectTier = selectTier;
+  selectTier = function (name, price, wsMax, card, allowed) {
+    baseSelectTier(name, price, wsMax, card);
+    _regTier.allowed = allowed || null;
+
+    var note = document.getElementById('ws-limit-note');
+    if (note && allowed) note.textContent = '— eligible: Hidden Curriculum \u00B7 ToxSim \u00B7 Wilderness Medicine';
+
+    var cat = document.getElementById('r-category');
+    if (cat && CATEGORY_BY_TIER[name]) cat.value = CATEGORY_BY_TIER[name];
+
+    applyWsRestrictions();
+    updatePriceSummary();
+  };
+
+  var baseWsChange = wsChange;
+  wsChange = function (cb) {
+    baseWsChange(cb);
+    applyWsRestrictions();
+    updatePriceSummary();
+  };
 })();
 </script>
 </body>
