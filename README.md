@@ -64,7 +64,7 @@ Open `index.html` in any text editor or VS Code. Key things to change:
 - **Speaker names** — search for `Speaker Name` / `Faculty Name`
 - **Contact emails** — search for `emkarnataka2026.in`
 - **Phone numbers** — search for `XXXXX XXXXX`
-- **Countdown deadline** — search for `2026-08-31` in the script section
+- **Early-bird deadline** — search for `2026-10-15` in the script section
 
 ---
 

@@ -2122,7 +2122,7 @@ footer strong{color:var(--gold)}
         <!-- TIER CARDS: STUDENTS -->
     <div class="tier-grid" style="max-width:620px;margin:0 auto 32px;grid-template-columns:1fr 1fr">
 
-      <div class="tier" id="tier-3" onclick="selectTier('MBBS UG Student / Intern',1000,2,this,['Hidden Curriculum in ED','ToxSim'])">
+      <div class="tier" id="tier-3" onclick="selectTier('MBBS UG Student / Intern',1500,2,this,['Hidden Curriculum in ED','ToxSim'])">
         <div class="tier-name">MBBS UG Student / Intern</div>
         <div class="tier-price">&#8377;1,500</div>
         <div class="tier-note">Undergraduate students &amp; interns</div>
@@ -2134,7 +2134,7 @@ footer strong{color:var(--gold)}
         <button class="btn btn-outline-gold" style="width:100%;justify-content:center">Select</button>
       </div>
 
-      <div class="tier" id="tier-4" onclick="selectTier('BSc EMT / Nursing Student',1000,2,this,['Hidden Curriculum in ED','ToxSim'])">
+      <div class="tier" id="tier-4" onclick="selectTier('BSc EMT / Nursing Student',1500,2,this,['Hidden Curriculum in ED','ToxSim'])">
         <div class="tier-name">BSc EMT / Nursing Student</div>
         <div class="tier-price">&#8377;1,500</div>
         <div class="tier-note">BSc EMT &amp; BSc Nursing students</div>
@@ -2192,9 +2192,9 @@ footer strong{color:var(--gold)}
             <i class="ti ti-calendar-event" style="font-size:11px;color:var(--gold)"></i> Day 1 — Thursday, 12 November
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" id="ws-d1">
-  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Advanced Airway" onchange="wsChange(this)"> Advanced Airway — &#8377;1,000</label>
-  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="ToxSim" onchange="wsChange(this)"> ToxSim — &#8377;1,000</label>
-  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Maternal Resuscitation Programme" onchange="wsChange(this)"> Maternal Resuscitation Programme — &#8377;1,500</label>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Advanced Airway" onchange="wsChange(this)"> Advanced Airway <span data-workshop-price="Advanced Airway">— &#8377;1,000</span></label>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="ToxSim" onchange="wsChange(this)"> ToxSim <span data-workshop-price="ToxSim">— &#8377;1,000</span></label>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Maternal Resuscitation Programme" onchange="wsChange(this)"> Maternal Resuscitation Programme <span data-workshop-price="Maternal Resuscitation Programme">— &#8377;1,500</span></label>
 </div>
         </div>
         <div>
@@ -2202,9 +2202,9 @@ footer strong{color:var(--gold)}
             <i class="ti ti-calendar-event" style="font-size:11px;color:var(--gold)"></i> Day 2 — Friday, 13 November
           </div>
          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px" id="ws-d2">
-  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Hidden Curriculum in ED" onchange="wsChange(this)"> Hidden Curriculum in ED — &#8377;1,500</label>
-  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Resuscitology" onchange="wsChange(this)"> Resuscitology — &#8377;1,500  </label>
-  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="EM Radiology" onchange="wsChange(this)"> EM Radiology — &#8377;1,500</label>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Hidden Curriculum in ED" onchange="wsChange(this)"> Hidden Curriculum in ED <span data-workshop-price="Hidden Curriculum in ED">— &#8377;1,500</span></label>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="Resuscitology" onchange="wsChange(this)"> Resuscitology <span data-workshop-price="Resuscitology">— &#8377;1,500</span></label>
+  <label class="ws-chk-label"><input type="checkbox" class="ws-chk" value="EM Radiology" onchange="wsChange(this)"> EM Radiology <span data-workshop-price="EM Radiology">— &#8377;1,500</span></label>
 </div>
           <div style="margin-top:16px">
   <div style="font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:0.6px;color:var(--text-muted);margin-bottom:6px;display:flex;align-items:center;gap:5px">
@@ -3563,7 +3563,7 @@ function doContact() {
   document.getElementById('ctc-ok').classList.remove('hidden');
 }
 
-function tick(){const diff=new Date('2026-10-15T23:59:59')-new Date();if(diff<=0)return;document.getElementById('cd-d').textContent=Math.floor(diff/86400000);document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
+function tick(){const diff=new Date('2026-10-15T23:59:59+05:30')-new Date();if(diff<=0)return;document.getElementById('cd-d').textContent=Math.floor(diff/86400000);document.getElementById('cd-h').textContent=String(Math.floor(diff%86400000/3600000)).padStart(2,'0');document.getElementById('cd-m').textContent=String(Math.floor(diff%3600000/60000)).padStart(2,'0');document.getElementById('cd-s').textContent=String(Math.floor(diff%60000/1000)).padStart(2,'0');}
 tick();setInterval(tick,1000);
 
 (function(){
@@ -4465,7 +4465,7 @@ function closeCampusPanel() {
 })();
 
     // ── Early/Late Bird cutoff (matches your homepage countdown) ─────────────
-const EARLY_BIRD_CUTOFF = new Date('2026-10-15T23:59:59');
+const EARLY_BIRD_CUTOFF = new Date('2026-10-15T23:59:59+05:30');
 function isEarlyBird() { return new Date() <= EARLY_BIRD_CUTOFF; }
 
 // ── Per-workshop pricing: { early, late } ─────────────────────────────────
@@ -4483,6 +4483,12 @@ function wsPriceFor(name) {
   const p = wsPriceMap[name];
   if (!p) return isEarlyBird() ? 1000 : 1500;
   return isEarlyBird() ? p.early : p.late;
+}
+
+function updateWorkshopPrices() {
+  document.querySelectorAll('[data-workshop-price]').forEach(function (price) {
+    price.textContent = '\u2014 \u20B9' + wsPriceFor(price.dataset.workshopPrice).toLocaleString('en-IN');
+  });
 }
 
 function wsChange(cb) {
@@ -4513,6 +4519,7 @@ function wsChange(cb) {
 }
 
 function updatePriceSummary() {
+  updateWorkshopPrices();
   var checked = Array.from(document.querySelectorAll('.ws-chk:checked'));
   var n = checked.length;
   var total = _regTier.price;
@@ -4581,6 +4588,11 @@ function updatePriceSummary() {
     if (typeof updatePriceSummary === 'function') updatePriceSummary();
   }).catch(function () { /* capacity check is a nice-to-have; submission is still enforced server-side */ });
 })();
+
+updatePriceSummary();
+if (new Date() < EARLY_BIRD_CUTOFF) {
+  setTimeout(updatePriceSummary, EARLY_BIRD_CUTOFF.getTime() - Date.now() + 1000);
+}
 </script>
 <script>
 // ── Student tiers: workshop restriction + category auto-sync ─────────────

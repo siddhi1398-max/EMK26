@@ -16,6 +16,8 @@ $cases = [
     ['PG / Student plus airway, EM radiology, and Manipal (early)', 8000, calculateRegistrationAmount('PG / Student', ['Advanced Airway', 'EM Radiology'], true, false, new DateTimeImmutable('2026-10-10 17:00:00', new DateTimeZone('Asia/Kolkata')))],
     ['Faculty all workshops (early)', 15000, calculateRegistrationAmount('Faculty / Consultant', ALLOWED_WORKSHOPS, false, false, $early)],
     ['Faculty all workshops plus Manipal (standard)', 19500, calculateRegistrationAmount('Faculty / Consultant', ALLOWED_WORKSHOPS, true, false, $standard)],
+    ['MBBS UG Student / Intern conference', 1500, calculateRegistrationAmount('MBBS UG Student / Intern', [], false, false, $early)],
+    ['BSc EMT / Nursing Student conference', 1500, calculateRegistrationAmount('BSc EMT / Nursing Student', [], false, false, $early)],
     ['PG / Student plus PNB', 8000, calculateRegistrationAmount('PG / Student', [], false, true, $early)],
 ];
 

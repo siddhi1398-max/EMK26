@@ -13,6 +13,18 @@ const DATA_FILE = __DIR__ . '/../data/registrations.json';
 const PAYMENT_PROOF_DIR = __DIR__ . '/../data/payment-proofs';
 const MAX_PAYMENT_PROOF_BYTES = 5242880;
 const EARLY_BIRD_CUTOFF = '2026-10-15 23:59:59';
+const REGISTRATION_TIER_CATEGORIES = [
+    'PG / Student' => 'PG Student',
+    'Faculty / Consultant' => 'Consultant',
+    'MBBS UG Student / Intern' => 'MBBS UG Student / Intern',
+    'BSc EMT / Nursing Student' => 'BSc EMT / Nursing Student',
+];
+const REGISTRATION_BASE_PRICES = [
+    'PG / Student' => 4000,
+    'Faculty / Consultant' => 7000,
+    'MBBS UG Student / Intern' => 1500,
+    'BSc EMT / Nursing Student' => 1500,
+];
 const ALLOWED_WORKSHOPS = [
     'Advanced Airway',
     'ToxSim',
@@ -429,17 +441,21 @@ function validateRegistration(array $input): array
     if ($designation === '' || $institution === '' || $regno === '' || $council === '') {
         respond(422, ['ok' => false, 'message' => 'Complete all required professional details.']);
     }
-    if (!in_array($category, ['PG Student', 'Consultant'], true) || !in_array($diet, ['Vegetarian', 'Non-vegetarian', 'Jain'], true)) {
+    if (!in_array($diet, ['Vegetarian', 'Non-vegetarian', 'Jain'], true)) {
         respond(422, ['ok' => false, 'message' => 'Select a valid category and dietary preference.']);
     }
-    if (!in_array($tier, ['PG / Student', 'Faculty / Consultant'], true)) {
-        respond(422, ['ok' => false, 'message' => 'Select a valid registration tier.']);
+    if (!isset(REGISTRATION_TIER_CATEGORIES[$tier]) || $category !== REGISTRATION_TIER_CATEGORIES[$tier]) {
+        respond(422, ['ok' => false, 'message' => 'Select a valid registration category and tier.']);
     }
 
     $workshops = array_values(array_unique(array_filter(
         is_array($input['workshops'] ?? null) ? $input['workshops'] : [],
         fn($value) => is_string($value) && in_array($value, ALLOWED_WORKSHOPS, true)
     )));
+    if (in_array($tier, ['MBBS UG Student / Intern', 'BSc EMT / Nursing Student'], true)
+        && array_diff($workshops, ['Hidden Curriculum in ED', 'ToxSim']) !== []) {
+        respond(422, ['ok' => false, 'message' => 'This registration tier may select only Hidden Curriculum in ED and ToxSim workshops.']);
+    }
     if (count($workshops) > 2 || count(array_intersect($workshops, DAY_ONE_WORKSHOPS)) > 1 || count(array_intersect($workshops, DAY_TWO_WORKSHOPS)) > 1) {
         respond(422, ['ok' => false, 'message' => 'You may select at most one workshop per day.']);
     }
@@ -539,7 +555,7 @@ function calculateRegistrationAmount(string $tier, array $workshops, bool $manip
     $now ??= new DateTimeImmutable('now', new DateTimeZone('Asia/Kolkata'));
     $cutoff = new DateTimeImmutable(EARLY_BIRD_CUTOFF, new DateTimeZone('Asia/Kolkata'));
     $earlyBird = $now <= $cutoff;
-    $amount = $tier === 'Faculty / Consultant' ? 7000 : 4000;
+    $amount = REGISTRATION_BASE_PRICES[$tier] ?? throw new InvalidArgumentException('Unknown registration tier.');
 
     // Every tier pays per selected workshop at the early/standard rate shown on the form.
     $prices = [
