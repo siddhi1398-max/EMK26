@@ -13,9 +13,10 @@ $cases = [
     ['Standard airway', 6000, calculateRegistrationAmount('PG / Student', ['Advanced Airway'], false, false, $standard)],
     ['Standard two workshops', 8000, calculateRegistrationAmount('PG / Student', ['Advanced Airway', 'EM Radiology'], false, false, $standard)],
     ['PG / Student plus Manipal', 6000, calculateRegistrationAmount('PG / Student', [], true, false, $early)],
-    ['PG / Student plus airway, EM radiology, and Manipal (early)', 8500, calculateRegistrationAmount('PG / Student', ['Advanced Airway', 'EM Radiology'], true, false, new DateTimeImmutable('2026-10-10 17:00:00', new DateTimeZone('Asia/Kolkata')))],
+    ['PG / Student plus Manipal late', 6500, calculateRegistrationAmount('PG / Student', [], true, false, $standard)],
+    ['PG / Student plus airway, EM radiology, and Manipal (early)', 8500, calculateRegistrationAmount('PG / Student', ['Advanced Airway', 'EM Radiology'], true, false, new DateTimeImmutable('2026-10-10 17:00:00', new DateTimeZone('Asia/Kolkata'))) ],
     ['Faculty all workshops (early)', 15500, calculateRegistrationAmount('Faculty / Consultant', ALLOWED_WORKSHOPS, false, false, $early)],
-    ['Faculty all workshops plus Manipal (standard)', 20000, calculateRegistrationAmount('Faculty / Consultant', ALLOWED_WORKSHOPS, true, false, $standard)],
+    ['Faculty all workshops plus Manipal (standard)', 20500, calculateRegistrationAmount('Faculty / Consultant', ALLOWED_WORKSHOPS, true, false, $standard)],
     ['MBBS UG Student / Intern conference', 1500, calculateRegistrationAmount('MBBS UG Student / Intern', [], false, false, $early)],
     ['BSc EMT / Nursing Student conference', 1500, calculateRegistrationAmount('BSc EMT / Nursing Student', [], false, false, $early)],
     ['PG / Student plus PNB', 8500, calculateRegistrationAmount('PG / Student', [], false, true, $early)],
@@ -27,8 +28,8 @@ if ($duplicateWorkshopKeys !== ['Resuscitology']) {
     exit(1);
 }
 
-if (WORKSHOP_CAPACITY['Resuscitology'] !== 18) {
-    fwrite(STDERR, "Resuscitology cap should be 18 seats\n");
+if (WORKSHOP_CAPACITY['Resuscitology'] !== 20) {
+    fwrite(STDERR, "Resuscitology cap should be 20 seats\n");
     exit(1);
 }
 
@@ -61,13 +62,13 @@ for ($index = 0; $index < 4; $index++) {
     ];
 }
 $remainingAfterSixteenPaid = workshopSeatsRemaining(array_slice($capacityRecords, 0, 16))['Resuscitology'];
-if ($remainingAfterSixteenPaid !== 2) {
-    fwrite(STDERR, "Expected 2 Resuscitology seats after 16 paid attendees, got {$remainingAfterSixteenPaid}\n");
+if ($remainingAfterSixteenPaid !== 4) {
+    fwrite(STDERR, "Expected 4 Resuscitology seats after 16 paid attendees, got {$remainingAfterSixteenPaid}\n");
     exit(1);
 }
 $remainingSeats = workshopSeatsRemaining($capacityRecords)['Resuscitology'];
-if ($remainingSeats !== 0) {
-    fwrite(STDERR, "Expected 0 Resuscitology seats after 18 paid attendees and one attendee with duplicate pending links, got {$remainingSeats}\n");
+if ($remainingSeats !== 2) {
+    fwrite(STDERR, "Expected 2 Resuscitology seats after 18 paid attendees and one attendee with duplicate pending links, got {$remainingSeats}\n");
     exit(1);
 }
 

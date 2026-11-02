@@ -47,7 +47,7 @@ const DAY_TWO_WORKSHOPS = [
 // Manipal/JSS pre-conference add-ons, tracked as booleans rather than in ALLOWED_WORKSHOPS.
 const WORKSHOP_CAPACITY = [
     'Advanced Airway' => 24,
-    'Resuscitology' => 18,
+    'Resuscitology' => 20,
     'EM Radiology' => 29,
     'Hidden Curriculum in ED' => 30,
     'Maternal Resuscitation Programme' => 26,
@@ -569,7 +569,7 @@ function calculateRegistrationAmount(string $tier, array $workshops, bool $manip
     foreach ($workshops as $workshop) {
         if (isset($prices[$workshop])) $amount += $prices[$workshop][$earlyBird ? 0 : 1];
     }
-    if ($manipalInterest) $amount += 1500;
+    if ($manipalInterest) $amount += $earlyBird ? 1500 : 2000;
     if ($pnbInterest) $amount += 4000;
     return $amount;
 }
