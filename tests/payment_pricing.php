@@ -28,8 +28,8 @@ if ($duplicateWorkshopKeys !== ['Resuscitology']) {
     exit(1);
 }
 
-if (WORKSHOP_CAPACITY['Resuscitology'] !== 20) {
-    fwrite(STDERR, "Resuscitology cap should be 20 seats\n");
+if (WORKSHOP_CAPACITY['Resuscitology'] !== 0) {
+    fwrite(STDERR, "Resuscitology registrations are closed\n");
     exit(1);
 }
 
@@ -62,13 +62,13 @@ for ($index = 0; $index < 4; $index++) {
     ];
 }
 $remainingAfterSixteenPaid = workshopSeatsRemaining(array_slice($capacityRecords, 0, 16))['Resuscitology'];
-if ($remainingAfterSixteenPaid !== 4) {
-    fwrite(STDERR, "Expected 4 Resuscitology seats after 16 paid attendees, got {$remainingAfterSixteenPaid}\n");
+if ($remainingAfterSixteenPaid !== 0) {
+    fwrite(STDERR, "Expected 0 Resuscitology seats after the workshop was closed, got {$remainingAfterSixteenPaid}\n");
     exit(1);
 }
 $remainingSeats = workshopSeatsRemaining($capacityRecords)['Resuscitology'];
-if ($remainingSeats !== 2) {
-    fwrite(STDERR, "Expected 2 Resuscitology seats after 18 paid attendees and one attendee with duplicate pending links, got {$remainingSeats}\n");
+if ($remainingSeats !== 0) {
+    fwrite(STDERR, "Expected 0 Resuscitology seats after closure, got {$remainingSeats}\n");
     exit(1);
 }
 
