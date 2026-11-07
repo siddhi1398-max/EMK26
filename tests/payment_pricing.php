@@ -42,6 +42,16 @@ if ($firstAvailableId !== 'EMKA2026-132' || $nextAvailableId !== 'EMKA2026-133')
     exit(1);
 }
 
+$tenNumberBlock = [];
+for ($index = 179; $index <= 188; $index++) {
+    $tenNumberBlock[] = ['registrationId' => sprintf('EMKA2026-%03d', $index)];
+}
+$nextAfterBlock = makeRegistrationId('test-link-block', $tenNumberBlock);
+if ($nextAfterBlock !== 'EMKA2026-189') {
+    fwrite(STDERR, "Registration IDs should continue from EMKA2026-189 after EMKA2026-179 through EMKA2026-188\n");
+    exit(1);
+}
+
 $capacityRecords = [];
 for ($index = 1; $index <= 18; $index++) {
     $capacityRecords[] = [

@@ -241,10 +241,11 @@ input::placeholder,textarea::placeholder{color:var(--text-muted)}
 select option{background:var(--midnight-4)}
 textarea{resize:vertical;min-height:90px}
 
-.ws-chk-label{display:flex;align-items:center;gap:9px;background:var(--midnight-4);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 13px;font-size:13px;color:var(--text);cursor:pointer;transition:border-color 0.15s,background 0.15s;user-select:none;font-weight:500;}
+.ws-chk-label{display:flex;align-items:center;flex-wrap:wrap;row-gap:6px;column-gap:9px;background:var(--midnight-4);border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 13px;font-size:13px;color:var(--text);cursor:pointer;transition:border-color 0.15s,background 0.15s;user-select:none;font-weight:500;}
 .ws-chk-label:hover{border-color:var(--gold-border);background:rgba(212,160,23,0.05)}
 .ws-chk-label input[type=checkbox]{width:16px;height:16px;accent-color:var(--gold);flex-shrink:0;cursor:pointer;margin:0;}
 .ws-chk-label.checked{border-color:var(--gold);background:var(--gold-glow)}
+.ws-soldout-tag{display:inline-flex;align-items:center;color:var(--gold);font-weight:700;margin-left:2px;line-height:1.2;white-space:nowrap;}
 
 .success-msg{background:rgba(212,160,23,0.1);border:1px solid var(--gold-border);border-radius:var(--radius-sm);padding:13px 16px;font-size:14px;color:var(--gold);display:flex;align-items:center;gap:10px;margin-top:16px;font-weight:500;}
 .hidden{display:none}
@@ -4579,8 +4580,7 @@ function updatePriceSummary() {
       if (label && label.querySelector('.ws-soldout-tag') === null) {
         var tag = document.createElement('span');
         tag.className = 'ws-soldout-tag';
-        tag.style.cssText = 'color:var(--gold);font-weight:700;margin-left:4px';
-        tag.textContent = '(Full)';
+        tag.textContent = '(Registrations closed)';
         label.appendChild(tag);
       }
     });
