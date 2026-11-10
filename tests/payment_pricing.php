@@ -47,8 +47,18 @@ for ($index = 179; $index <= 188; $index++) {
     $tenNumberBlock[] = ['registrationId' => sprintf('EMKA2026-%03d', $index)];
 }
 $nextAfterBlock = makeRegistrationId('test-link-block', $tenNumberBlock);
-if ($nextAfterBlock !== 'EMKA2026-189') {
-    fwrite(STDERR, "Registration IDs should continue from EMKA2026-189 after EMKA2026-179 through EMKA2026-188\n");
+if ($nextAfterBlock !== 'EMKA2026-193') {
+    fwrite(STDERR, "Registration IDs should skip reserved EMKA2026-183 through EMKA2026-192\n");
+    exit(1);
+}
+
+$recordsThrough182 = [];
+for ($index = 179; $index <= 182; $index++) {
+    $recordsThrough182[] = ['registrationId' => sprintf('EMKA2026-%03d', $index)];
+}
+$nextAfter182 = makeRegistrationId('test-link-182', $recordsThrough182);
+if ($nextAfter182 !== 'EMKA2026-193') {
+    fwrite(STDERR, "Registration IDs should jump to EMKA2026-193 after EMKA2026-182\n");
     exit(1);
 }
 

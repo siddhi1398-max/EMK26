@@ -854,7 +854,7 @@ function mutateRegistrations(callable $mutator): void
 function makeRegistrationId(string $linkId, ?array $records = null): string
 {
     $allRecords = is_array($records) ? $records : readRegistrations();
-    // IDs 125–131 are reserved; new registrations must start at 132 or later.
+    // IDs 125–131 and 183–192 are reserved.
     $maxSequence = 131;
 
     foreach ($allRecords as $record) {
@@ -864,7 +864,12 @@ function makeRegistrationId(string $linkId, ?array $records = null): string
         }
     }
 
-    return sprintf('EMKA2026-%03d', $maxSequence + 1);
+    $nextSequence = $maxSequence + 1;
+    if ($nextSequence >= 183 && $nextSequence <= 192) {
+        $nextSequence = 193;
+    }
+
+    return sprintf('EMKA2026-%03d', $nextSequence);
 }
 
 function currentPageUrl(): string
